@@ -1,4 +1,4 @@
-package main
+package lc94
 
 import (
 	"testing"

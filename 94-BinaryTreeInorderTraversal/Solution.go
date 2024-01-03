@@ -1,4 +1,4 @@
-package main
+package lc94
 
 // TreeNode represents a binary tree node.
 type TreeNode struct {
