@@ -1,21 +1,18 @@
 package lc94
 
-// TreeNode represents a binary tree node.
-type TreeNode struct {
-	Left  *TreeNode
-	Right *TreeNode
-	Val   int
-}
+import (
+	"gitlab.com/euchangxian/leetcode/internal/bst"
+)
 
 type Result []int
 
-func InorderTraversal(root *TreeNode) []int {
+func InorderTraversal(root *bst.TreeNode) []int {
 	var result Result
 	result.depthFirstSearch(root)
 	return result
 }
 
-func (result *Result) depthFirstSearch(node *TreeNode) {
+func (result *Result) depthFirstSearch(node *bst.TreeNode) {
 	if node == nil {
 		return
 	}

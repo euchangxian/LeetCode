@@ -4,12 +4,13 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+	"gitlab.com/euchangxian/leetcode/internal/bst"
 )
 
 func TestPostorderTraversal(t *testing.T) {
-	multipleNodes := &TreeNode{
-		Right: &TreeNode{
-			Left: &TreeNode{
+	multipleNodes := &bst.TreeNode{
+		Right: &bst.TreeNode{
+			Left: &bst.TreeNode{
 				Val: 3,
 			},
 			Val: 2,
@@ -17,15 +18,15 @@ func TestPostorderTraversal(t *testing.T) {
 		Val: 1,
 	}
 
-	var emptyTree *TreeNode
+	var emptyTree *bst.TreeNode
 
-	singleNode := &TreeNode{
+	singleNode := &bst.TreeNode{
 		Val: 1,
 	}
 
 	testCases := []struct {
 		name     string
-		input    *TreeNode
+		input    *bst.TreeNode
 		expected []int
 	}{
 		{

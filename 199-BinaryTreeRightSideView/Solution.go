@@ -1,21 +1,19 @@
 package lc199
 
-type TreeNode struct {
-	Left  *TreeNode
-	Right *TreeNode
-	Val   int
-}
+import (
+	"gitlab.com/euchangxian/leetcode/internal/bst"
+)
 
 // RightSideView returns the values of the nodes as seen from the right side of the tree, ordered
 // from top to bottom.
 // Approach: Level by level, pick the right-most node => LevelOrderSearch.
-func RightSideView(root *TreeNode) []int {
+func RightSideView(root *bst.TreeNode) []int {
 	var result []int
 	levelOrderSearch(&result, root)
 	return result
 }
 
-func levelOrderSearch(result *[]int, root *TreeNode) {
+func levelOrderSearch(result *[]int, root *bst.TreeNode) {
 	if root == nil {
 		return
 	}
@@ -34,7 +32,7 @@ func levelOrderSearch(result *[]int, root *TreeNode) {
 				hasRightMost = true
 			}
 
-			// Adds TreeNode.Right, then TreeNode.Left. In this way, the first node popped from
+			// Adds bst.TreeNode.Right, then bst.TreeNode.Left. In this way, the first node popped from
 			// each frontier will always be the right-most node, and will be in the result. *result = append(*result, currentNode.Val)
 			if currentNode.Right != nil {
 				nextFrontier = append(nextFrontier, currentNode.Right)
@@ -47,17 +45,17 @@ func levelOrderSearch(result *[]int, root *TreeNode) {
 	}
 }
 
-type Queue []*TreeNode
+type Queue []*bst.TreeNode
 
 func (q *Queue) IsEmpty() bool {
 	return len(*q) == 0 // Assumes len() will never return negative.
 }
 
-func (q *Queue) Enqueue(node *TreeNode) {
+func (q *Queue) Enqueue(node *bst.TreeNode) {
 	*q = append(*q, node)
 }
 
-func (q *Queue) Dequeue() *TreeNode {
+func (q *Queue) Dequeue() *bst.TreeNode {
 	popped := (*q)[0] // Retrieves the first element in the Queue
 	*q = (*q)[1:]     // Slices the Queue, removing the first element
 	return popped

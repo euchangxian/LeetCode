@@ -4,6 +4,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+	"gitlab.com/euchangxian/leetcode/internal/bst"
 )
 
 //		 1
@@ -13,37 +14,37 @@ import (
 //
 //	 \   \
 //		 5   4
-var multipleLevels = &TreeNode{
+var multipleLevels = &bst.TreeNode{
 	Val: 1,
-	Left: &TreeNode{
+	Left: &bst.TreeNode{
 		Val: 2,
-		Right: &TreeNode{
+		Right: &bst.TreeNode{
 			Val: 5,
 		},
 	},
-	Right: &TreeNode{
+	Right: &bst.TreeNode{
 		Val: 3,
-		Right: &TreeNode{
+		Right: &bst.TreeNode{
 			Val: 4,
 		},
 	},
 }
 
-var emptyTree *TreeNode
+var emptyTree *bst.TreeNode
 
 // 1
 //
 //	3
-var oneLevel = &TreeNode{
+var oneLevel = &bst.TreeNode{
 	Val: 1,
-	Right: &TreeNode{
+	Right: &bst.TreeNode{
 		Val: 3,
 	},
 }
 
 func TestRightSideView(t *testing.T) {
 	testCases := map[string]struct {
-		input    *TreeNode
+		input    *bst.TreeNode
 		expected []int
 	}{
 		"Multiple levels": {

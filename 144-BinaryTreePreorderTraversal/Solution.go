@@ -1,18 +1,16 @@
 package lc144
 
-type TreeNode struct {
-	Left  *TreeNode
-	Right *TreeNode
-	Val   int
-}
+import (
+	"gitlab.com/euchangxian/leetcode/internal/bst"
+)
 
-func PreorderTraversal(root *TreeNode) []int {
+func PreorderTraversal(root *bst.TreeNode) []int {
 	var result []int
 	search(&result, root)
 	return result
 }
 
-func search(result *[]int, node *TreeNode) {
+func search(result *[]int, node *bst.TreeNode) {
 	if node == nil {
 		return
 	}
