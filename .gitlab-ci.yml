@@ -6,7 +6,7 @@ image: golang:$GO_VERSION
 stages:
   - lint
   - test
-  - test-coverage
+  - visualization
 
 lint:
   stage: lint
@@ -32,8 +32,8 @@ test:
     paths:
       - coverage.txt
 
-test-coverage:
-  stage: test-coverage
+visualization:
+  stage: visualization
   needs: ["test"]
 
   before_script:
