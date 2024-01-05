@@ -6,6 +6,7 @@ image: golang:$GO_VERSION
 stages:
   - lint
   - test
+  - test-coverage
 
 lint:
   stage: lint
@@ -24,5 +25,29 @@ test:
   stage: test
   script:
     - echo "Running tests..."
-    - go test ./... -v
+    - go test -v -coverprofile=coverage.txt -covermode count ./... # Runs tests, and generates code coverage at the same time
     - echo "Tests completed."
+
+  artifacts:
+    paths:
+      - coverage.txt
+
+test-coverage:
+  stage: test-coverage
+  needs: ["test"]
+
+  before_script:
+    - echo "Installing gocover-cobertura..."
+    - go get github.com/boumenot/gocover-cobertura
+    - echo "gocover-cobertura installed."
+
+  script:
+    - echo "Generating coverage report..."
+    - go run github.com/boumenot/gocover-cobertura < coverage.txt > coverage.xml
+    - echo "Coverage report generated."
+
+  artifacts:
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage.xml
