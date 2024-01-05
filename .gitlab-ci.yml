@@ -28,6 +28,8 @@ test:
     - go test -v -coverprofile=coverage.txt -covermode count ./... # Runs tests, and generates code coverage at the same time
     - echo "Tests completed."
 
+  coverage: '/coverage: \d+.\d+% of statements/'
+
   artifacts:
     paths:
       - coverage.txt
