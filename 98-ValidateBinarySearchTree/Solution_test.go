@@ -69,7 +69,11 @@ func TestIsValidBST(t *testing.T) {
 		input    *bst.TreeNode
 		expected bool
 	}{
-		"Valid BST": {
+		"Valid BST - Empty Tree": {
+			input:    nil,
+			expected: true,
+		},
+		"Valid BST - Trivial Case": {
 			input:    validBST,
 			expected: true,
 		},
