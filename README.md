@@ -1,3 +1,6 @@
+[![pipeline status](https://gitlab.com/euchangxian/leetcode/badges/main/pipeline.svg)](https://gitlab.com/euchangxian/leetcode/-/commits/main)
+[![coverage report](https://gitlab.com/euchangxian/leetcode/badges/main/coverage.svg)](https://gitlab.com/euchangxian/leetcode/-/commits/main)
+
 # LeetCode Solutions
 
 [[_TOC_]]
