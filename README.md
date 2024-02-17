@@ -25,3 +25,4 @@ This section attempts to classify solved problems as accurately as possible.
 | 938. Range Sum of BST                 |     Easy       |
 | 98. Validate Binary Search Tree       |     Medium     |
 | 1768. Merge Strings Alternately       |     Easy       |
+| 1071. GCD of Strings                  |     Easy       |
