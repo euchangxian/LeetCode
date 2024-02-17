@@ -24,4 +24,4 @@ This section attempts to classify solved problems as accurately as possible.
 | 199. Binary Tree Right Side View      |     Medium     |
 | 938. Range Sum of BST                 |     Easy       |
 | 98. Validate Binary Search Tree       |     Medium     |
-
+| 1768. Merge Strings Alternately       |     Easy       |
