@@ -11,10 +11,8 @@ This repository contains LeetCode problem solutions written in Go. That aside, t
 of GitLab CI and Go tools, while also documenting my journey through various LeetCode problems.
 
 ---
-## Problems
-This section attempts to classify solved problems as accurately as possible.
+## Problems Solved!
 
-### Search
 
 |               Problem                 |   Difficulty   |
 | :------------------------------------ | :------------: |
@@ -27,3 +25,4 @@ This section attempts to classify solved problems as accurately as possible.
 | 1768. Merge Strings Alternately       |     Easy       |
 | 1071. GCD of Strings                  |     Easy       |
 | 1431. KidsWithGreatestNumberOfCandies |     Easy       |
+| 605. CanPlaceFlowers                  |     Easy       |
