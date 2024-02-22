@@ -26,3 +26,4 @@ of GitLab CI and Go tools, while also documenting my journey through various Lee
 | 1071. GCD of Strings                  |     Easy       |
 | 1431. KidsWithGreatestNumberOfCandies |     Easy       |
 | 605. CanPlaceFlowers                  |     Easy       |
+| 70. ClimbingStairs                    |     Easy       |
