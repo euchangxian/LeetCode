@@ -27,3 +27,35 @@ func longestCommonSubsequence(text1 string, text2 string) int {
 
 	return dp[n][m]
 }
+
+// O(nm) time complexity, but O(min(n, m)) space complexity i.e. 1-d DP
+// Assumes m <= n => O(m) space complexity
+// At the start of the i-th iteration, dp[j] = dp[i - 1][j] (prev row, j-th column)
+// At the end of the i-th iteration, dp[j] = dp[i][j] (corresponds to LCS(n, m))
+func lcs(text1 string, text2 string) int {
+	n := len(text1)
+	m := len(text2)
+	// Simple check to ensure m <= n
+	if n > m {
+		return lcs(text2, text1)
+	}
+
+	// Think of it as iterating on the same row n times.
+	dp := make([]int, m+1) // O(min(n, m)) = O(m)
+
+	// Keep track of the previous diagonal and row, represented by dp[i-1][j-1] and dp[i-1][j] previously
+	for i := 1; i < n+1; i++ {
+		prevDiagonal := 0 // Base case when length of text1 = 0
+		for j := 1; j < m+1; j++ {
+			temp := dp[j] // Hold the current value of dp[j] before any update. Represents dp[i][j] in the (i+1)th iteration.
+			if text1[i-1] != text2[j-1] {
+				dp[j] = max(dp[j], dp[j-1])
+			} else {
+				dp[j] = prevDiagonal + 1
+			}
+			prevDiagonal = temp
+		}
+	}
+
+	return dp[m]
+}
