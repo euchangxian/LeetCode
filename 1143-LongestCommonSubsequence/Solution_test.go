@@ -54,8 +54,14 @@ func TestLongestCommonSubsequence(t *testing.T) {
 	}
 }
 
-func BenchmarkLongestCommonSubsequence(b *testing.B) {
+func Benchmark2DLongestCommonSubsequence(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		longestCommonSubsequence("The quick brown fox jumps over the lazy dog", "Lorem ipsum dolor sit amet, consectetur adipiscing elit")
+	}
+}
+
+func Benchmark1DLongestCommonSubsequence(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		lcs("The quick brown fox jumps over the lazy dog", "Lorem ipsum dolor sit amet, consectetur adipiscing elit")
 	}
 }
