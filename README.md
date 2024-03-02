@@ -28,3 +28,4 @@ of GitLab CI and Go tools, while also documenting my journey through various Lee
 | 605. CanPlaceFlowers                  |     Easy       |
 | 70. ClimbingStairs                    |     Easy       |
 | 118. PascalsTriangle                  |     Easy       |
+| 1143. LongestCommonSubsequence        |     Medium     |
