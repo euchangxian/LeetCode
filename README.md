@@ -30,3 +30,4 @@ of GitLab CI and Go tools, while also documenting my journey through various Lee
 | 118. PascalsTriangle                  |     Easy       |
 | 1143. LongestCommonSubsequence        |     Medium     |
 | 121. BestTimeToBuyAndSellStock        |     Easy       |
+| 122. BestTimeToBuyAndSellStockTwo     |     Medium     |
