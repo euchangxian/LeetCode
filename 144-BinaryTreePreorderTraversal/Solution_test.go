@@ -48,6 +48,7 @@ func TestPreorderTraversal(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
+			t.Parallel()
 			actual := PreorderTraversal(tc.input)
 			assert.Equal(t, tc.expected, actual)
 		})
