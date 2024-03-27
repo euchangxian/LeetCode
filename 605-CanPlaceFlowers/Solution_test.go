@@ -30,9 +30,6 @@ func TestCanPlaceFlowers(t *testing.T) {
 	}
 
 	for name, tc := range testCases {
-		// Capture loop variables
-		name := name
-		tc := tc
 		t.Run(name, func(t *testing.T) {
 			t.Parallel()
 			actual := CanPlaceFlowers(tc.flowerbed, tc.newFlowers)

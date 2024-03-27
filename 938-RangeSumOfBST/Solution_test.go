@@ -85,8 +85,6 @@ func TestRangeSumBST(t *testing.T) {
 	}
 
 	for name, tc := range testCases {
-		name := name
-		tc := tc // NOTE: /wiki/CommonMistakes/#using-goroutines-on-loop-iterator-variables
 		t.Run(name, func(t *testing.T) {
 			t.Parallel()
 			actual := RangeSumBST(tc.inputTree, tc.low, tc.high)
