@@ -14,20 +14,21 @@ of GitLab CI and Go tools, while also documenting my journey through various Lee
 ## Problems Solved!
 
 
-|               Problem                 |   Difficulty   |
-| :------------------------------------ | :------------: |
-| 94. Binary Tree Inorder Traversal     |     Easy       |
-| 144. Binary Tree Preorder Traversal   |     Easy       |
-| 145. Binary Tree Postorder Traversal  |     Easy       |
-| 199. Binary Tree Right Side View      |     Medium     |
-| 938. Range Sum of BST                 |     Easy       |
-| 98. Validate Binary Search Tree       |     Medium     |
-| 1768. Merge Strings Alternately       |     Easy       |
-| 1071. GCD of Strings                  |     Easy       |
-| 1431. KidsWithGreatestNumberOfCandies |     Easy       |
-| 605. CanPlaceFlowers                  |     Easy       |
-| 70. ClimbingStairs                    |     Easy       |
-| 118. PascalsTriangle                  |     Easy       |
-| 1143. LongestCommonSubsequence        |     Medium     |
-| 121. BestTimeToBuyAndSellStock        |     Easy       |
-| 122. BestTimeToBuyAndSellStockTwo     |     Medium     |
+|               Problem                     |   Difficulty   |
+| :---------------------------------------- | :------------: |
+| 94. Binary Tree Inorder Traversal         |     Easy       |
+| 144. Binary Tree Preorder Traversal       |     Easy       |
+| 145. Binary Tree Postorder Traversal      |     Easy       |
+| 199. Binary Tree Right Side View          |     Medium     |
+| 938. Range Sum of BST                     |     Easy       |
+| 98. Validate Binary Search Tree           |     Medium     |
+| 1768. Merge Strings Alternately           |     Easy       |
+| 1071. GCD of Strings                      |     Easy       |
+| 1431. KidsWithGreatestNumberOfCandies     |     Easy       |
+| 605. CanPlaceFlowers                      |     Easy       |
+| 70. ClimbingStairs                        |     Easy       |
+| 118. PascalsTriangle                      |     Easy       |
+| 1143. LongestCommonSubsequence            |     Medium     |
+| 121. BestTimeToBuyAndSellStock            |     Easy       |
+| 122. BestTimeToBuyAndSellStockTwo         |     Medium     |
+| 452. MinimumNumberOfArrowsToBurstBalloons | Medium         |
