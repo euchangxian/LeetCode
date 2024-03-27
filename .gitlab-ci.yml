@@ -1,5 +1,6 @@
 variables:
-  GO_VERSION: "1.21.5"
+  GO_VERSION: "1.22.0"
+  GOLANGCI_LINT_VERSION: "1.56.2"
 
 image: golang:$GO_VERSION
 
@@ -13,7 +14,7 @@ lint:
   allow_failure: false
   before_script:
     - echo "Installing golangci-lint..."
-    - curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.55.2
+    - curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v$GOLANGCI_LINT_VERSION
     - echo "golangci-lint installed."
 
   script:
