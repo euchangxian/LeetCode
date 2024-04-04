@@ -31,4 +31,5 @@ of GitLab CI and Go tools, while also documenting my journey through various Lee
 | 1143. LongestCommonSubsequence            |     Medium     |
 | 121. BestTimeToBuyAndSellStock            |     Easy       |
 | 122. BestTimeToBuyAndSellStockTwo         |     Medium     |
-| 452. MinimumNumberOfArrowsToBurstBalloons | Medium         |
+| 452. MinimumNumberOfArrowsToBurstBalloons |     Medium     |
+| 22. GenerateParentheses                   |     Medium     |
