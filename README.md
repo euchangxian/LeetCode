@@ -34,4 +34,5 @@ of GitLab CI and Go tools, while also documenting my journey through various Lee
 | 452. MinimumNumberOfArrowsToBurstBalloons |     Medium     |
 | 22. GenerateParentheses                   |     Medium     |
 | 1700-NumberOfStudentsUnableToEatLunch     |     Easy       |
-| 45-JumpGame                               |     Medium     |
+| 45-JumpGameII (Optimization)              |     Medium     |
+| 55-JumpGame (Decision)                    |     Medium     |
