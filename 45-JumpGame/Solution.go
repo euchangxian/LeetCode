@@ -5,11 +5,15 @@ package lc45
 // Let nums[i]* be the jump that reaches the furthest index, such that
 // i + nums[i]* = max(j + nums[j]) for all 0<=j<=len(nums)
 // Then, there exists an optimal solution which includes nums[i]*.
-func jump(nums []int) int {
+func Jump(nums []int) int {
 	jumps := 1
 	furthest := nums[0] // represents the current furthest index reachable with the number of jumps
 
 	for i := 1; i < len(nums); i++ {
+		if i > furthest {
+			// Cannot reach the end
+			return 0
+		}
 		if i+nums[i] > furthest {
 			jumps++
 			furthest = i + nums[i]
