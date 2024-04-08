@@ -15,7 +15,7 @@ func TestJump(t *testing.T) {
 			nums:     []int{2, 3, 1, 1, 4},
 			expected: 2,
 		},
-		"": {
+		"nums[j] = 0 for edge cases": {
 			nums:     []int{2, 3, 0, 1, 4},
 			expected: 2,
 		},
@@ -27,5 +27,17 @@ func TestJump(t *testing.T) {
 			actual := jump(tc.nums)
 			assert.Equal(t, tc.expected, actual)
 		})
+	}
+}
+
+func BenchmarkGreedyJump(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		jump([]int{2, 3, 1, 1, 4, 5, 2, 1, 3, 2, 4})
+	}
+}
+
+func BenchmarkNaiveJump(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		jumpNaive([]int{2, 3, 1, 1, 4, 5, 2, 1, 3, 2, 4})
 	}
 }
