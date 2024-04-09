@@ -38,3 +38,4 @@ of GitLab CI and Go tools, while also documenting my journey through various Lee
 | 55-JumpGame (Decision)                    |     Medium     |
 | 62-UniquePaths                            |     Medium     |
 | 63-UniquePathsII                          |     Medium     |
+| 2073-TimeNeededToBuyTickets               |     Easy       |
