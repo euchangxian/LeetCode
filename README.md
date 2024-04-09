@@ -36,3 +36,4 @@ of GitLab CI and Go tools, while also documenting my journey through various Lee
 | 1700-NumberOfStudentsUnableToEatLunch     |     Easy       |
 | 45-JumpGameII (Optimization)              |     Medium     |
 | 55-JumpGame (Decision)                    |     Medium     |
+| 62-UniquePaths                            |     Medium     |
