@@ -40,3 +40,4 @@ of GitLab CI and Go tools, while also documenting my journey through various Lee
 | 63-UniquePathsII                          |     Medium     |
 | 2073-TimeNeededToBuyTickets               |     Easy       |
 | 1884-EggDropWith2EggsAndNFloors           |     Medium     |
+| 739-DailyTemperatures                     |     Medium     |
