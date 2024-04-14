@@ -42,3 +42,4 @@ of GitLab CI and Go tools, while also documenting my journey through various Lee
 | 1884-EggDropWith2EggsAndNFloors           |     Medium     |
 | 739-DailyTemperatures                     |     Medium     |
 | 402-RemoveKDigits                         |     Medium     |
+| 42-TrappingRainWater                      |     Hard       |
