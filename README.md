@@ -44,3 +44,4 @@ of GitLab CI and Go tools, while also documenting my journey through various Lee
 | 402-RemoveKDigits                         |     Medium     |
 | 42-TrappingRainWater                      |     Hard       |
 | 404-SumOfLeftLeaves                       |     Easy       |
+| 120-Triangle                              |     Medium     |
