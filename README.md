@@ -48,3 +48,4 @@ of GitLab CI and Go tools, while also documenting my journey through various Lee
 | 2830-MaximizeTheProfitAsASalesman         |     Medium     |
 | 2000-ReversePrefixOfWord                  |     Easy       |
 | 2441-LargestMatchingNumbers(Abridged)     |     Easy       |
+| 165-CompareVersionNumbers                 |     Medium     |
