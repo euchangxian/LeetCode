@@ -47,3 +47,4 @@ of GitLab CI and Go tools, while also documenting my journey through various Lee
 | 120-Triangle                              |     Medium     |
 | 2830-MaximizeTheProfitAsASalesman         |     Medium     |
 | 2000-ReversePrefixOfWord                  |     Easy       |
+| 2441-LargestMatchingNumbers(Abridged)     |     Easy       |
