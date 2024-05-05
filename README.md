@@ -50,3 +50,4 @@ of GitLab CI and Go tools, while also documenting my journey through various Lee
 | 2441-LargestMatchingNumbers(Abridged)     |     Easy       |
 | 165-CompareVersionNumbers                 |     Medium     |
 | 881-BoatsToSavePeople                     |     Medium     |
+| 237-DeleteNodeInALinkedList               |     Medium     |
