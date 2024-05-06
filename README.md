@@ -53,3 +53,4 @@ of GitLab CI and Go tools, while also documenting my journey through various Lee
 | 237-DeleteNodeInALinkedList               |     Medium     |
 | 67-AddBinary                              |     Easy       |
 | 136-SingleNumber                          |     Easy       |
+| 2487-RemoveNodesFromLinkedList            |     Medium     |
