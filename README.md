@@ -55,3 +55,4 @@ of GitLab CI and Go tools, while also documenting my journey through various Lee
 | 136-SingleNumber                          |     Easy       |
 | 2487-RemoveNodesFromLinkedList            |     Medium     |
 | 64-MinimumPathSum                         |     Medium     |
+| 2816-DoubleNumberRepresentedAsLinkedList  |     Medium     |
