@@ -57,3 +57,4 @@ of GitLab CI and Go tools, while also documenting my journey through various Lee
 | 64-MinimumPathSum                         |     Medium     |
 | 2816-DoubleNumberRepresentedAsLinkedList  |     Medium     |
 | 506-RelativeRanks                         |     Easy       |
+| 3075-MaximizeHappinessOfSelectedChildren  |     Medium     |
