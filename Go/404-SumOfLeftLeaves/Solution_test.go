@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"gitlab.com/euchangxian/leetcode/internal/bst"
+	"gitlab.com/euchangxian/leetcode/Go/internal/bst"
 )
 
 func TestSumOfLeftLeaves(t *testing.T) {

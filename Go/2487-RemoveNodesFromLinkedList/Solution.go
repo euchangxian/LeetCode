@@ -1,6 +1,6 @@
 package lc2487
 
-import "gitlab.com/euchangxian/leetcode/internal/linkedlist"
+import "gitlab.com/euchangxian/leetcode/Go/internal/linkedlist"
 
 func removeNodes(head *linkedlist.ListNode) *linkedlist.ListNode {
 	if head == nil {

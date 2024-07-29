@@ -1,6 +1,6 @@
 package lc2816
 
-import "gitlab.com/euchangxian/leetcode/internal/linkedlist"
+import "gitlab.com/euchangxian/leetcode/Go/internal/linkedlist"
 
 func doubleIt(head *linkedlist.ListNode) *linkedlist.ListNode {
 	carry := double(head)

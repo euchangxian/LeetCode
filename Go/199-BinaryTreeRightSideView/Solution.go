@@ -1,7 +1,7 @@
 package lc199
 
 import (
-	"gitlab.com/euchangxian/leetcode/internal/bst"
+	"gitlab.com/euchangxian/leetcode/Go/internal/bst"
 )
 
 // RightSideView returns the values of the nodes as seen from the right side of the tree, ordered

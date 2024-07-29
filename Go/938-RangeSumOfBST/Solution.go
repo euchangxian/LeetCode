@@ -1,7 +1,7 @@
 package lc938
 
 import (
-	"gitlab.com/euchangxian/leetcode/internal/bst"
+	"gitlab.com/euchangxian/leetcode/Go/internal/bst"
 )
 
 func RangeSumBST(root *bst.TreeNode, low int, high int) int {

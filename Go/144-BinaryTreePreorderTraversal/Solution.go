@@ -1,8 +1,6 @@
 package lc144
 
-import (
-	"gitlab.com/euchangxian/leetcode/internal/bst"
-)
+import "gitlab.com/euchangxian/leetcode/Go/internal/bst"
 
 func PreorderTraversal(root *bst.TreeNode) []int {
 	var result []int

@@ -1,7 +1,7 @@
 package lc145
 
 import (
-	"gitlab.com/euchangxian/leetcode/internal/bst"
+	"gitlab.com/euchangxian/leetcode/Go/internal/bst"
 )
 
 func PostorderTraversal(root *bst.TreeNode) []int {

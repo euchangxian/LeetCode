@@ -1,6 +1,6 @@
 package lc404
 
-import "gitlab.com/euchangxian/leetcode/internal/bst"
+import "gitlab.com/euchangxian/leetcode/Go/internal/bst"
 
 func sumOfLeftLeaves(root *bst.TreeNode) int {
 	return helper(root, false)

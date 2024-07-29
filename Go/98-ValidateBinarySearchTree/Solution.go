@@ -3,7 +3,7 @@ package lc98
 import (
 	"math"
 
-	"gitlab.com/euchangxian/leetcode/internal/bst"
+	"gitlab.com/euchangxian/leetcode/Go/internal/bst"
 )
 
 func IsValidBST(root *bst.TreeNode) bool {

@@ -1,7 +1,7 @@
 package lc94
 
 import (
-	"gitlab.com/euchangxian/leetcode/internal/bst"
+	"gitlab.com/euchangxian/leetcode/Go/internal/bst"
 )
 
 type Result []int

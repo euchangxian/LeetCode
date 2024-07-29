@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"gitlab.com/euchangxian/leetcode/internal/linkedlist"
+	"gitlab.com/euchangxian/leetcode/Go/internal/linkedlist"
 )
 
 var head = &linkedlist.ListNode{

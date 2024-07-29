@@ -36,12 +36,3 @@ func addBinary(a string, b string) string {
 	}
 	return sb.String()
 }
-
-// Given the constraints 1 <= a.length, b.length <= 10^4, it is clear that this problem is meant to be solved
-// by manually adding bits.
-func addBinaryDecimalConversion(a string, b string) string {
-	aDecimal, _ := strconv.ParseInt(a, 2, 64)
-	bDecimal, _ := strconv.ParseInt(b, 2, 64)
-
-	return strconv.FormatInt(aDecimal+bDecimal, 2)
-}

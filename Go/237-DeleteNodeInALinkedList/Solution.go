@@ -1,8 +1,6 @@
 package lc237
 
-import (
-	"gitlab.com/euchangxian/leetcode/internal/linkedlist"
-)
+import "gitlab.com/euchangxian/leetcode/Go/internal/linkedlist"
 
 func wrappedDeleteNode(head *linkedlist.ListNode, node *linkedlist.ListNode) *linkedlist.ListNode {
 	deleteNode(node)
