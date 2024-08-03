@@ -7,6 +7,17 @@
 
 ___
 
+## Initial Setup
+
+To ensure that the README table is automatically updated with new Solutions,
+follow these steps to set up a pre-commit hook:
+
+```bash
+git clone https://gitlab.com/euchangxian/leetcode.git
+cd leetcode
+bash setup_hook.sh
+```
+
 ## Description
 
 Contains LeetCode Solutions written in different languages for ME to reference.
