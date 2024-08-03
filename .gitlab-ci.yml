@@ -1,56 +1,24 @@
-variables:
-  GO_VERSION: "1.22.0"
-  GOLANGCI_LINT_VERSION: "1.56.2"
-
-image: golang:$GO_VERSION
-
 stages:
-  - lint
-  - test
-  - visualization
+  - trigger-child-pipelines
 
-lint:
-  stage: lint
-  allow_failure: false
-  before_script:
-    - echo "Installing golangci-lint..."
-    - curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v$GOLANGCI_LINT_VERSION
-    - echo "golangci-lint installed."
+.base-rules:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TARGET_BRANCH_PROTECTED == "true" # Trigger on MR to protected branches
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_MERGE_REQUEST_TARGET_BRANCH_PROTECTED == "true" # Trigger on push to protected branches
+    - changes:
+        - "**/*.gitlab-ci.yml" # Trigger on any changes to CI configuration
+        - "*.gitlab-ci.yml"
 
-  script:
-    - echo "Linting..."
-    - golangci-lint run -v
-    - echo "Linting complete."
-
-test:
-  stage: test
-  script:
-    - echo "Running tests..."
-    - go test -v -coverprofile=coverage.txt -covermode count ./... # Runs tests, and generates code coverage at the same time
-    - echo "Tests completed."
-
-  coverage: '/coverage: \d+.\d+% of statements/'
-
-  artifacts:
-    paths:
-      - coverage.txt
-
-visualization:
-  stage: visualization
-  needs: ["test"]
-
-  before_script:
-    - echo "Installing gocover-cobertura..."
-    - go get github.com/boumenot/gocover-cobertura
-    - echo "gocover-cobertura installed."
-
-  script:
-    - echo "Generating coverage report..."
-    - go run github.com/boumenot/gocover-cobertura < coverage.txt > coverage.xml
-    - echo "Coverage report generated."
-
-  artifacts:
-    reports:
-      coverage_report:
-        coverage_format: cobertura
-        path: coverage.xml
+trigger-go-pipeline:
+  stage: trigger-child-pipelines
+  trigger:
+    include: "GO.gitlab-ci.yml"
+    strategy: depend # Main pipeline success depends on the child pipeline
+  rules:
+    - !reference [.base-rules, rules]
+    - changes:
+        - "**/*.go"
+        - "go.mod"
+        - "go.sum"
+      when: on_success
+    - when: never # Catch-all to prevent this pipeline from unintentionally executing
