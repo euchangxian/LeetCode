@@ -1,60 +1,23 @@
+# LeetCode Solutions
+
 [![pipeline status](https://gitlab.com/euchangxian/leetcode/badges/main/pipeline.svg)](https://gitlab.com/euchangxian/leetcode/-/commits/main)
 [![coverage report](https://gitlab.com/euchangxian/leetcode/badges/main/coverage.svg)](https://gitlab.com/euchangxian/leetcode/-/commits/main)
-
-# LeetCode Solutions
 
 [[_TOC_]]
 
 ___
+
 ## Description
-This repository contains LeetCode problem solutions written in Go. That aside, this repository allows me to explore the usage
-of GitLab CI and Go tools, while also documenting my journey through various LeetCode problems.
 
----
-## Problems Solved!
+Contains LeetCode Solutions written in different languages for ME to reference.
 
+Started with Go, but Go as an interview language to solve LeetCode questions is
+a poor choice, since Go's standard library is sorely lacking.
+Also, solving string/char questions in Go was painful due to runes and such.
+Though Go is still my favorite language by far for Software Engineering.
 
-|               Problem                     |   Difficulty   |
-| :---------------------------------------- | :------------: |
-| 94. Binary Tree Inorder Traversal         |     Easy       |
-| 144. Binary Tree Preorder Traversal       |     Easy       |
-| 145. Binary Tree Postorder Traversal      |     Easy       |
-| 199. Binary Tree Right Side View          |     Medium     |
-| 938. Range Sum of BST                     |     Easy       |
-| 98. Validate Binary Search Tree           |     Medium     |
-| 1768. Merge Strings Alternately           |     Easy       |
-| 1071. GCD of Strings                      |     Easy       |
-| 1431. KidsWithGreatestNumberOfCandies     |     Easy       |
-| 605. CanPlaceFlowers                      |     Easy       |
-| 70. ClimbingStairs                        |     Easy       |
-| 118. PascalsTriangle                      |     Easy       |
-| 1143. LongestCommonSubsequence            |     Medium     |
-| 121. BestTimeToBuyAndSellStock            |     Easy       |
-| 122. BestTimeToBuyAndSellStockTwo         |     Medium     |
-| 452. MinimumNumberOfArrowsToBurstBalloons |     Medium     |
-| 22. GenerateParentheses                   |     Medium     |
-| 1700-NumberOfStudentsUnableToEatLunch     |     Easy       |
-| 45-JumpGameII (Optimization)              |     Medium     |
-| 55-JumpGame (Decision)                    |     Medium     |
-| 62-UniquePaths                            |     Medium     |
-| 63-UniquePathsII                          |     Medium     |
-| 2073-TimeNeededToBuyTickets               |     Easy       |
-| 1884-EggDropWith2EggsAndNFloors           |     Medium     |
-| 739-DailyTemperatures                     |     Medium     |
-| 402-RemoveKDigits                         |     Medium     |
-| 42-TrappingRainWater                      |     Hard       |
-| 404-SumOfLeftLeaves                       |     Easy       |
-| 120-Triangle                              |     Medium     |
-| 2830-MaximizeTheProfitAsASalesman         |     Medium     |
-| 2000-ReversePrefixOfWord                  |     Easy       |
-| 2441-LargestMatchingNumbers(Abridged)     |     Easy       |
-| 165-CompareVersionNumbers                 |     Medium     |
-| 881-BoatsToSavePeople                     |     Medium     |
-| 237-DeleteNodeInALinkedList               |     Medium     |
-| 67-AddBinary                              |     Easy       |
-| 136-SingleNumber                          |     Easy       |
-| 2487-RemoveNodesFromLinkedList            |     Medium     |
-| 64-MinimumPathSum                         |     Medium     |
-| 2816-DoubleNumberRepresentedAsLinkedList  |     Medium     |
-| 506-RelativeRanks                         |     Easy       |
-| 3075-MaximizeHappinessOfSelectedChildren  |     Medium     |
+Tried Rust for the fun of it. Enjoyed it. Too difficult.
+
+Now solving in C++. Like it.
+
+___
