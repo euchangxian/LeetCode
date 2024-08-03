@@ -87,6 +87,7 @@ Now solving in C++. Like it.
 | 0567 | [PermutationInString](/0567-PermutationInString) | ![C++](assets/cpp.svg) |
 | 0605 | [CanPlaceFlowers](/0605-CanPlaceFlowers) | ![Go](assets/go.svg) |
 | 0648 | [ReplaceWords](/0648-ReplaceWords) | ![C++](assets/cpp.svg) |
+| 0704 | [BinarySearch](/0704-BinarySearch) | ![C++](assets/cpp.svg) |
 | 0726 | [NumberOfAtoms](/0726-NumberOfAtoms) | ![C++](assets/cpp.svg) |
 | 0739 | [DailyTemperatures](/0739-DailyTemperatures) | ![C++](assets/cpp.svg) ![Go](assets/go.svg) |
 | 0786 | [KthSmallestPrimeFraction](/0786-KthSmallestPrimeFraction) | ![Rust](assets/rust.svg) |
