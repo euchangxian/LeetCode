@@ -55,6 +55,7 @@ Now solving in C++. Like it.
 | 0067 | [AddBinary](/0067-AddBinary) | ![Go](assets/go.svg) |
 | 0070 | [ClimbingStairs](/0070-ClimbingStairs) | ![Go](assets/go.svg) |
 | 0072 | [EditDistance](/0072-EditDistance) | ![Rust](assets/rust.svg) |
+| 0074 | [SearchA2DMatrix](/0074-SearchA2DMatrix) | ![C++](assets/cpp.svg) |
 | 0075 | [SortColors](/0075-SortColors) | ![C++](assets/cpp.svg) |
 | 0076 | [MinimumWindowSubstring](/0076-MinimumWindowSubstring) | ![C++](assets/cpp.svg) |
 | 0078 | [Subsets](/0078-Subsets) | ![C++](assets/cpp.svg) |
