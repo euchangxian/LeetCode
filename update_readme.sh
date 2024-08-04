@@ -1,15 +1,36 @@
 #!/bin/bash
-
 set -euo pipefail
 
-# Function to get language icon
-get_language_icon() {
-  case $1 in
-  cpp | cc) echo "![C++](assets/cpp.svg)" ;;
-  go) echo "![Go](assets/go.svg)" ;;
-  rs) echo "![Rust](assets/rust.svg)" ;;
-  *) echo "![Unknown](assets/unknown.svg)" ;;
+# Function to get language icon with link
+get_language_icon_with_link() {
+  local extension=$1
+  local path=$2
+  local icon=""
+  local asset=""
+  local dir=""
+  case $extension in
+  cpp)
+    icon="C++"
+    asset="c++.svg"
+    dir="C++/"
+    ;;
+  go)
+    icon="Go"
+    asset="go.svg"
+    dir="Go/"
+    ;;
+  rs)
+    icon="Rust"
+    asset="rust.svg"
+    dir="Rust/"
+    ;;
+  *)
+    icon="Unknown"
+    asset="unknown.svg"
+    dir=""
+    ;;
   esac
+  echo "[![$icon](assets/$asset)]($dir$path)"
 }
 
 # Check if README.md exists
@@ -26,7 +47,6 @@ CHANGED_SOLUTIONS=$(echo "$STAGED_FILES" | grep -E 'Solution\.[^/]+$' || true)
 
 # If no solution files have changed, exit early
 if [ -z "$CHANGED_SOLUTIONS" ]; then
-  echo "No changes to solution files detected. Exiting."
   exit 0
 fi
 
@@ -45,10 +65,14 @@ update_table() {
     split($0, a, "|")
     gsub(/^[ \t]+|[ \t]+$/, "", a[2])  # Trim whitespace
     if (a[2] == num) {
-      printf("| %s | [%s](/%s-%s) | %s %s |\n", num, name, num, name, $NF, icon)
+      if (index($0, icon) == 0) {  # If icon not present, add it
+        printf("| %s | %s | %s %s |\n", num, name, $NF, icon)
+      } else {  # If icon present, keep existing line
+        print $0
+      }
       updated = 1
     } else if (a[2] > num && !updated) {
-      printf("| %s | [%s](/%s-%s) | %s |\n", num, name, num, name, icon)
+      printf("| %s | %s | %s |\n", num, name, icon)
       print $0
       updated = 1
     } else {
@@ -58,14 +82,14 @@ update_table() {
   }
   in_table && /^$/ {
     if (!updated) {
-      printf("| %s | [%s](/%s-%s) | %s |\n", num, name, num, name, icon)
+      printf("| %s | %s | %s |\n", num, name, icon)
     }
     in_table = 0
   }
   { print }
   END {
     if (in_table && !updated) {
-      printf("| %s | [%s](/%s-%s) | %s |\n", num, name, num, name, icon)
+      printf("| %s | %s | %s |\n", num, name, icon)
     }
   }
   ' README.md >"$temp_file"
@@ -75,13 +99,11 @@ update_table() {
 
 # Process changed files
 echo "$CHANGED_SOLUTIONS" | while read -r file; do
-  if [[ $file =~ /([0-9]{4})-([^/]+)/Solution\.(.+)$ ]]; then
-    NUMBER=${BASH_REMATCH[1]}
-    PROBLEM_NAME=${BASH_REMATCH[2]}
-    EXTENSION=${BASH_REMATCH[3]}
-
-    LANGUAGE_ICON=$(get_language_icon "$EXTENSION")
-
+  if [[ $file =~ ([^/]+)/([0-9]{4})-([^/]+)/Solution\.(.+)$ ]]; then
+    NUMBER=${BASH_REMATCH[2]}
+    PROBLEM_NAME=${BASH_REMATCH[3]}
+    EXTENSION=${BASH_REMATCH[4]}
+    LANGUAGE_ICON=$(get_language_icon_with_link "$EXTENSION" "$file")
     update_table "$NUMBER" "$PROBLEM_NAME" "$LANGUAGE_ICON"
   fi
 done
