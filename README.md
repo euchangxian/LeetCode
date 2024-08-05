@@ -151,6 +151,7 @@ Now solving in C++. Like it.
 | 2000 | ReversePrefixOfWord | [![Go](assets/go.svg)](Go/2000-ReversePrefixOfWord/Solution.go) |
 | 2037 | MinimumNumberOfMovesToSeatEveryone | [![C++](assets/c++.svg)](C++/2037-MinimumNumberOfMovesToSeatEveryone/Solution.cpp) |
 | 2045 | SecondMinimumTimeToReachDestination | [![C++](assets/c++.svg)](C++/2045-SecondMinimumTimeToReachDestination/Solution.cpp) |
+| 2053 | KthDistinctStringInAnArray | [![C++](assets/c++.svg)](C++/C++/2053-KthDistinctStringInAnArray/Solution.cpp) |
 | 2058 | FindTheMinimumAndMaximumNumberOfNodesBetweenCriticalPoints | [![C++](assets/c++.svg)](C++/2058-FindTheMinimumAndMaximumNumberOfNodesBetweenCriticalPoints/Solution.cpp) |
 | 2073 | TimeNeededToBuyTickets | [![Go](assets/go.svg)](Go/2073-TimeNeededToBuyTickets/Solution.go) |
 | 2096 | StepByStepDirectionsFromABinaryTreeNodeToAnother | [![C++](assets/c++.svg)](C++/2096-StepByStepDirectionsFromABinaryTreeNodeToAnother/Solution.cpp) |
