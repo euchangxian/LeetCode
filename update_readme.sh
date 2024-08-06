@@ -7,30 +7,25 @@ get_language_icon_with_link() {
   local path=$2
   local icon=""
   local asset=""
-  local dir=""
   case $extension in
   cpp)
     icon="C++"
     asset="c++.svg"
-    dir="C++/"
     ;;
   go)
     icon="Go"
     asset="go.svg"
-    dir="Go/"
     ;;
   rs)
     icon="Rust"
     asset="rust.svg"
-    dir="Rust/"
     ;;
   *)
     icon="Unknown"
     asset="unknown.svg"
-    dir=""
     ;;
   esac
-  echo "[![$icon](assets/$asset)]($dir$path)"
+  echo "[![$icon](assets/$asset)]($path)"
 }
 
 # Check if README.md exists
