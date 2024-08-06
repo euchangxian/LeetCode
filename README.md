@@ -75,6 +75,7 @@ Now solving in C++. Like it.
 | 0144 | BinaryTreePreorderTraversal | [![Go](assets/go.svg)](Go/0144-BinaryTreePreorderTraversal/Solution.go) |
 | 0145 | BinaryTreePostorderTraversal | [![Go](assets/go.svg)](Go/0145-BinaryTreePostorderTraversal/Solution.go) |
 | 0150 | EvaluateReversePolishNotation | [![C++](assets/c++.svg)](C++/0150-EvaluateReversePolishNotation/Solution.cpp) |
+| 0153 | FindMinimumInRotatedSortedArray | [![C++](assets/c++.svg)](C++/C++/0153-FindMinimumInRotatedSortedArray/Solution.cpp) |
 | 0165 | CompareVersionNumbers | [![Go](assets/go.svg)](Go/0165-CompareVersionNumbers/Solution.go) |
 | 0167 | TwoSumTwo | [![C++](assets/c++.svg)](C++/0167-TwoSumTwo/Solution.cpp) |
 | 0198 | HouseRobber | [![C++](assets/c++.svg)](C++/0198-HouseRobber/Solution.cpp) |
