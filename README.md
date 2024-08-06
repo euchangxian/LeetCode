@@ -107,6 +107,7 @@ Now solving in C++. Like it.
 | 0853 | CarFleet | [![C++](assets/c++.svg)](C++/0853-CarFleet/Solution.cpp) |
 | 0857 | MinimumCostToHireKWorkers | [![Rust](assets/rust.svg)](Rust/0857-MinimumCostToHireKWorkers/Solution.rs) |
 | 0861 | ScoreAfterFlippingMatrix | [![Rust](assets/rust.svg)](Rust/0861-ScoreAfterFlippingMatrix/Solution.rs) |
+| 0875 | KokoEatingBananas | [![C++](assets/c++.svg)](C++/C++/0875-KokoEatingBananas/Solution.cpp) |
 | 0881 | BoatsToSavePeople | [![Go](assets/go.svg)](Go/0881-BoatsToSavePeople/Solution.go) |
 | 0912 | SortAnArray | [![C++](assets/c++.svg)](C++/0912-SortAnArray/Solution.cpp) |
 | 0938 | RangeSumOfBST | [![Go](assets/go.svg)](Go/0938-RangeSumOfBST/Solution.go) |
