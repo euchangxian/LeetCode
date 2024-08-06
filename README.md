@@ -175,6 +175,7 @@ Now solving in C++. Like it.
 | 2816 | DoubleANumberRepresentedAsALinkedList | [![Go](assets/go.svg)](Go/2816-DoubleANumberRepresentedAsALinkedList/Solution.go) |
 | 2830 | MaximizeTheProfitAsASalesman | [![Go](assets/go.svg)](Go/2830-MaximizeTheProfitAsASalesman/Solution.go) |
 | 2976 | MinimumCostToConvertStringOne | [![C++](assets/c++.svg)](C++/2976-MinimumCostToConvertStringOne/Solution.cpp) |
+| 3016 | MinimumNumberOfPushesToTypeWordTwo | [![C++](assets/c++.svg)](C++/C++/3016-MinimumNumberOfPushesToTypeWordTwo/Solution.cpp) |
 | 3068 | FindTheMaximumSumOfNodeValues | [![C++](assets/c++.svg)](C++/3068-FindTheMaximumSumOfNodeValues/Solution.cpp) |
 | 3075 | MaximizeHappinessOfSelectedChildren | [![Rust](assets/rust.svg)](Rust/3075-MaximizeHappinessOfSelectedChildren/Solution.rs) [![Go](assets/go.svg)](Go/3075-MaximizeHappinessOfSelectedChildren/Solution.go) |
 | 3110 | ScoreOfAString | [![C++](assets/c++.svg)](C++/3110-ScoreOfAString/Solution.cpp) |
