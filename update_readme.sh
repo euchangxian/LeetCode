@@ -54,8 +54,8 @@ update_table() {
 
   awk -v num="$number" -v name="$problem_name" -v icon="$language_icon" '
   BEGIN { updated = 0; in_table = 0 }
-  /^\| Code \| Problem Name \| Languages \|/ { in_table = 1; print; next }
-  in_table && /^\| :--: \| :----------- \| :-------: \|/ { print; next }
+  /^\| *Code * \| *Problem Name * \| *Languages * \|/ { in_table = 1; print; next }
+  in_table && /^\| *:?-+:? *\| *:?-+:? *\| *:?-+:? *\|/ { print; next }
   in_table && /^\|/ {
     split($0, a, "|")
     gsub(/^[ \t]+|[ \t]+$/, "", a[2])  # Trim whitespace
@@ -100,7 +100,6 @@ echo "$CHANGED_SOLUTIONS" | while read -r file; do
     EXTENSION=${BASH_REMATCH[4]}
     LANGUAGE_ICON=$(get_language_icon_with_link "$EXTENSION" "$file")
     update_table "$NUMBER" "$PROBLEM_NAME" "$LANGUAGE_ICON"
+    npx prettier --write README.md # Run prettier to format README
   fi
 done
-
-echo "README.md has been updated successfully."
