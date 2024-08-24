@@ -61,7 +61,8 @@ update_table() {
     gsub(/^[ \t]+|[ \t]+$/, "", a[2])  # Trim whitespace
     if (a[2] == num) {
       if (index($0, icon) == 0) {  # If icon not present, add it
-        printf("| %s | %s | %s %s |\n", num, name, $NF, icon)
+        gsub(/\|[ \t]*$/, "", $0)  # Remove trailing |
+        printf("%s %s |\n", $0, icon)
       } else {  # If icon present, keep existing line
         print $0
       }
