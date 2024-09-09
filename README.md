@@ -33,6 +33,7 @@ Now solving in C++. Like it.
 
 | Code | Problem Name                                                     |                                                                               Languages                                                                               |
 | :--: | :--------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| 0001 | TwoSum                                                           |                                                        [![C++](assets/c++.svg)](C++/0001-TwoSum/Solution.cpp)                                                         |
 | 0002 | AddTwoNumbers                                                    |                     [![Rust](assets/rust.svg)](Rust/0002-AddTwoNumbers/Solution.rs) [![C++](assets/c++.svg)](C++/0002-AddTwoNumbers/Solution.cpp)                     |
 | 0003 | LongestSubstringWithoutRepeatingCharacters                       |                                      [![C++](assets/c++.svg)](C++/0003-LongestSubstringWithoutRepeatingCharacters/Solution.cpp)                                       |
 | 0004 | FindMedianOfTwoSortedArrays                                      |                                              [![C++](assets/c++.svg)](C++/0004-FindMedianOfTwoSortedArrays/Solution.cpp)                                              |
