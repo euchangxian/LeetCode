@@ -9,6 +9,12 @@
 
 ## Initial Setup
 
+### Prerequisites
+
+- `prettier` (used to format the README in the pre-commit hook)
+
+### Steps
+
 To ensure that the README table is automatically updated with new Solutions,
 follow these steps to set up a pre-commit hook:
 
@@ -20,16 +26,36 @@ bash setup_hook.sh
 
 ## Description
 
-Contains LeetCode Solutions written in different languages for ME to reference.
+Contains LeetCode Solutions written in different languages for ME to reference
+and track my progress.
 
 Started with Go, but Go as an interview language to solve LeetCode questions is
-a poor choice, since Go's standard library is sorely lacking.
-Also, solving string/char questions in Go was painful due to runes and such.
-Though Go is still my favorite language by far for Software Engineering.
+a poor choice, since Go's standard library is sorely lacking common data
+structures and/or algorithms.
 
-Tried Rust for the fun of it. Enjoyed it. Too difficult.
+Also, solving string/char questions in Go was painful due to runes and such.
+
+Though, Go is still my favorite language by far for Software Engineering due
+to its ease of use and comprehensive standard library.
+
+Tried Rust for the fun of it. Enjoyed it. Too time-consuming to deal with the
+borrow-checker when solving Graph questions. Though I would want to engineer
+some software with it some time in the future.
 
 Now solving in C++. Like it.
+
+## Known Issues
+
+1. Rust solutions are not run-able. Rust requires a different sort of directory
+   that is not really compatible with the way this Repository is structured.
+
+2. Code Coverage Badge showing `unknown`. This is a known issue with [GitLab
+   Child Pipelines](https://gitlab.com/gitlab-org/gitlab/-/issues/280818).
+   I could technically not use child pipelines, but for clean-code/configuration
+   purposes, I would rather separate the concerns of each pipeline. Not knowing
+   the test coverage is fine. This repository is not a Library.
+
+## Solutions
 
 | Code | Problem Name                                                     |                                                                               Languages                                                                               |
 | :--: | :--------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
