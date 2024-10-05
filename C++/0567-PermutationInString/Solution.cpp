@@ -1,5 +1,6 @@
+#include <array>
+#include <cstddef>
 #include <string>
-#include <vector>
 
 using namespace std;
 class Solution {
@@ -9,26 +10,28 @@ public:
       return false;
     }
 
-    vector<int> s1Frequency(26, 0);
-    vector<int> s2Frequency(26, 0);
-    for (int i = 0; i < s1.length(); ++i) {
-      ++s1Frequency[s1[i] - 'a'];
-      ++s2Frequency[s2[i] - 'a'];
+    // Fixed-size sliding window problem
+    array<int, 26> freq1{};
+    array<int, 26> freq2{};
+
+    for (size_t i = 0; i < s1.length(); ++i) {
+      ++freq1[s1[i] - 'a'];
+      ++freq2[s2[i] - 'a'];
     }
 
-    if (s1Frequency == s2Frequency) {
+    if (freq1 == freq2) {
       return true;
     }
 
-    for (int i = s1.length(); i < s2.length(); ++i) {
-      --s2Frequency[s2[i - s1.length()] - 'a'];
-      ++s2Frequency[s2[i] - 'a'];
+    for (size_t r = s1.length(); r < s2.length(); ++r) {
+      // Update the left and right side of the fixed-size sliding window
+      --freq2[s2[r - s1.length()] - 'a'];
+      ++freq2[s2[r] - 'a'];
 
-      if (s1Frequency == s2Frequency) {
+      if (freq1 == freq2) {
         return true;
       }
     }
-
     return false;
   }
 };
