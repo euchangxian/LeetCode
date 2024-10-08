@@ -57,7 +57,7 @@ Now solving in C++. Like it.
 
 ## Solutions
 
-| Code | Problem Name                                                     |                                                                               Languages                                                                               |
+| ID | Problem Name                                                     |                                                                               Languages                                                                               |
 | :--: | :--------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 | 0001 | TwoSum                                                           |                                                        [![C++](assets/c++.svg)](C++/0001-TwoSum/Solution.cpp)                                                         |
 | 0002 | AddTwoNumbers                                                    |                     [![Rust](assets/rust.svg)](Rust/0002-AddTwoNumbers/Solution.rs) [![C++](assets/c++.svg)](C++/0002-AddTwoNumbers/Solution.cpp)                     |

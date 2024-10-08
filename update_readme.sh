@@ -54,7 +54,7 @@ update_table() {
 
   awk -v num="$number" -v name="$problem_name" -v icon="$language_icon" '
   BEGIN { updated = 0; in_table = 0 }
-  /^\| *Code * \| *Problem Name * \| *Languages * \|/ { in_table = 1; print; next }
+  /^\| *ID * \| *Problem Name * \| *Languages * \|/ { in_table = 1; print; next }
   in_table && /^\| *:?-+:? *\| *:?-+:? *\| *:?-+:? *\|/ { print; next }
   in_table && /^\|/ {
     split($0, a, "|")
