@@ -12,15 +12,15 @@
 
 using namespace std;
 class Solution {
-public:
-  int longestSubarray(vector<int> const &nums) {
+ public:
+  int longestSubarray(vector<int> const& nums) {
     // The bitwise AND of two numbers is always smaller than both.
     // Therefore, find the maximum element. Find the longest contiguous
     // subarray with that maximum element.
     int maxElem = 0;
     int maxSize = 0;
     int currContiguous = 0;
-    for (int const &num : nums) {
+    for (int const& num : nums) {
       if (num > maxElem) {
         maxElem = num;
         currContiguous = 0;

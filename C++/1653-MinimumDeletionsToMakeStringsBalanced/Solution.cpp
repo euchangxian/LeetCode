@@ -10,7 +10,7 @@
 
 using namespace std;
 class Solution {
-public:
+ public:
   int minimumDeletions(string s) {
     int n = s.length();
 

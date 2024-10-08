@@ -12,12 +12,12 @@
 
 using namespace std;
 class LRUCache {
-private:
+ private:
   struct Node {
     int key;
     int value;
-    Node *next;
-    Node *prev;
+    Node* next;
+    Node* prev;
 
     Node(int key, int value)
         : key(key), value(value), next(nullptr), prev(nullptr) {}
@@ -26,25 +26,25 @@ private:
   const int capacity;
 
   // Dummy nodes to simplify nullptr checks
-  Node *lru;
-  Node *mru;
+  Node* lru;
+  Node* mru;
 
-  unordered_map<int, Node *> cache;
+  unordered_map<int, Node*> cache;
 
-  void remove(Node *node) {
+  void remove(Node* node) {
     (node->prev)->next = node->next;
     (node->next)->prev = node->prev;
     return;
   }
 
-  void insert(Node *node) {
+  void insert(Node* node) {
     node->prev = mru->prev;
     node->next = mru;
     (mru->prev)->next = node;
     mru->prev = node;
   }
 
-public:
+ public:
   LRUCache(int capacity)
       : capacity(capacity), lru(new Node(-1, -1)), mru(new Node(-1, -1)) {
     lru->next = mru;
@@ -63,7 +63,7 @@ public:
 
   void put(int key, int value) {
     if (cache.size() >= capacity && !cache.count(key)) {
-      Node *evict = lru->next;
+      Node* evict = lru->next;
       remove(evict);
       cache.erase(evict->key);
       delete evict;

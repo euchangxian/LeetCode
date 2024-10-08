@@ -11,7 +11,7 @@
 
 using namespace std;
 class Solution {
-private:
+ private:
   int euclidsGCD(int a, int b) {
     if (b == 0) {
       // if remainder is 0, return a which is the GCD
@@ -21,7 +21,7 @@ private:
     return euclidsGCD(b, a % b);
   }
 
-public:
+ public:
   string fractionAddition(string expression) {
     int n = expression.length();
 
@@ -35,7 +35,7 @@ public:
       int currDenominator = 0;
 
       // Parse the fraction
-      bool isNegative = false; // first '+' is omitted
+      bool isNegative = false;  // first '+' is omitted
       if (expression[i] == '+' || expression[i] == '-') {
         isNegative = expression[i] == '-';
         ++i;

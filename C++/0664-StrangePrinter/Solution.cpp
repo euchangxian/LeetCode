@@ -11,8 +11,8 @@
 
 using namespace std;
 class Solution {
-private:
-  string removeConsecutive(string const &s) {
+ private:
+  string removeConsecutive(string const& s) {
     string result;
     int i = 0;
     while (i < s.length()) {
@@ -27,7 +27,7 @@ private:
     return result;
   }
 
-public:
+ public:
   int strangePrinter(string s) {
     // if all contiguous, then only one turn is required to print out that
     // sequence.

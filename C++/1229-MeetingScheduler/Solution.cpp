@@ -5,9 +5,10 @@
 
 using namespace std;
 class Solution {
-public:
-  vector<int> minAvailableDuration(vector<vector<int>> &slots1,
-                                   vector<vector<int>> &slots2, int duration) {
+ public:
+  vector<int> minAvailableDuration(vector<vector<int>>& slots1,
+                                   vector<vector<int>>& slots2,
+                                   int duration) {
     // Notice that the problem constraints guarantee that the time slots of
     // the SAME person will not intersect. That means that if two time slots
     // intersect, they are guaranteed to be from different persons.
@@ -35,13 +36,13 @@ public:
     // Use a minHeap; smallest element are at the back of the container, and
     // will be popped first.
     std::priority_queue<vector<int>, vector<vector<int>>, greater<>> timeslots;
-    for (const auto &interval : slots1) {
+    for (const auto& interval : slots1) {
       if (interval[1] - interval[0] >= duration) {
         timeslots.push(interval);
       }
     }
 
-    for (const auto &interval : slots2) {
+    for (const auto& interval : slots2) {
       if (interval[1] - interval[0] >= duration) {
         timeslots.push(interval);
       }
@@ -51,7 +52,7 @@ public:
       auto interval1 = std::move(timeslots.top());
       timeslots.pop();
 
-      const auto &interval2 = timeslots.top();
+      const auto& interval2 = timeslots.top();
 
       if (interval1[1] >= interval2[0] + duration) {
         // Ordered by start time already, only need to check end time of the
@@ -62,8 +63,8 @@ public:
     return {};
   }
 
-  vector<int> minAvailableDurationNaive(vector<vector<int>> &slots1,
-                                        vector<vector<int>> &slots2,
+  vector<int> minAvailableDurationNaive(vector<vector<int>>& slots1,
+                                        vector<vector<int>>& slots2,
                                         int duration) {
     // Sort by start times. Traverse both arrays, if the slots are overlapping
     // and the overlapped portion is at least of duration, then that is our
@@ -74,8 +75,8 @@ public:
     size_t i = 0;
     size_t j = 0;
     while (i < slots1.size() && j < slots2.size()) {
-      const vector<int> &interval1 = slots1[i];
-      const vector<int> &interval2 = slots2[j];
+      const vector<int>& interval1 = slots1[i];
+      const vector<int>& interval2 = slots2[j];
 
       const int32_t start = std::max(interval1[0], interval2[0]);
       const int32_t end = std::min(interval1[1], interval2[1]);

@@ -11,10 +11,10 @@
 
 using namespace std;
 class Solution {
-private:
-  int countBouquets(vector<int> const &bloomDay, int elapsed, int const k) {
+ private:
+  int countBouquets(vector<int> const& bloomDay, int elapsed, int const k) {
     int n = bloomDay.size();
-    int bouquets = 0; // Each bouquet must have k adjacent flowers
+    int bouquets = 0;  // Each bouquet must have k adjacent flowers
 
     int i = 0;
     while (i < n) {
@@ -29,8 +29,8 @@ private:
     return bouquets;
   }
 
-public:
-  int minDays(vector<int> &bloomDay, int m, int k) {
+ public:
+  int minDays(vector<int>& bloomDay, int m, int k) {
     if ((long long)m * (long long)k > bloomDay.size()) {
       return -1;
     }

@@ -13,7 +13,7 @@
 
 using namespace std;
 class Solution {
-private:
+ private:
   int countNodesBetween(int n, long long curr, long long next) const {
     int nodes{0};
     while (curr <= n) {
@@ -44,7 +44,7 @@ private:
     return nodes;
   }
 
-public:
+ public:
   int findKthNumber(int n, int k) {
     // Find kth smallest lexicographically. Seems rather simple considering
     // 386-LexicographicalNumbers
@@ -78,9 +78,9 @@ public:
 
       if (count <= k) {
         k -= count;
-        ++curr; // Not in the curr subtree.
+        ++curr;  // Not in the curr subtree.
       } else {
-        --k; // remove the current root from the count, go to the next depth
+        --k;  // remove the current root from the count, go to the next depth
         curr *= 10;
       }
     }

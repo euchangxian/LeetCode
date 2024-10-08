@@ -11,11 +11,11 @@
 
 using namespace std;
 class UnionFind {
-private:
+ private:
   vector<int> parent;
   vector<int> rank;
 
-public:
+ public:
   UnionFind(int size) : parent(size), rank(size) {
     for (int i = 0; i < size; ++i) {
       parent[i] = i;
@@ -52,12 +52,12 @@ public:
 };
 
 class Solution {
-private:
+ private:
   // right, down, left, up
   const vector<pair<int, int>> directions = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
 
-public:
-  void solve(vector<vector<char>> &board) {
+ public:
+  void solve(vector<vector<char>>& board) {
     int m = board.size();
     int n = board[0].size();
 
@@ -70,14 +70,14 @@ public:
     // 'O's on the edges, assign an arbitrary parent.
 
     int cannotFlip = m * n;
-    UnionFind uf(m * n + 1); // Last position for cannotFlip
+    UnionFind uf(m * n + 1);  // Last position for cannotFlip
     for (int i = 0; i < m; ++i) {
       for (int j = 0; j < n; ++j) {
         if (board[i][j] == 'X') {
           continue;
         }
 
-        int current = i * n + j; // Map 2D to its 1D representation
+        int current = i * n + j;  // Map 2D to its 1D representation
 
         // Check if its a boundary 'O'
         if (i == 0 || i == m - 1 || j == 0 || j == n - 1) {
@@ -86,7 +86,7 @@ public:
         }
 
         // Union with surrounding O's
-        for (const auto &[rDir, cDir] : directions) {
+        for (const auto& [rDir, cDir] : directions) {
           int nr = i + rDir;
           int nc = j + cDir;
 

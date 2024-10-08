@@ -3,9 +3,9 @@
 
 using namespace std;
 class Solution {
-public:
-  int heightChecker(vector<int> &heights) {
-    vector<int> sorted = heights; // copy
+ public:
+  int heightChecker(vector<int>& heights) {
+    vector<int> sorted = heights;  // copy
     sort(sorted.begin(), sorted.end());
 
     int count = 0;

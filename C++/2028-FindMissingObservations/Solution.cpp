@@ -11,11 +11,11 @@
 
 using namespace std;
 class Solution {
-public:
-  vector<int> missingRolls(vector<int> &rolls, int mean, int n) {
+ public:
+  vector<int> missingRolls(vector<int>& rolls, int mean, int n) {
     int m = rolls.size();
     int expectedSum = (n + m) * mean;
-    for (auto const &num : rolls) {
+    for (auto const& num : rolls) {
       expectedSum -= num;
     }
 

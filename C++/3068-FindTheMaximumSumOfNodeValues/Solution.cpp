@@ -19,10 +19,10 @@ using namespace std;
 // maximum possible sum of the values Alice can achieve by performing the
 // operation any number of times.
 class Solution {
-public:
-  long long maximumValueSum(vector<int> &nums, int k,
-                            vector<vector<int>> &edges) {
-
+ public:
+  long long maximumValueSum(vector<int>& nums,
+                            int k,
+                            vector<vector<int>>& edges) {
     using ll = long long;
     int n = nums.size();
     vector<vector<ll>> dp = vector<vector<ll>>(2, vector<ll>(n + 1, 0));

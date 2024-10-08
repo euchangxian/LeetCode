@@ -5,22 +5,22 @@
 using namespace std;
 
 class TrieNode {
-public:
+ public:
   bool isEnd;
-  vector<TrieNode *> children;
+  vector<TrieNode*> children;
 
   TrieNode() : children(26, nullptr) { isEnd = false; }
 };
 
 class Trie {
-private:
-  TrieNode *root;
+ private:
+  TrieNode* root;
 
-public:
+ public:
   Trie() { root = new TrieNode(); }
 
   void insert(string word) {
-    TrieNode *current = root;
+    TrieNode* current = root;
     for (char c : word) {
       if (current->children[c - 'a'] == nullptr) {
         current->children[c - 'a'] = new TrieNode();
@@ -32,7 +32,7 @@ public:
 
   string findShortestRoot(string word) {
     stringstream shortestRoot;
-    TrieNode *current = root;
+    TrieNode* current = root;
     for (char c : word) {
       if (current->children[c - 'a'] == nullptr) {
         return word;
@@ -50,8 +50,8 @@ public:
 };
 
 class Solution {
-public:
-  string replaceWords(vector<string> &dictionary, string sentence) {
+ public:
+  string replaceWords(vector<string>& dictionary, string sentence) {
     // add each root in the dictionary into the Trie
     Trie dictTrie;
     for (string word : dictionary) {
@@ -67,7 +67,7 @@ public:
       resultStream << root << " ";
     }
     string result = resultStream.str();
-    result.pop_back(); // remove extra space
+    result.pop_back();  // remove extra space
     return result;
   }
 };

@@ -2,7 +2,7 @@
 
 using namespace std;
 class Solution {
-public:
+ public:
   // score of a string is defined as the SUM of the absolute difference between
   // the ASCII values of adjacent characters.
   int scoreOfString(string s) {

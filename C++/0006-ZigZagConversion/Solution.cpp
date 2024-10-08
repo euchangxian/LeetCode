@@ -11,7 +11,7 @@
 
 using namespace std;
 class Solution {
-public:
+ public:
   string convert(string s, int numRows) {
     if (numRows < 2) {
       return s;
@@ -36,7 +36,7 @@ public:
     }
 
     string result;
-    for (const auto &str : rowStrings) {
+    for (const auto& str : rowStrings) {
       result += str;
     }
 

@@ -16,9 +16,12 @@
 
 using namespace std;
 class Solution {
-private:
-  int dfs(vector<vector<int>> &memo, const string_view &s, const string_view &t,
-          size_t i, size_t j) {
+ private:
+  int dfs(vector<vector<int>>& memo,
+          const string_view& s,
+          const string_view& t,
+          size_t i,
+          size_t j) {
     // check that j is also at the end
     if (j >= t.length()) {
       return 1;
@@ -42,7 +45,7 @@ private:
     return count;
   }
 
-public:
+ public:
   int numDistinct(string s, string t) {
     const size_t m(s.length());
     const size_t n(t.length());
@@ -54,12 +57,12 @@ public:
     // equal to t[:j]
     vector<vector<uint64_t>> dp(m + 1, vector<uint64_t>(n + 1, 0));
     for (int i = 0; i <= m; ++i) {
-      dp[i][0] = 1; // any pattern of length 0 is vacuously true
+      dp[i][0] = 1;  // any pattern of length 0 is vacuously true
     }
 
     for (size_t i = 1; i <= m; ++i) {
       for (size_t j = 1; j <= n; ++j) {
-        dp[i][j] = dp[i - 1][j]; // no match
+        dp[i][j] = dp[i - 1][j];  // no match
 
         if (s[i - 1] == t[j - 1]) {
           dp[i][j] += dp[i - 1][j - 1];

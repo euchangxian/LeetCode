@@ -11,11 +11,11 @@
 
 using namespace std;
 class UnionFind {
-private:
+ private:
   vector<int> parent;
   vector<int> rank;
 
-public:
+ public:
   UnionFind(int size) : parent(size), rank(size) {
     for (int i = 0; i < size; ++i) {
       parent[i] = i;
@@ -51,18 +51,18 @@ public:
 };
 
 class Solution {
-private:
+ private:
   const int MAX_XY = 10001;
 
-public:
-  int removeStones(vector<vector<int>> &stones) {
+ public:
+  int removeStones(vector<vector<int>>& stones) {
     if (stones.size() < 2) {
       return 0;
     }
 
     // 0 <= xi, yi <= 10^4
     UnionFind uf(MAX_XY * 2);
-    for (auto const &stone : stones) {
+    for (auto const& stone : stones) {
       int r = stone[0];
       int c = stone[1];
 
@@ -75,7 +75,7 @@ public:
     }
 
     unordered_set<int> uniqueRoots;
-    for (const auto &stone : stones) {
+    for (const auto& stone : stones) {
       uniqueRoots.insert(uf.find(stone[0]));
     }
 

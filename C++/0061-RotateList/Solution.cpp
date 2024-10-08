@@ -11,24 +11,24 @@
 #include <vector>
 struct ListNode {
   int val;
-  ListNode *next;
+  ListNode* next;
   ListNode() : val(0), next(nullptr) {}
   ListNode(int x) : val(x), next(nullptr) {}
-  ListNode(int x, ListNode *next) : val(x), next(next) {}
+  ListNode(int x, ListNode* next) : val(x), next(next) {}
 };
 
 using namespace std;
 class Solution {
-private:
-  int countNodes(ListNode *head, int length) {
+ private:
+  int countNodes(ListNode* head, int length) {
     if (!head) {
       return length;
     }
     return countNodes(head->next, length + 1);
   }
 
-public:
-  ListNode *rotateRight(ListNode *head, int k) {
+ public:
+  ListNode* rotateRight(ListNode* head, int k) {
     // k can be more than the length of the list, in that case, it will
     // circle back.
     int size = countNodes(head, 0);
@@ -38,7 +38,7 @@ public:
 
     k = k % size;
 
-    ListNode *newTail = head;
+    ListNode* newTail = head;
     // size - k represents the kth node from the back. Iterate 1 less to get
     // the newTail node
     for (int i = 0; i < size - k - 1; ++i) {
@@ -46,9 +46,9 @@ public:
     }
 
     // The newHead of the list will be the next node.
-    ListNode *newHead = newTail->next;
+    ListNode* newHead = newTail->next;
 
-    ListNode *remaining = newHead; // nodes after the newHead
+    ListNode* remaining = newHead;  // nodes after the newHead
     while (remaining->next) {
       remaining = remaining->next;
     }

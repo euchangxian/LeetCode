@@ -11,8 +11,8 @@
 
 using namespace std;
 class Solution {
-public:
-  int maxScoreSightseeingPair(vector<int> &values) {
+ public:
+  int maxScoreSightseeingPair(vector<int>& values) {
     int n = values.size();
 
     // Maintain the maximum score pair so-far

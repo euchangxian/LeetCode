@@ -11,11 +11,11 @@
 
 using namespace std;
 class UnionFind {
-private:
+ private:
   vector<int> parent;
   vector<int> rank;
 
-public:
+ public:
   UnionFind(int n) : parent(n), rank(n) {
     for (int i = 0; i < n; ++i) {
       parent[i] = i;
@@ -52,12 +52,12 @@ public:
 };
 
 class Solution {
-public:
-  vector<int> findRedundantConnection(vector<vector<int>> &edges) {
+ public:
+  vector<int> findRedundantConnection(vector<vector<int>>& edges) {
     int n = edges.size();
-    UnionFind uf(n + 1); // extra 0, since 1-indexed
+    UnionFind uf(n + 1);  // extra 0, since 1-indexed
 
-    for (auto const &edge : edges) {
+    for (auto const& edge : edges) {
       int a = edge[0];
       int b = edge[1];
 

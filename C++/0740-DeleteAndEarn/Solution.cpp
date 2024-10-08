@@ -12,8 +12,8 @@
 
 using namespace std;
 class Solution {
-public:
-  int deleteAndEarn(vector<int> &nums) {
+ public:
+  int deleteAndEarn(vector<int>& nums) {
     // Naive solution:
     // 1. Pick idx, recurse on nums \ {(nums[idx] - 1) U (nums[idx] + 1)}
     // 2. Skip idx, recurse on nums
@@ -29,7 +29,7 @@ public:
     // `{}` is an empty initializer which value-initializes elements in the
     // array.
     array<int, n> points{};
-    for (auto const &num : nums) {
+    for (auto const& num : nums) {
       points[num] += num;
     }
 

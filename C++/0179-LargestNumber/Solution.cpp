@@ -13,8 +13,8 @@
 
 using namespace std;
 class Solution {
-public:
-  string largestNumber(vector<int> &nums) {
+ public:
+  string largestNumber(vector<int>& nums) {
     sort(nums.begin(), nums.end(), [](int a, int b) {
       string candidate1 = to_string(a) + to_string(b);
       string candidate2 = to_string(b) + to_string(a);
@@ -30,7 +30,7 @@ public:
     }
     string result;
     result.reserve(1024);
-    for (int const &num : nums) {
+    for (int const& num : nums) {
       result += to_string(num);
     }
 

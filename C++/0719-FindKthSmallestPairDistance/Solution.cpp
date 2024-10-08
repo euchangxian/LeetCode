@@ -11,8 +11,8 @@
 
 using namespace std;
 class Solution {
-private:
-  int countPairs(vector<int> const &nums, int const dist) {
+ private:
+  int countPairs(vector<int> const& nums, int const dist) {
     int count = 0;
 
     int left = 0;
@@ -29,8 +29,8 @@ private:
     return count;
   }
 
-public:
-  int smallestDistancePair(vector<int> &nums, int k) {
+ public:
+  int smallestDistancePair(vector<int>& nums, int k) {
     // Notice that we only need the kth smallest distance, not the actual
     // pairs that produce the distance. This allows us to perform lots of
     // optimizations.
@@ -63,8 +63,8 @@ public:
     int n = nums.size();
     sort(nums.begin(), nums.end());
 
-    int left = 0;                      // smallest possible distance
-    int right = nums[n - 1] - nums[0]; // largest possible distance
+    int left = 0;                       // smallest possible distance
+    int right = nums[n - 1] - nums[0];  // largest possible distance
     while (left < right) {
       int mid = left + ((right - left) / 2);
 
@@ -82,7 +82,7 @@ public:
     return left;
   }
 
-  int smallestDistancePairNaive(vector<int> &nums, int k) {
+  int smallestDistancePairNaive(vector<int>& nums, int k) {
     // Naively generate all pairs, sort them by their distances, and return
     // the kth (at index k - 1) distance
     // Time: O(n^2 logn)

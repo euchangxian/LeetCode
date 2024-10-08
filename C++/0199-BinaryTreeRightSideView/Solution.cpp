@@ -10,19 +10,19 @@
 #include <vector>
 struct TreeNode {
   int val;
-  TreeNode *left;
-  TreeNode *right;
+  TreeNode* left;
+  TreeNode* right;
 
   TreeNode() : val(0), left(nullptr), right(nullptr) {}
   TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-  TreeNode(int x, TreeNode *left, TreeNode *right)
+  TreeNode(int x, TreeNode* left, TreeNode* right)
       : val(x), left(left), right(right) {}
 };
 
 using namespace std;
 class Solution {
-public:
-  vector<int> rightSideView(TreeNode *root) {
+ public:
+  vector<int> rightSideView(TreeNode* root) {
     if (!root) {
       return {};
     }
@@ -30,7 +30,7 @@ public:
     vector<int> result;
     result.reserve(100);
 
-    queue<TreeNode *> level;
+    queue<TreeNode*> level;
     level.push(root);
     while (!level.empty()) {
       int size = level.size();

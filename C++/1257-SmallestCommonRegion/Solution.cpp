@@ -4,8 +4,9 @@
 
 using namespace std;
 class Solution {
-public:
-  string findSmallestRegion(vector<vector<string>> &regions, string region1,
+ public:
+  string findSmallestRegion(vector<vector<string>>& regions,
+                            string region1,
                             string region2) {
     // The key insight is the constraint "given r1, r2 and r3 such that r1
     // includes r3, it is guaranteed there is no r2 such that r2 includes r3".
@@ -18,14 +19,14 @@ public:
     // Naively, we can encapsulate each region in a TreeNode and build the Tree.
     // Can we do better?
     std::unordered_map<string, string> parents;
-    for (const auto &region : regions) {
+    for (const auto& region : regions) {
       for (size_t i = 1; i < region.size(); ++i) {
         parents[region[i]] = region[0];
       }
     }
 
-    string *x = &region1;
-    string *y = &region2;
+    string* x = &region1;
+    string* y = &region2;
     while (*x != *y) {
       auto itx = parents.find(*x);
       if (itx == parents.end()) {

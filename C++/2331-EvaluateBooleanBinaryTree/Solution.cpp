@@ -1,8 +1,8 @@
 #include "../commons/TreeNode.h"
 
 class Solution {
-public:
-  bool evaluateTree(TreeNode *root) {
+ public:
+  bool evaluateTree(TreeNode* root) {
     if (root->left == nullptr && root->right == nullptr) {
       // leaf node
       return root->val;

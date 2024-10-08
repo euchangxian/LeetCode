@@ -1,9 +1,10 @@
-#include "../commons/TreeNode.h"
 #include <cstdlib>
 
+#include "../commons/TreeNode.h"
+
 class Solution {
-public:
-  int postOrderTraversal(TreeNode *root, int *moves) {
+ public:
+  int postOrderTraversal(TreeNode* root, int* moves) {
     if (root == nullptr) {
       return 0;
     }
@@ -15,7 +16,7 @@ public:
     return root->val + leftExtra + rightExtra - 1;
   }
 
-  int distributeCoins(TreeNode *root) {
+  int distributeCoins(TreeNode* root) {
     int moves = 0;
     postOrderTraversal(root, &moves);
     return moves;

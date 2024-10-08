@@ -12,11 +12,11 @@
 
 using namespace std;
 class Solution {
-public:
-  int leastInterval(vector<char> &tasks, int n) {
+ public:
+  int leastInterval(vector<char>& tasks, int n) {
     int maxFreq = 0;
     array<int, 26> frequency = {};
-    for (auto const &c : tasks) {
+    for (auto const& c : tasks) {
       maxFreq = max(maxFreq, ++frequency[c - 'A']);
     }
 
@@ -34,7 +34,7 @@ public:
     int rounds = maxFreq - 1;
 
     int maxFreqCount = 0;
-    for (auto const &freq : frequency) {
+    for (auto const& freq : frequency) {
       maxFreqCount += freq == maxFreq;
     }
 

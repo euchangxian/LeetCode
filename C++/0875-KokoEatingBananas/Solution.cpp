@@ -11,8 +11,8 @@
 
 using namespace std;
 class Solution {
-private:
-  bool canFinishWithinHours(vector<int> const &piles, int hours, int rate) {
+ private:
+  bool canFinishWithinHours(vector<int> const& piles, int hours, int rate) {
     int timeTaken = 0;
     for (int i = 0; i < piles.size(); ++i) {
       // Overflow-safe round-up for integer division
@@ -21,8 +21,8 @@ private:
     return timeTaken <= hours;
   }
 
-public:
-  int minEatingSpeed(vector<int> &piles, int h) {
+ public:
+  int minEatingSpeed(vector<int>& piles, int h) {
     // Monotonic property that enables Binary Search is less obvious.
     // In this case, we are searching for the minimum value of k - eating rate
     // that allows us to consume the piles of banana within h hours.

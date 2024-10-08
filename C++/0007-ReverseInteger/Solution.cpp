@@ -11,11 +11,11 @@
 
 using namespace std;
 class Solution {
-private:
+ private:
   const int INT_MAX_THRESHOLD = INT_MAX / 10;
   const int INT_MIN_THRESHOLD = INT_MIN / 10;
 
-public:
+ public:
   int reverse(int x) {
     int result = 0;
 
@@ -25,7 +25,7 @@ public:
         return 0;
       }
 
-      result = (result * 10) + (x % 10); // shift left, add last digit
+      result = (result * 10) + (x % 10);  // shift left, add last digit
       x /= 10;
     }
     return result;

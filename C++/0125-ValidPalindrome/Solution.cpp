@@ -3,10 +3,12 @@
 
 using namespace std;
 
-bool isalphanumeric(char c) { return isalpha(c) || isdigit(c); }
+bool isalphanumeric(char c) {
+  return isalpha(c) || isdigit(c);
+}
 
 class Solution {
-public:
+ public:
   bool isPalindrome(string s) {
     int i = 0;
     int j = s.size() - 1;

@@ -11,13 +11,13 @@
 
 using namespace std;
 class Solution {
-public:
-  int trapRainWater(vector<vector<int>> &heightMap) {
+ public:
+  int trapRainWater(vector<vector<int>>& heightMap) {
     int rows = heightMap.size();
     int cols = heightMap[0].size();
 
     if (rows < 3 || cols < 3) {
-      return 0; // Edge cells cannot trap water
+      return 0;  // Edge cells cannot trap water
     }
 
     // Tuple of {height, row, col}. Use a minHeap to pop lower heights first
@@ -56,7 +56,7 @@ public:
       auto [height, r, c] = minHeap.top();
       minHeap.pop();
 
-      for (auto const &[dr, dc] : directions) {
+      for (auto const& [dr, dc] : directions) {
         int nr = r + dr;
         int nc = c + dc;
 

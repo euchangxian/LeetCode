@@ -13,8 +13,9 @@
 
 using namespace std;
 
-void splitAndCount(const string &s, const char &delimiter,
-                   unordered_map<string, int> &frequency) {
+void splitAndCount(const string& s,
+                   const char& delimiter,
+                   unordered_map<string, int>& frequency) {
   stringstream ss(s);
 
   string token;
@@ -24,7 +25,7 @@ void splitAndCount(const string &s, const char &delimiter,
 }
 
 class Solution {
-public:
+ public:
   vector<string> uncommonFromSentences(string s1, string s2) {
     unordered_map<string, int> frequency;
     splitAndCount(s1, ' ', frequency);
@@ -32,7 +33,7 @@ public:
 
     vector<string> result;
     result.reserve(frequency.size());
-    for (auto const &[word, freq] : frequency) {
+    for (auto const& [word, freq] : frequency) {
       if (freq == 1) {
         result.push_back(word);
       }

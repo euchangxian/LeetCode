@@ -13,11 +13,11 @@
 #include <vector>
 
 class MyCalendarThree {
-private:
+ private:
   // Line sweep, {time, count}.
   std::map<int32_t, int32_t> calendar;
 
-public:
+ public:
   MyCalendarThree() {}
 
   int book(int startTime, int endTime) {

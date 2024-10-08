@@ -3,8 +3,8 @@
 
 using namespace std;
 class Solution {
-public:
-  vector<vector<int>> threeSum(vector<int> &nums) {
+ public:
+  vector<vector<int>> threeSum(vector<int>& nums) {
     sort(nums.begin(), nums.end());
 
     vector<vector<int>> result;

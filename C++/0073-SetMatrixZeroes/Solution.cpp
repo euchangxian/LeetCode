@@ -12,8 +12,8 @@
 
 using namespace std;
 class Solution {
-public:
-  void setZeroes(vector<vector<int>> &matrix) {
+ public:
+  void setZeroes(vector<vector<int>>& matrix) {
     int const rows = matrix.size();
     int const cols = matrix[0].size();
     vector<bool> zeroRows(rows);

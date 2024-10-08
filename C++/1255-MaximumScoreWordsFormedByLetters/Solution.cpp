@@ -3,9 +3,10 @@
 using namespace std;
 
 class Solution {
-public:
-  int maxScoreWords(vector<string> &words, vector<char> &letters,
-                    vector<int> &score) {
+ public:
+  int maxScoreWords(vector<string>& words,
+                    vector<char>& letters,
+                    vector<int>& score) {
     // pre-compute scores and character count
     vector<int> wordScore = vector<int>(words.size(), 0);
     for (int i = 0; i < words.size(); ++i) {
@@ -20,9 +21,11 @@ public:
     return knapsack(words, wordScore, count, 0);
   }
 
-private:
-  int knapsack(vector<string> const &words, vector<int> const &scores,
-               vector<int> &count, int idx) {
+ private:
+  int knapsack(vector<string> const& words,
+               vector<int> const& scores,
+               vector<int>& count,
+               int idx) {
     if (idx >= words.size()) {
       return 0;
     }
@@ -34,7 +37,7 @@ private:
     for (char c : words[idx]) {
       --count[c - 'a'];
       if (count[c - 'a'] < 0) {
-        pickScore = 0; // cannot take.
+        pickScore = 0;  // cannot take.
       }
     }
     pickScore += knapsack(words, scores, count, idx + 1);

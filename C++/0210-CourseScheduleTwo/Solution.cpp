@@ -11,13 +11,13 @@
 
 using namespace std;
 class Solution {
-private:
-  vector<int> topologicalSort(int const &numCourses,
-                              vector<vector<int>> const &prerequisites) {
+ private:
+  vector<int> topologicalSort(int const& numCourses,
+                              vector<vector<int>> const& prerequisites) {
     vector<vector<int>> adj(numCourses);
     vector<int> inDegrees(numCourses, 0);
 
-    for (auto const &prerequisite : prerequisites) {
+    for (auto const& prerequisite : prerequisites) {
       // (a, b) => directed edge from b to a
       int from = prerequisite[1];
       int to = prerequisite[0];
@@ -40,7 +40,7 @@ private:
       zeroes.pop();
       result.push_back(curr);
 
-      for (auto const &neighbour : adj[curr]) {
+      for (auto const& neighbour : adj[curr]) {
         if (--inDegrees[neighbour] == 0) {
           zeroes.push(neighbour);
         }
@@ -53,8 +53,8 @@ private:
     return result;
   }
 
-public:
-  vector<int> findOrder(int numCourses, vector<vector<int>> &prerequisites) {
+ public:
+  vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
     // Similar to CourseScheduleOne. Topological sort and return the order
     return topologicalSort(numCourses, prerequisites);
   }

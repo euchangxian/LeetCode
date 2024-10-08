@@ -11,8 +11,10 @@
 
 using namespace std;
 class Solution {
-public:
-  vector<vector<int>> spiralMatrixIII(int rows, int cols, int rStart,
+ public:
+  vector<vector<int>> spiralMatrixIII(int rows,
+                                      int cols,
+                                      int rStart,
                                       int cStart) {
     vector<vector<int>> visited;
     visited.reserve(rows * cols);
@@ -29,7 +31,7 @@ public:
       }
 
       int stride = (iter / 2) + 1;
-      auto const &[r, c] = directions[iter % 4];
+      auto const& [r, c] = directions[iter % 4];
       for (int i = 0; i < stride; ++i) {
         rStart += r;
         cStart += c;

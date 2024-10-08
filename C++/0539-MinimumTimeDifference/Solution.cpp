@@ -13,9 +13,9 @@
 
 using namespace std;
 class Solution {
-private:
-public:
-  int findMinDifference(vector<string> &timePoints) {
+ private:
+ public:
+  int findMinDifference(vector<string>& timePoints) {
     size_t const n = timePoints.size();
     vector<int> minutes(n, 0);
     for (int i = 0; i < n; ++i) {

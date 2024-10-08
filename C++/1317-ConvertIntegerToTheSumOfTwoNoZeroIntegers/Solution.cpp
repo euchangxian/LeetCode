@@ -13,7 +13,7 @@
 
 using namespace std;
 class Solution {
-private:
+ private:
   inline bool isNoZero(int n) {
     bool noZero = true;
     while (n > 0) {
@@ -23,7 +23,7 @@ private:
     return noZero;
   }
 
-public:
+ public:
   vector<int> getNoZeroIntegers(int n) {
     // Note some properties:
     // if the number is 10, then we want [1, 9]
@@ -65,7 +65,7 @@ public:
         a += 2 * multiplier;
         b += 9 * multiplier;
 
-        --n; // Borrow '10' from next digit to get 11
+        --n;  // Borrow '10' from next digit to get 11
       } else {
         a += 1 * multiplier;
         b += (digit - 1) * multiplier;

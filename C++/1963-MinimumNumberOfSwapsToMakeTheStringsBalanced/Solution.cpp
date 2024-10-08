@@ -14,7 +14,7 @@
 
 using namespace std;
 class Solution {
-public:
+ public:
   int minSwaps(string s) {
     // Stack? can keep track of unmatched pairs? Does not work with the case:
     // "]]][[[", where the stack would result in 3, but the answer is 2 swaps.
@@ -70,7 +70,7 @@ public:
     //    - ceil() handles the case where numUnmatched is 0.
 
     int numUnmatched = 0;
-    int openingBrackets = 0; // like a Stack
+    int openingBrackets = 0;  // like a Stack
     for (const char c : s) {
       if (c == '[') {
         ++openingBrackets;

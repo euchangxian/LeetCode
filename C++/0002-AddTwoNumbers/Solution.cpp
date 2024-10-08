@@ -10,24 +10,24 @@
 #include <vector>
 struct ListNode {
   int val;
-  ListNode *next;
+  ListNode* next;
   ListNode() : val(0), next(nullptr) {}
   ListNode(int x) : val(x), next(nullptr) {}
-  ListNode(int x, ListNode *next) : val(x), next(next) {}
+  ListNode(int x, ListNode* next) : val(x), next(next) {}
 };
 
 using namespace std;
 class Solution {
-private:
-  ListNode *addWithCarry(ListNode *l1, ListNode *l2, int carry) {
+ private:
+  ListNode* addWithCarry(ListNode* l1, ListNode* l2, int carry) {
     if (!l1 && !l2 && carry == 0) {
-      return nullptr; // end of number
+      return nullptr;  // end of number
     }
 
     int l1Val = 0;
     int l2Val = 0;
-    ListNode *l1Next = nullptr;
-    ListNode *l2Next = nullptr;
+    ListNode* l1Next = nullptr;
+    ListNode* l2Next = nullptr;
 
     if (l1) {
       l1Val = l1->val;
@@ -43,8 +43,8 @@ private:
     return new ListNode(sum % 10, addWithCarry(l1Next, l2Next, sum / 10));
   }
 
-public:
-  ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) {
+ public:
+  ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
     return addWithCarry(l1, l2, 0);
   }
 };

@@ -11,8 +11,8 @@
 
 using namespace std;
 class Solution {
-public:
-  int minCostClimbingStairs(vector<int> &cost) {
+ public:
+  int minCostClimbingStairs(vector<int>& cost) {
     int n = cost.size();
     // dp[i] represents the min cost to reach the ith step
     vector<int> dp(n + 1, 0);

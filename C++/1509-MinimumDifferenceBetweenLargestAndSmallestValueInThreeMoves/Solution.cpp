@@ -5,8 +5,8 @@
 
 using namespace std;
 class Solution {
-public:
-  int minDifference(vector<int> &nums) {
+ public:
+  int minDifference(vector<int>& nums) {
     if (nums.size() <= 4) {
       return 0;
     }
@@ -30,7 +30,6 @@ public:
 };
 
 int main() {
-
   // 9, 31, 48, 48, 81, 92
   // 61, 72
   // 44,

@@ -11,17 +11,17 @@
 
 using namespace std;
 class Solution {
-private:
-  vector<int> topologicalSort(int const &numCourses,
-                              vector<vector<int>> const &prerequisites) {
+ private:
+  vector<int> topologicalSort(int const& numCourses,
+                              vector<vector<int>> const& prerequisites) {
     vector<vector<int>> adjacencyList(numCourses);
     vector<int> inDegree(numCourses, 0);
 
     // Form adjacencyList and update inDegree of courses
     // if course A has an directed edge to course B, then course A is a
     // prerequisite of B
-    for (auto const &prerequisite : prerequisites) {
-      int from = prerequisite[1]; // course B must be taken before course A
+    for (auto const& prerequisite : prerequisites) {
+      int from = prerequisite[1];  // course B must be taken before course A
       int to = prerequisite[0];
 
       adjacencyList[from].push_back(to);
@@ -43,7 +43,7 @@ private:
       zeroIn.pop();
 
       result.push_back(curr);
-      for (auto const &neighbour : adjacencyList[curr]) {
+      for (auto const& neighbour : adjacencyList[curr]) {
         --inDegree[neighbour];
         if (!inDegree[neighbour]) {
           zeroIn.push(neighbour);
@@ -52,14 +52,14 @@ private:
     }
 
     if (result.size() < numCourses) {
-      return {}; // Cycle detected
+      return {};  // Cycle detected
     }
 
     return result;
   }
 
-public:
-  bool canFinish(int numCourses, vector<vector<int>> &prerequisites) {
+ public:
+  bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
     // prerequisites[i] = [ai, bi] such that bi must be taken before ai
     // Implies some form of topological sort.
     // Sort [0..numCourses] such that courses that have to be taken

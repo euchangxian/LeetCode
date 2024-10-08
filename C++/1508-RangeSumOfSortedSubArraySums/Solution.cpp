@@ -11,8 +11,8 @@
 
 using namespace std;
 class Solution {
-public:
-  int rangeSum(vector<int> &nums, int n, int left, int right) {
+ public:
+  int rangeSum(vector<int>& nums, int n, int left, int right) {
     vector<int> subarraySums;
     subarraySums.reserve(n * (n + 1) / 2);
 

@@ -18,8 +18,8 @@
 
 using namespace std;
 class Solution {
-private:
-  deque<string> split(const string &s, const char delimiter) {
+ private:
+  deque<string> split(const string& s, const char delimiter) {
     istringstream iss(s);
 
     deque<string> result;
@@ -30,8 +30,8 @@ private:
     return result;
   }
 
-public:
-  bool areSentencesSimilar(const string &sentence1, const string &sentence2) {
+ public:
+  bool areSentencesSimilar(const string& sentence1, const string& sentence2) {
     // Sentence: list of words that are separated by a single space.
     // Similar: if it is possible to insert an arbitrary sentence inside one
     // of the sentence such that the two sentences become equal.

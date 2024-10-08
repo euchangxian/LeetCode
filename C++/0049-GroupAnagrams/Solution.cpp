@@ -4,8 +4,8 @@
 
 using namespace std;
 class Solution {
-public:
-  vector<vector<string>> groupAnagrams(vector<string> &strs) {
+ public:
+  vector<vector<string>> groupAnagrams(vector<string>& strs) {
     unordered_map<string, vector<string>> groups;
 
     for (string s : strs) {
@@ -16,7 +16,7 @@ public:
     }
 
     vector<vector<string>> result;
-    for (auto const &[key, group] : groups) {
+    for (auto const& [key, group] : groups) {
       result.push_back(group);
     }
 

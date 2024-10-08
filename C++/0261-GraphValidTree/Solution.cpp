@@ -11,12 +11,12 @@
 
 using namespace std;
 class UnionFind {
-private:
+ private:
   vector<int> parent;
   vector<int> rank;
   int components;
 
-public:
+ public:
   UnionFind(int n) : parent(n), rank(n), components(n) {
     for (int i = 0; i < n; ++i) {
       parent[i] = i;
@@ -57,11 +57,11 @@ public:
 };
 
 class Solution {
-public:
-  bool validTree(int n, vector<vector<int>> &edges) {
+ public:
+  bool validTree(int n, vector<vector<int>>& edges) {
     UnionFind uf(n);
 
-    for (auto const &edge : edges) {
+    for (auto const& edge : edges) {
       int first = edge[0];
       int second = edge[1];
 

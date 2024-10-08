@@ -11,8 +11,8 @@
 
 using namespace std;
 class Solution {
-public:
-  bool lemonadeChange(vector<int> &bills) {
+ public:
+  bool lemonadeChange(vector<int>& bills) {
     // Customer pay in bills {5, 10, 20}.
     // Start with no bills.
     // Therefore, consider the number of ways to return change to the customer
@@ -23,7 +23,7 @@ public:
     vector<int> remainingChange = {0, 0};
 
     bool allCorrect = true;
-    for (int const &bill : bills) {
+    for (int const& bill : bills) {
       if (bill == 5) {
         ++remainingChange[0];
         continue;

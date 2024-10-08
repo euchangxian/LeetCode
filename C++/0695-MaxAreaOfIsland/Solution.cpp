@@ -11,12 +11,12 @@
 
 using namespace std;
 class UnionFind {
-private:
+ private:
   vector<int> parent;
   vector<int> rank;
   vector<int> size;
 
-public:
+ public:
   UnionFind(int n) : parent(n), rank(n), size(n, 1) {
     for (int i = 0; i < n; ++i) {
       parent[i] = i;
@@ -57,13 +57,13 @@ public:
 };
 
 class Solution {
-public:
-  int maxAreaOfIsland(vector<vector<int>> &grid) {
+ public:
+  int maxAreaOfIsland(vector<vector<int>>& grid) {
     int rows = grid.size();
     int cols = grid[0].size();
 
     UnionFind uf(rows * cols);
-    bool hasLandCells = false; // Handle edge case
+    bool hasLandCells = false;  // Handle edge case
     for (int i = 0; i < rows; ++i) {
       for (int j = 0; j < cols; ++j) {
         if (grid[i][j] == 0) {

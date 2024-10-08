@@ -20,11 +20,11 @@
  */
 constexpr int kMaximumOverlap = 2;
 class MyCalendarTwo {
-private:
+ private:
   // Map of {time: count}
   std::map<int, int> bookings;
 
-public:
+ public:
   MyCalendarTwo() {}
 
   bool book(int start, int end) {
@@ -39,7 +39,7 @@ public:
     // Seemed a little counter-intuitive at first, where we iterate from the
     // start. But the prefixSum is incremented by start and decremented by the
     // end.
-    for (const auto &[time, count] : bookings) {
+    for (const auto& [time, count] : bookings) {
       prefix += count;
       if (prefix > kMaximumOverlap) {
         --bookings[start];

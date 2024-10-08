@@ -11,12 +11,12 @@
 
 using namespace std;
 class Solution {
-public:
-  int minSwaps(vector<int> &nums) {
+ public:
+  int minSwaps(vector<int>& nums) {
     int n = nums.size();
 
-    int windowSize = 0; // number of ones
-    for (auto const &num : nums) {
+    int windowSize = 0;  // number of ones
+    for (auto const& num : nums) {
       if (num) {
         ++windowSize;
       }
@@ -44,4 +44,3 @@ public:
     return windowSize - maxInWindow;
   }
 };
-

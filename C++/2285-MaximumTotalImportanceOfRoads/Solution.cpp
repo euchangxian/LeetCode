@@ -3,11 +3,11 @@
 using namespace std;
 
 class Solution {
-private:
-public:
-  long long maximumImportance(int n, vector<vector<int>> &roads) {
+ private:
+ public:
+  long long maximumImportance(int n, vector<vector<int>>& roads) {
     vector<int> frequencies = vector<int>(n, 0);
-    for (auto const &edge : roads) {
+    for (auto const& edge : roads) {
       ++frequencies[edge[0]];
       ++frequencies[edge[1]];
     }

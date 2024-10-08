@@ -11,8 +11,8 @@
 
 using namespace std;
 class Solution {
-public:
-  vector<int> findSubstring(string s, vector<string> &words) {
+ public:
+  vector<int> findSubstring(string s, vector<string>& words) {
     // All string of words are same length
     // A concatenated string is a string the exactly contains all the strings
     // of any permutation of words combined.
@@ -28,7 +28,7 @@ public:
     }
 
     unordered_map<string, int> expectedFreq;
-    for (auto const &word : words) {
+    for (auto const& word : words) {
       ++expectedFreq[word];
     }
 
@@ -47,13 +47,12 @@ public:
       int left = offset;
       for (int right = offset; right + wordLength - 1 < s.length();
            right += wordLength) {
-
         string currentWord = s.substr(right, wordLength);
 
         if (!expectedFreq.count(currentWord)) {
           windowFreq.clear();
           validWords = 0;
-          left = right + wordLength; // Move left bound
+          left = right + wordLength;  // Move left bound
           continue;
         }
 

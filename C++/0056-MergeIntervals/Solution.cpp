@@ -11,20 +11,20 @@
 
 using namespace std;
 class Solution {
-public:
-  vector<vector<int>> merge(vector<vector<int>> &intervals) {
+ public:
+  vector<vector<int>> merge(vector<vector<int>>& intervals) {
     int n = intervals.size();
 
     // Sort by start times in ascending order
     sort(intervals.begin(), intervals.end(),
-         [](auto const &a, auto const &b) { return a[0] < b[0]; });
+         [](auto const& a, auto const& b) { return a[0] < b[0]; });
 
     vector<vector<int>> result;
     result.reserve(n);
     result.push_back(intervals[0]);
 
     for (int i = 1; i < n; ++i) {
-      vector<int> &prev = result.back();
+      vector<int>& prev = result.back();
 
       // Merge overlaps
       if (intervals[i][0] <= prev[1]) {

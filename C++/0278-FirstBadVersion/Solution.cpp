@@ -14,7 +14,7 @@ using namespace std;
 bool isBadVersion(int version);
 
 class Solution {
-public:
+ public:
   int firstBadVersion(int n) {
     // [1, 2, ..., n]. Find k such that
     // isBadVersion(k) == true => isBadVersion(k + 1) == true

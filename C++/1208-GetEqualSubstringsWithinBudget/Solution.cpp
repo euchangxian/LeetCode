@@ -6,7 +6,7 @@
 
 using namespace std;
 class Solution {
-public:
+ public:
   int equalSubstring(string s, string t, int maxCost) {
     int n = s.length();
     vector<int> costs = vector<int>(n);

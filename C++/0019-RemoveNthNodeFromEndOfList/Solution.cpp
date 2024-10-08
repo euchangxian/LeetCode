@@ -10,16 +10,16 @@
 #include <vector>
 struct ListNode {
   int val;
-  ListNode *next;
+  ListNode* next;
   ListNode() : val(0), next(nullptr) {}
   ListNode(int x) : val(x), next(nullptr) {}
-  ListNode(int x, ListNode *next) : val(x), next(next) {}
+  ListNode(int x, ListNode* next) : val(x), next(next) {}
 };
 
 using namespace std;
 class Solution {
-private:
-  ListNode *removeFromBack(ListNode *curr, int const n, int &k) {
+ private:
+  ListNode* removeFromBack(ListNode* curr, int const n, int& k) {
     if (!curr) {
       return nullptr;
     }
@@ -34,8 +34,8 @@ private:
     return curr;
   }
 
-public:
-  ListNode *removeNthFromEnd(ListNode *head, int n) {
+ public:
+  ListNode* removeNthFromEnd(ListNode* head, int n) {
     int k = 0;
     return removeFromBack(head, n, k);
   }

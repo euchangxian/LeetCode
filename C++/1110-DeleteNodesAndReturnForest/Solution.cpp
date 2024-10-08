@@ -4,19 +4,20 @@
 using namespace std;
 struct TreeNode {
   int val;
-  TreeNode *left;
-  TreeNode *right;
+  TreeNode* left;
+  TreeNode* right;
 
   TreeNode() : val(0), left(nullptr), right(nullptr) {}
   TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-  TreeNode(int x, TreeNode *left, TreeNode *right)
+  TreeNode(int x, TreeNode* left, TreeNode* right)
       : val(x), left(left), right(right) {}
 };
 
 class Solution {
-private:
-  TreeNode *deleteNodes(TreeNode *current, unordered_set<int> const &toDelete,
-                        vector<TreeNode *> &forest) {
+ private:
+  TreeNode* deleteNodes(TreeNode* current,
+                        unordered_set<int> const& toDelete,
+                        vector<TreeNode*>& forest) {
     if (current == nullptr) {
       return nullptr;
     }
@@ -41,9 +42,9 @@ private:
     return current;
   }
 
-public:
-  vector<TreeNode *> delNodes(TreeNode *root, vector<int> &to_delete) {
-    vector<TreeNode *> forest;
+ public:
+  vector<TreeNode*> delNodes(TreeNode* root, vector<int>& to_delete) {
+    vector<TreeNode*> forest;
     forest.reserve(1000);
 
     unordered_set<int> toDelete =

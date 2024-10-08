@@ -2,9 +2,9 @@
 
 using namespace std;
 class Solution {
-private:
+ private:
   // adapted from House Robber One
-  int robRow(vector<int> &nums, int begin, int end) {
+  int robRow(vector<int>& nums, int begin, int end) {
     int currMax = 0;
     int prevMax = 0;
 
@@ -17,10 +17,10 @@ private:
     return currMax;
   }
 
-public:
+ public:
   // Difference from House Robber One is that the houses are arranged in a
   // circle. That means that the first and last house are adjacent
-  int rob(vector<int> &nums) {
+  int rob(vector<int>& nums) {
     if (nums.size() == 1) {
       return nums[0];
     }

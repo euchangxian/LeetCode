@@ -10,11 +10,11 @@
 
 using namespace std;
 class MinStack {
-private:
+ private:
   stack<int> stk;
   stack<int> minStack;
 
-public:
+ public:
   MinStack() {}
 
   void push(int val) {

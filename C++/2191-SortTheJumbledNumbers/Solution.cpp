@@ -10,8 +10,8 @@
 
 using namespace std;
 class Solution {
-public:
-  vector<int> sortJumbled(vector<int> &mapping, vector<int> &nums) {
+ public:
+  vector<int> sortJumbled(vector<int>& mapping, vector<int>& nums) {
     unordered_map<int, int> mappedNumbers;
     for (int i = 0; i < nums.size(); ++i) {
       int mapped = 0;

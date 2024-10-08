@@ -4,11 +4,11 @@
 
 using namespace std;
 class Solution {
-private:
+ private:
   char DELIMITER = '#';
 
-public:
-  string encode(vector<string> &strs) {
+ public:
+  string encode(vector<string>& strs) {
     string result;
     for (string str : strs) {
       result += to_string(str.size()) + DELIMITER + str;

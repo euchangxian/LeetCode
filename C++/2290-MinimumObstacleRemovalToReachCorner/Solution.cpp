@@ -11,12 +11,12 @@
 
 using namespace std;
 class Solution {
-private:
-  int const INF = 10e5; // m * n <= 10e5
+ private:
+  int const INF = 10e5;  // m * n <= 10e5
   vector<pair<int, int>> const directions = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
 
-public:
-  int minimumObstacles(vector<vector<int>> &grid) {
+ public:
+  int minimumObstacles(vector<vector<int>>& grid) {
     int rows = grid.size();
     int cols = grid[0].size();
 
@@ -37,7 +37,7 @@ public:
         break;
       }
 
-      for (auto const &[dr, dc] : directions) {
+      for (auto const& [dr, dc] : directions) {
         int nr = r + dr;
         int nc = c + dc;
 

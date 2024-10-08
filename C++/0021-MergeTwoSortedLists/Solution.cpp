@@ -10,17 +10,17 @@
 #include <vector>
 struct ListNode {
   int val;
-  ListNode *next;
+  ListNode* next;
   ListNode() : val(0), next(nullptr) {}
   ListNode(int x) : val(x), next(nullptr) {}
-  ListNode(int x, ListNode *next) : val(x), next(next) {}
+  ListNode(int x, ListNode* next) : val(x), next(next) {}
 };
 
 using namespace std;
 class Solution {
-private:
-public:
-  ListNode *mergeTwoLists(ListNode *list1, ListNode *list2) {
+ private:
+ public:
+  ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
     if (list1 == nullptr) {
       return list2;
     }

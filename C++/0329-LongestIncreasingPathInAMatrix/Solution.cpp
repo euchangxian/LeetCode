@@ -18,14 +18,16 @@ constexpr array<pair<int32_t, int32_t>, 4> directions{
     {{0, 1}, {1, 0}, {0, -1}, {-1, 0}}};
 
 class Solution {
-private:
-  int dfs(const vector<vector<int>> &matrix, vector<vector<int>> &memo,
-          size_t r, size_t c) {
+ private:
+  int dfs(const vector<vector<int>>& matrix,
+          vector<vector<int>>& memo,
+          size_t r,
+          size_t c) {
     if (memo[r][c] > 1) {
       return memo[r][c];
     }
 
-    for (const auto &[dr, dc] : directions) {
+    for (const auto& [dr, dc] : directions) {
       const int32_t nr = r + dr;
       const int32_t nc = c + dc;
 
@@ -40,8 +42,8 @@ private:
     return memo[r][c];
   }
 
-public:
-  int longestIncreasingPath(vector<vector<int>> &matrix) {
+ public:
+  int longestIncreasingPath(vector<vector<int>>& matrix) {
     // Longest increasing path is just itself at the start.
     const size_t rows{matrix.size()};
     const size_t cols{matrix[0].size()};

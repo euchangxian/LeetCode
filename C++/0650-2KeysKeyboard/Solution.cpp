@@ -11,7 +11,7 @@
 
 using namespace std;
 class Solution {
-public:
+ public:
   const int LIMIT = 1001;
   int minSteps(int n) {
     // dp[i] represents the minimum number of operations required to get the
@@ -38,14 +38,14 @@ public:
     // n <= 1000. The maximum steps to get 1000 length is by copy and pasting a
     // length of 1. Prevents overflow in later steps
     vector<int> dp(n + 1, LIMIT);
-    dp[0] = 0; // 0 operations to get 0 characters
-    dp[1] = 0; // Start with one character on the screen
+    dp[0] = 0;  // 0 operations to get 0 characters
+    dp[1] = 0;  // Start with one character on the screen
 
     for (int i = 2; i < n + 1; ++i) {
       // Enumerate over choices
       for (int j = 1; j <= i; ++j) {
         if (i % j) {
-          continue; // length i is not divisible by j
+          continue;  // length i is not divisible by j
         }
         // steps to get j length, and additional
         // copy + paste steps = i/j

@@ -12,8 +12,8 @@
 
 using namespace std;
 class Solution {
-public:
-  int largestCombination(vector<int> &candidates) {
+ public:
+  int largestCombination(vector<int>& candidates) {
     // Consider two 1-bit numbers a and b. For the bitwise AND of the two to be
     // zero, i.e., a & b = 0, either a or b must be 0.
     // Therefore, for n k-bits (32 for int) numbers, the combined bitwise AND
@@ -33,7 +33,7 @@ public:
     int result = 0;
     for (int pos = 0; pos < 32; ++pos) {
       int count = 0;
-      for (int const &num : candidates) {
+      for (int const& num : candidates) {
         count += (num >> pos) & 1;
       }
 

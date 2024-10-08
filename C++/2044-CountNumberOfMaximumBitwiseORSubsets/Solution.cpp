@@ -12,8 +12,11 @@
 
 using namespace std;
 class Solution {
-private:
-  void dfs(vector<int> const &nums, int const &maxOR, int &count, int currOR,
+ private:
+  void dfs(vector<int> const& nums,
+           int const& maxOR,
+           int& count,
+           int currOR,
            int const idx) {
     if (idx >= nums.size()) {
       count += (currOR == maxOR);
@@ -24,10 +27,10 @@ private:
     dfs(nums, maxOR, count, currOR, idx + 1);
   }
 
-public:
-  int countMaxOrSubsetsNaive(vector<int> const &nums) {
+ public:
+  int countMaxOrSubsetsNaive(vector<int> const& nums) {
     int maxOR = reduce(nums.begin(), nums.end(), 0,
-                       [&nums](int const &a, int const &b) { return a | b; });
+                       [&nums](int const& a, int const& b) { return a | b; });
 
     int count = 0;
     int curr;

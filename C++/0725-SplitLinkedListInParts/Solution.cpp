@@ -11,15 +11,15 @@
 #include <vector>
 struct ListNode {
   int val;
-  ListNode *next;
+  ListNode* next;
   ListNode() : val(0), next(nullptr) {}
   ListNode(int x) : val(x), next(nullptr) {}
-  ListNode(int x, ListNode *next) : val(x), next(next) {}
+  ListNode(int x, ListNode* next) : val(x), next(next) {}
 };
 
 using namespace std;
 class Solution {
-  int listSize(ListNode *head, int len) {
+  int listSize(ListNode* head, int len) {
     if (!head) {
       return len;
     }
@@ -27,8 +27,8 @@ class Solution {
     return listSize(head->next, 1 + len);
   }
 
-public:
-  vector<ListNode *> splitListToParts(ListNode *head, int k) {
+ public:
+  vector<ListNode*> splitListToParts(ListNode* head, int k) {
     int size = listSize(head, 0);
 
     int partSize = size / k;
@@ -36,9 +36,9 @@ public:
     // First size % k segments have an extra node
     int extras = size % k;
 
-    vector<ListNode *> result(k, nullptr);
+    vector<ListNode*> result(k, nullptr);
 
-    ListNode *prev = nullptr;
+    ListNode* prev = nullptr;
     for (int i = 0; head && i < k; ++i) {
       result[i] = head;
       for (int j = 0; j < partSize; ++j) {
@@ -51,7 +51,7 @@ public:
         head = head->next;
       }
 
-      prev->next = nullptr; // Disconnect this segment
+      prev->next = nullptr;  // Disconnect this segment
     }
     return result;
   }

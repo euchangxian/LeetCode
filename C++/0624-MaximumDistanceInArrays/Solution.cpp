@@ -11,8 +11,8 @@
 
 using namespace std;
 class Solution {
-public:
-  int maxDistance(vector<vector<int>> &arrays) {
+ public:
+  int maxDistance(vector<vector<int>>& arrays) {
     // At the i-th array, the prevMin and prevMax should represent the maximum
     // and minimum elements up to the (i-1)th array. This ensures that we never
     // take the distance between elements in the same array.
@@ -21,7 +21,7 @@ public:
     int result = INT_MIN;
 
     for (int i = 1; i < arrays.size(); ++i) {
-      vector<int> const &current = arrays[i];
+      vector<int> const& current = arrays[i];
       int m = current.size();
       // Check the difference between the current max and prevMin, and
       // the current min and prevMax;

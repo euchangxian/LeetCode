@@ -2,7 +2,7 @@
 
 using namespace std;
 class Solution {
-public:
+ public:
   // Returns the minimum number of characters that need to be appended to the
   // end of s so that t becomes a subsequence of s.
   // First intuition was that it was similar to Longest Common Subseqeuence.

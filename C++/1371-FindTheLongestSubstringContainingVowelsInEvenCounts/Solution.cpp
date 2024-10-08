@@ -17,7 +17,7 @@ using namespace std;
 constexpr size_t NUM_ALPHA = 26;
 
 class Solution {
-public:
+ public:
   int findTheLongestSubstring(string s) {
     // The intuition to this problem is the parity of the vowels.
     // Consider two indices i and j, i < j, s[i] == s[j].
@@ -39,14 +39,14 @@ public:
     // stores the index of the first seen parity.
     // Store 1-indexed positions
     array<int, 64> parity{};
-    parity.fill(-1); // -1 indicate not seen. Could use a map/seen array
+    parity.fill(-1);  // -1 indicate not seen. Could use a map/seen array
 
     // Reads from reverse, where the MSB is at the end, i.e. uoiea
     // upper 3 bits not shown, since only 5 bits for each vowels is needed
     // Mask represents the parity of the vowels. 0 represents even parity,
     // 1 represents odd parity.
-    uint8_t curr = 0; // 00000
-    parity[curr] = 0; // handle the case where the entire string is valid.
+    uint8_t curr = 0;  // 00000
+    parity[curr] = 0;  // handle the case where the entire string is valid.
     int longest = 0;
     for (int i = 0; i < s.length(); ++i) {
       // shiftIdx is 0 for non-vowels. This causes the vowelBit to shift left
@@ -56,7 +56,7 @@ public:
       uint8_t vowelBit = 1 << shiftIdx[s[i] - 'a'] >> 1;
       curr ^= vowelBit;
       if (parity[curr] == -1) {
-        parity[curr] = i + 1; // store 1-indexed
+        parity[curr] = i + 1;  // store 1-indexed
       }
 
       longest = max(longest, i + 1 - parity[curr]);

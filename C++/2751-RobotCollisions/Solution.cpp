@@ -6,9 +6,10 @@
 
 using namespace std;
 class Solution {
-public:
-  vector<int> survivedRobotsHealths(vector<int> &positions,
-                                    vector<int> &healths, string directions) {
+ public:
+  vector<int> survivedRobotsHealths(vector<int>& positions,
+                                    vector<int>& healths,
+                                    string directions) {
     int n = positions.size();
     vector<int> robots = vector<int>(n);
     for (int i = 0; i < n; ++i) {
@@ -17,7 +18,7 @@ public:
 
     sort(robots.begin(), robots.end(), [&positions](int i, int j) {
       // Ensure 1-indexed Robots is converted to 0-indexed positions
-      return positions[i] < positions[j]; // process leftmost to rightmost
+      return positions[i] < positions[j];  // process leftmost to rightmost
     });
 
     vector<int> result;
@@ -58,7 +59,7 @@ public:
   }
 };
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
   vector<int> positions = {3, 5, 2, 6};
   vector<int> healths = {10, 10, 15, 12};
   string directions = "RLRL";

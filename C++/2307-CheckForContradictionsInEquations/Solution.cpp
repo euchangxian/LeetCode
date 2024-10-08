@@ -11,17 +11,18 @@
 using std::vector, std::string, std::string_view, std::pair, std::unordered_map,
     std::unordered_set, std::stack;
 class Solution {
-private:
+ private:
   constexpr static double tolerance{10e-5};
 
   inline bool equal(const double ref, const double other) const noexcept {
     return std::abs(ref - other) < tolerance;
   }
 
-  vector<double>
-  dfs(const unordered_map<string_view, vector<pair<string_view, double>>>
-          &graph,
-      const string_view src, const string_view dest) {
+  vector<double> dfs(
+      const unordered_map<string_view, vector<pair<string_view, double>>>&
+          graph,
+      const string_view src,
+      const string_view dest) {
     // no need to check that src and dest are in the graph.
 
     vector<double> answers;
@@ -41,7 +42,7 @@ private:
       // ORDER is important. Avoid adding the destination node into the visited
       // set.
       seen.insert(curr);
-      for (const auto &[neighbour, weight] : graph.at(curr)) {
+      for (const auto& [neighbour, weight] : graph.at(curr)) {
         if (!seen.count(neighbour)) {
           stk.emplace(neighbour, answer * weight);
         }
@@ -50,9 +51,9 @@ private:
     return answers;
   }
 
-public:
-  bool checkContradictions(vector<vector<string>> &equations,
-                           vector<double> &values) {
+ public:
+  bool checkContradictions(vector<vector<string>>& equations,
+                           vector<double>& values) {
     // Similar to the EvaluateDivisions.
     // Nodes are Variables. Edges are weighted, directed edges whose weights
     // are given by the vector values.

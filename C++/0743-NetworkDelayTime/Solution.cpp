@@ -11,8 +11,8 @@
 
 using namespace std;
 class Solution {
-public:
-  int networkDelayTime(vector<vector<int>> &times, int n, int k) {
+ public:
+  int networkDelayTime(vector<vector<int>>& times, int n, int k) {
     // times[i] = (ui, vi, wi), representing a directed edge from node u to node
     // v with a weight of w
     // From source node k, get the minimum time to reach all other nodes
@@ -22,8 +22,8 @@ public:
     // be retrieved to give the answer.
     // What about Bellman Ford? Bellman Ford iteratively relaxes all edges
     vector<vector<pair<int, int>>> graph(n);
-    for (auto const &edge : times) {
-      int from = edge[0] - 1; // nodes are 1-indexed
+    for (auto const& edge : times) {
+      int from = edge[0] - 1;  // nodes are 1-indexed
       int to = edge[1] - 1;
       int weight = edge[2];
 
@@ -35,7 +35,7 @@ public:
                    greater<pair<int, int>>>
         minHeap;
 
-    int src = k - 1; // 1-indexed
+    int src = k - 1;  // 1-indexed
     distance[src] = 0;
     minHeap.emplace(0, src);
 
@@ -43,7 +43,7 @@ public:
       auto [dist, from] = minHeap.top();
       minHeap.pop();
 
-      for (auto const &[weight, to] : graph[from]) {
+      for (auto const& [weight, to] : graph[from]) {
         if (dist + weight < distance[to]) {
           distance[to] = dist + weight;
           minHeap.emplace(dist + weight, to);
@@ -53,7 +53,7 @@ public:
 
     int minTime = *max_element(distance.begin(), distance.end());
     if (minTime == INT_MAX) {
-      return -1; // If there are unreachable nodes
+      return -1;  // If there are unreachable nodes
     }
     return minTime;
   }

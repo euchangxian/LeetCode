@@ -11,7 +11,7 @@
 
 using namespace std;
 class Solution {
-public:
+ public:
   int mySqrt(int x) {
     if (x == 0 || x == 1) {
       return x;

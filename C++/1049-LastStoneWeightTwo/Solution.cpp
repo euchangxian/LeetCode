@@ -11,8 +11,8 @@
 
 using namespace std;
 class Solution {
-public:
-  int lastStoneWeightII(vector<int> &stones) {
+ public:
+  int lastStoneWeightII(vector<int>& stones) {
     int n = stones.size();
 
     // dp[i] represents the smallest possible weight given the first i stones
@@ -38,12 +38,11 @@ public:
 
     // dp[i] represents whether a subset with a sum of i can be formed
     vector<bool> dp(target + 1, false);
-    dp[0] = true; // A sum of 0 can be formed, by not selecting any stones
+    dp[0] = true;  // A sum of 0 can be formed, by not selecting any stones
 
     // Maximum sum that is LTE to the Target
     int maxSum = 0;
     for (int stone : stones) {
-
       // Update the subset sums achievable
       for (int j = stone; j < target + 1; ++j) {
         dp[j] = dp[j] || dp[j - stone];

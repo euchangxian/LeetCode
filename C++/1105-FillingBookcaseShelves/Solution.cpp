@@ -10,8 +10,8 @@
 
 using namespace std;
 class Solution {
-public:
-  int minHeightShelves(vector<vector<int>> &books, int shelfWidth) {
+ public:
+  int minHeightShelves(vector<vector<int>>& books, int shelfWidth) {
     int n = books.size();
 
     // dp[i][j] represents the minimum height of the bookshelf after placing the

@@ -10,11 +10,11 @@
 
 using namespace std;
 class Solution {
-public:
+ public:
   bool isValid(string s) {
     stack<char> expected;
 
-    for (char const &c : s) {
+    for (char const& c : s) {
       if (c == '(') {
         expected.push(')');
         continue;

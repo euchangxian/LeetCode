@@ -14,8 +14,10 @@
 int const INF = 2e9;
 using namespace std;
 class Solution {
-private:
-  int dijkstra(int n, vector<vector<pair<int, int>>> const &adj, int src,
+ private:
+  int dijkstra(int n,
+               vector<vector<pair<int, int>>> const& adj,
+               int src,
                int dest) {
     // Distance estimates to each node from source
     vector<int> distance(n, INF);
@@ -31,10 +33,10 @@ private:
       frontier.pop();
 
       if (currNode == dest) {
-        break; // To reconstruct path
+        break;  // To reconstruct path
       }
 
-      for (auto const &[weight, next] : adj[currNode]) {
+      for (auto const& [weight, next] : adj[currNode]) {
         if (currDist + weight < distance[next]) {
           // Relax estimates
           distance[next] = currDist + weight;
@@ -46,9 +48,11 @@ private:
     return distance[dest];
   }
 
-public:
-  vector<vector<int>> modifiedGraphEdges(int n, vector<vector<int>> &edges,
-                                         int source, int destination,
+ public:
+  vector<vector<int>> modifiedGraphEdges(int n,
+                                         vector<vector<int>>& edges,
+                                         int source,
+                                         int destination,
                                          int target) {
     // N nodes from 0 to n-1.
     // edges[i] = [ai, bi, wi] => undirected edge between ai and bi with weight
@@ -70,9 +74,9 @@ public:
 
     vector<vector<pair<int, int>>> graph(n);
 
-    for (auto const &edge : edges) {
+    for (auto const& edge : edges) {
       if (edge[2] == -1) {
-        continue; // skip modifiable edges
+        continue;  // skip modifiable edges
       }
 
       int node1 = edge[0];
@@ -93,9 +97,9 @@ public:
     }
 
     bool alreadyMatchedTarget = shortestDistance == target;
-    for (auto &edge : edges) {
+    for (auto& edge : edges) {
       if (edge[2] > 0) {
-        continue; // Skip unmodifiable weights.
+        continue;  // Skip unmodifiable weights.
       }
 
       // This modifiable edge is not relevant to our shortest path

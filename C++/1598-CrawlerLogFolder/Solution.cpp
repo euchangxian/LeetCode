@@ -2,8 +2,8 @@
 
 using namespace std;
 class Solution {
-public:
-  int minOperations(vector<string> &logs) {
+ public:
+  int minOperations(vector<string>& logs) {
     int operations = 0;
     for (string log : logs) {
       if (log.substr(0, 3) == "../") {

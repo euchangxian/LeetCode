@@ -14,10 +14,10 @@
 #include <vector>
 
 class MyCalendar {
-private:
+ private:
   std::set<std::pair<int, int>> calendar;
 
-public:
+ public:
   MyCalendar() {}
 
   // Return true if the event can be added to the calendar without causing a

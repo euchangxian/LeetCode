@@ -2,8 +2,8 @@
 
 using namespace std;
 class Solution {
-public:
-  vector<int> productExceptSelf(vector<int> &nums) {
+ public:
+  vector<int> productExceptSelf(vector<int>& nums) {
     int n = nums.size();
     vector<int> postfixProduct = vector<int>(n, 1);
 

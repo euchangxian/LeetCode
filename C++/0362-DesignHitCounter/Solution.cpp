@@ -6,11 +6,11 @@
 // Calls are made to the HitCounter in chronological order.
 constexpr int WINDOW_SIZE = 300;
 class HitCounter {
-private:
+ private:
   std::array<int, WINDOW_SIZE> hits;
   std::array<int, WINDOW_SIZE> time;
 
-public:
+ public:
   // Value initialize
   HitCounter() : hits{}, time{} {}
 
@@ -34,13 +34,13 @@ public:
 };
 
 class HitCounterNaive {
-private:
+ private:
   // Stores {timestamp, hits}
   std::deque<std::pair<int, int>> hits;
 
   int runningHits;
 
-public:
+ public:
   HitCounterNaive() : runningHits(0) {}
 
   void hit(int timestamp) {

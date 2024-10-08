@@ -12,14 +12,14 @@
 
 using namespace std;
 class Solution {
-private:
+ private:
   int const INF = 10e4 + 1;
 
-public:
-  int coinChange(vector<int> &coins, int amount) {
+ public:
+  int coinChange(vector<int>& coins, int amount) {
     vector<int> dp(amount + 1, INF);
     dp[0] = 0;
-    for (int const &coin : coins) {
+    for (int const& coin : coins) {
       if (coin > amount) {
         continue;
       }
@@ -27,7 +27,7 @@ public:
     }
 
     for (int i = 1; i <= amount; ++i) {
-      for (int const &coin : coins) {
+      for (int const& coin : coins) {
         if (i - coin >= 0) {
           dp[i] = min(dp[i], 1 + dp[i - coin]);
         }

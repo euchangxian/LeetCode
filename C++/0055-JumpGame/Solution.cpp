@@ -12,11 +12,11 @@
 
 using namespace std;
 class Solution {
-public:
-  bool canJump(vector<int> &nums) {
+ public:
+  bool canJump(vector<int>& nums) {
     int n = nums.size();
     int jumps = 1;
-    int furthest = nums[0]; // Represents the furthest index reachable
+    int furthest = nums[0];  // Represents the furthest index reachable
     for (int i = 1; i < n; ++i) {
       if (i > furthest) {
         return false;

@@ -11,8 +11,8 @@
 
 using namespace std;
 class Solution {
-public:
-  vector<int> dailyTemperatures(vector<int> &temperatures) {
+ public:
+  vector<int> dailyTemperatures(vector<int>& temperatures) {
     vector<int> result(temperatures.size(), 0);
 
     // Monotonically non-increasing stack

@@ -9,10 +9,11 @@
 using std::string, std::string_view, std::vector, std::pair, std::unordered_map,
     std::unordered_set;
 class Solution {
-private:
-  double dfs(const unordered_map<string_view, vector<pair<string_view, double>>>
-                 &graph,
-             const string_view from, const string_view to) {
+ private:
+  double dfs(const unordered_map<string_view,
+                                 vector<pair<string_view, double>>>& graph,
+             const string_view from,
+             const string_view to) {
     if (graph.find(from) == graph.end() || graph.find(to) == graph.end()) {
       return -1.0;
     }
@@ -37,7 +38,7 @@ private:
         continue;
       }
 
-      for (const auto &[neighbour, weight] : graph.at(curr)) {
+      for (const auto& [neighbour, weight] : graph.at(curr)) {
         if (!seen.count(neighbour)) {
           stack.emplace(neighbour, answer * weight);
         }
@@ -47,10 +48,10 @@ private:
     return -1.0;
   }
 
-public:
-  vector<double> calcEquation(vector<vector<string>> &equations,
-                              vector<double> &values,
-                              vector<vector<string>> &queries) {
+ public:
+  vector<double> calcEquation(vector<vector<string>>& equations,
+                              vector<double>& values,
+                              vector<vector<string>>& queries) {
     // can be modelled as a Graph question.
     // Nodes will be the variables.
     // Edges are weighted, directed edges, whose weights are given by the
@@ -80,7 +81,7 @@ public:
 
     vector<double> answers;
     answers.reserve(queries.size());
-    for (const auto &query : queries) {
+    for (const auto& query : queries) {
       const string_view from = query[0];
       const string_view to = query[1];
 

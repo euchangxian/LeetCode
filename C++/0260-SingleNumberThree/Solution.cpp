@@ -2,7 +2,7 @@
 
 using namespace std;
 class Solution {
-public:
+ public:
   // Find the two numbers that appear exactly once in the array. Would be
   // simple, but the constraints are to use constant extra space.
   // Using XOR properties where a XOR a = 0, and 0 XOR b = b, we can easily find
@@ -12,7 +12,7 @@ public:
   //
   // The difficulty lies in extracting both b and c. If we know one, we can
   // extract the other, since (b XOR c) XOR b = c
-  vector<int> singleNumber(vector<int> &nums) {
+  vector<int> singleNumber(vector<int>& nums) {
     int totalXOR = 0;
     for (int num : nums) {
       totalXOR ^= num;

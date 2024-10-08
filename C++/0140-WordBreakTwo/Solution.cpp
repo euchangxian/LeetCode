@@ -5,8 +5,8 @@
 
 using namespace std;
 class Solution {
-public:
-  vector<string> wordBreak(string s, vector<string> &wordDict) {
+ public:
+  vector<string> wordBreak(string s, vector<string>& wordDict) {
     unordered_set<string> wordSet =
         unordered_set<string>(wordDict.begin(), wordDict.end());
 
@@ -14,8 +14,9 @@ public:
     return dfs(s, wordSet, memo);
   }
 
-  vector<string> dfs(string s, unordered_set<string> const &wordSet,
-                     unordered_map<string, vector<string>> &memo) {
+  vector<string> dfs(string s,
+                     unordered_set<string> const& wordSet,
+                     unordered_map<string, vector<string>>& memo) {
     if (memo.count(s) > 0) {
       return memo[s];
     }

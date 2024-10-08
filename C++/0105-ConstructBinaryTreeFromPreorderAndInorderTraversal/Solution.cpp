@@ -11,29 +11,33 @@
 #include <vector>
 struct TreeNode {
   int val;
-  TreeNode *left;
-  TreeNode *right;
+  TreeNode* left;
+  TreeNode* right;
 
   TreeNode() : val(0), left(nullptr), right(nullptr) {}
   TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-  TreeNode(int x, TreeNode *left, TreeNode *right)
+  TreeNode(int x, TreeNode* left, TreeNode* right)
       : val(x), left(left), right(right) {}
 };
 
 using namespace std;
 class Solution {
-private:
-  TreeNode *build(vector<int> const &preorder, vector<int> const &inorder,
-                  unordered_map<int, int> &inorderIndex, int &preIdx,
-                  int const inStart, int const inEnd) {
+ private:
+  TreeNode* build(vector<int> const& preorder,
+                  vector<int> const& inorder,
+                  unordered_map<int, int>& inorderIndex,
+                  int& preIdx,
+                  int const inStart,
+                  int const inEnd) {
     if (inStart > inEnd) {
       return nullptr;
     }
 
-    TreeNode *root = new TreeNode(preorder[preIdx]);
+    TreeNode* root = new TreeNode(preorder[preIdx]);
     int inorderIdx = inorderIndex[preorder[preIdx]];
 
-    ++preIdx; // Passed by reference so that the left-recursive call will update
+    ++preIdx;  // Passed by reference so that the left-recursive call will
+               // update
 
     root->left =
         build(preorder, inorder, inorderIndex, preIdx, inStart, inorderIdx - 1);
@@ -43,8 +47,8 @@ private:
     return root;
   }
 
-public:
-  TreeNode *buildTree(vector<int> &preorder, vector<int> &inorder) {
+ public:
+  TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
     // preorder: root, left, right
     // inorder: left, root, right
     // Therefore, traverse the preorder. The corresponding left and right

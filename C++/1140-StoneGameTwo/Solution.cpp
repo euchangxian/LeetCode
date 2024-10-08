@@ -11,8 +11,8 @@
 
 using namespace std;
 class Solution {
-public:
-  int stoneGameII(vector<int> &piles) {
+ public:
+  int stoneGameII(vector<int>& piles) {
     // For the first move,
     // if Alice takes 1 pile, then Bob can take 1 or 2 piles
     // if Alice takes 2 piles, then Bob can take 1, 2, 3 or 4 piles
@@ -67,7 +67,7 @@ public:
     return dp[0][1];
   }
 
-  int stoneGameIITopDown(vector<int> const &piles) {
+  int stoneGameIITopDown(vector<int> const& piles) {
     int n = piles.size();
     vector<int> suffix = piles;
     for (int i = n - 2; i >= 0; --i) {
@@ -80,8 +80,10 @@ public:
     return maxStones(suffix, 0, 1, memo);
   }
 
-  int maxStones(vector<int> const &suffix, int idx, int m,
-                vector<vector<int>> &memo) {
+  int maxStones(vector<int> const& suffix,
+                int idx,
+                int m,
+                vector<vector<int>>& memo) {
     if (idx + 2 * m >= suffix.size()) {
       // If the number of piles the current player can take is more than the
       // remaining number of piles, then take all the remaining piles.

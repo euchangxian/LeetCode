@@ -11,8 +11,8 @@
 
 using namespace std;
 class Solution {
-public:
-  int chalkReplacer(vector<int> &chalk, int k) {
+ public:
+  int chalkReplacer(vector<int>& chalk, int k) {
     long long sum = reduce(chalk.begin(), chalk.end(), 0LL, plus<>{});
 
     // remaining
@@ -23,6 +23,6 @@ public:
         return i;
       }
     }
-    return -1; // Should not reach this point
+    return -1;  // Should not reach this point
   }
 };

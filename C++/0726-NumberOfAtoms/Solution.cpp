@@ -6,7 +6,7 @@
 
 using namespace std;
 class Solution {
-public:
+ public:
   string countOfAtoms(string formula) {
     // A( BC (DE)2 FG)3
     int n = formula.size();
@@ -49,7 +49,7 @@ public:
     }
 
     string result;
-    for (auto &[elem, freq] : frequencies) {
+    for (auto& [elem, freq] : frequencies) {
       if (freq < 2) {
         result += elem;
         continue;
@@ -61,7 +61,7 @@ public:
   }
 };
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
   cout << Solution().countOfAtoms("H2O") << endl;
   cout << Solution().countOfAtoms("Mg(OH)2") << endl;
   cout << Solution().countOfAtoms("K4(ON(SO3)2)2") << endl;

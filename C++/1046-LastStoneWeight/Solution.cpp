@@ -11,13 +11,13 @@
 
 using namespace std;
 class Solution {
-public:
-  int lastStoneWeight(vector<int> &stones) {
+ public:
+  int lastStoneWeight(vector<int>& stones) {
     // In each round, choose the two heaviest stone and smash them together
     // That means we need a max heap
     priority_queue<int, vector<int>, less<int>> pq;
 
-    for (auto const &stone : stones) {
+    for (auto const& stone : stones) {
       pq.push(stone);
     }
 

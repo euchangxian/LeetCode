@@ -11,9 +11,11 @@
 
 using namespace std;
 class Solution {
-public:
-  double maxProbability(int n, vector<vector<int>> &edges,
-                        vector<double> &succProb, int start_node,
+ public:
+  double maxProbability(int n,
+                        vector<vector<int>>& edges,
+                        vector<double>& succProb,
+                        int start_node,
                         int end_node) {
     // Reduce to an SSSP problem.
     // For multiplication, to convert to a sum, intuition should be logarithms
@@ -42,7 +44,7 @@ public:
       auto [currProb, currNode] = pq.top();
       pq.pop();
 
-      for (auto const &[prob, to] : modifiedEdges[currNode]) {
+      for (auto const& [prob, to] : modifiedEdges[currNode]) {
         if (distances[to] < currProb * prob) {
           distances[to] = currProb * prob;
           pq.emplace(distances[to], to);

@@ -11,9 +11,11 @@
 
 using namespace std;
 class Solution {
-private:
-  void dfs(vector<vector<bool>> const &blocked, vector<vector<bool>> &seen,
-           int r, int c) {
+ private:
+  void dfs(vector<vector<bool>> const& blocked,
+           vector<vector<bool>>& seen,
+           int r,
+           int c) {
     if (r < 0 || c < 0 || r >= blocked.size() || c >= blocked[0].size() ||
         blocked[r][c] || seen[r][c]) {
       return;
@@ -24,14 +26,14 @@ private:
     // right, down, left, up
     vector<pair<int, int>> neighbours = {
         {r, c + 1}, {r + 1, c}, {r, c - 1}, {r - 1, c}};
-    for (auto const &[nr, nc] : neighbours) {
+    for (auto const& [nr, nc] : neighbours) {
       dfs(blocked, seen, nr, nc);
     }
     return;
   }
 
-public:
-  int regionsBySlashes(vector<string> &grid) {
+ public:
+  int regionsBySlashes(vector<string>& grid) {
     int n = grid.size();
 
     // 0 represents not blocked.

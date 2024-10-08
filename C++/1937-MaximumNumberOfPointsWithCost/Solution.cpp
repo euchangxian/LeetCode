@@ -12,8 +12,8 @@
 using ll = long long;
 using namespace std;
 class Solution {
-public:
-  ll maxPoints(vector<vector<int>> const &points) {
+ public:
+  ll maxPoints(vector<vector<int>> const& points) {
     // Problem: Choose one point from each row to maximize total points,
     // subtracting abs(c1 - c2) for the distance between chosen points in
     // adjacent rows.
@@ -71,7 +71,7 @@ public:
     return *max_element(prevRow.begin(), prevRow.end());
   }
 
-  ll maxPointsNaive(vector<vector<int>> const &points) {
+  ll maxPointsNaive(vector<vector<int>> const& points) {
     int m = points.size();
     int n = points[0].size();
 

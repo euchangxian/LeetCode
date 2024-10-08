@@ -3,8 +3,8 @@
 
 using namespace std;
 class Solution {
-public:
-  int findCenter(vector<vector<int>> &edges) {
+ public:
+  int findCenter(vector<vector<int>>& edges) {
     // The center must be contained in every edge, thus, it suffices to check
     // the first two edges
     if (edges[0][0] == edges[1][0] || edges[0][0] == edges[1][1]) {
@@ -13,7 +13,7 @@ public:
     return edges[0][1];
   }
 
-  int findCenterSlow(vector<vector<int>> &edges) {
+  int findCenterSlow(vector<vector<int>>& edges) {
     unordered_map<int, int> freq;
     for (auto edge : edges) {
       ++freq[edge[0]];

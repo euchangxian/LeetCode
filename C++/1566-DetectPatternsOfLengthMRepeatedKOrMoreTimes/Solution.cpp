@@ -13,8 +13,8 @@
 
 using namespace std;
 class Solution {
-public:
-  bool containsPattern(const vector<int> &arr, const int m, const int k) {
+ public:
+  bool containsPattern(const vector<int>& arr, const int m, const int k) {
     // Fixed-size sliding window of size m, with a stride of m, starting
     // at every possible index, let this be the offset.
     // The pattern will be defined by the first window.
@@ -27,7 +27,7 @@ public:
 
     // Initialized to m because the first window is a pattern itself, matching
     // m characters.
-    int count = m; // match count. NOT pattern count
+    int count = m;  // match count. NOT pattern count
     for (int i = m; i < arr.size(); ++i) {
       if (arr[i] != arr[i - m]) {
         // Patterns must be consecutive.

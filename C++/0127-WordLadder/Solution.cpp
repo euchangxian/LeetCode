@@ -11,8 +11,8 @@
 
 using namespace std;
 class Solution {
-public:
-  int ladderLength(string beginWord, string endWord, vector<string> &wordList) {
+ public:
+  int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
     unordered_set<string> words(wordList.begin(), wordList.end());
     if (!words.count(endWord)) {
       return 0;
@@ -40,10 +40,10 @@ public:
             curr[i] = c;
             if (words.count(curr)) {
               nextFrontier.push_back(curr);
-              words.erase(curr); // mark as visited.
+              words.erase(curr);  // mark as visited.
             }
           }
-          curr[i] = original; // Swap back
+          curr[i] = original;  // Swap back
         }
       }
 

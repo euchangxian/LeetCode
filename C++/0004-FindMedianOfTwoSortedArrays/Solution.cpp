@@ -11,8 +11,8 @@
 
 using namespace std;
 class Solution {
-public:
-  double findMedianSortedArrays(vector<int> &nums1, vector<int> &nums2) {
+ public:
+  double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
     // Intuition: Finding the median is equivalent to finding the right "cut"
     // point in both arrays that divides all elements into two equal halves.
     //

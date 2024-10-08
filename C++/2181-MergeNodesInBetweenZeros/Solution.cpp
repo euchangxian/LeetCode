@@ -1,14 +1,14 @@
 struct ListNode {
   int val;
-  ListNode *next;
+  ListNode* next;
   ListNode() : val(0), next(nullptr) {}
   ListNode(int x) : val(x), next(nullptr) {}
-  ListNode(int x, ListNode *next) : val(x), next(next) {}
+  ListNode(int x, ListNode* next) : val(x), next(next) {}
 };
 
 class Solution {
-public:
-  ListNode *mergeSequence(ListNode *accumulator, ListNode *current) {
+ public:
+  ListNode* mergeSequence(ListNode* accumulator, ListNode* current) {
     if (current == nullptr || current->next == nullptr) {
       return nullptr;
     }
@@ -19,9 +19,9 @@ public:
     return mergeSequence(accumulator, current->next);
   }
 
-  ListNode *mergeNodes(ListNode *head) {
+  ListNode* mergeNodes(ListNode* head) {
     // The beginning and the end are guaranteed to have Node->val = 0
-    ListNode *iter = head;
+    ListNode* iter = head;
     while (iter != nullptr) {
       iter->next = mergeSequence(iter, iter->next);
       iter = iter->next;

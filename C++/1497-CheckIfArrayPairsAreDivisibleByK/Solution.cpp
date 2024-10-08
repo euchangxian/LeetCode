@@ -12,12 +12,12 @@
 #include <unordered_set>
 #include <vector>
 
-constexpr size_t kBuckets{100000}; // 10^5
+constexpr size_t kBuckets{100000};  // 10^5
 
 using namespace std;
 class Solution {
-public:
-  bool canArrange(vector<int> &arr, int k) {
+ public:
+  bool canArrange(vector<int>& arr, int k) {
     // Sort and two pointer? Can we do better than O(nlogn)?
     // Sorting does not work. CounterExample: {1, 4, 5, 10,} => {1, 10}, {4, 5}
     // But there exists a valid pairing {1, 4}, {5, 10}.
@@ -30,8 +30,8 @@ public:
     // number of elements in the buckets are equal (or divisible by 2 for zero)
     std::array<int32_t, kBuckets> buckets{};
 
-    for (const int &num : arr) {
-      const size_t idx = ((num % k) + k) % k; // Ensure positive index
+    for (const int& num : arr) {
+      const size_t idx = ((num % k) + k) % k;  // Ensure positive index
       ++buckets[idx];
     }
 

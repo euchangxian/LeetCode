@@ -13,12 +13,12 @@ using namespace std;
 using pii = pair<int, int>;
 using tii = tuple<int, int, int>;
 class Solution {
-private:
+ private:
   int const INF = 10e6;
   vector<pii> directions = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
 
-public:
-  int minimumEffortPath(vector<vector<int>> &heights) {
+ public:
+  int minimumEffortPath(vector<vector<int>>& heights) {
     int rows = heights.size();
     int cols = heights[0].size();
 
@@ -38,7 +38,7 @@ public:
         break;
       }
 
-      for (auto const &[dr, dc] : directions) {
+      for (auto const& [dr, dc] : directions) {
         int nr = r + dr;
         int nc = c + dc;
 

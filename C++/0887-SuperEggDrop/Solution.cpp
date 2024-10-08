@@ -14,7 +14,7 @@
 
 using namespace std;
 class Solution {
-public:
+ public:
   // Returns the minimum number of moves to determine with certainty the
   // critical floor f_c, given two eggs.
   //

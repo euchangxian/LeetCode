@@ -13,7 +13,7 @@
 using namespace std;
 
 class MedianFinder {
-private:
+ private:
   // at most 5 * 10^4, divide by two and round up
 
   //  Max Heap that stores the lower half of the stream of numbers.
@@ -22,7 +22,7 @@ private:
   // Min Heap that stores the upper half of the stream of numbers.
   priority_queue<int, vector<int>, greater<int>> upperHalf;
 
-public:
+ public:
   // The key invariant to maintain is the difference in sizes of the two
   // priority queue.
   //

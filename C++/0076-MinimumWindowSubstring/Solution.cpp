@@ -10,7 +10,7 @@
 
 using namespace std;
 class Solution {
-public:
+ public:
   string minWindow(string s, string t) {
     if (s.length() < t.length()) {
       return "";

@@ -11,22 +11,22 @@
 
 using namespace std;
 class TrieNode {
-public:
+ public:
   bool isWord;
-  vector<TrieNode *> children;
+  vector<TrieNode*> children;
   TrieNode() : isWord(false), children(26, nullptr) {}
 };
 
 class Trie {
-private:
-  TrieNode *root;
+ private:
+  TrieNode* root;
 
-public:
-  Trie() : root(new TrieNode()){};
+ public:
+  Trie() : root(new TrieNode()) {};
 
   void insert(string word) {
-    TrieNode *iter = root;
-    for (auto const &c : word) {
+    TrieNode* iter = root;
+    for (auto const& c : word) {
       if (!iter->children[c - 'a']) {
         iter->children[c - 'a'] = new TrieNode();
       }
@@ -36,8 +36,8 @@ public:
   }
 
   bool search(string word) {
-    TrieNode *iter = root;
-    for (auto const &c : word) {
+    TrieNode* iter = root;
+    for (auto const& c : word) {
       if (!iter->children[c - 'a']) {
         return false;
       }
@@ -47,8 +47,8 @@ public:
   }
 
   bool startsWith(string prefix) {
-    TrieNode *iter = root;
-    for (auto const &c : prefix) {
+    TrieNode* iter = root;
+    for (auto const& c : prefix) {
       if (!iter->children[c - 'a']) {
         return false;
       }

@@ -10,7 +10,7 @@
 
 using namespace std;
 class Solution {
-public:
+ public:
   // Floyd Warshall's All Pairs Shortest Paths
   // Optimal Substructure: If a shortest path from i to j goes through an
   // intermediate vertex k, then the path i to k and k to j must also be
@@ -25,15 +25,15 @@ public:
   // This means that the shortest path from i to j using vertices up to k is the
   // minimum between the path that does not goes through k, dist(i, j, k - 1)
   // and the path that goes through k, dist(i, k, k - 1) + dist(k, j, k - 1).
-  int findTheCity(int n, vector<vector<int>> &edges, int distanceThreshold) {
+  int findTheCity(int n, vector<vector<int>>& edges, int distanceThreshold) {
     // dp[i][j] represents the shortest distance from i to j
     vector<vector<int>> dp(n, vector<int>(n, INT_MAX));
 
     for (int i = 0; i < n; ++i) {
-      dp[i][i] = 0; // distance to self is zero
+      dp[i][i] = 0;  // distance to self is zero
     }
 
-    for (const auto &edge : edges) {
+    for (const auto& edge : edges) {
       int from = edge[0];
       int to = edge[1];
       int dist = edge[2];

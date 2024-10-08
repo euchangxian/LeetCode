@@ -12,28 +12,28 @@
 using namespace std;
 
 class Node {
-public:
+ public:
   int val;
-  vector<Node *> children;
+  vector<Node*> children;
 
   Node() {}
 
   Node(int _val) { val = _val; }
 
-  Node(int _val, vector<Node *> _children) {
+  Node(int _val, vector<Node*> _children) {
     val = _val;
     children = _children;
   }
 };
 
 class Solution {
-private:
-  void traverse(Node *curr, vector<int> &order) {
+ private:
+  void traverse(Node* curr, vector<int>& order) {
     if (!curr) {
       return;
     }
 
-    for (auto const &neighbour : curr->children) {
+    for (auto const& neighbour : curr->children) {
       traverse(neighbour, order);
     }
 
@@ -41,8 +41,8 @@ private:
     return;
   }
 
-public:
-  vector<int> postorder(Node *root) {
+ public:
+  vector<int> postorder(Node* root) {
     vector<int> order;
     order.reserve(10e4);
     traverse(root, order);

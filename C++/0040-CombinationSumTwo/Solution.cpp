@@ -11,9 +11,12 @@
 
 using namespace std;
 class Solution {
-private:
-  void dfs(vector<int> const &candidates, int const &target,
-           vector<vector<int>> &combinations, vector<int> &current, int idx) {
+ private:
+  void dfs(vector<int> const& candidates,
+           int const& target,
+           vector<vector<int>>& combinations,
+           vector<int>& current,
+           int idx) {
     if (target == 0) {
       // Since there are no '0's, just prune the tree
       combinations.push_back(current);
@@ -45,8 +48,8 @@ private:
     dfs(candidates, target, combinations, current, idx + 1);
   }
 
-public:
-  vector<vector<int>> combinationSum2(vector<int> &candidates, int target) {
+ public:
+  vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
     // To ensure that there are no duplicate combinations, we need to be able to
     // skip numbers that are already in the current combination
     sort(candidates.begin(), candidates.end());

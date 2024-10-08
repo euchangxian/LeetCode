@@ -10,9 +10,9 @@
 
 using namespace std;
 class Solution {
-private:
-public:
-  vector<string> sortPeople(vector<string> &names, vector<int> &heights) {
+ private:
+ public:
+  vector<string> sortPeople(vector<string>& names, vector<int>& heights) {
     vector<int> indices(names.size());
     for (int i = 0; i < names.size(); ++i) {
       indices[i] = i;

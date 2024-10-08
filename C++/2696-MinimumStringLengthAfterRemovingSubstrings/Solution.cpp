@@ -3,7 +3,7 @@
 
 using namespace std;
 class Solution {
-public:
+ public:
   int minLength(string s) {
     stack<char> stk;
     for (char c : s) {

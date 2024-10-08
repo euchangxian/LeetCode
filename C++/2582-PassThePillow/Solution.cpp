@@ -1,5 +1,5 @@
 class Solution {
-public:
+ public:
   int passThePillow(int n, int time) {
     bool isReverse = (time / (n - 1)) & 1;
     int k = time % (n - 1);

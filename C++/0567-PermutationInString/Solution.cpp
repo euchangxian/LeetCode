@@ -4,7 +4,7 @@
 
 using namespace std;
 class Solution {
-public:
+ public:
   bool checkInclusion(string s1, string s2) {
     if (s1.length() > s2.length()) {
       return false;
