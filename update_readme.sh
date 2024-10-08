@@ -1,12 +1,10 @@
-#!/bin/bash
-set -euo pipefail
+#!/bin/sh
+set -e
 
 # Function to get language icon with link
 get_language_icon_with_link() {
-  local extension=$1
-  local path=$2
-  local icon=""
-  local asset=""
+  extension=$1
+  path=$2
   case $extension in
   cpp)
     icon="C++"
@@ -45,62 +43,68 @@ if [ -z "$CHANGED_SOLUTIONS" ]; then
   exit 0
 fi
 
-# Function to insert or update a row in the table
-update_table() {
-  local number="$1"
-  local problem_name="$2"
-  local language_icon="$3"
-  local temp_file=$(mktemp)
+# Create a temporary file to store new table rows
+temp_rows_file=$(mktemp)
 
-  awk -v num="$number" -v name="$problem_name" -v icon="$language_icon" '
-  BEGIN { updated = 0; in_table = 0 }
-  /^\| *Code * \| *Problem Name * \| *Languages * \|/ { in_table = 1; print; next }
+# Process changed files and accumulate new rows
+echo "$CHANGED_SOLUTIONS" | while read -r file; do
+  if echo "$file" | grep -qE '([^/]+)/([0-9]{4})-([^/]+)/Solution\.(.+)$'; then
+    NUMBER=$(echo "$file" | sed -E 's/[^/]+\/([0-9]{4})-([^/]+)\/Solution\.(.+)$/\1/')
+    PROBLEM_NAME=$(echo "$file" | sed -E 's/[^/]+\/([0-9]{4})-([^/]+)\/Solution\.(.+)$/\2/')
+    EXTENSION=$(echo "$file" | sed -E 's/[^/]+\/([0-9]{4})-([^/]+)\/Solution\.(.+)$/\3/')
+    LANGUAGE_ICON=$(get_language_icon_with_link "$EXTENSION" "$file")
+    echo "| $NUMBER | $PROBLEM_NAME | $LANGUAGE_ICON |" >>"$temp_rows_file"
+  fi
+done
+
+# Function to batch update the README table
+batch_update_table() {
+  awk -v new_rows="$(cat "$temp_rows_file")" '
+  BEGIN {
+    split(new_rows, updates, "\n")
+    in_table = 0
+  }
+  /^\| *Code *\| *Problem Name *\| *Languages *\|/ { in_table = 1; print; next }
   in_table && /^\| *:?-+:? *\| *:?-+:? *\| *:?-+:? *\|/ { print; next }
   in_table && /^\|/ {
-    split($0, a, "|")
-    gsub(/^[ \t]+|[ \t]+$/, "", a[2])  # Trim whitespace
-    if (a[2] == num) {
-      if (index($0, icon) == 0) {  # If icon not present, add it
-        gsub(/\|[ \t]*$/, "", $0)  # Remove trailing |
-        printf("%s %s |\n", $0, icon)
-      } else {  # If icon present, keep existing line
-        print $0
+    code_num = $2
+    gsub(/^[ \t]+|[ \t]+$/, "", code_num)
+    if (length(code_num) > 0) {
+      for (i in updates) {
+        split(updates[i], fields, "|")
+        num = fields[2]
+        gsub(/^[ \t]+|[ \t]+$/, "", num)
+        if (num == code_num) {
+          print updates[i]
+          delete updates[i]
+          found = 1
+          break
+        }
       }
-      updated = 1
-    } else if (a[2] > num && !updated) {
-      printf("| %s | %s | %s |\n", num, name, icon)
-      print $0
-      updated = 1
+      if (!found) print $0
     } else {
       print $0
     }
     next
   }
   in_table && /^$/ {
-    if (!updated) {
-      printf("| %s | %s | %s |\n", num, name, icon)
-    }
+    for (i in updates) if (updates[i] !~ /^[ \t]*$/) print updates[i]
     in_table = 0
   }
   { print }
   END {
-    if (in_table && !updated) {
-      printf("| %s | %s | %s |\n", num, name, icon)
+    if (in_table) {
+      for (i in updates) if (updates[i] !~ /^[ \t]*$/) print updates[i]
     }
   }
-  ' README.md >"$temp_file"
-
-  mv "$temp_file" README.md
+  ' README.md >README.tmp && mv README.tmp README.md
 }
 
-# Process changed files
-echo "$CHANGED_SOLUTIONS" | while read -r file; do
-  if [[ $file =~ ([^/]+)/([0-9]{4})-([^/]+)/Solution\.(.+)$ ]]; then
-    NUMBER=${BASH_REMATCH[2]}
-    PROBLEM_NAME=${BASH_REMATCH[3]}
-    EXTENSION=${BASH_REMATCH[4]}
-    LANGUAGE_ICON=$(get_language_icon_with_link "$EXTENSION" "$file")
-    update_table "$NUMBER" "$PROBLEM_NAME" "$LANGUAGE_ICON"
-    npx prettier --write README.md # Run prettier to format README
-  fi
-done
+# Update README in batch
+batch_update_table
+
+# Clean up temporary rows file
+rm -f "$temp_rows_file"
+
+# Run prettier to format README
+npx prettier --write README.md
