@@ -4,14 +4,15 @@
 
 using std::vector, std::unordered_set;
 class Solution {
-private:
-  bool canConnect(const vector<unordered_set<int32_t>> &hasEdge,
-                  const int32_t a, const int32_t b) {
+ private:
+  bool canConnect(const vector<unordered_set<int32_t>>& hasEdge,
+                  const int32_t a,
+                  const int32_t b) {
     return hasEdge[a].count(b) == 0 && hasEdge[b].count(a) == 0;
   }
 
-public:
-  bool isPossible(int n, vector<vector<int>> &edges) {
+ public:
+  bool isPossible(int n, vector<vector<int>>& edges) {
     // Adding an edge will increase the degree of two nodes.
     // Since we can only add 0, 1, or 2 edges, the number of odd-degree nodes
     // must be either 0, 2 or 4. Anything else will not be possible.
@@ -21,7 +22,7 @@ public:
     vector<int32_t> degree(n + 1);
     vector<unordered_set<int32_t>> hasEdge(n + 1);
 
-    for (const auto &edge : edges) {
+    for (const auto& edge : edges) {
       ++degree[edge[0]];
       ++degree[edge[1]];
 

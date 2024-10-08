@@ -11,8 +11,8 @@
 
 using namespace std;
 class Solution {
-public:
-  void rotate(vector<vector<int>> &matrix) {
+ public:
+  void rotate(vector<vector<int>>& matrix) {
     // Clockwise rotation by 90-degrees can be represented by the matrix R:
     // R = [[ 0, 1],
     //      [-1, 0]]

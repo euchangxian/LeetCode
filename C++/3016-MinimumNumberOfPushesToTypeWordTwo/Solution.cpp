@@ -11,7 +11,7 @@
 
 using namespace std;
 class Solution {
-public:
+ public:
   int minimumPushes(string word) {
     vector<int> frequencies(26, 0);
     for (char c : word) {

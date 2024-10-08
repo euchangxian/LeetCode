@@ -11,7 +11,7 @@
 
 using namespace std;
 class Solution {
-public:
+ public:
   int longestCommonSubsequence(string s1, string s2) {
     int m = s1.length();
     int n = s2.length();

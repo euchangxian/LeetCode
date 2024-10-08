@@ -11,15 +11,15 @@
 
 using namespace std;
 class Solution {
-public:
-  bool searchMatrix(vector<vector<int>> &matrix, int target) {
+ public:
+  bool searchMatrix(vector<vector<int>>& matrix, int target) {
     // Utilise the sorted property of the matrix + modulo/division arithmetic
     // to "flatten" the 2D matrix into a 1D search space
     int m = matrix.size();
     int n = matrix[0].size();
 
     int left = 0;
-    int right = m * n - 1; // Index of the last element in a 1D array
+    int right = m * n - 1;  // Index of the last element in a 1D array
     while (left < right) {
       int mid = left + (right - left) / 2;
 

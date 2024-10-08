@@ -11,8 +11,8 @@
 
 using namespace std;
 class Solution {
-public:
-  int carFleet(int target, vector<int> &position, vector<int> &speed) {
+ public:
+  int carFleet(int target, vector<int>& position, vector<int>& speed) {
     int n = position.size();
 
     vector<int> cars(n);
@@ -25,7 +25,7 @@ public:
     sort(cars.begin(), cars.end(),
          [&position](int i, int j) { return position[i] > position[j]; });
 
-    int carFleets = n; // each car is a fleet by itself at the start
+    int carFleets = n;  // each car is a fleet by itself at the start
 
     // Time taken for the car in front of the current to reach the target
     double prevTime = 0.0;

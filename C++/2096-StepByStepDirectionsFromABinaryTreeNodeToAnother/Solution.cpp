@@ -3,18 +3,18 @@
 using namespace std;
 struct TreeNode {
   int val;
-  TreeNode *left;
-  TreeNode *right;
+  TreeNode* left;
+  TreeNode* right;
 
   TreeNode() : val(0), left(nullptr), right(nullptr) {}
   TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-  TreeNode(int x, TreeNode *left, TreeNode *right)
+  TreeNode(int x, TreeNode* left, TreeNode* right)
       : val(x), left(left), right(right) {}
 };
 
 class Solution {
-private:
-  bool dfs(TreeNode *current, int target, string &directions) {
+ private:
+  bool dfs(TreeNode* current, int target, string& directions) {
     if (current == nullptr) {
       return false;
     }
@@ -38,13 +38,13 @@ private:
     return false;
   }
 
-public:
+ public:
   // From their Lowest Common Ancestor:
   // shortest path from start to dest = shortest path to start + shortest path
   // to dest.
   //
   // Not a Binary Search Tree => DFS/BFS to find both.
-  string getDirections(TreeNode *root, int startValue, int destValue) {
+  string getDirections(TreeNode* root, int startValue, int destValue) {
     string directionToStart;
     dfs(root, startValue, directionToStart);
 

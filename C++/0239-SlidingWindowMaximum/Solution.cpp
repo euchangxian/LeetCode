@@ -4,8 +4,8 @@
 
 using namespace std;
 class Solution {
-public:
-  vector<int> maxSlidingWindow(vector<int> &nums, int k) {
+ public:
+  vector<int> maxSlidingWindow(vector<int>& nums, int k) {
     vector<int> result;
     result.reserve(nums.size() - k + 1);
 
@@ -38,7 +38,7 @@ public:
     return result;
   }
 
-  vector<int> maxSlidingWindowNLogN(vector<int> &nums, int k) {
+  vector<int> maxSlidingWindowNLogN(vector<int>& nums, int k) {
     map<int, int> pq;
     for (int i = 0; i < k; ++i) {
       ++pq[nums[i]];
@@ -47,7 +47,7 @@ public:
     vector<int> maxSlidingWindow;
     maxSlidingWindow.reserve(nums.size() - k + 1);
 
-    maxSlidingWindow.push_back(pq.rbegin()->first); // largest element;
+    maxSlidingWindow.push_back(pq.rbegin()->first);  // largest element;
     for (int i = k; i < nums.size(); ++i) {
       if (!--pq[nums[i - k]]) {
         pq.erase(nums[i - k]);

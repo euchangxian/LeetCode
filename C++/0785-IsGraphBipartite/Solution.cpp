@@ -14,12 +14,14 @@
 
 using namespace std;
 class Solution {
-private:
-  bool dfs(vector<vector<int>> const &graph, vector<int8_t> &color, int idx,
+ private:
+  bool dfs(vector<vector<int>> const& graph,
+           vector<int8_t>& color,
+           int idx,
            int8_t currColor) {
     color[idx] = currColor;
 
-    for (int const &neighbour : graph[idx]) {
+    for (int const& neighbour : graph[idx]) {
       if (color[neighbour] == currColor) {
         return false;
       }
@@ -33,8 +35,8 @@ private:
     return true;
   }
 
-public:
-  bool isBipartite(vector<vector<int>> const &graph) {
+ public:
+  bool isBipartite(vector<vector<int>> const& graph) {
     // graph is an adjacency list where graph[u] represents the neighbours of u
     size_t n = graph.size();
 

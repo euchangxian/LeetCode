@@ -4,9 +4,11 @@
 #include <vector>
 
 class Solution {
-private:
-  int32_t dfs(const std::vector<std::vector<size_t>> &adjList,
-              const std::string_view &s, int32_t &result, size_t curr) {
+ private:
+  int32_t dfs(const std::vector<std::vector<size_t>>& adjList,
+              const std::string_view& s,
+              int32_t& result,
+              size_t curr) {
     // Returns the longest path that ENDS at the current node.
     // This is because a path that does not end at the current node will not
     // be useful for parent nodes. It will be disconnected.
@@ -24,7 +26,7 @@ private:
 
     // chain2 is the second longest path that ends/starts with this node
     int32_t chain2{0};
-    for (const size_t &child : adjList[curr]) {
+    for (const size_t& child : adjList[curr]) {
       const int32_t childPathLength = dfs(adjList, s, result, child);
 
       if (s[curr] == s[child]) {
@@ -50,8 +52,8 @@ private:
     return 1 + chain1;
   }
 
-public:
-  int longestPath(std::vector<int> &parent, std::string s) {
+ public:
+  int longestPath(std::vector<int>& parent, std::string s) {
     const size_t n = parent.size();
 
     // Process the parent vector to create an adjacency list.

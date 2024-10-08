@@ -13,7 +13,7 @@
 
 using namespace std;
 class Solution {
-public:
+ public:
   int numberOfSteps(int num) {
     // If num is even, divide by 2. Otherwise subtract 1.
     // Return the number of steps to reduce num to zero.

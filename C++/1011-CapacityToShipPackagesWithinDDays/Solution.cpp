@@ -11,13 +11,14 @@
 
 using namespace std;
 class Solution {
-private:
-  bool canShipWithinDays(vector<int> const &weights, int days,
+ private:
+  bool canShipWithinDays(vector<int> const& weights,
+                         int days,
                          int const capacity) {
     // Weights are loaded in order of occurence. No need to sort
     int requiredDays = 1;
     int currentLoad = 0;
-    for (int const &weight : weights) {
+    for (int const& weight : weights) {
       currentLoad += weight;
 
       if (currentLoad > capacity) {
@@ -29,14 +30,14 @@ private:
     return requiredDays <= days;
   }
 
-public:
-  int shipWithinDays(vector<int> &weights, int days) {
+ public:
+  int shipWithinDays(vector<int>& weights, int days) {
     // Insight: There exist a k weight, such that if
     // canShipWithinDays(k) == true, then canShipWithinDays(k + 1) == true
     // Therefore, binary search can be applied
     int left = 0;
     int right = 0;
-    for (int const &num : weights) {
+    for (int const& num : weights) {
       left = max(left, num);
       right += num;
     }

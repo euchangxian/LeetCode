@@ -11,12 +11,12 @@
 
 using namespace std;
 class UnionFind {
-private:
+ private:
   vector<int> parent;
   vector<int> rank;
   vector<int> size;
 
-public:
+ public:
   UnionFind(int n) : parent(n), rank(n), size(n, 1) {
     for (int i = 0; i < n; ++i) {
       parent[i] = i;
@@ -56,12 +56,12 @@ public:
 };
 
 class Solution {
-public:
-  int countCompleteComponents(int n, vector<vector<int>> &edges) {
+ public:
+  int countCompleteComponents(int n, vector<vector<int>>& edges) {
     UnionFind uf(n);
 
     vector<int> edgeCount(n, 0);
-    for (auto const &edge : edges) {
+    for (auto const& edge : edges) {
       uf.unite(edge[0], edge[1]);
 
       ++edgeCount[edge[0]];

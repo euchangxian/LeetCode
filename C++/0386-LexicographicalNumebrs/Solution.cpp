@@ -13,8 +13,8 @@
 
 using namespace std;
 class Solution {
-private:
-  void dfs(const int n, vector<int> &result, int curr) {
+ private:
+  void dfs(const int n, vector<int>& result, int curr) {
     if (curr > n) {
       return;
     }
@@ -25,7 +25,7 @@ private:
     }
   }
 
-public:
+ public:
   vector<int> lexicalOrder(int n) {
     // Recursive DFS solution is of O(logn) (base 10) space, since the maximum
     // depth of the call-tree is of O(logn)
@@ -65,7 +65,7 @@ public:
     // Of course we can do better. But how? To do better would mean a time
     // complexity better than O(nlogn).
     // Given constraints of O(n) time and O(1) extra space
-    vector<int> result; // result array does not count as extra space.
+    vector<int> result;  // result array does not count as extra space.
     result.reserve(n);
     // What about DFS starting from 1? 1 -> 10 -> 100 -> ...
     //                                      11 -> 110 ...

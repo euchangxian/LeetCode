@@ -10,16 +10,16 @@
 #include <vector>
 struct ListNode {
   int val;
-  ListNode *next;
+  ListNode* next;
   ListNode() : val(0), next(nullptr) {}
   ListNode(int x) : val(x), next(nullptr) {}
-  ListNode(int x, ListNode *next) : val(x), next(next) {}
+  ListNode(int x, ListNode* next) : val(x), next(next) {}
 };
 
 using namespace std;
 class Solution {
-private:
-  ListNode *mergeLists(ListNode *l1, ListNode *l2) {
+ private:
+  ListNode* mergeLists(ListNode* l1, ListNode* l2) {
     if (!l1) {
       return l2;
     }
@@ -36,8 +36,8 @@ private:
     return l2;
   }
 
-public:
-  ListNode *mergeKLists(vector<ListNode *> &lists) {
+ public:
+  ListNode* mergeKLists(vector<ListNode*>& lists) {
     if (lists.empty()) {
       return nullptr;
     }
@@ -53,4 +53,3 @@ public:
     return lists[0];
   }
 };
-

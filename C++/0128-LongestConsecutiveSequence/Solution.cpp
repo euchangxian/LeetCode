@@ -3,8 +3,8 @@
 
 using namespace std;
 class Solution {
-public:
-  int longestConsecutive(vector<int> &nums) {
+ public:
+  int longestConsecutive(vector<int>& nums) {
     unordered_set<int> present;
     for (int num : nums) {
       present.insert(num);
@@ -22,7 +22,7 @@ public:
         --num;
       }
 
-      ++num; // compensate for extra minus
+      ++num;  // compensate for extra minus
       while (present.count(num)) {
         present.erase(num);
         ++num;

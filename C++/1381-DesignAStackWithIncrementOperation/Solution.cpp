@@ -3,7 +3,7 @@
 
 using std::vector;
 class CustomStack {
-private:
+ private:
   // Stack
   vector<int> stack;
 
@@ -16,7 +16,7 @@ private:
   // Capacity of the stack
   const size_t maxSize;
 
-public:
+ public:
   CustomStack(int maxSize)
       : stack(maxSize), incr(maxSize, 0), sp(0), maxSize(maxSize) {}
 

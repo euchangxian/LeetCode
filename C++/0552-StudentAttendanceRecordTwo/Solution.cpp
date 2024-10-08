@@ -4,7 +4,7 @@
 using namespace std;
 
 class Solution {
-public:
+ public:
   int checkRecord(int n) {
     const int MOD = 1000000007;
     // Maintain number of Absents, and number of consecutive Lates as state.
@@ -55,7 +55,7 @@ public:
   }
 };
 
-int main(int argc, char *arv[]) {
+int main(int argc, char* arv[]) {
   cout << Solution().checkRecord(2) << endl;
   return 0;
 }

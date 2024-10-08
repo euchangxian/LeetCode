@@ -11,11 +11,11 @@
 
 using namespace std;
 class Solution {
-private:
+ private:
   vector<pair<int, int>> const directions = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
 
-public:
-  int swimInWater(vector<vector<int>> &grid) {
+ public:
+  int swimInWater(vector<vector<int>>& grid) {
     // grid[i][j] represents the elevation at (i, j)
     // At time t, the depth of the water everywhere is t.
     // We can move to a neighboring cell if its elevation is at most t.
@@ -44,7 +44,7 @@ public:
         break;
       }
 
-      for (auto const &[dr, dc] : directions) {
+      for (auto const& [dr, dc] : directions) {
         int nr = r + dr;
         int nc = c + dc;
 

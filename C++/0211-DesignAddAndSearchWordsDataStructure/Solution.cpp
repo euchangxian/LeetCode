@@ -11,16 +11,16 @@
 
 using namespace std;
 class WordDictionary {
-private:
-  vector<WordDictionary *> children;
+ private:
+  vector<WordDictionary*> children;
   bool isWord;
 
-public:
+ public:
   WordDictionary() : isWord(false), children(26, nullptr) {}
 
   void addWord(string word) {
-    WordDictionary *iter = this;
-    for (auto const &c : word) {
+    WordDictionary* iter = this;
+    for (auto const& c : word) {
       if (!iter->children[c - 'a']) {
         iter->children[c - 'a'] = new WordDictionary();
       }
@@ -30,13 +30,13 @@ public:
   }
 
   bool search(string word) {
-    WordDictionary *iter = this;
+    WordDictionary* iter = this;
     for (int i = 0; i < word.length(); ++i) {
       char c = word[i];
 
       if (c == '.') {
         bool hasWord = false;
-        for (auto const &child : iter->children) {
+        for (auto const& child : iter->children) {
           if (!child) {
             continue;
           }

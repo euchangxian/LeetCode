@@ -11,7 +11,7 @@
 
 using namespace std;
 class Solution {
-public:
+ public:
   int findComplement(int num) {
     // C++ bitwise-NOT will invert the leading 0 bits of a integer too.
     // E.g., int num = 128 = 0000 0000 ... 1000 0000
@@ -21,7 +21,7 @@ public:
     // '1' bit, which is the 25th MSB /8th LSB in this case
     // As such, a mask is required to mask the first 24 bits, then do a
     // bitwise-NOT
-    unsigned mask = ~0; // 1111 1111 ... 1111
+    unsigned mask = ~0;  // 1111 1111 ... 1111
     while (mask & num) {
       // shift the mask left until mask&num returns 0
       mask <<= 1;

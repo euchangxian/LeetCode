@@ -11,12 +11,12 @@
 
 using namespace std;
 class UnionFind {
-private:
+ private:
   vector<int> parent;
   vector<int> rank;
   int components;
 
-public:
+ public:
   UnionFind(int size) : parent(size), rank(size), components(size) {
     for (int i = 0; i < size; ++i) {
       parent[i] = i;
@@ -53,8 +53,8 @@ public:
   int size() { return components; }
 };
 class Solution {
-public:
-  int countSubIslands(vector<vector<int>> &grid1, vector<vector<int>> &grid2) {
+ public:
+  int countSubIslands(vector<vector<int>>& grid1, vector<vector<int>>& grid2) {
     // Intuition. For each land cell in grid2, begin DFS. A cell is considered a
     // neighbour iff it is a land cell in grid 2 AND in grid1. Count components.
     int rows = grid2.size();

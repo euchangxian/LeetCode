@@ -11,16 +11,16 @@
 #include <vector>
 struct ListNode {
   int val;
-  ListNode *next;
+  ListNode* next;
   ListNode() : val(0), next(nullptr) {}
   ListNode(int x) : val(x), next(nullptr) {}
-  ListNode(int x, ListNode *next) : val(x), next(next) {}
+  ListNode(int x, ListNode* next) : val(x), next(next) {}
 };
 
 using namespace std;
 class Solution {
-public:
-  vector<vector<int>> spiralMatrix(int m, int n, ListNode *head) {
+ public:
+  vector<vector<int>> spiralMatrix(int m, int n, ListNode* head) {
     vector<vector<int>> matrix(m, vector<int>(n, -1));
 
     int rowStart = 0, colStart = 0, rowEnd = m - 1, colEnd = n - 1;

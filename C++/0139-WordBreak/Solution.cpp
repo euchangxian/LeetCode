@@ -14,9 +14,9 @@
 
 using namespace std;
 class Solution {
-private:
-public:
-  bool wordBreak(string s, vector<string> &wordDict) {
+ private:
+ public:
+  bool wordBreak(string s, vector<string>& wordDict) {
     const size_t n = s.length();
 
     // Allow for quick lookup

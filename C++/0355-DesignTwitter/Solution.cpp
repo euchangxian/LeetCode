@@ -19,7 +19,7 @@ constexpr uint16_t USERS = 500;
 constexpr uint16_t TWEETS = 10000;
 
 class Twitter {
-private:
+ private:
   // counts the number of times postTweet was invoked. This is so we can
   // order the tweets created from most recent to least recent
   // Also acts as a pointer to the tweets array
@@ -31,7 +31,7 @@ private:
   // {tweetID, userID}
   array<pair<uint16_t, uint16_t>, TWEETS> tweets;
 
-public:
+ public:
   Twitter() : time(0), following({}), tweets({}) {
     for (int i = 0; i < USERS; ++i) {
       following[i].set(i);
@@ -56,8 +56,7 @@ public:
     // time must be casted to signed int to prevent wrap-around
     for (int16_t i = static_cast<int16_t>(time) - 1;
          i >= 0 && topFeed.size() < 10; --i) {
-
-      auto const &[tweetId, posterId] = tweets[i];
+      auto const& [tweetId, posterId] = tweets[i];
       if (following[userId].test(posterId)) {
         topFeed.push_back(tweetId);
       }

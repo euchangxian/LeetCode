@@ -15,7 +15,7 @@ using namespace std;
 constexpr size_t ALPHABETS = 26;
 
 class Solution {
-public:
+ public:
   // Topological Sort / Kahn's Algorithm:
   // 1. Create adjacency graph/matrix containing the directed edges.
   //    A node B is dependent on A iff there is a directed edge from A to B.
@@ -25,7 +25,7 @@ public:
   // 4. Repeat 2 to 4 until the queue is empty.
   // 5. If the size of the sorted list is not equal to the number of nodes,
   //    then there is a circular dependency. Otherwise, return the list.
-  string foreignDictionary(vector<string> &words) {
+  string foreignDictionary(vector<string>& words) {
     // Given the sorted (with an unknown comparator) list of words, return a
     // order of the languages.
 
@@ -37,13 +37,13 @@ public:
     array<int, ALPHABETS> indegree{};
 
     for (int i = 0; i < words.size(); ++i) {
-      for (char const &c : words[i]) {
+      for (char const& c : words[i]) {
         seen[c - 'a'] = true;
       }
 
       if (i > 0) {
-        string const &prev = words[i - 1];
-        string const &curr = words[i];
+        string const& prev = words[i - 1];
+        string const& curr = words[i];
 
         int minLen = min(prev.length(), curr.length());
 

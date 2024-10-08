@@ -4,8 +4,8 @@
 
 using namespace std;
 class Solution {
-public:
-  int minSubarray(vector<int> &nums, int p) {
+ public:
+  int minSubarray(vector<int>& nums, int p) {
     // The sum of the subarrays to be removed is a multiple of the remainder,
     // sum = k * r, where k >= 0
     // In other words, find subarrays that are divisible by R. i.e. reducible

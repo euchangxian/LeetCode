@@ -11,11 +11,11 @@
 
 using namespace std;
 class Solution {
-private:
+ private:
   vector<pair<int, int>> directions = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
 
-public:
-  void islandsAndTreasure(vector<vector<int>> &grid) {
+ public:
+  void islandsAndTreasure(vector<vector<int>>& grid) {
     int const INF = INT_MAX;
     int m = grid.size();
     int n = grid[0].size();
@@ -44,7 +44,7 @@ public:
         auto [r, c] = frontier.front();
         frontier.pop();
 
-        for (auto const &[dr, dc] : directions) {
+        for (auto const& [dr, dc] : directions) {
           int nr = r + dr;
           int nc = c + dc;
 

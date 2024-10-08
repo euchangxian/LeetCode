@@ -4,8 +4,8 @@
 
 using namespace std;
 class Solution {
-public:
-  vector<int> topKFrequent(vector<int> &nums, int k) {
+ public:
+  vector<int> topKFrequent(vector<int>& nums, int k) {
     unordered_map<int, int> frequency;
 
     for (int num : nums) {
@@ -18,7 +18,7 @@ public:
 
     priority_queue<int, vector<int>, decltype(cmp)> pq(cmp);
 
-    for (const auto &pair : frequency) {
+    for (const auto& pair : frequency) {
       pq.push(pair.first);
     }
 

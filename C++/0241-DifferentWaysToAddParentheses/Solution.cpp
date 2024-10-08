@@ -13,7 +13,7 @@
 
 using namespace std;
 class Solution {
-public:
+ public:
   vector<int> diffWaysToCompute(string expression) {
     // Starting small, consider the most simple expression:
     // "2" - There is only one way to compute this, which is 2
@@ -63,21 +63,21 @@ public:
             continue;
           }
 
-          vector<int> &left = dp[start][i - 1];
-          vector<int> &right = dp[i + 1][end];
+          vector<int>& left = dp[start][i - 1];
+          vector<int>& right = dp[i + 1][end];
 
-          for (const int &l : left) {
-            for (const int &r : right) {
+          for (const int& l : left) {
+            for (const int& r : right) {
               switch (expression[i]) {
-              case '+':
-                dp[start][end].push_back(l + r);
-                break;
-              case '-':
-                dp[start][end].push_back(l - r);
-                break;
-              case '*':
-                dp[start][end].push_back(l * r);
-                break;
+                case '+':
+                  dp[start][end].push_back(l + r);
+                  break;
+                case '-':
+                  dp[start][end].push_back(l - r);
+                  break;
+                case '*':
+                  dp[start][end].push_back(l * r);
+                  break;
               }
             }
           }
@@ -94,8 +94,9 @@ public:
   //
   // vector<vector<vector<int>>> memo(n, vector<vector<int>>(n));
   // return diffWaysMemo(expression, memo, 0, n - 1);
-  vector<int> diffWaysMemo(const string &expression,
-                           vector<vector<vector<int>>> &memo, int start,
+  vector<int> diffWaysMemo(const string& expression,
+                           vector<vector<vector<int>>>& memo,
+                           int start,
                            int end) {
     if (!memo[start][end].empty()) {
       return memo[start][end];
@@ -119,18 +120,18 @@ public:
       vector<int> left = diffWaysMemo(expression, memo, start, i - 1);
       vector<int> right = diffWaysMemo(expression, memo, i + 1, end);
 
-      for (const int &l : left) {
-        for (const int &r : right) {
+      for (const int& l : left) {
+        for (const int& r : right) {
           switch (expression[i]) {
-          case '+':
-            result.push_back(l + r);
-            break;
-          case '-':
-            result.push_back(l - r);
-            break;
-          case '*':
-            result.push_back(l * r);
-            break;
+            case '+':
+              result.push_back(l + r);
+              break;
+            case '-':
+              result.push_back(l - r);
+              break;
+            case '*':
+              result.push_back(l * r);
+              break;
           }
         }
       }
@@ -145,7 +146,7 @@ public:
   // O(n * 2^n) time
   // O(2^n) space
   // diffWaysNaive(expression, 0, n - 1);
-  vector<int> diffWaysNaive(const string &expression, int start, int end) {
+  vector<int> diffWaysNaive(const string& expression, int start, int end) {
     if (start > end) {
       return {};
     }
@@ -164,18 +165,18 @@ public:
       vector<int> left = diffWaysNaive(expression, start, i - 1);
       vector<int> right = diffWaysNaive(expression, i + 1, end);
 
-      for (const int &l : left) {
-        for (const int &r : right) {
+      for (const int& l : left) {
+        for (const int& r : right) {
           switch (expression[i]) {
-          case '+':
-            result.push_back(l + r);
-            break;
-          case '-':
-            result.push_back(l - r);
-            break;
-          case '*':
-            result.push_back(l * r);
-            break;
+            case '+':
+              result.push_back(l + r);
+              break;
+            case '-':
+              result.push_back(l - r);
+              break;
+            case '*':
+              result.push_back(l * r);
+              break;
           }
         }
       }

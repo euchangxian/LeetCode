@@ -3,8 +3,8 @@
 
 using std::vector;
 class Solution {
-public:
-  int numSubarrayProductLessThanK(vector<int> &nums, int k) {
+ public:
+  int numSubarrayProductLessThanK(vector<int>& nums, int k) {
     if (k <= 1) {
       return 0;
     }

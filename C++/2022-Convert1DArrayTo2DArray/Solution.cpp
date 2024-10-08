@@ -11,8 +11,8 @@
 
 using namespace std;
 class Solution {
-public:
-  vector<vector<int>> construct2DArray(vector<int> &original, int m, int n) {
+ public:
+  vector<vector<int>> construct2DArray(vector<int>& original, int m, int n) {
     if (original.size() != m * n) {
       return {};
     }

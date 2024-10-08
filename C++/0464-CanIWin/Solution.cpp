@@ -13,14 +13,16 @@
 #include <vector>
 
 using namespace std;
-constexpr size_t kMaxChoices{1 << 20}; // 20 bits state
+constexpr size_t kMaxChoices{1 << 20};  // 20 bits state
 constexpr size_t kMaxTotal{300};
 
 class Solution {
-private:
+ private:
   // state is a bitset where each bit represents whether the integer from
   // the pool has already been chosen
-  bool canWin(bitset<kMaxChoices> &memo, const int target, const int choices,
+  bool canWin(bitset<kMaxChoices>& memo,
+              const int target,
+              const int choices,
               uint32_t state) {
     if (memo.test(state)) {
       return memo[state];
@@ -51,7 +53,7 @@ private:
     return false;
   }
 
-public:
+ public:
   bool canIWin(int maxChoosableInteger, int desiredTotal) {
     // Naively, there are [1..maxChoosableInteger] choices at each step.
     // DFS the tree and count the number of edges to reach desiredTotal.

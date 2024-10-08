@@ -5,23 +5,27 @@
 using namespace std;
 
 class Solution {
-public:
-  int beautifulSubsets(vector<int> &nums, int k) {
+ public:
+  int beautifulSubsets(vector<int>& nums, int k) {
     int beautifulSubsets = getBeautifulSubsets(nums, k);
     return beautifulSubsets;
   }
 
-private:
-  int getBeautifulSubsets(vector<int> const &nums, int k) {
+ private:
+  int getBeautifulSubsets(vector<int> const& nums, int k) {
     vector<vector<int>> subsets;
     vector<int> currSet;
     int count = 0;
     getSubsets(nums, k, subsets, currSet, 0, count);
-    return count - 1; // empty set
+    return count - 1;  // empty set
   }
 
-  void getSubsets(vector<int> const &nums, int k, vector<vector<int>> &subsets,
-                  vector<int> &currSet, int start, int &count) {
+  void getSubsets(vector<int> const& nums,
+                  int k,
+                  vector<vector<int>>& subsets,
+                  vector<int>& currSet,
+                  int start,
+                  int& count) {
     if (start >= nums.size()) {
       count++;
       return;
@@ -35,7 +39,7 @@ private:
     }
   }
 
-  bool isBeautiful(vector<int> const &subset, int toAdd, int k) {
+  bool isBeautiful(vector<int> const& subset, int toAdd, int k) {
     for (int num : subset) {
       if (abs(num - toAdd) == k) {
         return false;

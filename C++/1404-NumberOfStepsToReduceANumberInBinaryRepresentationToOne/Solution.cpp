@@ -3,7 +3,7 @@
 
 using namespace std;
 class Solution {
-public:
+ public:
   // even => divide by 2 / right shift
   // odd => add 1, next step will right shift
   // 110, 11, 100, 10, 1

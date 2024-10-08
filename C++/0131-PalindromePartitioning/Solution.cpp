@@ -4,13 +4,13 @@
 using namespace std;
 
 class Solution {
-public:
+ public:
   vector<vector<string>> partition(string s) {
     vector<vector<string>> partitions = getPalindromicPartitions(s);
     return partitions;
   }
 
-private:
+ private:
   vector<vector<string>> getPalindromicPartitions(string s) {
     vector<vector<string>> partitions;
     vector<string> currPartition;
@@ -19,8 +19,10 @@ private:
     return partitions;
   }
 
-  void getPartitions(string s, vector<vector<string>> &partitions,
-                     vector<string> &curr, int start) {
+  void getPartitions(string s,
+                     vector<vector<string>>& partitions,
+                     vector<string>& curr,
+                     int start) {
     if (start >= s.length()) {
       partitions.push_back(curr);
       return;
@@ -34,7 +36,7 @@ private:
     }
   }
 
-  bool isPalindrome(string const &s, int left, int right) {
+  bool isPalindrome(string const& s, int left, int right) {
     while (left < right) {
       if (s[left] != s[right]) {
         return false;

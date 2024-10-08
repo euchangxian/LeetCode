@@ -11,12 +11,13 @@
 
 using namespace std;
 class Solution {
-private:
-  bool subarraySumsUnderThreshold(vector<int> const &nums, int const &k,
-                                  int const &threshold) {
-    int splits = 1; // the entire nums array is a single split
+ private:
+  bool subarraySumsUnderThreshold(vector<int> const& nums,
+                                  int const& k,
+                                  int const& threshold) {
+    int splits = 1;  // the entire nums array is a single split
     int currSum = 0;
-    for (int const &num : nums) {
+    for (int const& num : nums) {
       currSum += num;
 
       if (currSum > threshold) {
@@ -31,8 +32,8 @@ private:
     return splits <= k;
   }
 
-public:
-  int splitArray(vector<int> &nums, int k) {
+ public:
+  int splitArray(vector<int>& nums, int k) {
     // Can be thought of splitting the nums array such that each subarray never
     // exceeds a threshold k
     // i.e., there exist a threshold k such that
@@ -40,7 +41,7 @@ public:
 
     int left = 0;
     int right = 0 + 1;
-    for (int const &num : nums) {
+    for (int const& num : nums) {
       left = max(left, num);
       right += num;
     }

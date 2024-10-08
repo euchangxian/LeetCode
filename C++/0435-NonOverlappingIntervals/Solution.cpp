@@ -11,11 +11,11 @@
 
 using namespace std;
 class Solution {
-public:
-  int eraseOverlapIntervals(vector<vector<int>> &intervals) {
+ public:
+  int eraseOverlapIntervals(vector<vector<int>>& intervals) {
     int n = intervals.size();
 
-    sort(intervals.begin(), intervals.end(), [](auto const &a, auto const &b) {
+    sort(intervals.begin(), intervals.end(), [](auto const& a, auto const& b) {
       // Sort by ascending start times
       return a[0] < b[0];
     });

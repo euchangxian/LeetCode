@@ -11,7 +11,7 @@
 
 using namespace std;
 class Solution {
-private:
+ private:
   // Divide a by b. Let the remainder be r. r = a % b
   // If r == 0, then b is the GCD of a and b
   // If r != 0, then GCD of a and b == GCD of b and r
@@ -35,13 +35,13 @@ private:
     return euclidsGCDRecursive(b, a % b);
   }
 
-public:
-  int findGCD(vector<int> &nums) {
+ public:
+  int findGCD(vector<int>& nums) {
     // nums.size() >= 2
     int smallest = INT_MAX;
     int largest = INT_MIN;
 
-    for (auto const &num : nums) {
+    for (auto const& num : nums) {
       smallest = min(smallest, num);
       largest = max(largest, num);
     }

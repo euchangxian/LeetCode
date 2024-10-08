@@ -11,7 +11,7 @@
 
 using namespace std;
 class Solution {
-public:
+ public:
   int uniquePaths(int m, int n) {
     // After the ith iteration, dp[j] represents the number of unique paths that
     // the robot can take to reach grid[i][j]

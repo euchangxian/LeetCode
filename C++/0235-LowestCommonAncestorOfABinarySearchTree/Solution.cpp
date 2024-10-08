@@ -10,19 +10,19 @@
 #include <vector>
 struct TreeNode {
   int val;
-  TreeNode *left;
-  TreeNode *right;
+  TreeNode* left;
+  TreeNode* right;
 
   TreeNode() : val(0), left(nullptr), right(nullptr) {}
   TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-  TreeNode(int x, TreeNode *left, TreeNode *right)
+  TreeNode(int x, TreeNode* left, TreeNode* right)
       : val(x), left(left), right(right) {}
 };
 
 using namespace std;
 class Solution {
-public:
-  TreeNode *lowestCommonAncestor(TreeNode *root, TreeNode *p, TreeNode *q) {
+ public:
+  TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
     // Exploit the sorted property of a BST
     // O(logn) assuming the BST is balanced
     // Question constraints guarantee that p and q exists. Therefore, there
@@ -41,8 +41,9 @@ public:
     return root;
   }
 
-  TreeNode *lowestCommonAncestorNaive(TreeNode *root, TreeNode *p,
-                                      TreeNode *q) {
+  TreeNode* lowestCommonAncestorNaive(TreeNode* root,
+                                      TreeNode* p,
+                                      TreeNode* q) {
     // Does not make use of the sorted property of a BST
     // O(n)
     if (!root) {
@@ -53,8 +54,8 @@ public:
       return root;
     }
 
-    TreeNode *left = lowestCommonAncestor(root->left, p, q);
-    TreeNode *right = lowestCommonAncestor(root->right, p, q);
+    TreeNode* left = lowestCommonAncestor(root->left, p, q);
+    TreeNode* right = lowestCommonAncestor(root->right, p, q);
 
     if (left && right) {
       // root is the LCA

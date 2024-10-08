@@ -4,8 +4,8 @@
 
 using namespace std;
 class Solution {
-public:
-  int maxProfit(vector<int> &prices) {
+ public:
+  int maxProfit(vector<int>& prices) {
     // Decision tree looks like:
     // 1. Buy. IF currently not holding any stock. Therefore a state is
     //    necessary

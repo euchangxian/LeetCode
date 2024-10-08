@@ -6,21 +6,21 @@ using namespace std;
 
 struct TreeNode {
   int val;
-  TreeNode *left;
-  TreeNode *right;
+  TreeNode* left;
+  TreeNode* right;
 
   TreeNode() : val(0), left(nullptr), right(nullptr) {}
   TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-  TreeNode(int x, TreeNode *left, TreeNode *right)
+  TreeNode(int x, TreeNode* left, TreeNode* right)
       : val(x), left(left), right(right) {}
 };
 
 class Solution {
-public:
+ public:
   // Creating the Binary Tree is simple. Finding the root is not as simple.
   // A root will have no parent
-  TreeNode *createBinaryTree(vector<vector<int>> &descriptions) {
-    unordered_map<int, TreeNode *> nodes;
+  TreeNode* createBinaryTree(vector<vector<int>>& descriptions) {
+    unordered_map<int, TreeNode*> nodes;
     unordered_set<int> childNodes;
     for (auto description : descriptions) {
       int parent = description[0];
@@ -43,8 +43,8 @@ public:
       }
     }
 
-    TreeNode *root;
-    for (auto const &[key, node] : nodes) {
+    TreeNode* root;
+    for (auto const& [key, node] : nodes) {
       if (!childNodes.count(key)) {
         root = node;
         break;

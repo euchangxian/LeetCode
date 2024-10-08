@@ -11,7 +11,7 @@
 
 using namespace std;
 class Solution {
-public:
+ public:
   vector<vector<int>> generateMatrix(int n) {
     vector<vector<int>> matrix(n, vector<int>(n));
 

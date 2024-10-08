@@ -10,8 +10,8 @@
 
 using namespace std;
 class Solution {
-public:
-  vector<int> frequencySort(vector<int> &nums) {
+ public:
+  vector<int> frequencySort(vector<int>& nums) {
     vector<int> frequencies(201, 0);
     for (int num : nums) {
       ++frequencies[num + 100];

@@ -11,9 +11,12 @@
 
 using namespace std;
 class Solution {
-private:
-  void dfs(vector<int> const &candidates, vector<vector<int>> &combinations,
-           vector<int> &current, int target, int idx) {
+ private:
+  void dfs(vector<int> const& candidates,
+           vector<vector<int>>& combinations,
+           vector<int>& current,
+           int target,
+           int idx) {
     if (target == 0) {
       combinations.push_back(current);
       return;
@@ -35,8 +38,8 @@ private:
     return;
   }
 
-public:
-  vector<vector<int>> combinationSum(vector<int> &candidates, int target) {
+ public:
+  vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
     vector<vector<int>> combinations;
     vector<int> current;
 

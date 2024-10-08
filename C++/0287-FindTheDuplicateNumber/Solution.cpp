@@ -11,8 +11,8 @@
 
 using namespace std;
 class Solution {
-public:
-  int findDuplicate(vector<int> &nums) {
+ public:
+  int findDuplicate(vector<int>& nums) {
     // The trick is to model the nums array as a Linked List, where the nodes
     // are the indices [0..n]. Edges would then be represented by nums[i],
     // where nums[i] represents a directed edge from i to nums[i].
@@ -83,6 +83,6 @@ public:
       slow2 = nums[slow2];
     }
 
-    return slow1; // or slow2
+    return slow1;  // or slow2
   }
 };

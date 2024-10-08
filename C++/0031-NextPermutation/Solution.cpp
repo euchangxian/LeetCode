@@ -15,8 +15,8 @@
 
 using namespace std;
 class Solution {
-public:
-  void nextPermutation(vector<int> &nums) {
+ public:
+  void nextPermutation(vector<int>& nums) {
     // std::next_permutation(nums.begin(), nums.end());
     // Notice that if the array is already sorted in descending order, no next
     // larger permutation is possible. Circle back.

@@ -11,8 +11,8 @@
 
 using namespace std;
 class Solution {
-public:
-  int orangesRotting(vector<vector<int>> &grid) {
+ public:
+  int orangesRotting(vector<vector<int>>& grid) {
     // BFS from each rotten orange. Count iterations
     int m = grid.size();
     int n = grid[0].size();
@@ -45,7 +45,7 @@ public:
         auto [r, c] = frontier.front();
         frontier.pop();
 
-        for (auto const &[dr, dc] : directions) {
+        for (auto const& [dr, dc] : directions) {
           int nr = r + dr;
           int nc = c + dc;
 
@@ -54,7 +54,7 @@ public:
             continue;
           }
 
-          grid[nr][nc] = 2; // mark as rotten
+          grid[nr][nc] = 2;  // mark as rotten
           frontier.push({nr, nc});
           --freshOranges;
         }

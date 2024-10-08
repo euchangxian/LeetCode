@@ -11,7 +11,7 @@
 
 using namespace std;
 class Solution {
-private:
+ private:
   const vector<string> belowTen = {"",     "One", "Two",   "Three", "Four",
                                    "Five", "Six", "Seven", "Eight", "Nine"};
 
@@ -53,7 +53,7 @@ private:
            (num % 1000000000 ? " " + toWords(num % 1000000000) : "");
   }
 
-public:
+ public:
   string numberToWords(int num) {
     if (num == 0) {
       return "Zero";

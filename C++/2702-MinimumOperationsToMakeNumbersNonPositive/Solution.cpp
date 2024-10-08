@@ -12,15 +12,17 @@
 #include <vector>
 
 class Solution {
-private:
-  bool feasible(const std::vector<int> &nums, const int &x, const int &y,
+ private:
+  bool feasible(const std::vector<int>& nums,
+                const int& x,
+                const int& y,
                 const int64_t ops) {
     // x > y
     const int64_t threshold{x - y};
-    const int64_t base{ops * y}; // the minimum decrement on a number
+    const int64_t base{ops * y};  // the minimum decrement on a number
 
     int64_t xOpsRequired{0};
-    for (const int64_t &num : nums) {
+    for (const int64_t& num : nums) {
       // Count the number of times required to minus y on this number to reduce
       // it to < 0
       // Ceiling division since at least one operation is required
@@ -32,8 +34,8 @@ private:
     return xOpsRequired <= ops;
   }
 
-public:
-  int minOperations(std::vector<int> &nums, int x, int y) {
+ public:
+  int minOperations(std::vector<int>& nums, int x, int y) {
     // Similar to the Flower Blooming/Bouquet question with a little twist
     // where one number is decremented by y, others are decremented by x
     int left = 1;

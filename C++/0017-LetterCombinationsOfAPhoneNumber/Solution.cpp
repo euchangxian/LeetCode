@@ -11,12 +11,15 @@
 
 using namespace std;
 class Solution {
-private:
+ private:
   // Note that unlike usual backtracking solutions where the reference of
   // the current vector/string is passed in like &current, this one requires
   // pass-by-value.
-  void dfs(string const &digits, vector<vector<char>> const &mappings,
-           vector<string> &combinations, string current, int i) {
+  void dfs(string const& digits,
+           vector<vector<char>> const& mappings,
+           vector<string>& combinations,
+           string current,
+           int i) {
     if (i >= digits.length()) {
       combinations.push_back(current);
       return;
@@ -29,7 +32,7 @@ private:
     }
   }
 
-public:
+ public:
   vector<string> letterCombinations(string digits) {
     if (digits.empty()) {
       return {};

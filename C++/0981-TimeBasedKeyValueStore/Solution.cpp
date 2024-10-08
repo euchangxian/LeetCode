@@ -11,10 +11,10 @@
 
 using namespace std;
 class TimeMap {
-private:
+ private:
   unordered_map<string, vector<pair<int, string>>> store;
 
-public:
+ public:
   TimeMap() {}
 
   void set(string key, string value, int timestamp) {
@@ -27,7 +27,7 @@ public:
       return "";
     }
 
-    vector<pair<int, string>> const &values = store[key];
+    vector<pair<int, string>> const& values = store[key];
 
     int left = 0;
     int right = values.size() - 1;
@@ -39,7 +39,7 @@ public:
       // and also avoid infinite loops in the update of left = mid.
       int mid = left + (right - left + 1) / 2;
 
-      auto const &[ts, val] = values[mid];
+      auto const& [ts, val] = values[mid];
       if (ts <= timestamp) {
         left = mid;
       } else {

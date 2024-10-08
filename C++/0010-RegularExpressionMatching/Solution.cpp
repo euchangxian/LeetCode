@@ -14,7 +14,7 @@ using namespace std;
 class Solution {
   bool match(char c, char p) { return c == p || p == '.'; }
 
-public:
+ public:
   bool isMatch(string s, string p) {
     // '.' matches any single character
     // '*' matches zero or more of the preceding element.
@@ -46,17 +46,17 @@ public:
     //     dp[i][j] = dp[i - 1][j] (take multiple times)
     //             && (s[i-1] == p[j-1] || p[j-1] == '.') (char must match)
     vector<vector<bool>> dp(m + 1, vector<bool>(n + 1, false));
-    dp[0][0] = true; // vacuously true
+    dp[0][0] = true;  // vacuously true
     for (int j = 1; j <= n; ++j) {
       if (p[j - 1] == '*') {
-        dp[0][j] = dp[0][j - 2]; // vacuously true for kleene star
+        dp[0][j] = dp[0][j - 2];  // vacuously true for kleene star
       }
     }
 
     for (int i = 1; i <= m; ++i) {
       for (int j = 1; j <= n; ++j) {
         if (match(s[i - 1], p[j - 1])) {
-          dp[i][j] = dp[i - 1][j - 1]; // && true
+          dp[i][j] = dp[i - 1][j - 1];  // && true
           continue;
         }
 
@@ -68,8 +68,8 @@ public:
         }
 
         // if '*'
-        char preceding = p[j - 2]; // no need out-of-bounds check
-        dp[i][j] = dp[i][j - 2];   // repeat preceding character 0 times
+        char preceding = p[j - 2];  // no need out-of-bounds check
+        dp[i][j] = dp[i][j - 2];    // repeat preceding character 0 times
 
         if (match(s[i - 1], preceding)) {
           // while s[i-1] matches the preceding pattern character,

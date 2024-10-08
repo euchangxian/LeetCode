@@ -4,8 +4,8 @@
 
 using namespace std;
 class Solution {
-public:
-  bool isNStraightHand(vector<int> &hand, int groupSize) {
+ public:
+  bool isNStraightHand(vector<int>& hand, int groupSize) {
     if (hand.size() % groupSize) {
       return false;
     }

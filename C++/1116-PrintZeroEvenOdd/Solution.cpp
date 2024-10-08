@@ -1,9 +1,10 @@
+#include <semaphore.h>
+
 #include <algorithm>
 #include <climits>
 #include <functional>
 #include <iostream>
 #include <queue>
-#include <semaphore.h>
 #include <semaphore>
 #include <stack>
 #include <string>
@@ -13,13 +14,13 @@
 
 using namespace std;
 class ZeroEvenOdd {
-private:
+ private:
   int n;
   binary_semaphore semZero{1};
   binary_semaphore semOdd{0};
   binary_semaphore semEven{0};
 
-public:
+ public:
   ZeroEvenOdd(int n) { this->n = n; }
 
   // printNumber(x) outputs "x", where x is an integer.
@@ -52,4 +53,6 @@ public:
   }
 };
 
-void printNumber(int x) { cout << x; }
+void printNumber(int x) {
+  cout << x;
+}

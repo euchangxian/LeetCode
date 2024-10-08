@@ -3,8 +3,8 @@
 
 using namespace std;
 class Solution {
-public:
-  vector<int> relativeSortArray(vector<int> &arr1, vector<int> &arr2) {
+ public:
+  vector<int> relativeSortArray(vector<int>& arr1, vector<int>& arr2) {
     unordered_map<int, int> freq;
     for (int num : arr2) {
       ++freq[num];

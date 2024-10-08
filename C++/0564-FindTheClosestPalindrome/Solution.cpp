@@ -12,7 +12,7 @@
 using namespace std;
 using ll = long long;
 class Solution {
-private:
+ private:
   ll mirrorLeftHalf(ll left, bool isOdd) {
     ll result = left;
 
@@ -28,7 +28,7 @@ private:
     return result;
   }
 
-public:
+ public:
   string nearestPalindromic(string n) {
     // 1 <= n.length <= 18: long long
     // Notice that by mirroring the first half of a number like 12322,

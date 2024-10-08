@@ -10,33 +10,33 @@
 #include <vector>
 struct TreeNode {
   int val;
-  TreeNode *left;
-  TreeNode *right;
+  TreeNode* left;
+  TreeNode* right;
 
   TreeNode() : val(0), left(nullptr), right(nullptr) {}
   TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-  TreeNode(int x, TreeNode *left, TreeNode *right)
+  TreeNode(int x, TreeNode* left, TreeNode* right)
       : val(x), left(left), right(right) {}
 };
 
 using namespace std;
 class Solution {
-public:
-  vector<vector<int>> levelOrder(TreeNode *root) {
+ public:
+  vector<vector<int>> levelOrder(TreeNode* root) {
     if (!root) {
       return {};
     }
     // BFS
     vector<vector<int>> result;
-    queue<vector<TreeNode *>> frontiers;
+    queue<vector<TreeNode*>> frontiers;
     frontiers.push({root});
     while (!frontiers.empty()) {
-      vector<TreeNode *> frontier = frontiers.front();
+      vector<TreeNode*> frontier = frontiers.front();
       frontiers.pop();
 
       vector<int> level;
-      vector<TreeNode *> next;
-      for (TreeNode *&node : frontier) {
+      vector<TreeNode*> next;
+      for (TreeNode*& node : frontier) {
         level.push_back(node->val);
 
         if (node->left) {

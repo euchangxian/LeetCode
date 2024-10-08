@@ -12,8 +12,8 @@
 
 using namespace std;
 class Solution {
-public:
-  int maximalSquare(vector<vector<char>> &matrix) {
+ public:
+  int maximalSquare(vector<vector<char>>& matrix) {
     int rows = matrix.size();
     int cols = matrix[0].size();
 

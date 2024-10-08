@@ -8,13 +8,13 @@
 using std::string, std::string_view, std::unordered_map, std::unordered_set,
     std::list, std::pair;
 class AllOne {
-private:
+ private:
   unordered_map<string, list<pair<int32_t, unordered_set<string>>>::iterator>
       frequency;
 
   list<pair<int32_t, unordered_set<string>>> minmax;
 
-public:
+ public:
   AllOne() {}
 
   void inc(string key) {
@@ -41,8 +41,8 @@ public:
     // Key already exists. Check the next list header. If it does
     // not exist, or it has a different frequency, then create a new list.
     // Otherwise, insert into the next list.
-    auto &listIter = mapIter->second;
-    auto &oldBucket = listIter->second;
+    auto& listIter = mapIter->second;
+    auto& oldBucket = listIter->second;
     const int32_t newFreq = listIter->first + 1;
 
     auto nextIter = std::next(listIter);

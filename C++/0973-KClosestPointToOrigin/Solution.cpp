@@ -11,12 +11,12 @@
 
 using namespace std;
 class Solution {
-  int distanceFromOrigin(vector<int> const &p) {
+  int distanceFromOrigin(vector<int> const& p) {
     return (p[0] * p[0]) + (p[1] * p[1]);
   }
 
-public:
-  vector<vector<int>> kClosest(vector<vector<int>> &points, int k) {
+ public:
+  vector<vector<int>> kClosest(vector<vector<int>>& points, int k) {
     int n = points.size();
 
     // Pre-compute distances

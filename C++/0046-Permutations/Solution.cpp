@@ -3,9 +3,10 @@
 
 using namespace std;
 class Solution {
-private:
-  void generatePermutations(vector<int> &nums,
-                            vector<vector<int>> &permutations, int index) {
+ private:
+  void generatePermutations(vector<int>& nums,
+                            vector<vector<int>>& permutations,
+                            int index) {
     if (index >= nums.size()) {
       permutations.push_back(nums);
       return;
@@ -19,8 +20,8 @@ private:
     return;
   }
 
-public:
-  vector<vector<int>> permute(vector<int> &nums) {
+ public:
+  vector<vector<int>> permute(vector<int>& nums) {
     vector<vector<int>> permutations;
     generatePermutations(nums, permutations, 0);
     return permutations;

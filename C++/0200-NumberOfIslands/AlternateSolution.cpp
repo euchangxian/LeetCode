@@ -11,12 +11,12 @@
 
 using namespace std;
 class UnionFind {
-private:
+ private:
   vector<int> parent;
   vector<int> rank;
   int components;
 
-public:
+ public:
   UnionFind(int n) : parent(n), rank(n), components(n) {
     for (int i = 0; i < n; ++i) {
       parent[i] = i;
@@ -37,7 +37,7 @@ public:
     int rootY = find(y);
 
     if (rootX == rootY) {
-      return; // already in same component
+      return;  // already in same component
     }
     // Check rank
     if (rank[rootX] < rank[rootY]) {
@@ -54,13 +54,13 @@ public:
   int size() { return components; }
 };
 class Solution {
-public:
-  int numIslands(vector<vector<char>> &grid) {
+ public:
+  int numIslands(vector<vector<char>>& grid) {
     // '1' represent land. '0' represent water. i.e. unreachable
     int m = grid.size();
     int n = grid[0].size();
 
-    UnionFind uf(m * n + 1); // add one to denote water set
+    UnionFind uf(m * n + 1);  // add one to denote water set
     int WATER = m * n;
 
     for (int i = 0; i < m; ++i) {
@@ -82,6 +82,6 @@ public:
       }
     }
 
-    return uf.size() - 1; // minus the water component
+    return uf.size() - 1;  // minus the water component
   }
 };

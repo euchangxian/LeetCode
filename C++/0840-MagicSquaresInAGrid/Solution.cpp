@@ -11,9 +11,9 @@
 
 using namespace std;
 class Solution {
-private:
-  bool isMagicSquare(vector<vector<int>> const &grid, int rStart, int cStart) {
-    vector<bool> seen(10); // Distinct from 1 to 9
+ private:
+  bool isMagicSquare(vector<vector<int>> const& grid, int rStart, int cStart) {
+    vector<bool> seen(10);  // Distinct from 1 to 9
 
     vector<int> rowSum(3);
     vector<int> colSum(3);
@@ -45,8 +45,8 @@ private:
     return rightDiagonal == 15 && leftDiagonal == 15;
   }
 
-public:
-  int numMagicSquaresInside(vector<vector<int>> &grid) {
+ public:
+  int numMagicSquaresInside(vector<vector<int>>& grid) {
     int rows = grid.size();
     int cols = grid[0].size();
 

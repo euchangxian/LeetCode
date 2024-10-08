@@ -1,14 +1,14 @@
 #include <vector>
 
 class MyCircularQueue {
-private:
+ private:
   const size_t mCapacity;
   size_t mSize;
 
   size_t mBack;
   std::vector<int32_t> mBuf;
 
-public:
+ public:
   MyCircularQueue(int k) : mCapacity(k), mSize(0), mBack(0), mBuf(k) {}
 
   bool enQueue(int value) {

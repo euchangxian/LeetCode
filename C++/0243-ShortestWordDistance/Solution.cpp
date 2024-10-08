@@ -14,8 +14,8 @@
 
 using namespace std;
 class Solution {
-public:
-  int shortestDistance(vector<string> &wordsDict, string word1, string word2) {
+ public:
+  int shortestDistance(vector<string>& wordsDict, string word1, string word2) {
     // word1 and word2 are not guaranteed to be unique in wordsDict
     int idx1 = -1;
     int idx2 = -1;

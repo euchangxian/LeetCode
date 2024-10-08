@@ -4,15 +4,15 @@
 using namespace std;
 
 class Solution {
-public:
-  vector<vector<int>> generateAllSubsets(vector<int> const &nums) {
+ public:
+  vector<vector<int>> generateAllSubsets(vector<int> const& nums) {
     vector<vector<int>> subsets;
     vector<int> currSet;
     generateSubsets(nums, subsets, currSet, 0);
     return subsets;
   }
 
-  int subsetXORSum(vector<int> &nums) {
+  int subsetXORSum(vector<int>& nums) {
     vector<vector<int>> subsets = generateAllSubsets(nums);
     int xorSum = 0;
 
@@ -26,9 +26,11 @@ public:
     return xorSum;
   }
 
-private:
-  void generateSubsets(vector<int> const &nums, vector<vector<int>> &subsets,
-                       vector<int> &currSet, int idx) {
+ private:
+  void generateSubsets(vector<int> const& nums,
+                       vector<vector<int>>& subsets,
+                       vector<int>& currSet,
+                       int idx) {
     if (idx >= nums.size()) {
       subsets.push_back(currSet);
       return;

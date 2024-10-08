@@ -13,7 +13,7 @@
 
 using namespace std;
 class Solution {
-public:
+ public:
   int maximum69Number(int num) {
     // Brute force solution is definitely trivial: Just convert num to a string
     // and greedily change the first '6' to a '9'

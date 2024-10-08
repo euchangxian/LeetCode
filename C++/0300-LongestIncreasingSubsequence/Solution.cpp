@@ -12,8 +12,8 @@
 
 using namespace std;
 class Solution {
-public:
-  int lengthOfLIS(vector<int> &nums) {
+ public:
+  int lengthOfLIS(vector<int>& nums) {
     int n = nums.size();
 
     // Let dp[i] represent the longest increasing subsequence at i

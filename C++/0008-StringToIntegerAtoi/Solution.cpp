@@ -11,7 +11,7 @@
 
 using namespace std;
 class Solution {
-public:
+ public:
   int myAtoi(string s) {
     int i = 0;
     int n = s.length();

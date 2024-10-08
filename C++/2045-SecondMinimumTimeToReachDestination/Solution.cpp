@@ -10,18 +10,18 @@
 
 using namespace std;
 class Solution {
-public:
+ public:
   // BFS for minimum path, remove all edges in the minimum path, then
   // BFS again (until the new value is strictly larger)
-  int secondMinimum(int n, vector<vector<int>> &edges, int time, int change) {
+  int secondMinimum(int n, vector<vector<int>>& edges, int time, int change) {
     vector<vector<int>> adj(n);
-    for (auto const &edge : edges) {
+    for (auto const& edge : edges) {
       int from = edge[0];
       int to = edge[1];
 
       // convert to 0-index
       adj[from - 1].push_back(to - 1);
-      adj[to - 1].push_back(from - 1); // bidirectional
+      adj[to - 1].push_back(from - 1);  // bidirectional
     }
 
     // Store shortest distance/time to the node
@@ -53,7 +53,7 @@ public:
       // Add the time taken to traverse the edge
       timeTaken += time;
 
-      for (int const &neighbour : adj[node]) {
+      for (int const& neighbour : adj[node]) {
         if (dist1[neighbour] == INT_MAX) {
           // First time seeing node, update shortest time
           dist1[neighbour] = timeTaken;
@@ -77,6 +77,6 @@ public:
       }
     }
 
-    return 0; // Only one node. 0 time taken
+    return 0;  // Only one node. 0 time taken
   }
 };

@@ -11,8 +11,8 @@
 
 using namespace std;
 class Solution {
-public:
-  int largestRectangleArea(vector<int> &heights) {
+ public:
+  int largestRectangleArea(vector<int>& heights) {
     // Monotonically non-decreasing stack
     // When the current height is shorter than the top of the stack,
     // then pop the elements in the stack to find the max area.
@@ -20,12 +20,12 @@ public:
     // {leftIndex, height}
     stack<pair<int, int>> stk;
 
-    heights.push_back(0); // avoid having to empty the stack afterwards
+    heights.push_back(0);  // avoid having to empty the stack afterwards
     int maxArea = 0;
     for (int r = 0; r < heights.size(); ++r) {
       int leftBound = r;
       while (!stk.empty() && heights[r] < stk.top().second) {
-        auto const &[l, height] = stk.top();
+        auto const& [l, height] = stk.top();
         stk.pop();
 
         maxArea = max(maxArea, height * (r - l));

@@ -4,9 +4,9 @@
 
 using namespace std;
 class Solution {
-public:
+ public:
   // Water cannot be trapped at boundaries
-  int trap(vector<int> const &height) {
+  int trap(vector<int> const& height) {
     if (height.size() < 3) {
       return 0;
     }
@@ -30,9 +30,9 @@ public:
     return result;
   }
 
-  int trapStack(vector<int> &height) {
+  int trapStack(vector<int>& height) {
     if (height.size() < 3) {
-      return 0; // Water cannot be trapped
+      return 0;  // Water cannot be trapped
     }
 
     // Monotonically non-increasing stack (same or decreasing)
@@ -70,7 +70,7 @@ public:
   }
 };
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
   vector<int> heights = {0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1};
   cout << "want 6, got " << Solution().trap(heights) << endl;
 

@@ -15,10 +15,11 @@
 
 using namespace std;
 class Solution {
-private:
-  void dfs(unordered_map<string_view, vector<string_view>> &adj,
-           vector<string> &result, string_view curr) {
-    vector<string_view> &neighbours = adj[curr];
+ private:
+  void dfs(unordered_map<string_view, vector<string_view>>& adj,
+           vector<string>& result,
+           string_view curr) {
+    vector<string_view>& neighbours = adj[curr];
     while (!neighbours.empty()) {
       string_view to = neighbours.back();
       neighbours.pop_back();
@@ -28,8 +29,8 @@ private:
     result.emplace_back(curr);
   }
 
-public:
-  vector<string> findItinerary(vector<vector<string>> &tickets) {
+ public:
+  vector<string> findItinerary(vector<vector<string>>& tickets) {
     // ticket[i] = [from, to]
     // Therefore, Cities can be modelled as Nodes, tickets can be modelled as
     // a Directed Edge
@@ -47,14 +48,14 @@ public:
     // How do we find the Euler's Path?
     // Seems like greedily
     unordered_map<string_view, vector<string_view>> adj;
-    for (const auto &edge : tickets) {
+    for (const auto& edge : tickets) {
       string_view from = edge[0];
       string_view to = edge[1];
 
       adj[from].push_back(to);
     }
 
-    for (auto &[key, neighbours] : adj) {
+    for (auto& [key, neighbours] : adj) {
       // Sort to traverse in Lexicographical order. However, sort in
       // descending order instead for efficient pop_back operations.
       sort(neighbours.rbegin(), neighbours.rend());

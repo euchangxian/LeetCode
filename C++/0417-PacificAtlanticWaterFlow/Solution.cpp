@@ -11,13 +11,15 @@
 
 using namespace std;
 class Solution {
-private:
+ private:
   vector<pair<int, int>> const directions = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
 
-  void dfs(vector<vector<int>> const &heights, vector<vector<bool>> &seen,
-           int r, int c) {
+  void dfs(vector<vector<int>> const& heights,
+           vector<vector<bool>>& seen,
+           int r,
+           int c) {
     seen[r][c] = true;
-    for (auto const &[dr, dc] : directions) {
+    for (auto const& [dr, dc] : directions) {
       int nr = r + dr;
       int nc = c + dc;
 
@@ -31,8 +33,8 @@ private:
     }
   }
 
-public:
-  vector<vector<int>> pacificAtlantic(vector<vector<int>> &heights) {
+ public:
+  vector<vector<int>> pacificAtlantic(vector<vector<int>>& heights) {
     // Top right, bottom left corner are always in the answer, as they are
     // adjacent to both the Pacific and Atlantic Ocean.
     // DFS/BFS

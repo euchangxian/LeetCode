@@ -4,8 +4,8 @@
 
 using namespace std;
 class Solution {
-public:
-  vector<string> commonChars(vector<string> &words) {
+ public:
+  vector<string> commonChars(vector<string>& words) {
     vector<vector<int>> present =
         vector<vector<int>>(26, vector<int>(words.size(), 0));
     for (int i = 0; i < words.size(); ++i) {

@@ -2,8 +2,8 @@
 
 using namespace std;
 class Solution {
-public:
-  int rob(vector<int> &nums) {
+ public:
+  int rob(vector<int>& nums) {
     int currMax = 0;
     int prevMax = 0;
 

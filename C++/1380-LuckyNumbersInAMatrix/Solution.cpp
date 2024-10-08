@@ -3,8 +3,8 @@
 
 using namespace std;
 class Solution {
-public:
-  vector<int> luckyNumbers(vector<vector<int>> const &matrix) {
+ public:
+  vector<int> luckyNumbers(vector<vector<int>> const& matrix) {
     int n = matrix.size();
     int m = matrix[0].size();
 

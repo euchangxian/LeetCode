@@ -12,14 +12,16 @@
 
 using namespace std;
 class Solution {
-private:
-  inline int manhanttanDist(int const &x1, int const &y1, int const &x2,
-                            int const &y2) {
+ private:
+  inline int manhanttanDist(int const& x1,
+                            int const& y1,
+                            int const& x2,
+                            int const& y2) {
     return abs(x1 - x2) + abs(y1 - y2);
   }
 
-public:
-  int minCostConnectPoints(vector<vector<int>> const &points) {
+ public:
+  int minCostConnectPoints(vector<vector<int>> const& points) {
     // Each point has an edge to every other point, making it a clique
     // Prim's seem more suitable for Complete Graphs.
     // Prim's: Add nodes to a minHeap, ordered by the weight of the edges

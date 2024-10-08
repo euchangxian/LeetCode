@@ -11,8 +11,8 @@
 
 using namespace std;
 class Solution {
-public:
-  long long countSubarrays(vector<int> &nums, int minK, int maxK) {
+ public:
+  long long countSubarrays(vector<int>& nums, int minK, int maxK) {
     // To count the number of subarrays where all the elements in the subarray
     // are within the range [minK, maxK],
     //
@@ -55,7 +55,7 @@ public:
       // This is because each element between prevMin and prevBad can be the
       // left-most/start of the valid subarray
       // if prevMin < prevMax < prevBad => Add 0
-      count += max(0, // handle the case where prevBad occurs after maxK, WLOG
+      count += max(0,  // handle the case where prevBad occurs after maxK, WLOG
                    min(prevMin, prevMax) - prevBad);
     }
     return count;

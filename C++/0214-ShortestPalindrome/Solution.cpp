@@ -13,8 +13,8 @@
 
 using namespace std;
 class Solution {
-private:
-  bool isPalindrome(const string &s, int start, int end) {
+ private:
+  bool isPalindrome(const string& s, int start, int end) {
     // Return true if the substring s[start:end] (inclusive) is a palindrome.
     while (start <= end) {
       if (s[start] != s[end]) {
@@ -26,14 +26,14 @@ private:
     return true;
   }
 
-  vector<int> kmpPrefixTable(const string &pattern) {
+  vector<int> kmpPrefixTable(const string& pattern) {
     const size_t m = pattern.length();
 
     // Longest Proper Prefix which is also a suffix
     vector<int> lps(m, 0);
 
     // Base case. The substring s[0] will not have a proper prefix / suffix
-    lps[0] = 0; // Not necessary since we initialized to 0. For explicitness
+    lps[0] = 0;  // Not necessary since we initialized to 0. For explicitness
 
     for (int i = 1; i < m; ++i) {
       int length = lps[i - 1];
@@ -53,7 +53,7 @@ private:
     return lps;
   }
 
-public:
+ public:
   string shortestPalindrome(string s) {
     // The problem is finding the longest palindromic prefix.
     // The key to this is using KMP to find the palindromic prefix efficiently.

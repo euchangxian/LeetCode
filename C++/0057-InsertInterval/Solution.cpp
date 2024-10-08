@@ -11,9 +11,9 @@
 
 using namespace std;
 class Solution {
-public:
-  vector<vector<int>> insert(vector<vector<int>> &intervals,
-                             vector<int> &newInterval) {
+ public:
+  vector<vector<int>> insert(vector<vector<int>>& intervals,
+                             vector<int>& newInterval) {
     // intervals is already sorted in ascending order by start
     int n = intervals.size();
     vector<vector<int>> result;

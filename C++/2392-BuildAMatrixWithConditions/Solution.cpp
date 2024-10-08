@@ -3,13 +3,13 @@
 
 using namespace std;
 class Solution {
-private:
+ private:
   // Kahn's algorithm: enqueue and process zero in-degree nodes iteratively
   vector<int> topologicalSort(int const k,
-                              vector<vector<int>> const &conditions) {
+                              vector<vector<int>> const& conditions) {
     vector<vector<int>> graph(k);
     vector<int> inDegree(k, 0);
-    for (auto const &condition : conditions) {
+    for (auto const& condition : conditions) {
       // Sort from top-to-bottom / left-to-right
       // convert 1-indexed to 0-index
       int from = condition[0] - 1;
@@ -32,7 +32,7 @@ private:
       int v = zeroDegree.front();
       zeroDegree.pop();
 
-      result.push_back(v + 1); // convert back to 1-index
+      result.push_back(v + 1);  // convert back to 1-index
 
       for (int neighbour : graph[v]) {
         if (--inDegree[neighbour] == 0) {
@@ -42,15 +42,16 @@ private:
     }
 
     if (result.size() != k) {
-      return {}; // Cycle detection
+      return {};  // Cycle detection
     }
     return result;
   }
 
-public:
+ public:
   // Contains 1 to k
-  vector<vector<int>> buildMatrix(int k, vector<vector<int>> &rowConditions,
-                                  vector<vector<int>> &colConditions) {
+  vector<vector<int>> buildMatrix(int k,
+                                  vector<vector<int>>& rowConditions,
+                                  vector<vector<int>>& colConditions) {
     vector<int> rowOrder = topologicalSort(k, rowConditions);
     if (rowOrder.empty()) {
       return {};

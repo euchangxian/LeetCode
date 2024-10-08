@@ -5,16 +5,16 @@ using namespace std;
 
 struct ListNode {
   int val;
-  ListNode *next;
+  ListNode* next;
 
   ListNode() : val(0), next(nullptr) {}
   ListNode(int x) : val(x), next(nullptr) {}
-  ListNode(int x, ListNode *next) : val(x), next(next) {}
+  ListNode(int x, ListNode* next) : val(x), next(next) {}
 };
 
 class Solution {
-public:
-  vector<int> nodesBetweenCriticalPoints(ListNode *head) {
+ public:
+  vector<int> nodesBetweenCriticalPoints(ListNode* head) {
     // minDistance, maxDistance
     // minDistance will be the minimum of the distances between adjacent
     // critical points
@@ -25,8 +25,8 @@ public:
     int firstCriticalIndex = -1;
     int prevCriticalIndex = -1;
 
-    ListNode *prev = head;
-    ListNode *iter = head->next;
+    ListNode* prev = head;
+    ListNode* iter = head->next;
     int i = 1;
     while (iter != nullptr && iter->next != nullptr) {
       // Check if its a critical node

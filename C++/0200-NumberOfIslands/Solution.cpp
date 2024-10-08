@@ -11,12 +11,12 @@
 
 using namespace std;
 class UnionFind {
-private:
+ private:
   vector<int> parent;
   vector<int> rank;
   int sets;
 
-public:
+ public:
   UnionFind(int size) : parent(size), rank(size, 0), sets(size) {
     for (int i = 0; i < size; ++i) {
       parent[i] = i;
@@ -54,8 +54,8 @@ public:
 };
 
 class Solution {
-public:
-  int numIslands(vector<vector<char>> &grid) {
+ public:
+  int numIslands(vector<vector<char>>& grid) {
     int rows = grid.size();
     int cols = grid[0].size();
 
@@ -70,7 +70,7 @@ public:
           continue;
         }
 
-        int current = i * cols + j; // map 2D coordinates to 1D line
+        int current = i * cols + j;  // map 2D coordinates to 1D line
 
         // Due to order of iteration: left-to-right, top-to-bottom,
         // only need to check two directions: right and down
@@ -85,6 +85,6 @@ public:
       }
     }
 
-    return uf.size() - waterCount; // Each water cell is a disjoint set
+    return uf.size() - waterCount;  // Each water cell is a disjoint set
   }
 };

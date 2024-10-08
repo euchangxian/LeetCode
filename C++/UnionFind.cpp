@@ -19,14 +19,14 @@
  * Space Complexity: O(n)
  */
 class UnionFind {
-private:
+ private:
   // parent stores the parent of each element
   std::vector<int> parent;
 
   // rank stores the approximate depth of each tree rooted at i
   std::vector<int> rank;
 
-public:
+ public:
   /**
    * @brief Construct a new UnionFind object
    *
@@ -58,7 +58,7 @@ public:
    */
   int find(int x) {
     if (parent[x] != x) {
-      parent[x] = find(parent[x]); // Path compression
+      parent[x] = find(parent[x]);  // Path compression
     }
     return parent[x];
   }

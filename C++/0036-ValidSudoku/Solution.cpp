@@ -2,8 +2,8 @@
 
 using namespace std;
 class Solution {
-private:
-  bool isRowValid(vector<vector<char>> const &board, int row) {
+ private:
+  bool isRowValid(vector<vector<char>> const& board, int row) {
     vector<bool> present = vector<bool>(9, false);
     for (char num : board[row]) {
       if (num == '.') {
@@ -17,7 +17,7 @@ private:
     return true;
   }
 
-  bool isColValid(vector<vector<char>> const &board, int col) {
+  bool isColValid(vector<vector<char>> const& board, int col) {
     vector<bool> present = vector<bool>(9, false);
     for (auto row : board) {
       if (row[col] == '.') {
@@ -31,7 +31,7 @@ private:
     return true;
   }
 
-  bool isBoxValid(vector<vector<char>> const &board, int row, int col) {
+  bool isBoxValid(vector<vector<char>> const& board, int row, int col) {
     // no bounds check. assume inputs are correct.
     vector<bool> present = vector<bool>(9, false);
     for (int i = row; i < row + 3; ++i) {
@@ -48,8 +48,8 @@ private:
     return true;
   }
 
-public:
-  bool isValidSudoku(vector<vector<char>> &board) {
+ public:
+  bool isValidSudoku(vector<vector<char>>& board) {
     for (int i = 0; i < 9; i += 3) {
       for (int j = 0; j < 9; j += 3) {
         bool boxResult = isBoxValid(board, i, j);

@@ -4,8 +4,8 @@
 using namespace std;
 
 class Solution {
-public:
-  string longestCommonPrefix(vector<string> &strs) {
+ public:
+  string longestCommonPrefix(vector<string>& strs) {
     if (strs.empty()) {
       return "";
     }
@@ -17,12 +17,11 @@ public:
              prefix[j] == strs[i][j]) {
         ++j;
       }
-      prefix = prefix.substr(0, j); // Adjust the prefix
+      prefix = prefix.substr(0, j);  // Adjust the prefix
       if (prefix.empty()) {
-        break; // Early exit if there's no common prefix
+        break;  // Early exit if there's no common prefix
       }
     }
     return prefix;
   }
 };
-

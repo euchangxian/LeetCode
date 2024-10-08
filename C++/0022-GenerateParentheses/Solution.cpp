@@ -11,7 +11,7 @@
 
 using namespace std;
 class Solution {
-private:
+ private:
   int factorial(int n) {
     int result = 1;
     for (int i = 1; i <= n; ++i) {
@@ -20,7 +20,7 @@ private:
     return result;
   }
 
-public:
+ public:
   // Follows the sequence of Catalan Numbers, which has two rules:
   // 1. "" is in the Set
   // 2. if a and b are in the Set, then (a)b is in the set.
@@ -39,9 +39,8 @@ public:
     for (int i = 1; i <= n; ++i) {
       // For every combination of j, (i - 1 - j)
       for (int j = 0; j < i; ++j) {
-
-        for (string const &a : dp[j]) {
-          for (string const &b : dp[i - j - 1]) {
+        for (string const& a : dp[j]) {
+          for (string const& b : dp[i - j - 1]) {
             dp[i].push_back('(' + a + ')' + b);
           }
         }

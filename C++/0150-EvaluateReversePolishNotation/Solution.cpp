@@ -11,18 +11,18 @@
 
 using namespace std;
 class Solution {
-private:
+ private:
   unordered_map<string, function<int(int, int)>> operations = {
       {"+", plus<>()},
       {"-", minus<>()},
       {"*", multiplies<>()},
       {"/", divides<>()}};
 
-public:
-  int evalRPN(vector<string> &tokens) {
+ public:
+  int evalRPN(vector<string>& tokens) {
     stack<int> operands;
 
-    for (string const &token : tokens) {
+    for (string const& token : tokens) {
       if (operations.count(token)) {
         // Qn constraint means the equation is valid
         int op2 = operands.top();

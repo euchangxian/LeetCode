@@ -2,8 +2,8 @@
 
 using namespace std;
 class Solution {
-public:
-  double averageWaitingTime(vector<vector<int>> &customers) {
+ public:
+  double averageWaitingTime(vector<vector<int>>& customers) {
     if (customers.size() < 1) {
       return 0;
     }

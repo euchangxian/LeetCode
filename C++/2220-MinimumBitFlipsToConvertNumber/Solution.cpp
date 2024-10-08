@@ -12,7 +12,7 @@
 
 using namespace std;
 class Solution {
-public:
+ public:
   int minBitFlips(int start, int goal) {
     // 0 <= start, goal <= 10e9
     int requiredFlips = start ^ goal;

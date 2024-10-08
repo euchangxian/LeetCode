@@ -3,8 +3,8 @@
 
 using namespace std;
 class Solution {
-public:
-  bool canPartition(vector<int> &nums) {
+ public:
+  bool canPartition(vector<int>& nums) {
     // Looks like binary search. Threshold would be half of the total sum.
     // Possibly DP, since at each element, there are two choices:
     // 1. Take the element, add its sum into the current subset
@@ -27,8 +27,7 @@ public:
 
     // Similar to coin change. BUT, iterate over the coins in the outer loop
     // to ensure each coin is taken at MOST once.
-    for (const int &num : nums) {
-
+    for (const int& num : nums) {
       // IMPORTANT: we iterate backwards so that results from earlier iteration
       // will not affect the current iteration. Emulates a temporary array.
       // E.g., if num=1, and we iterate from the start, its akin to taking

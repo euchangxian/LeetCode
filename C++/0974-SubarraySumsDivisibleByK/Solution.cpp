@@ -11,8 +11,8 @@
 
 using namespace std;
 class Solution {
-public:
-  int subarraysDivByK(vector<int> &nums, int k) {
+ public:
+  int subarraysDivByK(vector<int>& nums, int k) {
     // Very similar to 523: Continuous Subarray Sum
     // The goal is to find the number of subarrays that have sum divisible by k
     // That means: sum(nums[i:j]) / k == 0
@@ -40,7 +40,7 @@ public:
     prefixModFreq[0] = 1;
 
     int result = 0;
-    for (int const &num : nums) {
+    for (int const& num : nums) {
       prefixSum += num;
 
       // Add k to bring the result into the positive range

@@ -11,13 +11,13 @@
 
 using namespace std;
 class Solution {
-public:
+ public:
   vector<int> countBits(int n) {
     vector<int> dp(n + 1);
     int mask = 1;
     for (int i = 1; i <= n; ++i) {
       if (mask << 1 == i) {
-        mask = i; // Set to all power of 2s
+        mask = i;  // Set to all power of 2s
       }
 
       // Can visualise as increasing intervals

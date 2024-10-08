@@ -11,8 +11,8 @@
 
 using namespace std;
 class Solution {
-public:
-  vector<int> plusOne(vector<int> &digits) {
+ public:
+  vector<int> plusOne(vector<int>& digits) {
     int n = digits.size();
 
     for (int i = n - 1; i >= 0; --i) {

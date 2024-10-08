@@ -4,8 +4,8 @@
 
 using namespace std;
 class Solution {
-public:
-  long long dividePlayers(vector<int> &skill) {
+ public:
+  long long dividePlayers(vector<int>& skill) {
     // First glance looked like partition equal subset sums which is a DP
     // problem. Second glance looked like CS3230's CD problem, which is a
     // Greedy problem.

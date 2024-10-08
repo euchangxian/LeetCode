@@ -3,10 +3,10 @@
 
 using namespace std;
 class Solution {
-public:
+ public:
   // Essentially Three-way QuickSort. Pick '1' as pivot.
-  void sortColors(vector<int> &nums) {
-    int left = 0; // the next index to place a '0' at.
+  void sortColors(vector<int>& nums) {
+    int left = 0;  // the next index to place a '0' at.
     int right = nums.size() - 1;
 
     int mid = 0;

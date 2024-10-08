@@ -11,19 +11,19 @@
 
 using namespace std;
 class Solution {
-public:
+ public:
   // Reversing a subarray of size two is equivalent to swapping adjacent
   // elements. Since there can be any number of steps, the array can be made
   // equal to the target if they have the same elements.
-  bool canBeEqual(vector<int> &target, vector<int> &arr) {
+  bool canBeEqual(vector<int>& target, vector<int>& arr) {
     vector<int> freq(1001, 0);
 
-    for (int const &num : target) {
+    for (int const& num : target) {
       ++freq[num];
     }
 
     int count = target.size();
-    for (int const &num : arr) {
+    for (int const& num : arr) {
       if (freq[num]) {
         --freq[num];
         --count;

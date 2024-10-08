@@ -2,7 +2,7 @@
 
 using namespace std;
 class Solution {
-public:
+ public:
   int maximumGain(string s, int x, int y) {
     char currentTarget = 'b';
     char topTarget = 'a';

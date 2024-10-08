@@ -12,21 +12,26 @@
 
 using namespace std;
 
-void printFirst() { cout << "first"; }
+void printFirst() {
+  cout << "first";
+}
 
-void printSecond() { cout << "second"; }
+void printSecond() {
+  cout << "second";
+}
 
-void printThird() { cout << "third"; }
+void printThird() {
+  cout << "third";
+}
 
 class Foo {
-private:
+ private:
   vector<promise<void>> promises;
 
-public:
+ public:
   Foo() : promises(3) {}
 
   void first(function<void()> printFirst) {
-
     // printFirst() outputs "first". Do not change or remove this line.
     printFirst();
     promises[1].set_value();

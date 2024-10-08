@@ -11,7 +11,7 @@
 
 using namespace std;
 class Solution {
-public:
+ public:
   uint32_t reverseBits(uint32_t n) {
     int result = 0;
 

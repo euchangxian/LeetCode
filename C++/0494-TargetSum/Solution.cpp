@@ -16,12 +16,15 @@
 
 using namespace std;
 class Solution {
-private:
+ private:
   // Sum of the elements in nums.
   int offset;
 
-  int dfs(vector<vector<int>> &memo, const vector<int> &nums, const int target,
-          size_t idx, int sum) {
+  int dfs(vector<vector<int>>& memo,
+          const vector<int>& nums,
+          const int target,
+          size_t idx,
+          int sum) {
     if (idx >= nums.size()) {
       if (sum == target) {
         return 1;
@@ -40,8 +43,8 @@ private:
     return memo[idx][sum + offset];
   }
 
-public:
-  int findTargetSumWays(const vector<int> &nums, const int target) {
+ public:
+  int findTargetSumWays(const vector<int>& nums, const int target) {
     const size_t n{nums.size()};
     const int offset{std::reduce(nums.begin(), nums.end(), 0, plus<>{})};
 
@@ -70,7 +73,7 @@ public:
     return dp[n - 1][target + offset];
   }
 
-  int findTargetSumWaysMemo(vector<int> &nums, int target) {
+  int findTargetSumWaysMemo(vector<int>& nums, int target) {
     // Two choices at each element. Add or minus
     // Naive DFS can do it. Reduces to backtracking problem for subsequence
     // sum equal to k

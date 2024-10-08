@@ -11,12 +11,11 @@
 
 using namespace std;
 class Solution {
-public:
+ public:
   int getLucky(string s, int k) {
-
     string transformed;
     transformed.reserve(s.length());
-    for (auto const &c : s) {
+    for (auto const& c : s) {
       int digits = (c - 'a' + 1);
 
       transformed += to_string(digits);
@@ -24,7 +23,7 @@ public:
 
     while (k--) {
       int sum = 0;
-      for (auto const &c : transformed) {
+      for (auto const& c : transformed) {
         sum += c - '0';
       }
       transformed = to_string(sum);

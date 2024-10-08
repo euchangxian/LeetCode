@@ -3,9 +3,13 @@
 
 using std::string, std::min;
 class Solution {
-private:
-  string generate(int largePile, int mediumPile, int smallPile, char largeChar,
-                  char mediumChar, char smallChar) {
+ private:
+  string generate(int largePile,
+                  int mediumPile,
+                  int smallPile,
+                  char largeChar,
+                  char mediumChar,
+                  char smallChar) {
     // Re-order the piles first.
     if (largePile < mediumPile) {
       return generate(mediumPile, largePile, smallPile, mediumChar, largeChar,
@@ -34,7 +38,7 @@ private:
                     largeChar, mediumChar, smallChar);
   }
 
-public:
+ public:
   string longestDiverseString(int a, int b, int c) {
     return generate(a, b, c, 'a', 'b', 'c');
   }

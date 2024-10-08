@@ -13,8 +13,8 @@
 #include <vector>
 
 class Solution {
-public:
-  int minExtraChar(std::string s, std::vector<std::string> &dictionary) {
+ public:
+  int minExtraChar(std::string s, std::vector<std::string>& dictionary) {
     const size_t n{s.length()};
 
     // Naively, let dp[i] represent the minimum extra characters left over by
@@ -25,7 +25,7 @@ public:
     dp[0] = 0;
     for (int i = 1; i <= n; ++i) {
       dp[i] = dp[i - 1] + 1;
-      for (const std::string &word : dictionary) {
+      for (const std::string& word : dictionary) {
         if (i >= word.length() &&
             s.substr(i - word.length(), word.length()) == word) {
           dp[i] = std::min(dp[i], dp[i - word.length()]);

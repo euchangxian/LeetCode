@@ -11,7 +11,7 @@
 
 using namespace std;
 class Solution {
-public:
+ public:
   int nthUglyNumber(int n) {
     // dp[i] represents the i-th ugly number (1-indexed)
     // Optimal Substructure: Each ugly number is generated from a previous ugly

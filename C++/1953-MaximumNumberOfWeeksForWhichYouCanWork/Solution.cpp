@@ -12,8 +12,8 @@
 
 using namespace std;
 class Solution {
-public:
-  long long numberOfWeeks(vector<int> &milestones) {
+ public:
+  long long numberOfWeeks(vector<int>& milestones) {
     int n = milestones.size();
 
     // Suppose that the most milestones is 10. The subsequent have 9 milestones.

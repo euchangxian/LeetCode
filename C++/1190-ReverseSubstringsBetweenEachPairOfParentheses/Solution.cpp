@@ -6,15 +6,15 @@
 
 using namespace std;
 class Solution {
-private:
-  void reverse(string &s) {
+ private:
+  void reverse(string& s) {
     int n = s.size();
     for (int i = 0; i < n / 2; ++i) {
       swap(s[i], s[n - i - 1]);
     }
   }
 
-public:
+ public:
   string reverseParentheses(string s) {
     int n = s.length();
 
@@ -38,7 +38,7 @@ public:
     int direction = 1;
     for (int curr = 0; curr < n; curr += direction) {
       if (s[curr] == '(' || s[curr] == ')') {
-        direction = -direction; // change direction
+        direction = -direction;  // change direction
         curr = pairIndices[curr];
       } else {
         result += s[curr];
@@ -49,13 +49,13 @@ public:
 
   string reverseParenthesesWrong(string s) {
     vector<string> strs = vector<string>(s.length());
-    for (string &str : strs) {
+    for (string& str : strs) {
       str.reserve(s.length());
     }
 
     // Group substrings together
     int i = 0;
-    for (char const &c : s) {
+    for (char const& c : s) {
       if (c == '(') {
         ++i;
       } else if (c == ')') {
@@ -67,7 +67,7 @@ public:
 
     // reverse the strings
     i = 0;
-    for (string &str : strs) {
+    for (string& str : strs) {
       if (i++ & 1) {
         reverse(str);
       }
@@ -76,7 +76,7 @@ public:
     i = 0;
     string result;
     result.reserve(s.length());
-    for (char const &c : s) {
+    for (char const& c : s) {
       if (c == '(') {
         ++i;
       } else if (c == ')') {

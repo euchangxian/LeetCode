@@ -3,7 +3,7 @@
 
 using namespace std;
 class Solution {
-public:
+ public:
   vector<string> fizzBuzz(int n) {
     std::vector<string> result;
     result.reserve(n);

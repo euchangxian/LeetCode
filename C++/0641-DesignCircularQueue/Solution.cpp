@@ -1,6 +1,6 @@
 #include <vector>
 class MyCircularDeque {
-private:
+ private:
   const std::size_t mCapacity;
 
   std::size_t mSize;
@@ -14,7 +14,7 @@ private:
   // Circular buffer
   std::vector<int32_t> mBuf;
 
-public:
+ public:
   MyCircularDeque(int k)
       : mCapacity(k), mSize(0), mFront(0), mLast(k - 1), mBuf(k) {}
 

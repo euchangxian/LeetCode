@@ -31,7 +31,7 @@ struct TrieNode {
 };
 
 class Trie {
-private:
+ private:
   // Shared instead of unique because an iterator needs to copy the pointer
   std::unique_ptr<TrieNode> root;
 
@@ -40,13 +40,13 @@ private:
     return static_cast<int>(std::floor(std::log10(x)) + 1);
   }
 
-public:
+ public:
   Trie() : root(std::make_unique<TrieNode>()) {}
 
   void insert(const int x) {
     // No need to delete at the end of the function. Iter does not own the
     // pointer.
-    TrieNode *iter{root.get()};
+    TrieNode* iter{root.get()};
 
     const int n = numDigits(x);
     // Iterate from most significant, left-most digit to least significant.
@@ -65,7 +65,7 @@ public:
   int findLongestPrefix(const int y) const {
     int result{0};
 
-    TrieNode *iter{root.get()};
+    TrieNode* iter{root.get()};
     const int n = numDigits(y);
     for (int i = n - 1; i >= 0; --i) {
       const int digit = (y / powOfTen[i]) % 10;
@@ -83,8 +83,8 @@ public:
 
 using namespace std;
 class Solution {
-public:
-  int longestCommonPrefix(vector<int> &arr1, vector<int> &arr2) {
+ public:
+  int longestCommonPrefix(vector<int>& arr1, vector<int>& arr2) {
     // positive integers in arr1 and arr2
     // Find largest common prefix all of pairs. At least O(nm) to compare
     // each element of arr1 to each element of arr2. isPrefix check should be
@@ -94,12 +94,12 @@ public:
     // Lexicographical order would allow us to compare prefixes quicker.
     Trie prefixes{};
 
-    for (const int &num : arr1) {
+    for (const int& num : arr1) {
       prefixes.insert(num);
     }
 
     int longestPrefix = 0;
-    for (const int &num : arr2) {
+    for (const int& num : arr2) {
       longestPrefix = std::max(longestPrefix, prefixes.findLongestPrefix(num));
     }
 

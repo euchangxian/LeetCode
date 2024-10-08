@@ -10,8 +10,12 @@
 
 using namespace std;
 class Solution {
-private:
-  void naive(const vector<int> &rating, int &result, int i, int count, int prev,
+ private:
+  void naive(const vector<int>& rating,
+             int& result,
+             int i,
+             int count,
+             int prev,
              bool isIncreasing) {
     if (count == 3) {
       ++result;
@@ -32,7 +36,7 @@ private:
     }
   }
 
-  int numTeamsNaive(vector<int> &rating) {
+  int numTeamsNaive(vector<int>& rating) {
     int result = 0;
 
     // Count increasing sequences
@@ -44,7 +48,7 @@ private:
     return result;
   }
 
-  int numTeamsNaiveDP(vector<int> const &rating) {
+  int numTeamsNaiveDP(vector<int> const& rating) {
     int n = rating.size();
 
     // dp[i][j] stores the number of increasing/decreasing sequences of length
@@ -82,10 +86,10 @@ private:
     return result;
   }
 
-public:
+ public:
   // Consider the prefix and postfix elements that are larger/smaller than
   // rating[i]. Multiply to get the result
-  int numTeams(vector<int> const &rating) {
+  int numTeams(vector<int> const& rating) {
     int n = rating.size();
     int result = 0;
 

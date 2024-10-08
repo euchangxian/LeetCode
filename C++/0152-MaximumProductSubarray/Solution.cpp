@@ -11,8 +11,8 @@
 
 using namespace std;
 class Solution {
-public:
-  int maxProduct(vector<int> &nums) {
+ public:
+  int maxProduct(vector<int>& nums) {
     int n = nums.size();
 
     int maxProd = nums[0];

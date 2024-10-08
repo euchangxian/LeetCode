@@ -12,7 +12,7 @@
 
 using namespace std;
 class Solution {
-private:
+ private:
   long long encode(int x, int y) {
     // Interesting way to pack two 32-bits integer into one 64-bit long long
     // The upper 32 bits is set to the bits of x, while the lower 32 bits is
@@ -21,11 +21,11 @@ private:
     return ((long long)x << 32 | (y & 0xFFFFFFFFLL));
   }
 
-public:
-  int robotSim(vector<int> &commands, vector<vector<int>> &obstacles) {
+ public:
+  int robotSim(vector<int>& commands, vector<vector<int>>& obstacles) {
     // Infinite XY-plane
     unordered_set<long long> obstaclesSet;
-    for (auto const &obstacle : obstacles) {
+    for (auto const& obstacle : obstacles) {
       obstaclesSet.insert(encode(obstacle[0], obstacle[1]));
     }
 
@@ -36,13 +36,13 @@ public:
     int dir = 0;
     pair<int, int> current = {0, 0};
     int maxDistance = 0;
-    for (auto const &command : commands) {
+    for (auto const& command : commands) {
       if (command == -2) {
         dir = ((dir - 1) + 4) % 4;
       } else if (command == -1) {
         dir = ((dir + 1) + 4) % 4;
       } else {
-        auto const &[dx, dy] = directions[dir];
+        auto const& [dx, dy] = directions[dir];
         for (int k = 0; k < command; ++k) {
           if (obstaclesSet.count(
                   encode(current.first + dx, current.second + dy))) {

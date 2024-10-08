@@ -13,17 +13,17 @@
 
 using namespace std;
 class Solution {
-private:
+ private:
   random_device seed;
-  mt19937 gen{seed()}; // seed the generator
+  mt19937 gen{seed()};  // seed the generator
   int randomInRange(int left, int right) {
     uniform_int_distribution<> dist{left, right};
     return dist(gen);
   }
 
-  void quickSort(vector<int> &nums, int left, int right) {
+  void quickSort(vector<int>& nums, int left, int right) {
     if (left >= right) {
-      return; // sub-array is trivially sorted
+      return;  // sub-array is trivially sorted
     }
 
     int pivotIndex = randomInRange(left, right);
@@ -39,7 +39,7 @@ private:
 
   // Three Way Partition. Returns the index of the pivot after swapping all
   // nums[i] < pivot to the left of the pivot, all nums[i] > pivot to the right
-  pair<int, int> partition(vector<int> &nums, int left, int right) {
+  pair<int, int> partition(vector<int>& nums, int left, int right) {
     int pivot = nums[left];
 
     // lt represents the index to place a lower element
@@ -48,7 +48,7 @@ private:
     // gt represents the index to place a higher element
     int gt = right;
 
-    int i = left + 1; // scanning ptr
+    int i = left + 1;  // scanning ptr
     while (i <= gt) {
       if (nums[i] < pivot) {
         swap(nums[i++], nums[lt++]);
@@ -61,8 +61,8 @@ private:
     return {lt, gt};
   }
 
-public:
-  vector<int> sortArray(vector<int> &nums) {
+ public:
+  vector<int> sortArray(vector<int>& nums) {
     quickSort(nums, 0, nums.size() - 1);
     return nums;
   }

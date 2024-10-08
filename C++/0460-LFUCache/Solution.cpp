@@ -14,13 +14,14 @@
 #include <vector>
 
 using namespace std;
-template <typename Key, typename Value> class LRUCache {
+template <typename Key, typename Value>
+class LRUCache {
   // Can be thought of as the ListNode
   // typename is used to specify that the identifier that follows is a type
   using ListIterator = typename list<pair<Key, Value>>::iterator;
   using MapIterator = typename unordered_map<Key, ListIterator>::iterator;
 
-private:
+ private:
   // Capacity of the LRU Cache. Items are evicted using the Least-Recently-Used
   // strategy if the number of items exceed the capacity
   size_t const capacity;
@@ -33,10 +34,10 @@ private:
   // Least-Recently-Used, while the back is the Most-Recently-Used
   list<pair<Key, Value>> lru;
 
-public:
+ public:
   LRUCache<Key, Value>(size_t capacity) : capacity(capacity) {}
 
-  optional<Value> get(Key const &key) {
+  optional<Value> get(Key const& key) {
     MapIterator found = cache.find(key);
     if (found == cache.end()) {
       return nullopt;
@@ -50,7 +51,7 @@ public:
     return (found->second)->second;
   }
 
-  void put(Key const &key, Value const &value) {
+  void put(Key const& key, Value const& value) {
     MapIterator found = cache.find(key);
 
     if (found != cache.end()) {
@@ -73,7 +74,7 @@ public:
     return;
   }
 
-  void erase(Key const &key) {
+  void erase(Key const& key) {
     MapIterator found = cache.find(key);
     if (found == cache.end()) {
       throw runtime_error("key does not exist");
@@ -95,7 +96,7 @@ public:
 };
 
 class LFUCache {
-private:
+ private:
   size_t capacity;
 
   // key: {value, frequency}
@@ -104,7 +105,7 @@ private:
   // frequency: {key1, key2}
   // Used for quick lookups for the Key that has the least frequency
   // Can be visualized as a sorted, multi-level set of lists
-  unordered_map<int, LRUCache<int, int> *> frequency;
+  unordered_map<int, LRUCache<int, int>*> frequency;
 
   // Stores the minimum frequency in the cache.
   uint32_t minFreq;
@@ -118,7 +119,7 @@ private:
     cache[key] = {value, freq};
   }
 
-public:
+ public:
   LFUCache(int capacity) : capacity(capacity), minFreq(0) {}
 
   int get(int key) {

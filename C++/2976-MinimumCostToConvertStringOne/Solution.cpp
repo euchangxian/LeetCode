@@ -10,9 +10,12 @@
 
 using namespace std;
 class Solution {
-public:
-  long long minimumCost(string source, string target, vector<char> &original,
-                        vector<char> &changed, vector<int> &cost) {
+ public:
+  long long minimumCost(string source,
+                        string target,
+                        vector<char>& original,
+                        vector<char>& changed,
+                        vector<int>& cost) {
     vector<vector<long long>> dist(26, vector<long long>(26, LONG_LONG_MAX));
     for (int i = 0; i < 26; ++i) {
       dist[i][i] = 0;

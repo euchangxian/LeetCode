@@ -16,21 +16,21 @@ using namespace std;
 struct TrieNode {
   bool isWord;
   int32_t count;
-  std::array<TrieNode *, 26> children;
+  std::array<TrieNode*, 26> children;
 
   TrieNode() : isWord(false), count(0), children{} {}
 };
 
 class Trie {
-private:
-  TrieNode *root;
+ private:
+  TrieNode* root;
 
-public:
+ public:
   Trie() : root(new TrieNode()) {}
 
   void insert(const std::string word) {
-    TrieNode *iter = root;
-    for (const char &c : word) {
+    TrieNode* iter = root;
+    for (const char& c : word) {
       if (!iter->children[c - 'a']) {
         iter->children[c - 'a'] = new TrieNode();
       }
@@ -43,9 +43,9 @@ public:
   }
 
   int countPrefixes(const std::string word) {
-    TrieNode *iter = root;
+    TrieNode* iter = root;
     int count = 0;
-    for (const char &c : word) {
+    for (const char& c : word) {
       iter = iter->children[c - 'a'];
       count += iter->count;
     }
@@ -54,12 +54,12 @@ public:
 };
 
 class Solution {
-private:
-public:
-  vector<int> sumPrefixScores(const vector<string> &words) {
+ private:
+ public:
+  vector<int> sumPrefixScores(const vector<string>& words) {
     Trie trie{};
 
-    for (const std::string &word : words) {
+    for (const std::string& word : words) {
       trie.insert(word);
     }
 

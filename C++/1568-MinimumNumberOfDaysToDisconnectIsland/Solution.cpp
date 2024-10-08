@@ -11,7 +11,7 @@
 
 using namespace std;
 class Solution {
-public:
+ public:
   // The key insight here is that an island can be disconnected with three ways:
   // 1. If the island is already disconnect (0 days)
   // 2. If theres only one land cell (1 day, remove the land cell)
@@ -62,7 +62,7 @@ public:
   //    rooted at v to any ancestor of u.
   // 2. If u is the root and has more than one child in the DFS tree, it's an
   //    articulation point.
-  int minDays(vector<vector<int>> &grid) {
+  int minDays(vector<vector<int>>& grid) {
     int rows = grid.size();
     int cols = grid[0].size();
 
@@ -82,14 +82,14 @@ public:
     unordered_set<int> articulationPoints;
     int time = 0;
 
-    int islandCount = 0; // if 0 or > 2, already disconnected, return 0
-    int landCount = 0;   // if 1, return 1
+    int islandCount = 0;  // if 0 or > 2, already disconnected, return 0
+    int landCount = 0;    // if 1, return 1
 
     // For each cell, DFS and update the information
     for (int i = 0; i < rows; ++i) {
       for (int j = 0; j < cols; ++j) {
         if (grid[i][j] == 0) {
-          continue; // Not a vertex
+          continue;  // Not a vertex
         }
 
         ++landCount;
@@ -108,7 +108,7 @@ public:
     }
 
     if (landCount == 1) {
-      return 1; // only remove that land
+      return 1;  // only remove that land
     }
 
     if (!articulationPoints.empty()) {
@@ -118,15 +118,17 @@ public:
     return 2;
   }
 
-private:
+ private:
   vector<pair<int, int>> const directions = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
 
-  void findArticulationPoints(vector<vector<int>> const &grid,
-                              vector<vector<int>> &discoveryTime,
-                              vector<vector<int>> &lowestReachableTime,
-                              vector<vector<int>> &parent, int &time,
-                              unordered_set<int> &articulationPoints,
-                              int const r, int const c) {
+  void findArticulationPoints(vector<vector<int>> const& grid,
+                              vector<vector<int>>& discoveryTime,
+                              vector<vector<int>>& lowestReachableTime,
+                              vector<vector<int>>& parent,
+                              int& time,
+                              unordered_set<int>& articulationPoints,
+                              int const r,
+                              int const c) {
     int rows = grid.size();
     int cols = grid[0].size();
 
@@ -138,12 +140,12 @@ private:
     int children = 0;
 
     // Iterate over neighbours of this cell
-    for (const auto &[dr, dc] : directions) {
+    for (const auto& [dr, dc] : directions) {
       int nr = r + dr;
       int nc = c + dc;
 
       if (nr < 0 || nc < 0 || nr >= rows || nc >= cols || grid[nr][nc] == 0) {
-        continue; // if not valid cell, or not land cell
+        continue;  // if not valid cell, or not land cell
       }
 
       if (discoveryTime[nr][nc] != -1) {
@@ -170,7 +172,6 @@ private:
       // than this cell's discoveryTime.
       if (parent[r][c] != -1 &&
           lowestReachableTime[nr][nc] >= discoveryTime[r][c]) {
-
         articulationPoints.insert(r * cols + c);
       }
     }

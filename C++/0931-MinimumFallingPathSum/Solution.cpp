@@ -11,8 +11,8 @@
 
 using namespace std;
 class Solution {
-public:
-  int minFallingPathSum(vector<vector<int>> &matrix) {
+ public:
+  int minFallingPathSum(vector<vector<int>>& matrix) {
     int rows = matrix.size();
     int cols = matrix[0].size();
     // At the beginning of the i-th iteration, prevRow[j] represents the minimum
