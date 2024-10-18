@@ -1,41 +1,55 @@
-#include <algorithm>
-#include <array>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
+#include <numeric>
 #include <vector>
 
 using namespace std;
 class Solution {
  private:
-  void dfs(vector<int> const& nums,
-           int const& maxOR,
-           int& count,
-           int currOR,
-           int const idx) {
+  int dfs(const vector<int>& nums,
+          vector<vector<int>>& memo,
+          const int& maxOR,
+          int currOR,
+          int idx) {
     if (idx >= nums.size()) {
-      count += (currOR == maxOR);
-      return;
+      return (currOR == maxOR);
     }
 
-    dfs(nums, maxOR, count, currOR | nums[idx], idx + 1);
-    dfs(nums, maxOR, count, currOR, idx + 1);
+    if (memo[idx][currOR]) {
+      return memo[idx][currOR];
+    }
+
+    int take = dfs(nums, memo, maxOR, currOR | nums[idx], idx + 1);
+    int skip = dfs(nums, memo, maxOR, currOR, idx + 1);
+
+    memo[idx][currOR] = take + skip;
+    return memo[idx][currOR];
   }
 
  public:
-  int countMaxOrSubsetsNaive(vector<int> const& nums) {
-    int maxOR = reduce(nums.begin(), nums.end(), 0,
-                       [&nums](int const& a, int const& b) { return a | b; });
+  int countMaxOrSubsets(const vector<int>& nums) {
+    constexpr int kMaxOR = 2 << 17;  // 10^5 => 17 bits required
+    std::array<int, kMaxOR> dp{};
+    // base case, empty subset
+    dp[0] = 1;
 
-    int count = 0;
-    int curr;
-    dfs(nums, maxOR, count, curr, 0);
+    int currMaxOR = 0;
+    for (const int num : nums) {
+      // iterator from the back to prevent earlier iterations from affecting
+      // subsequent results. Avoids the use of a temp array.
+      for (int i = currMaxOR; i >= 0; --i) {
+        // For each subset with an OR sum of i, add num to it.
+        dp[i | num] += dp[i];
+      }
+      currMaxOR |= num;  // No need for std::max with bitwise OR
+    }
 
-    return count;
+    return dp[currMaxOR];
+  }
+
+  int countMaxOrSubsetsMemo(const vector<int>& nums) {
+    int maxOR = std::reduce(nums.begin(), nums.end(), 0,
+                            [](const int& a, const int& b) { return a | b; });
+
+    vector<vector<int>> memo(nums.size(), vector<int>(maxOR + 1, 0));
+    return dfs(nums, memo, maxOR, 0, 0);
   }
 };
