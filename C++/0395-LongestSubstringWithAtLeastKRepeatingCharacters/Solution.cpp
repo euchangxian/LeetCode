@@ -16,6 +16,33 @@ class Solution {
 
  public:
   int longestSubstring(std::string_view s, int k) {
+    // Divide and Conquer solution is way more intuitive.
+    if (s.size() == 0 || k > s.size()) {
+      // s.size == 0 is self-explanatory. k > s.size is because even if s
+      // contains all duplicate chars, the condition can never be met.
+      return 0;
+    }
+
+    std::array<int, 26> count{};
+    for (char c : s) {
+      ++count[c - 'a'];
+    }
+
+    // we want to split where the count is < k. This is because that character
+    // can never be included in any substring to be considered.
+    for (int i = 0; i < s.size(); ++i) {
+      if (count[s[i] - 'a'] < k) {
+        int left = longestSubstring(s.substr(0, i), k);
+        int right = longestSubstring(s.substr(i + 1), k);
+        return std::max(left, right);
+      }
+    }
+
+    // no split found, return entire substring, as it's valid.
+    return s.size();
+  }
+
+  int longestSubstringSlidingWindow(std::string_view s, int k) {
     // Not too sure... First intuition was sliding window, but when can we be
     // sure that we dont need the element on the left, i.e., shrink the window?
     // Firstly, even if the left-most does not have sufficient count, it is not
