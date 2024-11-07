@@ -1,19 +1,10 @@
 #include <algorithm>
 #include <array>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  int largestCombination(vector<int>& candidates) {
+  int largestCombination(std::vector<int>& candidates) {
     // Consider two 1-bit numbers a and b. For the bitwise AND of the two to be
     // zero, i.e., a & b = 0, either a or b must be 0.
     // Therefore, for n k-bits (32 for int) numbers, the combined bitwise AND
@@ -30,15 +21,20 @@ class Solution {
     // It is easy to see that the largest combination can be obtained from
     // comparing the i-th bit of each number and taking the position with the
     // most number of common bits; That combination will not be 0.
-    int result = 0;
-    for (int pos = 0; pos < 32; ++pos) {
-      int count = 0;
-      for (int const& num : candidates) {
-        count += (num >> pos) & 1;
+    //
+    // Update: Improved cache locality by looping over candidates, then counting
+    // the bit, instead of looping over each bit, then checking that bit for
+    // each candidate.
+    std::array<int, 32> bitCount{};
+    for (int candidate : candidates) {
+      int i = 0;
+      int mask = 1;
+      while (candidate > 0) {
+        bitCount[i++] += candidate & mask;
+        candidate >>= 1;
       }
-
-      result = max(result, count);
     }
-    return result;
+
+    return *std::max_element(bitCount.begin(), bitCount.end());
   }
 };
