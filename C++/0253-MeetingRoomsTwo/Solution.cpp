@@ -1,35 +1,21 @@
 #include <algorithm>
-#include <climits>
 #include <functional>
-#include <iostream>
 #include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
-class Interval {
- public:
-  int start, end;
-  Interval(int start, int end) : start(start), end(end) {}
-};
 
-using namespace std;
 class Solution {
  public:
-  int minMeetingRooms(vector<Interval>& intervals) {
-    sort(
-        intervals.begin(), intervals.end(),
-        [](Interval const& a, Interval const& b) { return a.start < b.start; });
+  int minMeetingRooms(std::vector<std::vector<int>>& intervals) {
+    std::sort(intervals.begin(), intervals.end());
 
     // Stores the earliest ending Meeting
-    priority_queue<int, vector<int>, greater<int>> minHeap;
+    std::priority_queue<int, std::vector<int>, std::greater<int>> minHeap;
 
-    for (Interval const& interval : intervals) {
-      if (!minHeap.empty() && minHeap.top() <= interval.start) {
+    for (const auto& interval : intervals) {
+      if (!minHeap.empty() && minHeap.top() <= interval[0]) {
         minHeap.pop();
       }
-      minHeap.push(interval.end);
+      minHeap.push(interval[1]);
     }
 
     return minHeap.size();
