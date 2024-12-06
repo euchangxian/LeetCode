@@ -2,7 +2,6 @@
 #include <cstddef>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
   int twoEggDrop(int n) {
@@ -26,7 +25,7 @@ class Solution {
     // 2 eggs, n floors
     // Instead of initializing to INF, which would affect the subsequent
     // loop using std::max, set to 0 first.
-    vector<vector<int>> dp(3, vector<int>(n + 1, 0));
+    std::vector<std::vector<int>> dp(3, std::vector<int>(n + 1, 0));
 
     // base case
     for (int f = 0; f <= n; ++f) {
@@ -74,8 +73,8 @@ class Solution {
           }
         }
 
-        int worstCase = 1 + max(dp[i - 1][left - 1], dp[i][j - left]);
-        dp[i][j] = min(dp[i][j], worstCase);
+        int worstCase = 1 + std::max(dp[i - 1][left - 1], dp[i][j - left]);
+        dp[i][j] = std::min(dp[i][j], worstCase);
       }
     }
     return dp[2][n];

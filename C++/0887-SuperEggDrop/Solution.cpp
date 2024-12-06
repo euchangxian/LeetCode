@@ -1,18 +1,6 @@
 #include <algorithm>
-#include <array>
-#include <bitset>
-#include <climits>
-#include <cstdint>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
   // Returns the minimum number of moves to determine with certainty the
@@ -58,14 +46,14 @@ class Solution {
 
     // dp[k][n] represents the minimum number of moves to determine with
     // certainty the critical floor, with k eggs and n floors.
-    vector<vector<int>> dp(k + 1, vector<int>(n + 1, 0));
+    std::vector<std::vector<int>> dp(k + 1, std::vector<int>(n + 1, 0));
 
     // base case: 1 egg, n floor requires n trials (linear search)
     for (size_t i{1}; i <= n; ++i) {
       dp[1][i] = i;
     }
 
-    // For each number of eggs and floors
+    // For each number of eggs and floors, find the critical floor.
     for (int eggs = 2; eggs <= k; ++eggs) {
       for (int floors = 1; floors <= n; ++floors) {
         dp[eggs][floors] = INF;
@@ -81,7 +69,7 @@ class Solution {
         // while the notBroken starts high, then decreases.
         int start{1};
         int end{floors};
-        while (start <= end) {
+        while (start < end) {
           const int floor = start + (end - start) / 2;
 
           // Can only eliminate the current floor. Critical floor is below
@@ -91,19 +79,30 @@ class Solution {
           // critical floor lies above
           const int notBroken = dp[eggs][floors - floor];
 
-          // Need to determine with certainty. Both choices involve throwing
-          // an egg, i.e. 1 step
-          const int worstCase = std::max(broken, notBroken) + 1;
-
-          // Take the best of the worst
-          dp[eggs][floors] = std::min(dp[eggs][floors], worstCase);
-
+          // visualize the graph:
+          // x-axis => number of floors, y-axis => number of moves.
+          // broken(x) => increasing number of moves: searching k-1 floors with
+          // 1 less egg is at least the number of moves required to search k
+          // floors. i.e., broken(k-1) >= broken(k).
+          //
+          // notBroken(x) => non-increasing number of moves. searching j-k
+          // floors with the same number of eggs is at most the number of moves
+          // required to search j floors. i.e., broken(j-k) <= broken(j).
           if (broken < notBroken) {
+            // the critical floor lies on the left of the valley.
             start = floor + 1;
           } else {
-            end = floor - 1;
+            end = floor;
           }
         }
+
+        // Need to determine with certainty. Both choices involve throwing
+        // an egg, i.e. 1 step
+        const int worstCase =
+            1 + std::max(dp[eggs - 1][start - 1], dp[eggs][floors - start]);
+
+        // Take the best of the worst
+        dp[eggs][floors] = std::min(dp[eggs][floors], worstCase);
       }
     }
     return dp[k][n];
