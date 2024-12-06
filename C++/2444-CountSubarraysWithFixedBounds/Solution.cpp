@@ -1,18 +1,9 @@
 #include <algorithm>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  long long countSubarrays(vector<int>& nums, int minK, int maxK) {
+  long long countSubarrays(std::vector<int>& nums, int minK, int maxK) {
     // To count the number of subarrays where all the elements in the subarray
     // are within the range [minK, maxK],
     //
@@ -55,8 +46,9 @@ class Solution {
       // This is because each element between prevMin and prevBad can be the
       // left-most/start of the valid subarray
       // if prevMin < prevMax < prevBad => Add 0
-      count += max(0,  // handle the case where prevBad occurs after maxK, WLOG
-                   min(prevMin, prevMax) - prevBad);
+      count +=
+          std::max(0,  // handle the case where prevBad occurs after maxK, WLOG
+                   std::min(prevMin, prevMax) - prevBad);
     }
     return count;
   }
