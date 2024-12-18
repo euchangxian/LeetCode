@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <functional>
+#include <map>
 #include <queue>
 #include <vector>
 
@@ -19,5 +20,26 @@ class Solution {
     }
 
     return minHeap.size();
+  }
+
+  int minMeetingRoomsSweep(std::vector<std::vector<int>>& intervals) {
+    // line sweep version: find the maximum number of intersections between
+    // points.
+    std::map<int, int> events;
+    for (const auto& interval : intervals) {
+      const int start = interval[0];
+      const int incEnd = interval[1];
+
+      ++events[start];
+      --events[incEnd];
+    }
+
+    int maxSum = 0;
+    int sum = 0;
+    for (const auto [time, count] : events) {
+      sum += count;
+      maxSum = std::max(maxSum, sum);
+    }
+    return maxSum;
   }
 };
