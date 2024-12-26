@@ -1,27 +1,16 @@
-#include <algorithm>
-#include <array>
-#include <bitset>
 #include <climits>
 #include <cstddef>
-#include <cstdint>
 #include <functional>
-#include <iostream>
 #include <numeric>
-#include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-using namespace std;
 class Solution {
  private:
   // Sum of the elements in nums.
   int offset;
 
-  int dfs(vector<vector<int>>& memo,
-          const vector<int>& nums,
+  int dfs(std::vector<std::vector<int>>& memo,
+          const std::vector<int>& nums,
           const int target,
           size_t idx,
           int sum) {
@@ -44,9 +33,9 @@ class Solution {
   }
 
  public:
-  int findTargetSumWays(const vector<int>& nums, const int target) {
+  int findTargetSumWays(const std::vector<int>& nums, const int target) {
     const size_t n{nums.size()};
-    const int offset{std::reduce(nums.begin(), nums.end(), 0, plus<>{})};
+    const int offset{std::reduce(nums.begin(), nums.end(), 0, std::plus<>{})};
 
     if (std::abs(target) > offset) {
       return 0;
@@ -54,7 +43,7 @@ class Solution {
 
     // dp[i][j] represents the number of ways to make up the target j with
     // the first i nums
-    vector<vector<int>> dp(n, vector<int>(2 * offset + 1, 0));
+    std::vector<std::vector<int>> dp(n, std::vector<int>(2 * offset + 1, 0));
     dp[0][nums[0] + offset] = 1;
 
     // NOTE the +=. To deal with cases where nums[0] is 0
@@ -73,17 +62,47 @@ class Solution {
     return dp[n - 1][target + offset];
   }
 
-  int findTargetSumWaysMemo(vector<int>& nums, int target) {
+  int findTargetSumWays(std::vector<int>& nums, int target) {
+    // First glance looked like DFS.
+    // Notice that there is quite abit of repeated work. Specifically,
+    // when considering a new element i, the sum of the first i-1
+    // elements +- i could be equal to the target.
+    constexpr int MAX_SUM = 1000;
+    constexpr int OFFSET = MAX_SUM;  // -1000 <= target <= 1000
+
+    // After the ith iteration, let dp[j] represent the number of ways to make
+    // up the sum j using the first i elements.
+    std::array<int, 2 * MAX_SUM + 1> dp{};
+    dp[nums[0] + OFFSET] = 1;
+    dp[-nums[0] + OFFSET] += 1;  // nums[0] could be 0, thus the +=
+    for (int i = 1; i < nums.size(); ++i) {
+      std::array<int, 2 * MAX_SUM + 1> next{};
+      for (int sum = -MAX_SUM; sum <= MAX_SUM; ++sum) {
+        if (sum + nums[i] <= MAX_SUM) {
+          next[sum + nums[i] + OFFSET] += dp[sum + OFFSET];
+        }
+        if (sum - nums[i] >= -MAX_SUM) {
+          next[sum - nums[i] + OFFSET] += dp[sum + OFFSET];
+        }
+      }
+      dp = std::move(next);
+    }
+
+    return dp[target + OFFSET];
+  }
+
+  int findTargetSumWaysMemo(std::vector<int>& nums, int target) {
     // Two choices at each element. Add or minus
     // Naive DFS can do it. Reduces to backtracking problem for subsequence
     // sum equal to k
     // 0 <= nums[i], sum(nums[i]) <= 1000
     // -1000 <= target <= 1000
-    const int sum = std::reduce(nums.begin(), nums.end(), 0, plus<>{});
+    const int sum = std::reduce(nums.begin(), nums.end(), 0, std::plus<>{});
     offset = sum;
 
     // negative to positive sum + 1 for the zero.
-    vector<vector<int>> memo(nums.size(), vector<int>(2 * sum + 1, INT_MIN));
+    std::vector<std::vector<int>> memo(nums.size(),
+                                       std::vector<int>(2 * sum + 1, INT_MIN));
 
     return dfs(memo, nums, target, 0, 0);
   }
