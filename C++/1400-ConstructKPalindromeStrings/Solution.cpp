@@ -26,15 +26,18 @@ class Solution {
       return s.size() == k;
     }
 
-    std::array<int, 26> frequency{};
+    // use a bitmask instead.
+    int frequency = 0;
+    // std::array<int, 26> frequency{};
     for (char c : s) {
-      ++frequency[c - 'a'];
+      // ++frequency[c-'a'];
+      frequency ^= (1 << (c - 'a'));
     }
 
-    int numOdd =
-        std::ranges::count_if(frequency.begin(), frequency.end(),
-                              [](int freq) -> bool { return freq & 1; });
-
+    // int numOdd =
+    //     std::ranges::count_if(frequency.begin(), frequency.end(),
+    //                           [](int freq) -> bool { return freq & 1; });
+    int numOdd = __builtin_popcount(frequency);
     return numOdd <= k;
   }
 };
