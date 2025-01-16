@@ -1,35 +1,38 @@
 #include <array>
 #include <cstddef>
 #include <queue>
+#include <utility>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  int getFood(vector<vector<char>>& grid) {
+  int getFood(std::vector<std::vector<char>>& grid) {
     // Seems to be just a straightforward BFS.
-    const size_t rows = grid.size();
-    const size_t cols = grid[0].size();
+    const std::size_t rows = grid.size();
+    const std::size_t cols = grid[0].size();
 
-    int startR;
-    int startC;
-
-    // Find the starting coordinates.
-    for (size_t r = 0; r < rows; ++r) {
-      for (size_t c = 0; c < cols; ++c) {
-        if (grid[r][c] == '*') {
-          startR = r;
-          startC = c;
-          break;
+    auto [startR, startC] = [rows, cols, &grid]() -> std::pair<int, int> {
+      // Find the starting coordinates.
+      for (int r = 0; r < rows; ++r) {
+        for (int c = 0; c < cols; ++c) {
+          if (grid[r][c] == '*') {
+            return {r, c};
+          }
         }
       }
-    }
+      // unreachable
+      return {-1, -1};
+    }();
 
-    const array<pair<int, int>, 4> directions{
-        {{0, 1}, {1, 0}, {0, -1}, {-1, 0}}};
+    constexpr std::array<std::pair<int, int>, 4> directions{{
+        {0, 1},
+        {1, 0},
+        {0, -1},
+        {-1, 0},
+    }};
 
     // BFS with {startX, startC} from the start.
-    queue<pair<int, int>> frontier;
+    std::queue<std::pair<int, int>> frontier;
     frontier.emplace(startR, startC);
     grid[startR][startC] = 'X';
 
@@ -41,7 +44,7 @@ class Solution {
         frontier.pop();
 
         // Do goal-checks before adding to the frontier.
-        for (const auto& [dr, dc] : directions) {
+        for (const auto [dr, dc] : directions) {
           const int nr = currR + dr;
           const int nc = currC + dc;
 
