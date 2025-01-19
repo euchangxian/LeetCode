@@ -1,18 +1,19 @@
 #include <algorithm>
-#include <climits>
 #include <functional>
-#include <iostream>
 #include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
+#include <tuple>
 #include <vector>
 
-using namespace std;
+constexpr std::array<std::array<int, 2>, 4> directions{{
+    {0, 1},
+    {1, 0},
+    {0, -1},
+    {-1, 0},
+}};
+
 class Solution {
  public:
-  int trapRainWater(vector<vector<int>>& heightMap) {
+  int trapRainWater(std::vector<std::vector<int>>& heightMap) {
     int rows = heightMap.size();
     int cols = heightMap[0].size();
 
@@ -21,10 +22,11 @@ class Solution {
     }
 
     // Tuple of {height, row, col}. Use a minHeap to pop lower heights first
-    priority_queue<tuple<int, int, int>, vector<tuple<int, int, int>>,
-                   greater<tuple<int, int, int>>>
+    std::priority_queue<std::tuple<int, int, int>,
+                        std::vector<std::tuple<int, int, int>>, std::greater<>>
         minHeap;
-    vector<vector<bool>> visited(rows, vector<bool>(cols, false));
+    std::vector<std::vector<bool>> visited(rows,
+                                           std::vector<bool>(cols, false));
 
     // Add top and bottom edge cells
     for (int c = 0; c < cols; ++c) {
@@ -44,9 +46,6 @@ class Solution {
       visited[r][cols - 1] = true;
     }
 
-    vector<pair<int, int>> const directions = {
-        {0, 1}, {1, 0}, {0, -1}, {-1, 0}};
-
     // Starting from lower-height cells, check if its adjacent, inner cells
     // are of lower height.
     // Due to the order of traversal, if the neighbouring cell is of lower
@@ -56,7 +55,7 @@ class Solution {
       auto [height, r, c] = minHeap.top();
       minHeap.pop();
 
-      for (auto const& [dr, dc] : directions) {
+      for (const auto [dr, dc] : directions) {
         int nr = r + dr;
         int nc = c + dc;
 
@@ -74,8 +73,8 @@ class Solution {
         // 2. The neighbouring cell has a equal/greater height.
         //    Thus, the neighbouring cell cannot trap water. The current
         //    cell's height will not be relevant to inner cells.
-        result += max(0, height - heightMap[nr][nc]);
-        minHeap.emplace(max(height, heightMap[nr][nc]), nr, nc);
+        result += std::max(0, height - heightMap[nr][nc]);
+        minHeap.emplace(std::max(height, heightMap[nr][nc]), nr, nc);
       }
     }
 
