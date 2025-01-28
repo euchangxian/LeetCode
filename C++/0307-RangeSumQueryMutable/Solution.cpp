@@ -1,7 +1,6 @@
 #include <cstddef>
 #include <vector>
 
-using namespace std;
 /**
  * Now that updates to existing values are supported, the prefix sum after
  * the updated idx must be updated, resulting in a worse case O(n) update, if
@@ -139,10 +138,10 @@ class NumArray {
  private:
   // Stores the current value of nums. For updating the cumulative differences
   // in the BIT.
-  std::vector<int> nums;
+  std::vector<int> nums_;
 
   // BIT stores the cumulative sum up to nums[i]
-  std::vector<int> BIT;
+  std::vector<int> BIT_;
 
   // When updating a BIT, we propagate the change up the tree structure.
   // We move to all nodes responsible for the range including the updated index.
@@ -185,8 +184,8 @@ class NumArray {
   // This demonstrates how update and query operations traverse the BIT
   // differently, both using efficient bit manipulation.
   void updateBIT(int n, int val) {
-    while (n < BIT.size()) {
-      BIT[n] += val;
+    while (n < BIT_.size()) {
+      BIT_[n] += val;
       n += n & -n;
     }
   }
@@ -201,21 +200,34 @@ class NumArray {
   //
   // This gives us a very efficient way of retrieving the rightmost '1' bit,
   // using x & -x
-  //
-  // Clearing the rightmost 1 bit is a different trick however: x & (x-1)
   int queryBIT(int n) {
     int sum = 0;
     while (n > 0) {
-      sum += BIT[n];
-      n = n & (n - 1);
+      sum += BIT_[n];
+      n -= n & -n;
     }
     return sum;
   }
 
  public:
-  NumArray(vector<int>& nums) : nums(nums), BIT(nums.size() + 1, 0) {
-    for (size_t i = 0; i < nums.size(); ++i) {
-      updateBIT(i + 1, nums[i]);
+  NumArray(std::vector<int>& nums)
+      : nums_(std::move(nums)), BIT_(nums_.size() + 1) {
+    // O(nlogn), not optimal.
+    // for (std::size_t i = 0; i < nums_.size(); ++i) {
+    //   updateBIT(i + 1, nums_[i]);
+    // }
+
+    // Optimal O(n + m)
+    // copy data to 1-indexed BIT first.
+    for (std::size_t i = 0; i < nums_.size(); ++i) {
+      BIT_[i + 1] = nums_[i];
+    }
+
+    for (int i = 1; i < BIT_.size(); ++i) {
+      int parent = i + (i & -i);
+      if (parent < BIT_.size()) {
+        BIT_[parent] += BIT_[i];
+      }
     }
   }
 
@@ -223,8 +235,8 @@ class NumArray {
     // Check the difference using the original nums array. Update
     // correspondingly, traversing from the target node up to the parent.
     // inverted index.
-    const int diff = val - nums[index];  // Calculate the difference
-    nums[index] = val;  // Update the value in the original array
+    const int diff = val - nums_[index];  // Calculate the difference
+    nums_[index] = val;  // Update the value in the original array
 
     updateBIT(index + 1, diff);
   }
