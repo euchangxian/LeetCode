@@ -1,32 +1,21 @@
-#include <algorithm>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
+#include <cstddef>
+#include <utility>
 #include <vector>
 
-using namespace std;
 class UnionFind {
- private:
-  vector<int> parent;
-  vector<int> rank;
-
  public:
-  UnionFind(int n) : parent(n), rank(n) {
+  UnionFind(int n) : components_(n), parent_(n), rank_(n, 0), size_(n, 1) {
     for (int i = 0; i < n; ++i) {
-      parent[i] = i;
+      parent_[i] = i;
     }
   }
 
   int find(int x) {
-    if (parent[x] != x) {
-      parent[x] = find(parent[x]);
+    if (parent_[x] != x) {
+      parent_[x] = find(parent_[x]);
     }
-    return parent[x];
+
+    return parent_[x];
   }
 
   bool connected(int x, int y) { return find(x) == find(y); }
@@ -39,25 +28,40 @@ class UnionFind {
       return;
     }
 
-    if (rank[rootX] < rank[rootY]) {
-      parent[rootX] = parent[rootY];
-      ++rank[rootY];
-    } else {
-      if (rank[rootX] == rank[rootY]) {
-        ++rank[rootX];
-      }
-      parent[rootY] = parent[rootX];
+    --components_;
+    if (rank_[rootX] < rank_[rootY]) {
+      parent_[rootX] = rootY;
+      size_[rootY] += std::exchange(size_[rootX], 0);
+      return;
     }
+
+    if (rank_[rootX] == rank_[rootY]) {
+      ++rank_[rootX];
+    }
+    parent_[rootY] = rootX;
+    size_[rootX] += std::exchange(size_[rootY], 0);
   }
+
+  int components() const noexcept { return components_; }
+
+  int size(int x) { return size_[find(x)]; }
+
+ private:
+  int components_;
+
+  std::vector<int> parent_;
+  std::vector<int> rank_;
+  std::vector<int> size_;
 };
 
 class Solution {
  public:
-  vector<int> findRedundantConnection(vector<vector<int>>& edges) {
-    int n = edges.size();
+  std::vector<int> findRedundantConnection(
+      std::vector<std::vector<int>>& edges) {
+    const int n = edges.size();
     UnionFind uf(n + 1);  // extra 0, since 1-indexed
 
-    for (auto const& edge : edges) {
+    for (const auto& edge : edges) {
       int a = edge[0];
       int b = edge[1];
 
