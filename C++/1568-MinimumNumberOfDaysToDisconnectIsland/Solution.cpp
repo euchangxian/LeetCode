@@ -1,15 +1,15 @@
 #include <algorithm>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
+#include <array>
 #include <unordered_set>
 #include <vector>
 
-using namespace std;
+constexpr std::array<std::array<int, 2>, 4> directions{{
+    {0, 1},
+    {1, 0},
+    {0, -1},
+    {-1, 0},
+}};
+
 class Solution {
  public:
   // The key insight here is that an island can be disconnected with three ways:
@@ -62,24 +62,26 @@ class Solution {
   //    rooted at v to any ancestor of u.
   // 2. If u is the root and has more than one child in the DFS tree, it's an
   //    articulation point.
-  int minDays(vector<vector<int>>& grid) {
+  int minDays(std::vector<std::vector<int>>& grid) {
     int rows = grid.size();
     int cols = grid[0].size();
 
     // Time when a cell is first discovered. Also acts as a `visited` Set
-    vector<vector<int>> discoveryTime(rows, vector<int>(cols, -1));
+    std::vector<std::vector<int>> discoveryTime(rows,
+                                                std::vector<int>(cols, -1));
 
     // Lowest discovery time for any cell reachable from the subtree rooted at
     // this cell
-    vector<vector<int>> lowestReachableTime(rows, vector<int>(cols, -1));
+    std::vector<std::vector<int>> lowestReachableTime(
+        rows, std::vector<int>(cols, -1));
 
     // Parent of each cell
-    vector<vector<int>> parent(rows, vector<int>(cols, -1));
+    std::vector<std::vector<int>> parent(rows, std::vector<int>(cols, -1));
 
     // Store 1D coordinates of articulation points. Technically, for this
     // question, a simple boolean flag to indicate whether there is an AP is
     // sufficient to determine the answer
-    unordered_set<int> articulationPoints;
+    std::unordered_set<int> articulationPoints;
     int time = 0;
 
     int islandCount = 0;  // if 0 or > 2, already disconnected, return 0
@@ -119,16 +121,15 @@ class Solution {
   }
 
  private:
-  vector<pair<int, int>> const directions = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
-
-  void findArticulationPoints(vector<vector<int>> const& grid,
-                              vector<vector<int>>& discoveryTime,
-                              vector<vector<int>>& lowestReachableTime,
-                              vector<vector<int>>& parent,
-                              int& time,
-                              unordered_set<int>& articulationPoints,
-                              int const r,
-                              int const c) {
+  void findArticulationPoints(
+      const std::vector<std::vector<int>>& grid,
+      std::vector<std::vector<int>>& discoveryTime,
+      std::vector<std::vector<int>>& lowestReachableTime,
+      std::vector<std::vector<int>>& parent,
+      int& time,
+      std::unordered_set<int>& articulationPoints,
+      const int r,
+      const int c) {
     int rows = grid.size();
     int cols = grid[0].size();
 
@@ -151,7 +152,7 @@ class Solution {
       if (discoveryTime[nr][nc] != -1) {
         // Neighbour is an ancestor, update lowestReachableTime
         lowestReachableTime[r][c] =
-            min(lowestReachableTime[r][c], discoveryTime[nr][nc]);
+            std::min(lowestReachableTime[r][c], discoveryTime[nr][nc]);
         continue;
       }
 
@@ -165,7 +166,7 @@ class Solution {
 
       // Update lowest reachable time of this cell
       lowestReachableTime[r][c] =
-          min(lowestReachableTime[r][c], lowestReachableTime[nr][nc]);
+          std::min(lowestReachableTime[r][c], lowestReachableTime[nr][nc]);
 
       // Check for Articulation Point condition of this cell, if its non-root,
       // its children would have a greater than or equal lowestReachableTime
