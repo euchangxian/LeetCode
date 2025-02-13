@@ -1,23 +1,14 @@
 #include <algorithm>
 #include <array>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  int leastInterval(vector<char>& tasks, int n) {
+  int leastInterval(std::vector<char>& tasks, int n) {
     int maxFreq = 0;
-    array<int, 26> frequency = {};
-    for (auto const& c : tasks) {
-      maxFreq = max(maxFreq, ++frequency[c - 'A']);
+    std::array<int, 26> frequency = {};
+    for (char c : tasks) {
+      maxFreq = std::max(maxFreq, ++frequency[c - 'A']);
     }
 
     // Suppose A occurs 4 times, which is the most, with n = 3:
@@ -34,11 +25,11 @@ class Solution {
     int rounds = maxFreq - 1;
 
     int maxFreqCount = 0;
-    for (auto const& freq : frequency) {
+    for (int freq : frequency) {
       maxFreqCount += freq == maxFreq;
     }
 
     int minCpuCycles = (rounds * (n + 1)) + maxFreqCount;
-    return max(minCpuCycles, static_cast<int>(tasks.size()));
+    return std::max(minCpuCycles, static_cast<int>(tasks.size()));
   }
 };
