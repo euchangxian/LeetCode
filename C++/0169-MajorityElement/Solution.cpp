@@ -1,10 +1,9 @@
 #include <cstddef>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  int majorityElement(vector<int>& nums) {
+  int majorityElement(std::vector<int>& nums) {
     // Boyer-Moore Voting Algorithm
     // Finds the majority element in an array. A majority element is an element
     // which occurs more than floor(n/2) times.
@@ -48,8 +47,7 @@ class Solution {
     // 3. The true majority element (1 in this case) may not be identified until
     //    later in the array.
     // 4. Even though 2 was the majority in some prefixes, 1 overtakes it by the
-    //    end
-    //    due to its higher overall frequency.
+    // end due to its higher overall frequency.
     //
     // The key insight is that the majority element of the entire array will
     // eventually overtake any local majorities in prefixes. Even if it's
