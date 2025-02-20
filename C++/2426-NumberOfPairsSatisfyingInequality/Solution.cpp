@@ -10,7 +10,7 @@ class FenwickTree {
  public:
   FenwickTree(int n) : n(n), tree(n + 1, 0) {}
 
-  int query(int l, int r) const { return prefix(r) - prefix(l); }
+  int query(int l, int r) const { return prefix(r) - prefix(l - 1); }
 
   void update(int i, int diff) {
     for (; i <= n; i += i & -i) {
