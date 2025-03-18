@@ -4,38 +4,6 @@
 #include <vector>
 
 class Solution {
- private:
-  int bfs(std::vector<std::vector<int>>& adjList, int src, int dest) {
-    std::vector<char> visited(adjList.size(), false);
-    std::queue<int> frontier;
-    frontier.push(src);
-    visited[src] = true;
-
-    int steps = 0;
-    while (!frontier.empty()) {
-      int n = frontier.size();
-      while (n--) {
-        int curr = frontier.front();
-        frontier.pop();
-
-        if (curr == dest) {
-          return steps;
-        }
-
-        for (int next : adjList[curr]) {
-          if (visited[next]) {
-            continue;
-          }
-
-          frontier.push(next);
-          visited[next] = true;
-        }
-      }
-      ++steps;
-    }
-    return steps;
-  }
-
  public:
   std::vector<int> shortestDistanceAfterQueries(
       int n,
@@ -82,5 +50,37 @@ class Solution {
       result.push_back(bfs(adjList, 0, n - 1));
     }
     return result;
+  }
+
+ private:
+  int bfs(std::vector<std::vector<int>>& adjList, int src, int dest) {
+    std::vector<char> visited(adjList.size(), false);
+    std::queue<int> frontier;
+    frontier.push(src);
+    visited[src] = true;
+
+    int steps = 0;
+    while (!frontier.empty()) {
+      int n = frontier.size();
+      while (n--) {
+        int curr = frontier.front();
+        frontier.pop();
+
+        if (curr == dest) {
+          return steps;
+        }
+
+        for (int next : adjList[curr]) {
+          if (visited[next]) {
+            continue;
+          }
+
+          frontier.push(next);
+          visited[next] = true;
+        }
+      }
+      ++steps;
+    }
+    return steps;
   }
 };

@@ -1,32 +1,10 @@
 #include <algorithm>
-#include <array>
-#include <bitset>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
 #include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-using namespace std;
 class Solution {
- private:
-  void dfs(const int n, vector<int>& result, int curr) {
-    if (curr > n) {
-      return;
-    }
-
-    result.push_back(curr);
-    for (int i = 0; i <= 9; ++i) {
-      dfs(n, result, (curr * 10) + i);
-    }
-  }
-
  public:
-  vector<int> lexicalOrder(int n) {
+  std::vector<int> lexicalOrder(int n) {
     // Recursive DFS solution is of O(logn) (base 10) space, since the maximum
     // depth of the call-tree is of O(logn)
     // Lets do better, using an iterative solution.
@@ -34,7 +12,7 @@ class Solution {
     // Therefore, considering the state required, only the curr number is
     // necessary.
     // We can explore the curr number iteratively,
-    vector<int> result;
+    std::vector<int> result;
     result.reserve(n);
 
     // Start with 1
@@ -61,11 +39,11 @@ class Solution {
     return result;
   }
 
-  vector<int> lexicalOrderDFS(int n) {
+  std::vector<int> lexicalOrderDFS(int n) {
     // Of course we can do better. But how? To do better would mean a time
     // complexity better than O(nlogn).
     // Given constraints of O(n) time and O(1) extra space
-    vector<int> result;  // result array does not count as extra space.
+    std::vector<int> result;  // result array does not count as extra space.
     result.reserve(n);
     // What about DFS starting from 1? 1 -> 10 -> 100 -> ...
     //                                      11 -> 110 ...
@@ -81,19 +59,32 @@ class Solution {
     return result;
   }
 
-  vector<int> lexicalOrderNaive(int n) {
+  std::vector<int> lexicalOrderNaive(int n) {
     // Naively, generate a string array from 1 to n. Then simply sort it.
     // O(nlogn)
-    vector<int> lexico(n);
+    std::vector<int> lexico(n);
 
     for (int i = 1; i <= n; ++i) {
       lexico[i - 1] = i;
     }
 
-    sort(lexico.begin(), lexico.end(), [&lexico](const int a, const int b) {
-      return to_string(a) < to_string(b);
-    });
+    std::sort(lexico.begin(), lexico.end(),
+              [&lexico](const int a, const int b) {
+                return std::to_string(a) < std::to_string(b);
+              });
 
     return lexico;
+  }
+
+ private:
+  void dfs(const int n, std::vector<int>& result, int curr) {
+    if (curr > n) {
+      return;
+    }
+
+    result.push_back(curr);
+    for (int i = 0; i <= 9; ++i) {
+      dfs(n, result, (curr * 10) + i);
+    }
   }
 };

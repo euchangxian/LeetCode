@@ -1,25 +1,21 @@
-#include <algorithm>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
+#include <array>
 #include <vector>
 
-using namespace std;
+constexpr std::array<std::array<int, 2>, 4> directions{{
+    {0, 1},
+    {1, 0},
+    {0, -1},
+    {-1, 0},
+}};
+
 class Solution {
  private:
-  vector<pair<int, int>> const directions = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
-
-  void dfs(vector<vector<int>> const& heights,
-           vector<vector<bool>>& seen,
+  void dfs(const std::vector<std::vector<int>>& heights,
+           std::vector<std::vector<bool>>& seen,
            int r,
            int c) {
     seen[r][c] = true;
-    for (auto const& [dr, dc] : directions) {
+    for (const auto [dr, dc] : directions) {
       int nr = r + dr;
       int nc = c + dc;
 
@@ -34,15 +30,18 @@ class Solution {
   }
 
  public:
-  vector<vector<int>> pacificAtlantic(vector<vector<int>>& heights) {
+  std::vector<std::vector<int>> pacificAtlantic(
+      std::vector<std::vector<int>>& heights) {
     // Top right, bottom left corner are always in the answer, as they are
     // adjacent to both the Pacific and Atlantic Ocean.
     // DFS/BFS
     int rows = heights.size();
     int cols = heights[0].size();
 
-    vector<vector<bool>> pacific(rows, vector<bool>(cols, false));
-    vector<vector<bool>> atlantic(rows, vector<bool>(cols, false));
+    std::vector<std::vector<bool>> pacific(rows,
+                                           std::vector<bool>(cols, false));
+    std::vector<std::vector<bool>> atlantic(rows,
+                                            std::vector<bool>(cols, false));
 
     for (int c = 0; c < cols; ++c) {
       // DFS from the top-edge, mark cells that can reach the Pacific ocean
@@ -62,7 +61,7 @@ class Solution {
 
     // Get the intersection of cells that are marked true in both pacific and
     // atlantic i.e., can reach both sides
-    vector<vector<int>> result;
+    std::vector<std::vector<int>> result;
     result.reserve(rows * cols);
     for (int r = 0; r < rows; ++r) {
       for (int c = 0; c < cols; ++c) {

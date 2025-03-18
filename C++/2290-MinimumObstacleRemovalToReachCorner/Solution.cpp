@@ -5,16 +5,15 @@
 #include <queue>
 #include <vector>
 
-class Solution {
- private:
-  static constexpr int INF = 10e5;  // m * n <= 10e5
-  static constexpr std::array<std::array<int, 2>, 4> directions = {{
-      {0, 1},
-      {1, 0},
-      {0, -1},
-      {-1, 0},
-  }};
+static constexpr int INF = 10e5;  // m * n <= 10e5
+static constexpr std::array<std::array<int, 2>, 4> directions = {{
+    {0, 1},
+    {1, 0},
+    {0, -1},
+    {-1, 0},
+}};
 
+class Solution {
  public:
   int minimumObstacles(std::vector<std::vector<int>>& grid) {
     // BFS would work. Given that edges are unweighted.
@@ -24,8 +23,8 @@ class Solution {
     // is 0, while the cost of moving to a Cell with an obstacle is 1.
     // We want to explore the "free" edges first. Hence, a priority_queue may
     // be helpful. But we can further optimize to use a Deque instead.
-    const size_t rows = grid.size();
-    const size_t cols = grid[0].size();
+    const std::size_t rows = grid.size();
+    const std::size_t cols = grid[0].size();
 
     // {obstaclesRemoved, row, col}
     std::deque<std::array<int, 3>> frontier;
@@ -74,8 +73,8 @@ class Solution {
   }
 
   int minimumObstaclesDijkstra(std::vector<std::vector<int>>& grid) {
-    const size_t rows = grid.size();
-    const size_t cols = grid[0].size();
+    const std::size_t rows = grid.size();
+    const std::size_t cols = grid[0].size();
 
     std::vector<std::vector<int>> distances(rows, std::vector<int>(cols, INF));
 

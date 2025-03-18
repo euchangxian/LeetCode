@@ -1,29 +1,27 @@
-#include <iostream>
-#include <queue>
+#include <algorithm>
 #include <stack>
 #include <string>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  vector<int> survivedRobotsHealths(vector<int>& positions,
-                                    vector<int>& healths,
-                                    string directions) {
+  std::vector<int> survivedRobotsHealths(std::vector<int>& positions,
+                                         std::vector<int>& healths,
+                                         std::string directions) {
     int n = positions.size();
-    vector<int> robots = vector<int>(n);
+    std::vector<int> robots = std::vector<int>(n);
     for (int i = 0; i < n; ++i) {
       robots[i] = i;
     }
 
-    sort(robots.begin(), robots.end(), [&positions](int i, int j) {
+    std::sort(robots.begin(), robots.end(), [&positions](int i, int j) {
       // Ensure 1-indexed Robots is converted to 0-indexed positions
       return positions[i] < positions[j];  // process leftmost to rightmost
     });
 
-    vector<int> result;
+    std::vector<int> result;
     // Stores robots going to the right only (monotonic).
-    stack<int> goingRight;
+    std::stack<int> goingRight;
     for (int curr : robots) {
       if (directions[curr] == 'R') {
         goingRight.push(curr);
@@ -58,11 +56,3 @@ class Solution {
     return result;
   }
 };
-
-int main(int argc, char* argv[]) {
-  vector<int> positions = {3, 5, 2, 6};
-  vector<int> healths = {10, 10, 15, 12};
-  string directions = "RLRL";
-
-  Solution().survivedRobotsHealths(positions, healths, directions);
-}

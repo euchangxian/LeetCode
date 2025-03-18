@@ -1,34 +1,23 @@
-#include <algorithm>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
+#include <utility>
 #include <vector>
 
-using namespace std;
 class UnionFind {
- private:
-  vector<int> parent;
-  vector<int> rank;
-  int components;
-
  public:
-  UnionFind(int size) : parent(size), rank(size), components(size) {
-    for (int i = 0; i < size; ++i) {
-      parent[i] = i;
+  UnionFind(int n) : components_(n), parent_(n), rank_(n, 0), size_(n, 1) {
+    for (int i = 0; i < n; ++i) {
+      parent_[i] = i;
     }
   }
 
   int find(int x) {
-    if (parent[x] != x) {
-      parent[x] = find(parent[x]);
+    if (parent_[x] != x) {
+      parent_[x] = find(parent_[x]);
     }
-    return parent[x];
+
+    return parent_[x];
   }
+
+  bool connected(int x, int y) { return find(x) == find(y); }
 
   void unite(int x, int y) {
     int rootX = find(x);
@@ -38,23 +27,36 @@ class UnionFind {
       return;
     }
 
-    --components;
-    if (rank[rootX] < rank[rootY]) {
-      parent[rootX] = parent[rootY];
+    --components_;
+    if (rank_[rootX] < rank_[rootY]) {
+      parent_[rootX] = rootY;
+      size_[rootY] += std::exchange(size_[rootX], 0);
       return;
     }
 
-    parent[rootY] = parent[rootX];
-    if (rank[rootX] == rank[rootY]) {
-      ++rank[rootX];
+    if (rank_[rootX] == rank_[rootY]) {
+      ++rank_[rootX];
     }
+    parent_[rootY] = rootX;
+    size_[rootX] += std::exchange(size_[rootY], 0);
   }
 
-  int size() { return components; }
+  int components() const noexcept { return components_; }
+
+  int size(int x) { return size_[find(x)]; }
+
+ private:
+  int components_;
+
+  std::vector<int> parent_;
+  std::vector<int> rank_;
+  std::vector<int> size_;
 };
+
 class Solution {
  public:
-  int countSubIslands(vector<vector<int>>& grid1, vector<vector<int>>& grid2) {
+  int countSubIslands(std::vector<std::vector<int>>& grid1,
+                      std::vector<std::vector<int>>& grid2) {
     // Intuition. For each land cell in grid2, begin DFS. A cell is considered a
     // neighbour iff it is a land cell in grid 2 AND in grid1. Count components.
     int rows = grid2.size();
@@ -94,6 +96,6 @@ class Solution {
       }
     }
 
-    return uf.size() - 1;
+    return uf.components() - 1;
   }
 };

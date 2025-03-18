@@ -1,18 +1,11 @@
 #include <algorithm>
 #include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+  double findMedianSortedArrays(std::vector<int>& nums1,
+                                std::vector<int>& nums2) {
     // Intuition: Finding the median is equivalent to finding the right "cut"
     // point in both arrays that divides all elements into two equal halves.
     //
@@ -91,9 +84,10 @@ class Solution {
         // Handle even/odd cases
         if ((nums1.size() + nums2.size()) % 2) {
           // Odd
-          return max(left1Max, left2Max);
+          return std::max(left1Max, left2Max);
         }
-        return (max(left1Max, left2Max) + min(right1Min, right2Min)) / 2.0;
+        return (std::max(left1Max, left2Max) + std::min(right1Min, right2Min)) /
+               2.0;
       }
 
       // The cut is too much to the right, overlapping with right2

@@ -1,11 +1,10 @@
-#include <string>
+#include <string_view>
 #include <unordered_set>
 
-using namespace std;
 class Solution {
  public:
-  int lengthOfLongestSubstring(string s) {
-    unordered_set<char> unique;
+  int lengthOfLongestSubstring(std::string_view s) {
+    std::unordered_set<char> unique;
     int result = 0;
 
     int l = 0;
@@ -14,7 +13,7 @@ class Solution {
         unique.erase(s[l++]);
       }
       unique.insert(s[r]);
-      result = max(result, r - l + 1);
+      result = std::max(result, r - l + 1);
     }
 
     return result;

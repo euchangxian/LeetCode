@@ -1,27 +1,26 @@
-#include <iostream>
 #include <vector>
-
-using namespace std;
 
 class Solution {
  public:
-  vector<vector<string>> partition(string s) {
-    vector<vector<string>> partitions = getPalindromicPartitions(s);
+  std::vector<std::vector<std::string>> partition(std::string s) {
+    std::vector<std::vector<std::string>> partitions =
+        getPalindromicPartitions(s);
     return partitions;
   }
 
  private:
-  vector<vector<string>> getPalindromicPartitions(string s) {
-    vector<vector<string>> partitions;
-    vector<string> currPartition;
+  std::vector<std::vector<std::string>> getPalindromicPartitions(
+      std::string s) {
+    std::vector<std::vector<std::string>> partitions;
+    std::vector<std::string> currPartition;
 
     getPartitions(s, partitions, currPartition, 0);
     return partitions;
   }
 
-  void getPartitions(string s,
-                     vector<vector<string>>& partitions,
-                     vector<string>& curr,
+  void getPartitions(std::string s,
+                     std::vector<std::vector<std::string>>& partitions,
+                     std::vector<std::string>& curr,
                      int start) {
     if (start >= s.length()) {
       partitions.push_back(curr);
@@ -36,7 +35,7 @@ class Solution {
     }
   }
 
-  bool isPalindrome(string const& s, int left, int right) {
+  bool isPalindrome(const std::string& s, int left, int right) {
     while (left < right) {
       if (s[left] != s[right]) {
         return false;
@@ -47,13 +46,3 @@ class Solution {
     return true;
   }
 };
-
-int main() {
-  auto partitions = Solution().partition("aab");
-  for (auto part : partitions) {
-    for (auto c : part) {
-      cout << c << ", ";
-    }
-    cout << endl;
-  }
-}

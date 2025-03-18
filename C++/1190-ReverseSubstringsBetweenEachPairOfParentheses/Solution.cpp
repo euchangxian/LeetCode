@@ -1,25 +1,15 @@
-#include <iostream>
 #include <stack>
 #include <string>
 #include <utility>
 #include <vector>
 
-using namespace std;
 class Solution {
- private:
-  void reverse(string& s) {
-    int n = s.size();
-    for (int i = 0; i < n / 2; ++i) {
-      swap(s[i], s[n - i - 1]);
-    }
-  }
-
  public:
-  string reverseParentheses(string s) {
+  std::string reverseParentheses(std::string s) {
     int n = s.length();
 
-    stack<int> openParenthesesIndices;
-    vector<int> pairIndices(n);
+    std::stack<int> openParenthesesIndices;
+    std::vector<int> pairIndices(n);
     for (int i = 0; i < n; ++i) {
       if (s[i] == '(') {
         openParenthesesIndices.push(i);
@@ -34,7 +24,7 @@ class Solution {
       }
     }
 
-    string result;
+    std::string result;
     int direction = 1;
     for (int curr = 0; curr < n; curr += direction) {
       if (s[curr] == '(' || s[curr] == ')') {
@@ -47,15 +37,15 @@ class Solution {
     return result;
   }
 
-  string reverseParenthesesWrong(string s) {
-    vector<string> strs = vector<string>(s.length());
-    for (string& str : strs) {
+  std::string reverseParenthesesWrong(std::string s) {
+    std::vector<std::string> strs = std::vector<std::string>(s.length());
+    for (std::string& str : strs) {
       str.reserve(s.length());
     }
 
     // Group substrings together
     int i = 0;
-    for (char const& c : s) {
+    for (char c : s) {
       if (c == '(') {
         ++i;
       } else if (c == ')') {
@@ -67,16 +57,16 @@ class Solution {
 
     // reverse the strings
     i = 0;
-    for (string& str : strs) {
+    for (std::string& str : strs) {
       if (i++ & 1) {
         reverse(str);
       }
     }
 
     i = 0;
-    string result;
+    std::string result;
     result.reserve(s.length());
-    for (char const& c : s) {
+    for (char c : s) {
       if (c == '(') {
         ++i;
       } else if (c == ')') {
@@ -89,11 +79,12 @@ class Solution {
     }
     return result;
   }
-};
 
-int main() {
-  cout << Solution().reverseParentheses("(abcd)") << endl;
-  cout << Solution().reverseParentheses("(u(love)i)") << endl;
-  cout << Solution().reverseParentheses("(ed(et(oc))el)") << endl;
-  cout << Solution().reverseParentheses("a(bcdefghijkl(mno)p)q") << endl;
-}
+ private:
+  void reverse(std::string& s) {
+    int n = s.size();
+    for (int i = 0; i < n / 2; ++i) {
+      std::swap(s[i], s[n - i - 1]);
+    }
+  }
+};

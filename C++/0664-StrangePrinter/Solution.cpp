@@ -1,34 +1,10 @@
 #include <algorithm>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
 #include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-using namespace std;
 class Solution {
- private:
-  string removeConsecutive(string const& s) {
-    string result;
-    int i = 0;
-    while (i < s.length()) {
-      char c = s[i++];
-      result += c;
-
-      // Skip consecutive occurences
-      while (i < s.length() && s[i] == c) {
-        ++i;
-      }
-    }
-    return result;
-  }
-
  public:
-  int strangePrinter(string s) {
+  int strangePrinter(std::string s) {
     // if all contiguous, then only one turn is required to print out that
     // sequence.
     s = removeConsecutive(s);
@@ -42,7 +18,7 @@ class Solution {
     //  min(dp[i][k], dp[k + 1][j]) for all i <= k < j,
     //  dp[i][j - 1] if s[i] == s[j]
     // )
-    vector<vector<int>> dp(n, vector<int>(n, 0));
+    std::vector<std::vector<int>> dp(n, std::vector<int>(n, 0));
 
     // Base case: Substring of length 1
     for (int i = 0; i < n; ++i) {
@@ -64,10 +40,26 @@ class Solution {
 
           // If the characters at i and j / start and end of the substring
           // matches, an extra turn can be saved
-          dp[i][j] = min(dp[i][j], s[i] == s[j] ? turns - 1 : turns);
+          dp[i][j] = std::min(dp[i][j], s[i] == s[j] ? turns - 1 : turns);
         }
       }
     }
     return dp[0][n - 1];
+  }
+
+ private:
+  std::string removeConsecutive(const std::string& s) {
+    std::string result;
+    int i = 0;
+    while (i < s.length()) {
+      char c = s[i++];
+      result += c;
+
+      // Skip consecutive occurences
+      while (i < s.length() && s[i] == c) {
+        ++i;
+      }
+    }
+    return result;
   }
 };

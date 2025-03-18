@@ -2,22 +2,21 @@
 #include <cstddef>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  int countSquares(vector<vector<int>>& matrix) {
+  int countSquares(std::vector<std::vector<int>>& matrix) {
     // Seems similar to LC 221 - Maximal Square, except instead of determining
     // the largest square, count the number of squares with '1's.
     // Let dp[i][j] represent the count of squares with their right-corner
     // ending at (i, j).
-    const size_t rows = matrix.size();
-    const size_t cols = matrix[0].size();
+    const std::size_t rows = matrix.size();
+    const std::size_t cols = matrix[0].size();
 
-    vector<vector<int>> dp(rows + 1, vector<int>(cols + 1, 0));
+    std::vector<std::vector<int>> dp(rows + 1, std::vector<int>(cols + 1, 0));
 
     int count = 0;
-    for (size_t i = 1; i <= rows; ++i) {
-      for (size_t j = 1; j <= cols; ++j) {
+    for (std::size_t i = 1; i <= rows; ++i) {
+      for (std::size_t j = 1; j <= cols; ++j) {
         if (matrix[i - 1][j - 1] == 0) {
           continue;
         }

@@ -1,18 +1,7 @@
-#include <algorithm>
 #include <array>
-#include <bitset>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <memory>
-#include <queue>
-#include <stack>
 #include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-using namespace std;
 struct TrieNode {
   bool isWord;
   int32_t count;
@@ -54,18 +43,17 @@ class Trie {
 };
 
 class Solution {
- private:
  public:
-  vector<int> sumPrefixScores(const vector<string>& words) {
+  std::vector<int> sumPrefixScores(const std::vector<std::string>& words) {
     Trie trie{};
 
     for (const std::string& word : words) {
       trie.insert(word);
     }
 
-    const size_t n = words.size();
+    const std::size_t n = words.size();
     std::vector<int> count(n);
-    for (size_t i = 0; i < n; ++i) {
+    for (std::size_t i = 0; i < n; ++i) {
       count[i] = trie.countPrefixes(words[i]);
     }
 

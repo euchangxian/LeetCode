@@ -1,13 +1,7 @@
-#include <algorithm>
-#include <climits>
-#include <functional>
-#include <iostream>
 #include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
+
+#ifdef LOCAL
 struct TreeNode {
   int val;
   TreeNode* left;
@@ -18,19 +12,19 @@ struct TreeNode {
   TreeNode(int x, TreeNode* left, TreeNode* right)
       : val(x), left(left), right(right) {}
 };
+#endif  // LOCAL
 
-using namespace std;
 class Solution {
  public:
-  vector<int> rightSideView(TreeNode* root) {
+  std::vector<int> rightSideView(TreeNode* root) {
     if (!root) {
       return {};
     }
 
-    vector<int> result;
+    std::vector<int> result;
     result.reserve(100);
 
-    queue<TreeNode*> level;
+    std::queue<TreeNode*> level;
     level.push(root);
     while (!level.empty()) {
       int size = level.size();

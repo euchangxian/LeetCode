@@ -2,6 +2,7 @@
 #include <stack>
 #include <vector>
 
+#ifdef LOCAL
 struct TreeNode {
   int val;
   TreeNode* left;
@@ -11,8 +12,7 @@ struct TreeNode {
   TreeNode(int x, TreeNode* left, TreeNode* right)
       : val(x), left(left), right(right) {}
 };
-
-using namespace std;
+#endif  // LOCAL
 
 /**
  * Represents an iterator over the in-order traversal of a Binary SEARCH Tree.
@@ -28,18 +28,6 @@ using namespace std;
  * space.
  */
 class BSTIterator {
- private:
-  int idx;
-  vector<int> inorder;
-  std::stack<TreeNode*> callStack;
-
-  void traverseLeft(TreeNode* root) {
-    while (root) {
-      callStack.push(root);
-      root = root->left;
-    }
-  }
-
  public:
   /**
    * The pointer should be initialized to a non-existent number smaller than
@@ -71,6 +59,18 @@ class BSTIterator {
    * the pointer.
    */
   bool hasNext() { return !callStack.empty(); }
+
+ private:
+  int idx;
+  std::vector<int> inorder;
+  std::stack<TreeNode*> callStack;
+
+  void traverseLeft(TreeNode* root) {
+    while (root) {
+      callStack.push(root);
+      root = root->left;
+    }
+  }
 };
 
 /**

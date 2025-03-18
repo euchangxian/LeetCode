@@ -3,10 +3,9 @@
 #include <stack>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  int validSubarraySize(vector<int>& nums, int threshold) {
+  int validSubarraySize(std::vector<int>& nums, int threshold) {
     // First glance looks like a sliding window.
     // {2, 3, 4, 3, 1}, threshold = 8
     // Adjusting the window size is not straightforward though.
@@ -75,7 +74,7 @@ class Solution {
     // transform nums to represent the minimum size of the subarray necessary.
     // x > threshold / nums[i] => x >= threshold/nums[i] + 1
     // + 1 to deal with integer division AND strictly greater than condition.
-    for (size_t i = 0; i < nums.size(); ++i) {
+    for (std::size_t i = 0; i < nums.size(); ++i) {
       nums[i] = threshold / nums[i] + 1;
     }
 
@@ -83,16 +82,16 @@ class Solution {
     // smaller element.
     // Stores {val, count}, where count indicates how many elements up till
     // the current element is in the subarray, i.e., greater than this element.
-    std::stack<pair<int, size_t>> stk;
+    std::stack<std::pair<int, std::size_t>> stk;
 
     // sentinel value to ensure any elements at the end of the iteration is
     // processed.
     nums.push_back(INT_MAX);
 
-    for (size_t i = 0; i < nums.size(); ++i) {
+    for (std::size_t i = 0; i < nums.size(); ++i) {
       // 0 instead of 1, since we dont want to include the current element
       // yet.
-      size_t count = 0;
+      std::size_t count = 0;
       while (!stk.empty() && stk.top().first < nums[i]) {
         const auto [topSize, topCount] = stk.top();
         stk.pop();

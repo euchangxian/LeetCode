@@ -1,17 +1,8 @@
-#include <algorithm>
 #include <array>
-#include <climits>
+#include <bitset>
 #include <cstdint>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-using namespace std;
 // 1 <= userID, followerID, followeeID <= 500. i.e., number of users <= 500
 constexpr uint16_t USERS = 500;
 
@@ -19,18 +10,6 @@ constexpr uint16_t USERS = 500;
 constexpr uint16_t TWEETS = 10000;
 
 class Twitter {
- private:
-  // counts the number of times postTweet was invoked. This is so we can
-  // order the tweets created from most recent to least recent
-  // Also acts as a pointer to the tweets array
-  uint16_t time;
-
-  // userID and the list of Users that they are following
-  array<bitset<USERS>, USERS> following;
-
-  // {tweetID, userID}
-  array<pair<uint16_t, uint16_t>, TWEETS> tweets;
-
  public:
   Twitter() : time(0), following({}), tweets({}) {
     for (int i = 0; i < USERS; ++i) {
@@ -49,14 +28,14 @@ class Twitter {
   // themself.
   // Ordered from most recent to least recent
   // Will need to check if the user is currently following the tweet-poster.
-  vector<int> getNewsFeed(int userId) {
-    vector<int> topFeed;
+  std::vector<int> getNewsFeed(int userId) {
+    std::vector<int> topFeed;
     topFeed.reserve(10);
 
     // time must be casted to signed int to prevent wrap-around
     for (int16_t i = static_cast<int16_t>(time) - 1;
          i >= 0 && topFeed.size() < 10; --i) {
-      auto const& [tweetId, posterId] = tweets[i];
+      const auto& [tweetId, posterId] = tweets[i];
       if (following[userId].test(posterId)) {
         topFeed.push_back(tweetId);
       }
@@ -77,6 +56,18 @@ class Twitter {
       following[followerId].reset(followeeId);
     }
   }
+
+ private:
+  // counts the number of times postTweet was invoked. This is so we can
+  // order the tweets created from most recent to least recent
+  // Also acts as a pointer to the tweets array
+  uint16_t time;
+
+  // userID and the list of Users that they are following
+  std::array<std::bitset<USERS>, USERS> following;
+
+  // {tweetID, userID}
+  std::array<std::pair<uint16_t, uint16_t>, TWEETS> tweets;
 };
 
 /**

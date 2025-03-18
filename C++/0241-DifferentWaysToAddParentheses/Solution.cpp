@@ -1,20 +1,9 @@
-#include <algorithm>
-#include <array>
-#include <bitset>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
 #include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  vector<int> diffWaysToCompute(string expression) {
+  std::vector<int> diffWaysToCompute(std::string expression) {
     // Starting small, consider the most simple expression:
     // "2" - There is only one way to compute this, which is 2
     // "2+2" - Only one way: (2 + 2) = 4
@@ -24,8 +13,9 @@ class Solution {
     //                        2 + ((2 * 3) - 4) = 4, 2 + (2 * (3 - 4)) = 0
     //                        (2 + 2) * (3 - 4) = -4
     // Naively, the pattern seems to be like:
-    // 1. If expression is empty, return an empty vector
-    // 2. If expression.length() == 1 or 2, return a vector containing the digit
+    // 1. If expression is empty, return an empty std::vector
+    // 2. If expression.length() == 1 or 2, return a std::vector containing the
+    // digit
     // 3. Otherwise, traverse the expression, splitting it at operators,
     //    e.g., for "2+2*3", recurse("2"), giving {2},
     //          recurse("2*3") = recurse("2") * recurse("3") = {6}
@@ -35,18 +25,19 @@ class Solution {
     //          Combine to get {12}
     //          Combine {8} and {12} to get {8, 12}
     //
-    const size_t n = expression.length();
+    const std::size_t n = expression.length();
 
     // dp[i][j] represents the different ways to compute expression[start:end]
-    vector<vector<vector<int>>> dp(n, vector<vector<int>>(n));
+    std::vector<std::vector<std::vector<int>>> dp(
+        n, std::vector<std::vector<int>>(n));
 
     // Base cases.
     for (int i = 0; i < n; ++i) {
-      if (isdigit(expression[i])) {
+      if (std::isdigit(expression[i])) {
         int digit1 = expression[i] - '0';
         dp[i][i] = {digit1};
 
-        if (i + 1 < n && isdigit(expression[i + 1])) {
+        if (i + 1 < n && std::isdigit(expression[i + 1])) {
           dp[i][i + 1] = {(digit1 * 10) + (expression[i + 1] - '0')};
         }
       }
@@ -59,15 +50,15 @@ class Solution {
 
         // Iterate through the substring, splitting at operators
         for (int i = start; i <= end; ++i) {
-          if (isdigit(expression[i])) {
+          if (std::isdigit(expression[i])) {
             continue;
           }
 
-          vector<int>& left = dp[start][i - 1];
-          vector<int>& right = dp[i + 1][end];
+          std::vector<int>& left = dp[start][i - 1];
+          std::vector<int>& right = dp[i + 1][end];
 
-          for (const int& l : left) {
-            for (const int& r : right) {
+          for (const int l : left) {
+            for (const int r : right) {
               switch (expression[i]) {
                 case '+':
                   dp[start][end].push_back(l + r);
@@ -92,12 +83,14 @@ class Solution {
   // O(n * 2^n) time. Still dominated by the recursive split on each operator
   // O(n^2 + 2^n) space. Extra n^2 to store memo array
   //
-  // vector<vector<vector<int>>> memo(n, vector<vector<int>>(n));
-  // return diffWaysMemo(expression, memo, 0, n - 1);
-  vector<int> diffWaysMemo(const string& expression,
-                           vector<vector<vector<int>>>& memo,
-                           int start,
-                           int end) {
+  // std::vector<std::vector<std::vector<int>>> memo(n,
+  // std::vector<std::vector<int>>(n)); return diffWaysMemo(expression, memo, 0,
+  // n - 1);
+  std::vector<int> diffWaysMemo(
+      const std::string& expression,
+      std::vector<std::vector<std::vector<int>>>& memo,
+      int start,
+      int end) {
     if (!memo[start][end].empty()) {
       return memo[start][end];
     }
@@ -107,21 +100,21 @@ class Solution {
     }
 
     if (end - start + 1 < 3) {
-      return {stoi(expression.substr(start, end - start + 1))};
+      return {std::stoi(expression.substr(start, end - start + 1))};
     }
 
-    vector<int> result;
+    std::vector<int> result;
     for (int i = start; i <= end; ++i) {
-      if (isdigit(expression[i])) {
+      if (std::isdigit(expression[i])) {
         continue;
       }
 
       // split on operators
-      vector<int> left = diffWaysMemo(expression, memo, start, i - 1);
-      vector<int> right = diffWaysMemo(expression, memo, i + 1, end);
+      std::vector<int> left = diffWaysMemo(expression, memo, start, i - 1);
+      std::vector<int> right = diffWaysMemo(expression, memo, i + 1, end);
 
-      for (const int& l : left) {
-        for (const int& r : right) {
+      for (const int l : left) {
+        for (const int r : right) {
           switch (expression[i]) {
             case '+':
               result.push_back(l + r);
@@ -146,27 +139,29 @@ class Solution {
   // O(n * 2^n) time
   // O(2^n) space
   // diffWaysNaive(expression, 0, n - 1);
-  vector<int> diffWaysNaive(const string& expression, int start, int end) {
+  std::vector<int> diffWaysNaive(const std::string& expression,
+                                 int start,
+                                 int end) {
     if (start > end) {
       return {};
     }
 
     if (end - start + 1 < 3) {
-      return {stoi(expression.substr(start, end - start + 1))};
+      return {std::stoi(expression.substr(start, end - start + 1))};
     }
 
-    vector<int> result;
+    std::vector<int> result;
     for (int i = start; i <= end; ++i) {
-      if (isdigit(expression[i])) {
+      if (std::isdigit(expression[i])) {
         continue;
       }
 
       // split on operators
-      vector<int> left = diffWaysNaive(expression, start, i - 1);
-      vector<int> right = diffWaysNaive(expression, i + 1, end);
+      std::vector<int> left = diffWaysNaive(expression, start, i - 1);
+      std::vector<int> right = diffWaysNaive(expression, i + 1, end);
 
-      for (const int& l : left) {
-        for (const int& r : right) {
+      for (const int l : left) {
+        for (const int r : right) {
           switch (expression[i]) {
             case '+':
               result.push_back(l + r);

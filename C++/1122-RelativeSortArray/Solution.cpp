@@ -1,18 +1,18 @@
 #include <unordered_map>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  vector<int> relativeSortArray(vector<int>& arr1, vector<int>& arr2) {
-    unordered_map<int, int> freq;
+  std::vector<int> relativeSortArray(std::vector<int>& arr1,
+                                     std::vector<int>& arr2) {
+    std::unordered_map<int, int> freq;
     for (int num : arr2) {
       ++freq[num];
     }
 
     int i = 0;
     int j = arr2.size();
-    vector<int> result = vector<int>(arr1.size());
+    std::vector<int> result = std::vector<int>(arr1.size());
     for (int num : arr1) {
       if (freq[num]) {
         result[i] = num;

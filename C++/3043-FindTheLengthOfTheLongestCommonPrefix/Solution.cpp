@@ -36,7 +36,7 @@ class Trie {
   std::unique_ptr<TrieNode> root;
 
   // No need to handle x = 0. Constraints guarantee x is positive.
-  inline int numDigits(const int x) const {
+  int numDigits(const int x) const {
     return static_cast<int>(std::floor(std::log10(x)) + 1);
   }
 
@@ -81,10 +81,9 @@ class Trie {
   }
 };
 
-using namespace std;
 class Solution {
  public:
-  int longestCommonPrefix(vector<int>& arr1, vector<int>& arr2) {
+  int longestCommonPrefix(std::vector<int>& arr1, std::vector<int>& arr2) {
     // positive integers in arr1 and arr2
     // Find largest common prefix all of pairs. At least O(nm) to compare
     // each element of arr1 to each element of arr2. isPrefix check should be

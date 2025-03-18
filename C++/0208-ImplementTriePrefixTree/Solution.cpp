@@ -1,32 +1,19 @@
-#include <algorithm>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-using namespace std;
 class TrieNode {
  public:
   bool isWord;
-  vector<TrieNode*> children;
+  std::vector<TrieNode*> children;
   TrieNode() : isWord(false), children(26, nullptr) {}
 };
 
 class Trie {
- private:
-  TrieNode* root;
-
  public:
   Trie() : root(new TrieNode()) {};
 
-  void insert(string word) {
+  void insert(std::string_view word) {
     TrieNode* iter = root;
-    for (auto const& c : word) {
+    for (char c : word) {
       if (!iter->children[c - 'a']) {
         iter->children[c - 'a'] = new TrieNode();
       }
@@ -35,9 +22,9 @@ class Trie {
     iter->isWord = true;
   }
 
-  bool search(string word) {
+  bool search(std::string_view word) {
     TrieNode* iter = root;
-    for (auto const& c : word) {
+    for (char c : word) {
       if (!iter->children[c - 'a']) {
         return false;
       }
@@ -46,9 +33,9 @@ class Trie {
     return iter->isWord;
   }
 
-  bool startsWith(string prefix) {
+  bool startsWith(std::string_view prefix) {
     TrieNode* iter = root;
-    for (auto const& c : prefix) {
+    for (char c : prefix) {
       if (!iter->children[c - 'a']) {
         return false;
       }
@@ -56,6 +43,9 @@ class Trie {
     }
     return true;
   }
+
+ private:
+  TrieNode* root;
 };
 
 /**

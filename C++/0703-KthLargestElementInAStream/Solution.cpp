@@ -1,15 +1,7 @@
-#include <algorithm>
-#include <climits>
 #include <functional>
-#include <iostream>
 #include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-using namespace std;
 class KthLargest {
   // Create a min-heap where the kth largest element is at the top,
   // subsequent elements are all larger.
@@ -17,12 +9,12 @@ class KthLargest {
   // the kth element from the back. Adding a smaller element to the array
   // than the kth element will not affect the position of the kth largest
   // element
-  priority_queue<int, vector<int>, greater<int>> stream;
+  std::priority_queue<int, std::vector<int>, std::greater<int>> stream;
   int k;
 
  public:
-  KthLargest(int k, vector<int>& nums) : k(k) {
-    for (auto const& num : nums) {
+  KthLargest(int k, std::vector<int>& nums) : k(k) {
+    for (int num : nums) {
       stream.push(num);
       if (stream.size() > k) {
         stream.pop();

@@ -1,18 +1,8 @@
-#include <algorithm>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  int subarraysDivByK(vector<int>& nums, int k) {
+  int subarraysDivByK(std::vector<int>& nums, int k) {
     // Very similar to 523: Continuous Subarray Sum
     // The goal is to find the number of subarrays that have sum divisible by k
     // That means: sum(nums[i:j]) / k == 0
@@ -34,13 +24,13 @@ class Solution {
     int n = nums.size();
     int prefixSum = 0;
 
-    vector<int> prefixModFreq(k);
+    std::vector<int> prefixModFreq(k);
 
     // Account for the case where the entire array is divisible by k
     prefixModFreq[0] = 1;
 
     int result = 0;
-    for (int const& num : nums) {
+    for (int num : nums) {
       prefixSum += num;
 
       // Add k to bring the result into the positive range

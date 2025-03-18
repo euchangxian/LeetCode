@@ -1,49 +1,6 @@
 #include <algorithm>
-#include <array>
-#include <bitset>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
-#include <vector>
 
-using namespace std;
 class Solution {
- private:
-  int countNodesBetween(int n, long long curr, long long next) const {
-    int nodes{0};
-    while (curr <= n) {
-      // Takes the minimum of the number of nodes from curr to n,
-      // and the number of nodes between curr and next
-      // The gap between curr and next widens by a factor of 10 each iteration.
-      // This is because each node has 10 children.
-      //
-      // E.g., n = 100, curr = 1, next = 2
-      //   iter=1: curr = 1, next = 2,     => min(100, 1) => nodes = 1
-      //   (accounts for the node 1 itself)
-      //
-      //   iter=2: curr = 10, next = 20,   => min(91, 10) => nodes = 11
-      //   (accounts for 10, 11, ... 19)
-      //
-      //   iter=3: curr = 100, next = 200, => min(1, 100) => nodes = 12
-      //   (accounts for the node 100)
-      //
-      // As demonstrated, the time complexity is O(logn) (base-10), since
-      // we avoid traversing each individual node to check if its less than
-      // or more than the kth children
-      nodes += min(static_cast<long long>(n + 1) - curr, next - curr);
-
-      curr *= 10;
-      next *= 10;
-    }
-
-    return nodes;
-  }
-
  public:
   int findKthNumber(int n, int k) {
     // Find kth smallest lexicographically. Seems rather simple considering
@@ -85,5 +42,36 @@ class Solution {
       }
     }
     return curr;
+  }
+
+ private:
+  int countNodesBetween(int n, long long curr, long long next) const {
+    int nodes{0};
+    while (curr <= n) {
+      // Takes the minimum of the number of nodes from curr to n,
+      // and the number of nodes between curr and next
+      // The gap between curr and next widens by a factor of 10 each iteration.
+      // This is because each node has 10 children.
+      //
+      // E.g., n = 100, curr = 1, next = 2
+      //   iter=1: curr = 1, next = 2,     => min(100, 1) => nodes = 1
+      //   (accounts for the node 1 itself)
+      //
+      //   iter=2: curr = 10, next = 20,   => min(91, 10) => nodes = 11
+      //   (accounts for 10, 11, ... 19)
+      //
+      //   iter=3: curr = 100, next = 200, => min(1, 100) => nodes = 12
+      //   (accounts for the node 100)
+      //
+      // As demonstrated, the time complexity is O(logn) (base-10), since
+      // we avoid traversing each individual node to check if its less than
+      // or more than the kth children
+      nodes += std::min(static_cast<long long>(n + 1) - curr, next - curr);
+
+      curr *= 10;
+      next *= 10;
+    }
+
+    return nodes;
   }
 };

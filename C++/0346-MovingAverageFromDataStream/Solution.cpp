@@ -1,9 +1,8 @@
 #include <cstddef>
 #include <deque>
 
-using namespace std;
 class MovingAverage {
-  const size_t capacity;
+  const std::size_t capacity;
 
   double windowSum;
   std::deque<int> window;

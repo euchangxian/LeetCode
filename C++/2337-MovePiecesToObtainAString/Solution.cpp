@@ -32,7 +32,7 @@ class Solution {
     // its expected position, when we encounter them:
     // for 'L': check i >= j indicating the L character can move left.
     // for 'R': check i <= j.
-    const size_t n = s.size();
+    const std::size_t n = s.size();
 
     int i = 0;
     int j = 0;

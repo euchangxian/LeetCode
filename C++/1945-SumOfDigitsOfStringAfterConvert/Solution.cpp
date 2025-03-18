@@ -1,33 +1,23 @@
-#include <algorithm>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
 #include <string>
-#include <unordered_map>
-#include <unordered_set>
-#include <vector>
 
-using namespace std;
 class Solution {
  public:
-  int getLucky(string s, int k) {
-    string transformed;
+  int getLucky(std::string s, int k) {
+    std::string transformed;
     transformed.reserve(s.length());
-    for (auto const& c : s) {
+    for (char c : s) {
       int digits = (c - 'a' + 1);
 
-      transformed += to_string(digits);
+      transformed += std::to_string(digits);
     }
 
     while (k--) {
       int sum = 0;
-      for (auto const& c : transformed) {
+      for (char c : transformed) {
         sum += c - '0';
       }
-      transformed = to_string(sum);
+      transformed = std::to_string(sum);
     }
-    return stoi(transformed);
+    return std::stoi(transformed);
   }
 };

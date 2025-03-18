@@ -5,10 +5,9 @@
 #include <utility>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  int maxSubArrayLen(vector<int>& nums, int k) {
+  int maxSubArrayLen(std::vector<int>& nums, int k) {
     // Initially thought of backtracking; but we want subarray, not a subseq.
     // Sliding window may be plausible. The naive one, which would involve
     // tracking a running sum is not plausible though, since its is not clear

@@ -4,14 +4,6 @@
 #include <vector>
 
 class Solution {
- private:
-  bool feasible(std::vector<int>& ribbons, int k, int len) {
-    for (int ribbon : ribbons) {
-      k -= (ribbon / len);
-    }
-    return k <= 0;
-  }
-
  public:
   int maxLength(std::vector<int>& ribbons, int k) {
     // binary search probably, where we want to seach for maxLength.
@@ -29,5 +21,13 @@ class Solution {
       }
     }
     return left;
+  }
+
+ private:
+  bool feasible(std::vector<int>& ribbons, int k, int len) {
+    for (int ribbon : ribbons) {
+      k -= (ribbon / len);
+    }
+    return k <= 0;
   }
 };

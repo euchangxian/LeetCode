@@ -2,7 +2,6 @@
 #include <string>
 #include <string_view>
 
-using namespace std;
 class Solution {
  public:
   bool rotateString(std::string_view s, std::string_view goal) {
@@ -13,7 +12,7 @@ class Solution {
     if (s.size() != goal.size()) {
       return false;
     }
-    const size_t n = s.size();
+    const std::size_t n = s.size();
 
     std::string str;
     str.reserve(2 * n - 1);

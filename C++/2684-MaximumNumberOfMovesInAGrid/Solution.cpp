@@ -3,14 +3,12 @@
 #include <cstddef>
 #include <vector>
 
-using namespace std;
-class Solution {
- private:
-  static constexpr std::array<std::pair<int, int>, 3> directions{
-      {{-1, 1}, {0, 1}, {1, 1}}};
+static constexpr std::array<std::pair<int, int>, 3> directions{
+    {{-1, 1}, {0, 1}, {1, 1}}};
 
+class Solution {
  public:
-  int maxMoves(vector<vector<int>>& grid) {
+  int maxMoves(std::vector<std::vector<int>>& grid) {
     // Can move diagonally up/down, and move right, as long as the value of the
     // destination cell is strictly greater.
     // No moving leftwards.
@@ -28,8 +26,8 @@ class Solution {
     //   for col in cols:
     //     update(neighbours of cell to the right)
     //     update(result)
-    const size_t rows = grid.size();
-    const size_t cols = grid[0].size();
+    const std::size_t rows = grid.size();
+    const std::size_t cols = grid[0].size();
 
     int result = 0;
     std::vector<std::vector<int>> dp(rows, std::vector<int>(cols, 0));
@@ -45,8 +43,8 @@ class Solution {
     // If row-order, then we would mark (r1, c1) = 8 as unreachable,
     // consequently, (r2, c2) would be unreachable. Thus, 0 would be wrongly
     // returned.
-    for (size_t c = 0; c < cols - 1; ++c) {
-      for (size_t r = 0; r < rows; ++r) {
+    for (std::size_t c = 0; c < cols - 1; ++c) {
+      for (std::size_t r = 0; r < rows; ++r) {
         if (c > 0 && dp[r][c] == 0) {
           // if not the first column, and the number of moves is still 0, then
           // it means that the cell was not reachable.

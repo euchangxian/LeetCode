@@ -1,21 +1,18 @@
-#include <algorithm>
 #include <climits>
-#include <iostream>
 #include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
+#include <utility>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
   // BFS for minimum path, remove all edges in the minimum path, then
   // BFS again (until the new value is strictly larger)
-  int secondMinimum(int n, vector<vector<int>>& edges, int time, int change) {
-    vector<vector<int>> adj(n);
-    for (auto const& edge : edges) {
+  int secondMinimum(int n,
+                    std::vector<std::vector<int>>& edges,
+                    int time,
+                    int change) {
+    std::vector<std::vector<int>> adj(n);
+    for (const auto& edge : edges) {
       int from = edge[0];
       int to = edge[1];
 
@@ -25,13 +22,13 @@ class Solution {
     }
 
     // Store shortest distance/time to the node
-    vector<int> dist1(n, INT_MAX);
+    std::vector<int> dist1(n, INT_MAX);
 
     // Store second-shortest distance/ time to the node
-    vector<int> dist2(n, INT_MAX);
+    std::vector<int> dist2(n, INT_MAX);
 
     // {node, numberOfTimesSeen}
-    queue<pair<int, int>> frontier;
+    std::queue<std::pair<int, int>> frontier;
     frontier.push({0, 1});
     dist1[0] = 0;
     while (!frontier.empty()) {
@@ -53,7 +50,7 @@ class Solution {
       // Add the time taken to traverse the edge
       timeTaken += time;
 
-      for (int const& neighbour : adj[node]) {
+      for (int neighbour : adj[node]) {
         if (dist1[neighbour] == INT_MAX) {
           // First time seeing node, update shortest time
           dist1[neighbour] = timeTaken;

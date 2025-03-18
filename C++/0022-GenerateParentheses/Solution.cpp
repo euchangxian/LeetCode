@@ -1,15 +1,6 @@
-#include <algorithm>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
 #include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-using namespace std;
 class Solution {
  private:
   int factorial(int n) {
@@ -32,15 +23,15 @@ class Solution {
   // f(3) = (f(0))f(2), (f(1))f(1), (f(2))f(0)
   // ...
   // f(n) = (f(0))f(n-1), (f(1))f(n-2), ..., (f(n-1))f(0)
-  vector<string> generateParenthesis(int n) {
-    vector<vector<string>> dp(n + 1);
-    dp[0] = vector<string>(1, "");
+  std::vector<std::string> generateParenthesis(int n) {
+    std::vector<std::vector<std::string>> dp(n + 1);
+    dp[0] = std::vector<std::string>(1, "");
 
     for (int i = 1; i <= n; ++i) {
       // For every combination of j, (i - 1 - j)
       for (int j = 0; j < i; ++j) {
-        for (string const& a : dp[j]) {
-          for (string const& b : dp[i - j - 1]) {
+        for (const std::string& a : dp[j]) {
+          for (const std::string& b : dp[i - j - 1]) {
             dp[i].push_back('(' + a + ')' + b);
           }
         }

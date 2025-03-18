@@ -1,18 +1,8 @@
-#include <algorithm>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  int searchInsert(vector<int>& nums, int target) {
+  int searchInsert(std::vector<int>& nums, int target) {
     // Given sorted nums, find the index k in nums such that
     // target <= nums[k]
     // i.e., Binary search the minimal value of k.

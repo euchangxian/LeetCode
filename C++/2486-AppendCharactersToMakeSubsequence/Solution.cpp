@@ -1,6 +1,5 @@
 #include <string>
 
-using namespace std;
 class Solution {
  public:
   // Returns the minimum number of characters that need to be appended to the
@@ -10,7 +9,7 @@ class Solution {
   // two choices (two strings).
   // The difference here is that we only need to consider t as a subseqeuence of
   // s.
-  int appendCharacters(string s, string t) {
+  int appendCharacters(std::string s, std::string t) {
     int ptrT = 0;
     for (int i = 0; i < s.size(); ++i) {
       if (s[i] == t[ptrT]) {

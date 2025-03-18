@@ -1,11 +1,10 @@
 #include <utility>
 #include <vector>
 
-using namespace std;
 class Solution {
  private:
-  void generatePermutations(vector<int>& nums,
-                            vector<vector<int>>& permutations,
+  void generatePermutations(std::vector<int>& nums,
+                            std::vector<std::vector<int>>& permutations,
                             int index) {
     if (index >= nums.size()) {
       permutations.push_back(nums);
@@ -13,16 +12,16 @@ class Solution {
     }
 
     for (int i = index; i < nums.size(); ++i) {
-      swap(nums[index], nums[i]);
+      std::swap(nums[index], nums[i]);
       generatePermutations(nums, permutations, index + 1);
-      swap(nums[index], nums[i]);
+      std::swap(nums[index], nums[i]);
     }
     return;
   }
 
  public:
-  vector<vector<int>> permute(vector<int>& nums) {
-    vector<vector<int>> permutations;
+  std::vector<std::vector<int>> permute(std::vector<int>& nums) {
+    std::vector<std::vector<int>> permutations;
     generatePermutations(nums, permutations, 0);
     return permutations;
   }

@@ -5,36 +5,14 @@
 #include <cstddef>
 #include <vector>
 
-using namespace std;
 using i64 = long long;
 
 constexpr int maxElems = 100001;
 const int maxRoot = std::sqrt(maxElems);
 
 class Solution {
- private:
-  int getStreak(std::bitset<maxElems>& set,
-                std::array<int, maxElems>& lss,
-                int curr) {
-    if (!set.test(curr)) {
-      return 0;
-    }
-
-    if (curr > maxRoot) {
-      return 1;
-    }
-
-    if (lss[curr] > 0) {
-      return lss[curr];
-    }
-
-    // No need to check for overflow; base case checks it already.
-    lss[curr] = 1 + getStreak(set, lss, curr * curr);
-    return lss[curr];
-  }
-
  public:
-  int longestSquareStreak(vector<int>& nums) {
+  int longestSquareStreak(std::vector<int>& nums) {
     // A subsequence is called a Streak if
     // - the length of the subsequence is at least 2,
     // - after sorting the subsequence, each element is the square of the
@@ -91,5 +69,26 @@ class Solution {
       maxStreak = std::max(maxStreak, getStreak(set, lss, i));
     }
     return maxStreak > 1 ? maxStreak : -1;
+  }
+
+ private:
+  int getStreak(std::bitset<maxElems>& set,
+                std::array<int, maxElems>& lss,
+                int curr) {
+    if (!set.test(curr)) {
+      return 0;
+    }
+
+    if (curr > maxRoot) {
+      return 1;
+    }
+
+    if (lss[curr] > 0) {
+      return lss[curr];
+    }
+
+    // No need to check for overflow; base case checks it already.
+    lss[curr] = 1 + getStreak(set, lss, curr * curr);
+    return lss[curr];
   }
 };

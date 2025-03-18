@@ -1,13 +1,6 @@
 #include <algorithm>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
-#include <vector>
+
+#ifdef LOCAL
 struct TreeNode {
   int val;
   TreeNode* left;
@@ -18,9 +11,16 @@ struct TreeNode {
   TreeNode(int x, TreeNode* left, TreeNode* right)
       : val(x), left(left), right(right) {}
 };
+#endif  // LOCAL
 
-using namespace std;
 class Solution {
+ public:
+  int diameterOfBinaryTree(TreeNode* root) {
+    int result = 0;
+    diameter(root, result);
+    return result;
+  }
+
  private:
   int diameter(TreeNode* curr, int& result) {
     if (!curr) {
@@ -30,14 +30,7 @@ class Solution {
     int left = diameter(curr->left, result);
     int right = diameter(curr->right, result);
 
-    result = max(result, left + right);
-    return 1 + max(left, right);
-  }
-
- public:
-  int diameterOfBinaryTree(TreeNode* root) {
-    int result = 0;
-    diameter(root, result);
-    return result;
+    result = std::max(result, left + right);
+    return 1 + std::max(left, right);
   }
 };

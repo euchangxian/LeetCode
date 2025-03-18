@@ -1,28 +1,19 @@
-#include <algorithm>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  vector<vector<int>> spiralMatrixIII(int rows,
-                                      int cols,
-                                      int rStart,
-                                      int cStart) {
-    vector<vector<int>> visited;
+  std::vector<std::vector<int>> spiralMatrixIII(int rows,
+                                                int cols,
+                                                int rStart,
+                                                int cStart) {
+    std::vector<std::vector<int>> visited;
     visited.reserve(rows * cols);
     visited.push_back({rStart, cStart});
 
     // Right, Down, Left, Up
     // Determined by iter
-    vector<pair<int, int>> directions = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+    std::vector<std::pair<int, int>> directions = {
+        {0, 1}, {1, 0}, {0, -1}, {-1, 0}};
 
     int iter = 0;
     while (true) {
@@ -31,7 +22,7 @@ class Solution {
       }
 
       int stride = (iter / 2) + 1;
-      auto const& [r, c] = directions[iter % 4];
+      const auto [r, c] = directions[iter % 4];
       for (int i = 0; i < stride; ++i) {
         rStart += r;
         cStart += c;

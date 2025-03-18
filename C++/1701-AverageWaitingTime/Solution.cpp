@@ -1,9 +1,9 @@
+#include <algorithm>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  double averageWaitingTime(vector<vector<int>>& customers) {
+  double averageWaitingTime(std::vector<std::vector<int>>& customers) {
     if (customers.size() < 1) {
       return 0;
     }
@@ -15,7 +15,7 @@ class Solution {
     for (int i = 0; i < customers.size(); ++i) {
       int arrival = customers[i][0];
       int waitingTime = customers[i][1];
-      nextIdleTime = max(arrival, nextIdleTime) + waitingTime;
+      nextIdleTime = std::max(arrival, nextIdleTime) + waitingTime;
 
       totalWaitingTime += nextIdleTime - arrival;
     }

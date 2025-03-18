@@ -1,43 +1,14 @@
-#include <algorithm>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
 #include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-using namespace std;
 class Solution {
- private:
-  void dfs(vector<vector<bool>> const& blocked,
-           vector<vector<bool>>& seen,
-           int r,
-           int c) {
-    if (r < 0 || c < 0 || r >= blocked.size() || c >= blocked[0].size() ||
-        blocked[r][c] || seen[r][c]) {
-      return;
-    }
-
-    seen[r][c] = 1;
-
-    // right, down, left, up
-    vector<pair<int, int>> neighbours = {
-        {r, c + 1}, {r + 1, c}, {r, c - 1}, {r - 1, c}};
-    for (auto const& [nr, nc] : neighbours) {
-      dfs(blocked, seen, nr, nc);
-    }
-    return;
-  }
-
  public:
-  int regionsBySlashes(vector<string>& grid) {
+  int regionsBySlashes(std::vector<std::string>& grid) {
     int n = grid.size();
 
     // 0 represents not blocked.
-    vector<vector<bool>> expandedGrid(3 * n, vector<bool>(3 * n, 0));
+    std::vector<std::vector<bool>> expandedGrid(3 * n,
+                                                std::vector<bool>(3 * n, 0));
 
     for (int i = 0; i < n; ++i) {
       for (int j = 0; j < n; ++j) {
@@ -62,7 +33,7 @@ class Solution {
     }
 
     // Perform DFS to find disjoint islands
-    vector<vector<bool>> seen(3 * n, vector<bool>(3 * n, 0));
+    std::vector<std::vector<bool>> seen(3 * n, std::vector<bool>(3 * n, 0));
     int regions = 0;
     for (int r = 0; r < 3 * n; ++r) {
       for (int c = 0; c < 3 * n; ++c) {
@@ -73,5 +44,26 @@ class Solution {
       }
     }
     return regions;
+  }
+
+ private:
+  void dfs(const std::vector<std::vector<bool>>& blocked,
+           std::vector<std::vector<bool>>& seen,
+           int r,
+           int c) {
+    if (r < 0 || c < 0 || r >= blocked.size() || c >= blocked[0].size() ||
+        blocked[r][c] || seen[r][c]) {
+      return;
+    }
+
+    seen[r][c] = 1;
+
+    // right, down, left, up
+    std::vector<std::pair<int, int>> neighbours = {
+        {r, c + 1}, {r + 1, c}, {r, c - 1}, {r - 1, c}};
+    for (const auto& [nr, nc] : neighbours) {
+      dfs(blocked, seen, nr, nc);
+    }
+    return;
   }
 };

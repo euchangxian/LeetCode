@@ -5,33 +5,6 @@
 #include <vector>
 
 class Solution {
- private:
-  // Sum of the elements in nums.
-  int offset;
-
-  int dfs(std::vector<std::vector<int>>& memo,
-          const std::vector<int>& nums,
-          const int target,
-          size_t idx,
-          int sum) {
-    if (idx >= nums.size()) {
-      if (sum == target) {
-        return 1;
-      }
-      return 0;
-    }
-
-    if (memo[idx][sum + offset] != INT_MIN) {
-      return memo[idx][sum + offset];
-    }
-
-    int subtract = dfs(memo, nums, target, idx + 1, sum - nums[idx]);
-    int add = dfs(memo, nums, target, idx + 1, sum + nums[idx]);
-
-    memo[idx][sum + offset] = add + subtract;
-    return memo[idx][sum + offset];
-  }
-
  public:
   int findTargetSumWays(const std::vector<int>& nums, const int target) {
     const size_t n{nums.size()};
@@ -105,5 +78,32 @@ class Solution {
                                        std::vector<int>(2 * sum + 1, INT_MIN));
 
     return dfs(memo, nums, target, 0, 0);
+  }
+
+ private:
+  // Sum of the elements in nums.
+  int offset;
+
+  int dfs(std::vector<std::vector<int>>& memo,
+          const std::vector<int>& nums,
+          const int target,
+          size_t idx,
+          int sum) {
+    if (idx >= nums.size()) {
+      if (sum == target) {
+        return 1;
+      }
+      return 0;
+    }
+
+    if (memo[idx][sum + offset] != INT_MIN) {
+      return memo[idx][sum + offset];
+    }
+
+    int subtract = dfs(memo, nums, target, idx + 1, sum - nums[idx]);
+    int add = dfs(memo, nums, target, idx + 1, sum + nums[idx]);
+
+    memo[idx][sum + offset] = add + subtract;
+    return memo[idx][sum + offset];
   }
 };

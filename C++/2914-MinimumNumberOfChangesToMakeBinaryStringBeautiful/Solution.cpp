@@ -2,7 +2,6 @@
 #include <cstdlib>
 #include <string_view>
 
-using namespace std;
 class Solution {
  public:
   int minChanges(std::string_view s) {

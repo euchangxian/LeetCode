@@ -2,10 +2,10 @@
 
 class MyCircularQueue {
  private:
-  const size_t mCapacity;
-  size_t mSize;
+  const std::size_t mCapacity;
+  std::size_t mSize;
 
-  size_t mBack;
+  std::size_t mBack;
   std::vector<int32_t> mBuf;
 
  public:

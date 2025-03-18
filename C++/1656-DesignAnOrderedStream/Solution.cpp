@@ -2,7 +2,6 @@
 #include <string>
 #include <vector>
 
-using namespace std;
 /**
  * Question is confusing. Its essentially a TCP buffer.
  * Receive message, if it is out of order, then buffer it.
@@ -15,10 +14,10 @@ class OrderedStream {
  public:
   OrderedStream(int n) : ptr(0), stream(n) {}
 
-  vector<string> insert(int idKey, string value) {
+  std::vector<std::string> insert(int idKey, std::string value) {
     stream[idKey - 1] = std::move(value);
 
-    vector<std::string> out;
+    std::vector<std::string> out;
     while (ptr < stream.size() && !stream[ptr].empty()) {
       // There is no need to keep ownership of the string anymore after it has
       // been consumed.

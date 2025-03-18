@@ -2,7 +2,6 @@
 #include <cstddef>
 #include <queue>
 
-using namespace std;
 /**
  * Use two Queues (FIFO) to implement a Stack (LIFO).
  * The idea is to exploit amortization.

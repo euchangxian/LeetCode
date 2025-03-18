@@ -3,10 +3,9 @@
 #include <utility>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  int removeElement(vector<int>& nums, int val) {
+  int removeElement(std::vector<int>& nums, int val) {
     // order of elements may be changed. Remove occurences of val.
     // simply swap
     int i = 0;

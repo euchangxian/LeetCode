@@ -1,39 +1,30 @@
-#include <algorithm>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-using namespace std;
-
+#ifdef LOCAL
 class Node {
  public:
   int val;
-  vector<Node*> children;
+  std::vector<Node*> children;
 
   Node() {}
 
   Node(int _val) { val = _val; }
 
-  Node(int _val, vector<Node*> _children) {
+  Node(int _val, std::vector<Node*> _children) {
     val = _val;
     children = _children;
   }
 };
+#endif  // LOCAL
 
 class Solution {
  private:
-  void traverse(Node* curr, vector<int>& order) {
+  void traverse(Node* curr, std::vector<int>& order) {
     if (!curr) {
       return;
     }
 
-    for (auto const& neighbour : curr->children) {
+    for (const auto& neighbour : curr->children) {
       traverse(neighbour, order);
     }
 
@@ -42,8 +33,8 @@ class Solution {
   }
 
  public:
-  vector<int> postorder(Node* root) {
-    vector<int> order;
+  std::vector<int> postorder(Node* root) {
+    std::vector<int> order;
     order.reserve(10e4);
     traverse(root, order);
     return order;

@@ -6,6 +6,7 @@
 #include <utility>
 #include <vector>
 
+#ifdef LOCAL
 struct TreeNode {
   int val;
   TreeNode* left;
@@ -16,6 +17,7 @@ struct TreeNode {
   TreeNode(int x, TreeNode* left, TreeNode* right)
       : val(x), left(left), right(right) {}
 };
+#endif  // LOCAL
 
 class Solution {
  public:

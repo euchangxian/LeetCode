@@ -1,21 +1,11 @@
 #include <algorithm>
-#include <array>
-#include <bitset>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <limits>
-#include <queue>
-#include <stack>
 #include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
 class Solution {
  public:
   int minExtraChar(std::string s, std::vector<std::string>& dictionary) {
-    const size_t n{s.length()};
+    const std::size_t n{s.length()};
 
     // Naively, let dp[i] represent the minimum extra characters left over by
     // breaking up s[:i].

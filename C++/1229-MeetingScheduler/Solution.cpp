@@ -3,12 +3,11 @@
 #include <queue>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  vector<int> minAvailableDuration(vector<vector<int>>& slots1,
-                                   vector<vector<int>>& slots2,
-                                   int duration) {
+  std::vector<int> minAvailableDuration(std::vector<std::vector<int>>& slots1,
+                                        std::vector<std::vector<int>>& slots2,
+                                        int duration) {
     // Notice that the problem constraints guarantee that the time slots of
     // the SAME person will not intersect. That means that if two time slots
     // intersect, they are guaranteed to be from different persons.
@@ -35,7 +34,9 @@ class Solution {
 
     // Use a minHeap; smallest element are at the back of the container, and
     // will be popped first.
-    std::priority_queue<vector<int>, vector<vector<int>>, greater<>> timeslots;
+    std::priority_queue<std::vector<int>, std::vector<std::vector<int>>,
+                        std::greater<>>
+        timeslots;
     for (const auto& interval : slots1) {
       if (interval[1] - interval[0] >= duration) {
         timeslots.push(interval);
@@ -63,20 +64,21 @@ class Solution {
     return {};
   }
 
-  vector<int> minAvailableDurationNaive(vector<vector<int>>& slots1,
-                                        vector<vector<int>>& slots2,
-                                        int duration) {
+  std::vector<int> minAvailableDurationNaive(
+      std::vector<std::vector<int>>& slots1,
+      std::vector<std::vector<int>>& slots2,
+      int duration) {
     // Sort by start times. Traverse both arrays, if the slots are overlapping
     // and the overlapped portion is at least of duration, then that is our
     // answer.
-    sort(slots1.begin(), slots1.end());
-    sort(slots2.begin(), slots2.end());
+    std::sort(slots1.begin(), slots1.end());
+    std::sort(slots2.begin(), slots2.end());
 
     size_t i = 0;
     size_t j = 0;
     while (i < slots1.size() && j < slots2.size()) {
-      const vector<int>& interval1 = slots1[i];
-      const vector<int>& interval2 = slots2[j];
+      const std::vector<int>& interval1 = slots1[i];
+      const std::vector<int>& interval2 = slots2[j];
 
       const int32_t start = std::max(interval1[0], interval2[0]);
       const int32_t end = std::min(interval1[1], interval2[1]);

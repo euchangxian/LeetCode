@@ -1,29 +1,26 @@
-#include <algorithm>
-#include <iostream>
+#include <cstdlib>
 #include <vector>
-
-using namespace std;
 
 class Solution {
  public:
-  int beautifulSubsets(vector<int>& nums, int k) {
+  int beautifulSubsets(std::vector<int>& nums, int k) {
     int beautifulSubsets = getBeautifulSubsets(nums, k);
     return beautifulSubsets;
   }
 
  private:
-  int getBeautifulSubsets(vector<int> const& nums, int k) {
-    vector<vector<int>> subsets;
-    vector<int> currSet;
+  int getBeautifulSubsets(const std::vector<int>& nums, int k) {
+    std::vector<std::vector<int>> subsets;
+    std::vector<int> currSet;
     int count = 0;
     getSubsets(nums, k, subsets, currSet, 0, count);
     return count - 1;  // empty set
   }
 
-  void getSubsets(vector<int> const& nums,
+  void getSubsets(const std::vector<int>& nums,
                   int k,
-                  vector<vector<int>>& subsets,
-                  vector<int>& currSet,
+                  std::vector<std::vector<int>>& subsets,
+                  std::vector<int>& currSet,
                   int start,
                   int& count) {
     if (start >= nums.size()) {
@@ -39,18 +36,12 @@ class Solution {
     }
   }
 
-  bool isBeautiful(vector<int> const& subset, int toAdd, int k) {
+  bool isBeautiful(const std::vector<int>& subset, int toAdd, int k) {
     for (int num : subset) {
-      if (abs(num - toAdd) == k) {
+      if (std::abs(num - toAdd) == k) {
         return false;
       }
     }
     return true;
   }
 };
-
-int main() {
-  vector<int> nums = {10, 4, 5, 7, 2, 1};
-  int k = 3;
-  cout << Solution().beautifulSubsets(nums, k) << endl;
-}

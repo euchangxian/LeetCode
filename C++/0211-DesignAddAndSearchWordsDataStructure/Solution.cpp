@@ -1,26 +1,17 @@
-#include <algorithm>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
+#include <string_view>
 #include <vector>
 
-using namespace std;
 class WordDictionary {
  private:
-  vector<WordDictionary*> children;
+  std::vector<WordDictionary*> children;
   bool isWord;
 
  public:
   WordDictionary() : isWord(false), children(26, nullptr) {}
 
-  void addWord(string word) {
+  void addWord(std::string_view word) {
     WordDictionary* iter = this;
-    for (auto const& c : word) {
+    for (char c : word) {
       if (!iter->children[c - 'a']) {
         iter->children[c - 'a'] = new WordDictionary();
       }
@@ -29,14 +20,14 @@ class WordDictionary {
     iter->isWord = true;
   }
 
-  bool search(string word) {
+  bool search(std::string_view word) {
     WordDictionary* iter = this;
     for (int i = 0; i < word.length(); ++i) {
       char c = word[i];
 
       if (c == '.') {
         bool hasWord = false;
-        for (auto const& child : iter->children) {
+        for (const auto& child : iter->children) {
           if (!child) {
             continue;
           }

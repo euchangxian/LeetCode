@@ -1,18 +1,11 @@
 #include <algorithm>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-using namespace std;
 class Solution {
  private:
-  bool canFinishWithinHours(vector<int> const& piles, int hours, int rate) {
+  bool canFinishWithinHours(const std::vector<int>& piles,
+                            int hours,
+                            int rate) {
     int timeTaken = 0;
     for (int i = 0; i < piles.size(); ++i) {
       // Overflow-safe round-up for integer division
@@ -22,7 +15,7 @@ class Solution {
   }
 
  public:
-  int minEatingSpeed(vector<int>& piles, int h) {
+  int minEatingSpeed(std::vector<int>& piles, int h) {
     // Monotonic property that enables Binary Search is less obvious.
     // In this case, we are searching for the minimum value of k - eating rate
     // that allows us to consume the piles of banana within h hours.
@@ -33,8 +26,8 @@ class Solution {
     // {1, k - 1}, Koko will not be able to finish the piles within h hours.
     // Then at {k, n}, Koko will be able to finish the piles.
     // As such, mapping the array of possible eating rate values to a boolean
-    // that determines whether Koko can finish eating within h hours, it
-    // will look like: {F, F, F, T, T, T, T, T}, where the first occurence of T
+    // that determines whether Koko can finish eating within h hours, it will
+    // look like: {F, F, F, T, T, T, T, T}, where the first occurence of T
     // corresponds to k.
     int maxRate = *max_element(piles.begin(), piles.end());
 

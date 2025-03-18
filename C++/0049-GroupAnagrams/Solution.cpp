@@ -2,21 +2,21 @@
 #include <unordered_map>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  vector<vector<string>> groupAnagrams(vector<string>& strs) {
-    unordered_map<string, vector<string>> groups;
+  std::vector<std::vector<std::string>> groupAnagrams(
+      std::vector<std::string>& strs) {
+    std::unordered_map<std::string, std::vector<std::string>> groups;
 
-    for (string s : strs) {
-      string sorted = s;
+    for (const std::string& s : strs) {
+      std::string sorted = s;
       sort(sorted.begin(), sorted.end());
 
       groups[sorted].push_back(s);
     }
 
-    vector<vector<string>> result;
-    for (auto const& [key, group] : groups) {
+    std::vector<std::vector<std::string>> result;
+    for (const auto& [key, group] : groups) {
       result.push_back(group);
     }
 

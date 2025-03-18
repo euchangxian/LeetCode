@@ -1,11 +1,10 @@
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  vector<int> productExceptSelf(vector<int>& nums) {
+  std::vector<int> productExceptSelf(std::vector<int>& nums) {
     int n = nums.size();
-    vector<int> postfixProduct = vector<int>(n, 1);
+    std::vector<int> postfixProduct = std::vector<int>(n, 1);
 
     for (int i = n - 2; i >= 0; --i) {
       postfixProduct[i] = postfixProduct[i + 1] * nums[i + 1];

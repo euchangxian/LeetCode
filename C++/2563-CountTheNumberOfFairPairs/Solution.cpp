@@ -4,27 +4,6 @@
 #include <vector>
 
 class Solution {
- private:
-  // - If sum < target: all pairs with left fixed and right moving leftward are
-  //   valid
-  // - If sum >= target: need to try a smaller right value
-  long long countPairsLessThan(std::vector<int>& nums, int limit) {
-    long long count = 0LL;
-    int l = 0;
-    int r = static_cast<int>(nums.size()) - 1;
-
-    while (l < r) {
-      int sum = nums[l] + nums[r];
-      if (sum < limit) {
-        count += r - l;
-        ++l;
-      } else {
-        --r;
-      }
-    }
-    return count;
-  }
-
  public:
   long long countFairPairs(std::vector<int>& nums, int lower, int upper) {
     // A pair (i, j) is fair if:
@@ -70,5 +49,26 @@ class Solution {
 
     return countPairsLessThan(nums, upper + 1) -
            countPairsLessThan(nums, lower);
+  }
+
+ private:
+  // - If sum < target: all pairs with left fixed and right moving leftward are
+  //   valid
+  // - If sum >= target: need to try a smaller right value
+  long long countPairsLessThan(std::vector<int>& nums, int limit) {
+    long long count = 0LL;
+    int l = 0;
+    int r = static_cast<int>(nums.size()) - 1;
+
+    while (l < r) {
+      int sum = nums[l] + nums[r];
+      if (sum < limit) {
+        count += r - l;
+        ++l;
+      } else {
+        --r;
+      }
+    }
+    return count;
   }
 };

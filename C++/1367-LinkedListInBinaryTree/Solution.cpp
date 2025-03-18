@@ -1,13 +1,4 @@
-#include <algorithm>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
-#include <vector>
+#ifdef LOCAL
 struct TreeNode {
   int val;
   TreeNode* left;
@@ -18,7 +9,9 @@ struct TreeNode {
   TreeNode(int x, TreeNode* left, TreeNode* right)
       : val(x), left(left), right(right) {}
 };
+#endif  // LOCAL
 
+#ifdef LOCAL
 struct ListNode {
   int val;
   ListNode* next;
@@ -26,25 +19,9 @@ struct ListNode {
   ListNode(int x) : val(x), next(nullptr) {}
   ListNode(int x, ListNode* next) : val(x), next(next) {}
 };
+#endif  // LOCAL
 
-using namespace std;
 class Solution {
- private:
-  bool isSame(ListNode* head, TreeNode* root) {
-    if (!head) {
-      return true;
-    }
-    if (!root) {
-      return false;
-    }
-
-    if (head->val != root->val) {
-      return false;
-    }
-
-    return isSame(head->next, root->left) || isSame(head->next, root->right);
-  }
-
  public:
   bool isSubPath(ListNode* head, TreeNode* root) {
     if (!head) {
@@ -59,5 +36,21 @@ class Solution {
     }
 
     return isSubPath(head, root->left) || isSubPath(head, root->right);
+  }
+
+ private:
+  bool isSame(ListNode* head, TreeNode* root) {
+    if (!head) {
+      return true;
+    }
+    if (!root) {
+      return false;
+    }
+
+    if (head->val != root->val) {
+      return false;
+    }
+
+    return isSame(head->next, root->left) || isSame(head->next, root->right);
   }
 };

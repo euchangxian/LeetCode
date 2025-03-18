@@ -1,10 +1,9 @@
 #include <unordered_map>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  int findCenter(vector<vector<int>>& edges) {
+  int findCenter(std::vector<std::vector<int>>& edges) {
     // The center must be contained in every edge, thus, it suffices to check
     // the first two edges
     if (edges[0][0] == edges[1][0] || edges[0][0] == edges[1][1]) {
@@ -13,8 +12,8 @@ class Solution {
     return edges[0][1];
   }
 
-  int findCenterSlow(vector<vector<int>>& edges) {
-    unordered_map<int, int> freq;
+  int findCenterSlow(std::vector<std::vector<int>>& edges) {
+    std::unordered_map<int, int> freq;
     for (auto edge : edges) {
       ++freq[edge[0]];
       ++freq[edge[1]];

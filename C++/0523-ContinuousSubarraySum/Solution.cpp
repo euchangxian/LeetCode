@@ -1,17 +1,9 @@
-#include <algorithm>
-#include <climits>
-#include <iostream>
-#include <queue>
-#include <stack>
-#include <string>
 #include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  bool checkSubarraySum(vector<int>& nums, int k) {
+  bool checkSubarraySum(std::vector<int>& nums, int k) {
     if (nums.size() < 2) {
       return false;
     }
@@ -28,7 +20,7 @@ class Solution {
     // (prefixSum(nums[:j]) % k - prefixSum(nums[:i]) % k) % k == 0
     // prefixSum(nums[:j]) % k == prefixSum(nums[:i]) % k
     int prefixSum = 0;
-    unordered_map<int, int> prefixMods = {{0, -1}};
+    std::unordered_map<int, int> prefixMods = {{0, -1}};
 
     for (int i = 0; i < n; ++i) {
       prefixSum += nums[i];

@@ -2,10 +2,9 @@
 #include <queue>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  vector<int> smallestRange(vector<vector<int>>& nums) {
+  std::vector<int> smallestRange(std::vector<std::vector<int>>& nums) {
     // nums[i] is sorted in non-decreasing order.
     // Breaking down to just two arrays, e.g.,
     // {4, 10, 15, 24, 26} and
@@ -56,20 +55,22 @@ class Solution {
     // However, it does not seem necessary to lookup the max value every
     // iteration. It will only change if the next element after incrementing
     // the minimum element ptr is greater.
-    const size_t k = nums.size();
+    const std::size_t k = nums.size();
 
-    vector<size_t> ptrs(k, 0);
+    std::vector<std::size_t> ptrs(k, 0);
 
     // {value, numsIdx}. Allows us to know which ptr to increment
-    priority_queue<pair<int, size_t>, vector<pair<int, size_t>>, greater<>>
+    std::priority_queue<std::pair<int, std::size_t>,
+                        std::vector<std::pair<int, std::size_t>>,
+                        std::greater<>>
         minHeap;
     int maxVal = INT_MIN;
-    for (size_t i = 0; i < k; ++i) {
+    for (std::size_t i = 0; i < k; ++i) {
       minHeap.emplace(nums[i][0], i);
-      maxVal = max(maxVal, nums[i][0]);
+      maxVal = std::max(maxVal, nums[i][0]);
     }
 
-    vector<int> result{0, INT_MAX};
+    std::vector<int> result{0, INT_MAX};
     while (minHeap.size() == k) {
       const auto [minVal, minPtr] = minHeap.top();
       minHeap.pop();
@@ -85,7 +86,7 @@ class Solution {
         const int nextElem = nums[minPtr][ptrs[minPtr]];
 
         minHeap.emplace(nextElem, minPtr);
-        maxVal = max(maxVal, nextElem);
+        maxVal = std::max(maxVal, nextElem);
       }
     }
 

@@ -1,28 +1,8 @@
-#include <algorithm>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
 #include <string>
-#include <unordered_map>
-#include <unordered_set>
-#include <vector>
 
-using namespace std;
 class Solution {
- private:
-  int euclidsGCD(int a, int b) {
-    if (b == 0) {
-      // if remainder is 0, return a which is the GCD
-      return a;
-    }
-
-    return euclidsGCD(b, a % b);
-  }
-
  public:
-  string fractionAddition(string expression) {
+  std::string fractionAddition(std::string expression) {
     int n = expression.length();
 
     // Running result;
@@ -41,7 +21,7 @@ class Solution {
         ++i;
       }
 
-      while (isdigit(expression[i])) {
+      while (std::isdigit(expression[i])) {
         currNumerator = (currNumerator * 10) + (expression[i] - '0');
         ++i;
       }
@@ -51,7 +31,7 @@ class Solution {
       // Skip '/'
       ++i;
 
-      while (isdigit(expression[i])) {
+      while (std::isdigit(expression[i])) {
         currDenominator = (currDenominator * 10) + (expression[i] - '0');
         ++i;
       }
@@ -62,10 +42,20 @@ class Solution {
     }
 
     // Reduce the fractions, using their GCD
-    int gcd = abs(euclidsGCD(numerator, denominator));
+    int gcd = std::abs(euclidsGCD(numerator, denominator));
 
     numerator /= gcd;
     denominator /= gcd;
-    return to_string(numerator) + '/' + to_string(denominator);
+    return std::to_string(numerator) + '/' + std::to_string(denominator);
+  }
+
+ private:
+  int euclidsGCD(int a, int b) {
+    if (b == 0) {
+      // if remainder is 0, return a which is the GCD
+      return a;
+    }
+
+    return euclidsGCD(b, a % b);
   }
 };

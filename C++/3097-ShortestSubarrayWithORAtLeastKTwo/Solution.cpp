@@ -7,28 +7,6 @@
 #include <vector>
 
 class Solution {
- private:
-  void updateTable(std::array<int, 32>& table,
-                   int num,
-                   std::function<int(int, int)> op) {
-    int i = 0;
-    while (num > 0) {
-      table[i] = op(table[i], (num & 1));
-      num >>= 1;
-      ++i;
-    }
-  }
-
-  int fromTable(std::array<int, 32>& table) {
-    int sum = 0;
-    for (int i = 0; i < table.size(); ++i) {
-      if (table[i]) {
-        sum |= (1 << i);
-      }
-    }
-    return sum;
-  }
-
  public:
   int minimumSubarrayLength(std::vector<int>& nums, int k) {
     // Find the length of the shortest special subarray of nums.
@@ -64,5 +42,27 @@ class Solution {
       }
     }
     return minLen == INT_MAX ? -1 : minLen;
+  }
+
+ private:
+  void updateTable(std::array<int, 32>& table,
+                   int num,
+                   std::function<int(int, int)> op) {
+    int i = 0;
+    while (num > 0) {
+      table[i] = op(table[i], (num & 1));
+      num >>= 1;
+      ++i;
+    }
+  }
+
+  int fromTable(std::array<int, 32>& table) {
+    int sum = 0;
+    for (int i = 0; i < table.size(); ++i) {
+      if (table[i]) {
+        sum |= (1 << i);
+      }
+    }
+    return sum;
   }
 };

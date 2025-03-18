@@ -1,19 +1,11 @@
-#include <algorithm>
-#include <climits>
 #include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
+#include <numeric>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  int chalkReplacer(vector<int>& chalk, int k) {
-    long long sum = reduce(chalk.begin(), chalk.end(), 0LL, plus<>{});
+  int chalkReplacer(std::vector<int>& chalk, int k) {
+    long long sum = std::reduce(chalk.begin(), chalk.end(), 0LL, std::plus<>{});
 
     // remaining
     k = (k % sum);

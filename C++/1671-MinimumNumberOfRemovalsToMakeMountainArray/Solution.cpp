@@ -2,37 +2,9 @@
 #include <cstddef>
 #include <vector>
 
-using namespace std;
 class Solution {
- private:
-  // O(nlogn)
-  std::vector<int> getLIS(const std::vector<int>& nums) {
-    const size_t n = nums.size();
-
-    // dp[i] represents the length of the longest increasing subsequence ENDING
-    // at index i.
-    std::vector<int> dp(n, 1);
-
-    std::vector<int> subseq;
-    subseq.reserve(n);
-    subseq.push_back(nums[0]);
-
-    for (size_t i = 1; i < n; ++i) {
-      if (nums[i] > subseq.back()) {
-        subseq.push_back(nums[i]);
-      } else {
-        // search for the first element in the subsequence that can be replaced
-        auto it = std::lower_bound(subseq.begin(), subseq.end(), nums[i]);
-        *it = nums[i];
-      }
-
-      dp[i] = subseq.size();
-    }
-    return dp;
-  }
-
  public:
-  int minimumMountainRemovals(vector<int>& nums) {
+  int minimumMountainRemovals(std::vector<int>& nums) {
     // nums is a mountain array iff:
     // - nums.length >= 3 (input constraints 3 <= nums.length <= 1000)
     // - there exists some i in [0..n-1] such that
@@ -53,7 +25,7 @@ class Solution {
     // symmetrical. Therefore, a linear search would have to be done to find the
     // maximum LIS/LDS ending/starting at each index, so that we can minimize
     // the number of elements removed.
-    const size_t n = nums.size();
+    const std::size_t n = nums.size();
 
     std::vector<int> lis = getLIS(nums);
 
@@ -67,7 +39,7 @@ class Solution {
 
     int maxMountainSize = 0;
     // Skip both first and last element.
-    for (size_t i = 1; i < n - 1; ++i) {
+    for (std::size_t i = 1; i < n - 1; ++i) {
       // Ensure that there is a corresponding increasing sequence before i,
       // and a decreasing sequence after i.
       if (lis[i] > 1 && lds[i] > 1) {
@@ -77,5 +49,32 @@ class Solution {
     }
 
     return n - maxMountainSize;
+  }
+
+ private:
+  // O(nlogn)
+  std::vector<int> getLIS(const std::vector<int>& nums) {
+    const std::size_t n = nums.size();
+
+    // dp[i] represents the length of the longest increasing subsequence ENDING
+    // at index i.
+    std::vector<int> dp(n, 1);
+
+    std::vector<int> subseq;
+    subseq.reserve(n);
+    subseq.push_back(nums[0]);
+
+    for (std::size_t i = 1; i < n; ++i) {
+      if (nums[i] > subseq.back()) {
+        subseq.push_back(nums[i]);
+      } else {
+        // search for the first element in the subsequence that can be replaced
+        auto it = std::lower_bound(subseq.begin(), subseq.end(), nums[i]);
+        *it = nums[i];
+      }
+
+      dp[i] = subseq.size();
+    }
+    return dp;
   }
 };

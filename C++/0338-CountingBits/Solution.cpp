@@ -1,19 +1,9 @@
-#include <algorithm>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  vector<int> countBits(int n) {
-    vector<int> dp(n + 1);
+  std::vector<int> countBits(int n) {
+    std::vector<int> dp(n + 1);
     int mask = 1;
     for (int i = 1; i <= n; ++i) {
       if (mask << 1 == i) {

@@ -1,10 +1,9 @@
 #include <vector>
 
-using namespace std;
 class Solution {
  private:
-  bool isRowValid(vector<vector<char>> const& board, int row) {
-    vector<bool> present = vector<bool>(9, false);
+  bool isRowValid(std::vector<std::vector<char>> const& board, int row) {
+    std::vector<bool> present = std::vector<bool>(9, false);
     for (char num : board[row]) {
       if (num == '.') {
         continue;
@@ -17,8 +16,8 @@ class Solution {
     return true;
   }
 
-  bool isColValid(vector<vector<char>> const& board, int col) {
-    vector<bool> present = vector<bool>(9, false);
+  bool isColValid(std::vector<std::vector<char>> const& board, int col) {
+    std::vector<bool> present = std::vector<bool>(9, false);
     for (auto row : board) {
       if (row[col] == '.') {
         continue;
@@ -31,9 +30,11 @@ class Solution {
     return true;
   }
 
-  bool isBoxValid(vector<vector<char>> const& board, int row, int col) {
+  bool isBoxValid(std::vector<std::vector<char>> const& board,
+                  int row,
+                  int col) {
     // no bounds check. assume inputs are correct.
-    vector<bool> present = vector<bool>(9, false);
+    std::vector<bool> present = std::vector<bool>(9, false);
     for (int i = row; i < row + 3; ++i) {
       for (int j = col; j < col + 3; ++j) {
         if (board[i][j] == '.') {
@@ -49,7 +50,7 @@ class Solution {
   }
 
  public:
-  bool isValidSudoku(vector<vector<char>>& board) {
+  bool isValidSudoku(std::vector<std::vector<char>>& board) {
     for (int i = 0; i < 9; i += 3) {
       for (int j = 0; j < 9; j += 3) {
         bool boxResult = isBoxValid(board, i, j);

@@ -1,18 +1,9 @@
-#include <algorithm>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
 #include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  int numDecodings(string s) {
+  int numDecodings(std::string s) {
     if (s[0] == '0') {
       return 0;
     }
@@ -26,7 +17,7 @@ class Solution {
     // 1. decode 1 digit
     // 2. decode 2 digits.
     // For both cases, '0' cannot be leading
-    vector<int> dp(n + 1, 0);
+    std::vector<int> dp(n + 1, 0);
     dp[0] = 1;  // one way to decode 0 characters
     dp[1] = 1;  // the check above guarantees this is not a '0'.
     for (int i = 2; i < n + 1; ++i) {

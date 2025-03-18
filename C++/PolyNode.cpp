@@ -1,3 +1,4 @@
+#ifdef LOCAL
 struct PolyNode {
   int coefficient, power;
   PolyNode* next;
@@ -6,3 +7,4 @@ struct PolyNode {
   PolyNode(int x, int y, PolyNode* next)
       : coefficient(x), power(y), next(next) {};
 };
+#endif  // LOCAL

@@ -1,5 +1,4 @@
 #include <array>
-#include <climits>
 #include <cstddef>
 #include <cstdlib>
 #include <functional>
@@ -7,15 +6,13 @@
 #include <utility>
 #include <vector>
 
+constexpr std::array<std::array<int, 2>, 4> directions{{
+    {0, 1},
+    {1, 0},
+    {0, -1},
+    {-1, 0},
+}};
 class Solution {
- private:
-  static constexpr std::array<std::array<int, 2>, 4> directions{{
-      {0, 1},
-      {1, 0},
-      {0, -1},
-      {-1, 0},
-  }};
-
  public:
   int minimumTime(std::vector<std::vector<int>>& grid) {
     // seems like 778.Swim in Rising Water
@@ -63,8 +60,8 @@ class Solution {
 
     using Node = std::array<int, 3>;
 
-    const size_t m = grid.size();
-    const size_t n = grid[0].size();
+    const std::size_t m = grid.size();
+    const std::size_t n = grid[0].size();
 
     // represents the minimum time to reach the cell.
     std::vector<std::vector<char>> visited(m, std::vector<char>(n, false));

@@ -1,18 +1,8 @@
-#include <algorithm>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  int findDuplicate(vector<int>& nums) {
+  int findDuplicate(std::vector<int>& nums) {
     // The trick is to model the nums array as a Linked List, where the nodes
     // are the indices [0..n]. Edges would then be represented by nums[i],
     // where nums[i] represents a directed edge from i to nums[i].

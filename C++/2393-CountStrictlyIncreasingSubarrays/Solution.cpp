@@ -1,10 +1,9 @@
 #include <cstddef>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  long long countSubarrays(vector<int>& nums) {
+  long long countSubarrays(std::vector<int>& nums) {
     // First glance, looks like Sliding Window?
     // 1, 3, 5, 4, 4, 6
     // ^        ^          count += 1 + 2 + 3 = 6
@@ -18,7 +17,7 @@ class Solution {
 
     long long sum = 1;
     long long numIncreasing = 1;
-    for (size_t i = 1; i < nums.size(); ++i) {
+    for (std::size_t i = 1; i < nums.size(); ++i) {
       if (nums[i] <= nums[i - 1]) {
         numIncreasing = 0;  // restart
       }

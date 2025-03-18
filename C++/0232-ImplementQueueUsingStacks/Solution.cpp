@@ -1,7 +1,6 @@
 #include <cstddef>
 #include <stack>
 
-using namespace std;
 /**
  * FIFO(queue) using LIFO(stack).
  *

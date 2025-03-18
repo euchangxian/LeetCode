@@ -4,6 +4,7 @@
 #include <numeric>
 #include <vector>
 
+using i64 = long long;
 class Solution {
  public:
   int waysToSplitArray(std::vector<int>& nums) {
@@ -21,7 +22,6 @@ class Solution {
     // Assign this sum to the right subarray first.
     // Then, iterate over splits, include i in left subarray => exclude i in
     // right subarray.
-    using i64 = long long;
     i64 rightSum = std::reduce(nums.begin(), nums.end(), 0LL, std::plus<>{});
     i64 leftSum = 0LL;
 

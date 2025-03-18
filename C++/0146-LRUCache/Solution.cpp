@@ -1,49 +1,6 @@
-#include <algorithm>
-#include <array>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
-#include <string>
 #include <unordered_map>
-#include <unordered_set>
-#include <vector>
 
-using namespace std;
 class LRUCache {
- private:
-  struct Node {
-    int key;
-    int value;
-    Node* next;
-    Node* prev;
-
-    Node(int key, int value)
-        : key(key), value(value), next(nullptr), prev(nullptr) {}
-  };
-
-  const int capacity;
-
-  // Dummy nodes to simplify nullptr checks
-  Node* lru;
-  Node* mru;
-
-  unordered_map<int, Node*> cache;
-
-  void remove(Node* node) {
-    (node->prev)->next = node->next;
-    (node->next)->prev = node->prev;
-    return;
-  }
-
-  void insert(Node* node) {
-    node->prev = mru->prev;
-    node->next = mru;
-    (mru->prev)->next = node;
-    mru->prev = node;
-  }
-
  public:
   LRUCache(int capacity)
       : capacity(capacity), lru(new Node(-1, -1)), mru(new Node(-1, -1)) {
@@ -77,6 +34,38 @@ class LRUCache {
     // acceptable trade-off for cleaner code
     cache[key] = new Node(key, value);
     insert(cache[key]);
+  }
+
+ private:
+  struct Node {
+    int key;
+    int value;
+    Node* next;
+    Node* prev;
+
+    Node(int key, int value)
+        : key(key), value(value), next(nullptr), prev(nullptr) {}
+  };
+
+  const int capacity;
+
+  // Dummy nodes to simplify nullptr checks
+  Node* lru;
+  Node* mru;
+
+  std::unordered_map<int, Node*> cache;
+
+  void remove(Node* node) {
+    (node->prev)->next = node->next;
+    (node->next)->prev = node->prev;
+    return;
+  }
+
+  void insert(Node* node) {
+    node->prev = mru->prev;
+    node->next = mru;
+    (mru->prev)->next = node;
+    mru->prev = node;
   }
 };
 

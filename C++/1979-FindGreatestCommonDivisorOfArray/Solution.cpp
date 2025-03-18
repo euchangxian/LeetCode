@@ -1,16 +1,22 @@
 #include <algorithm>
 #include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-using namespace std;
 class Solution {
+ public:
+  int findGCD(std::vector<int>& nums) {
+    // nums.size() >= 2
+    int smallest = INT_MAX;
+    int largest = INT_MIN;
+
+    for (int num : nums) {
+      smallest = std::min(smallest, num);
+      largest = std::max(largest, num);
+    }
+
+    return euclidsGCDIterative(largest, smallest);
+  }
+
  private:
   // Divide a by b. Let the remainder be r. r = a % b
   // If r == 0, then b is the GCD of a and b
@@ -33,19 +39,5 @@ class Solution {
     }
 
     return euclidsGCDRecursive(b, a % b);
-  }
-
- public:
-  int findGCD(vector<int>& nums) {
-    // nums.size() >= 2
-    int smallest = INT_MAX;
-    int largest = INT_MIN;
-
-    for (auto const& num : nums) {
-      smallest = min(smallest, num);
-      largest = max(largest, num);
-    }
-
-    return euclidsGCDIterative(largest, smallest);
   }
 };

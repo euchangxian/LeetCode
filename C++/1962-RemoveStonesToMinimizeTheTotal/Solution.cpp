@@ -1,13 +1,14 @@
 #include <algorithm>
 #include <cstddef>
 #include <functional>
+#include <numeric>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  int minStoneSum(vector<int>& piles, int k) {
-    int remainingStones = std::reduce(piles.begin(), piles.end(), 0, plus<>{});
+  int minStoneSum(std::vector<int>& piles, int k) {
+    int remainingStones =
+        std::reduce(piles.begin(), piles.end(), 0, std::plus<>{});
 
     std::make_heap(piles.begin(), piles.end());
     while (k--) {

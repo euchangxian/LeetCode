@@ -1,28 +1,22 @@
-#include <algorithm>
-#include <climits>
 #include <functional>
-#include <iostream>
-#include <queue>
 #include <stack>
 #include <string>
 #include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-using namespace std;
 class Solution {
  private:
-  unordered_map<string, function<int(int, int)>> operations = {
-      {"+", plus<>()},
-      {"-", minus<>()},
-      {"*", multiplies<>()},
-      {"/", divides<>()}};
+  std::unordered_map<std::string, std::function<int(int, int)>> operations = {
+      {"+", std::plus<>()},
+      {"-", std::minus<>()},
+      {"*", std::multiplies<>()},
+      {"/", std::divides<>()}};
 
  public:
-  int evalRPN(vector<string>& tokens) {
-    stack<int> operands;
+  int evalRPN(std::vector<std::string>& tokens) {
+    std::stack<int> operands;
 
-    for (string const& token : tokens) {
+    for (const std::string& token : tokens) {
       if (operations.count(token)) {
         // Qn constraint means the equation is valid
         int op2 = operands.top();

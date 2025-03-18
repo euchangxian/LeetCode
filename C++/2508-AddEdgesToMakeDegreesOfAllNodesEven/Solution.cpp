@@ -2,25 +2,17 @@
 #include <unordered_set>
 #include <vector>
 
-using std::vector, std::unordered_set;
 class Solution {
- private:
-  bool canConnect(const vector<unordered_set<int32_t>>& hasEdge,
-                  const int32_t a,
-                  const int32_t b) {
-    return hasEdge[a].count(b) == 0 && hasEdge[b].count(a) == 0;
-  }
-
  public:
-  bool isPossible(int n, vector<vector<int>>& edges) {
+  bool isPossible(int n, std::vector<std::vector<int>>& edges) {
     // Adding an edge will increase the degree of two nodes.
     // Since we can only add 0, 1, or 2 edges, the number of odd-degree nodes
     // must be either 0, 2 or 4. Anything else will not be possible.
     // Also, repeated edges cannot be added. There cannot be two edges between
     // the same node.
     // Lazy to deal with 1-indexed n
-    vector<int32_t> degree(n + 1);
-    vector<unordered_set<int32_t>> hasEdge(n + 1);
+    std::vector<int32_t> degree(n + 1);
+    std::vector<std::unordered_set<int32_t>> hasEdge(n + 1);
 
     for (const auto& edge : edges) {
       ++degree[edge[0]];
@@ -32,7 +24,7 @@ class Solution {
     // Count the number of odd-degree nodes
     constexpr int32_t maxOdds = 4;
     constexpr int32_t isOdd = 1;
-    vector<int32_t> oddDegrees;
+    std::vector<int32_t> oddDegrees;
     oddDegrees.reserve(4);
     for (size_t i = 1; i <= n; ++i) {
       if (degree[i] & isOdd) {
@@ -96,5 +88,12 @@ class Solution {
     }
 
     return false;
+  }
+
+ private:
+  bool canConnect(const std::vector<std::unordered_set<int32_t>>& hasEdge,
+                  const int32_t a,
+                  const int32_t b) {
+    return hasEdge[a].count(b) == 0 && hasEdge[b].count(a) == 0;
   }
 };

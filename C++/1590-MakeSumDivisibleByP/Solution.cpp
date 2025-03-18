@@ -2,10 +2,9 @@
 #include <unordered_map>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  int minSubarray(vector<int>& nums, int p) {
+  int minSubarray(std::vector<int>& nums, int p) {
     // The sum of the subarrays to be removed is a multiple of the remainder,
     // sum = k * r, where k >= 0
     // In other words, find subarrays that are divisible by R. i.e. reducible
@@ -25,7 +24,7 @@ class Solution {
     }
 
     // Using a vector will result in OOM, since we are storing prefix mod p
-    unordered_map<int, int> mods;
+    std::unordered_map<int, int> mods;
     mods[0] = -1;
     int currSum = 0;
     int minLen = nums.size();
@@ -38,7 +37,7 @@ class Solution {
       int target = (currSum - remainder + p) % p;
 
       if (mods.count(target)) {
-        minLen = min(minLen, i - mods[target]);
+        minLen = std::min(minLen, i - mods[target]);
       }
       mods[currSum] = i;
     }

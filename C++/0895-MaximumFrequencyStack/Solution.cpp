@@ -29,15 +29,6 @@
  * at 2 times, and is in the frequency=2 group too.
  */
 class FreqStack {
- private:
-  int maxFreq{0};
-
-  // {val, freq}
-  std::unordered_map<int, int> frequency;
-
-  // {freq, stack}
-  std::unordered_map<int, std::vector<int>> groups;
-
  public:
   FreqStack() {}
 
@@ -63,6 +54,15 @@ class FreqStack {
     }
     return val;
   }
+
+ private:
+  int maxFreq{0};
+
+  // {val, freq}
+  std::unordered_map<int, int> frequency;
+
+  // {freq, stack}
+  std::unordered_map<int, std::vector<int>> groups;
 };
 
 /**

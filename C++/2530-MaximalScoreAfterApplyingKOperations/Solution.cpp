@@ -3,16 +3,15 @@
 #include <cstddef>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  long long maxKelements(vector<int>& nums, int k) {
+  long long maxKelements(std::vector<int>& nums, int k) {
     // Greedily choose the maximum element in each iteration? Top k elements?
     // Simulation works I guess.
     std::make_heap(nums.begin(), nums.end());
 
     long long score = 0LL;
-    for (size_t i = 0; i < k; ++i) {
+    for (std::size_t i = 0; i < k; ++i) {
       const int num = nums.front();
       std::pop_heap(nums.begin(), nums.end());
       // Instead of actually popping and potentially causing a reallocation,

@@ -1,19 +1,9 @@
-#include <algorithm>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
   // {4, 1, 2, 3}, {3, 4, 1, 2}, {2, 3, 4, 1}, {1, 2, 3, 4}
-  int findMin(vector<int>& nums) {
+  int findMin(std::vector<int>& nums) {
     // When the array is rotated k times, it causes the array to be splitted
     // into two SORTED subarrays, where elements in the left subarray {0, k - 1}
     // is greater than elements in the right subarray {k, n - 1}.

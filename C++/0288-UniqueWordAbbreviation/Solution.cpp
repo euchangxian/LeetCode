@@ -4,35 +4,16 @@
 #include <unordered_set>
 #include <vector>
 
-using namespace std;
 class ValidWordAbbr {
- private:
-  unordered_map<string, unordered_set<string>> dict;
-
-  string abbreviate(const string& word) {
-    const size_t len = word.length();
-    string key;
-    key += word.front();
-    if (len > 2) {
-      key += to_string(len);
-    }
-
-    if (len > 1) {
-      key += word.back();
-    }
-
-    return key;
-  }
-
  public:
-  ValidWordAbbr(vector<string>& dictionary) {
-    for (const string& word : dictionary) {
+  ValidWordAbbr(std::vector<std::string>& dictionary) {
+    for (const std::string& word : dictionary) {
       dict[abbreviate(word)].insert(word);
     }
   }
 
-  bool isUnique(string word) {
-    string abbrev = abbreviate(word);
+  bool isUnique(std::string word) {
+    std::string abbrev = abbreviate(word);
 
     auto iter = dict.find(abbrev);
     if (iter == dict.end()) {
@@ -47,6 +28,24 @@ class ValidWordAbbr {
     }
 
     return false;
+  }
+
+ private:
+  std::unordered_map<std::string, std::unordered_set<std::string>> dict;
+
+  std::string abbreviate(const std::string& word) {
+    const size_t len = word.length();
+    std::string key;
+    key += word.front();
+    if (len > 2) {
+      key += std::to_string(len);
+    }
+
+    if (len > 1) {
+      key += word.back();
+    }
+
+    return key;
   }
 };
 

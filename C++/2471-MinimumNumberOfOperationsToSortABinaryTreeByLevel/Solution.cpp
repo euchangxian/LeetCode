@@ -5,6 +5,7 @@
 #include <utility>
 #include <vector>
 
+#ifdef LOCAL
 struct TreeNode {
   int val;
   TreeNode* left;
@@ -15,43 +16,9 @@ struct TreeNode {
   TreeNode(int x, TreeNode* left, TreeNode* right)
       : val(x), left(left), right(right) {}
 };
+#endif  // LOCAL
 
 class Solution {
- private:
-  int minSwaps(std::vector<TreeNode*>& level) {
-    const int n = level.size();
-
-    // {value, originalIndex}
-    std::vector<std::pair<int, int>> positions(n);
-    for (int i = 0; i < n; ++i) {
-      positions[i] = {level[i]->val, i};
-    }
-    std::sort(positions.begin(), positions.end());
-
-    // cycle counting.
-    std::vector<bool> visited(n, false);
-    int swaps = 0;
-    for (int i = 0; i < n; ++i) {
-      if (visited[i] || positions[i].second == i) {
-        // already in correct positions/visited.
-        continue;
-      }
-
-      int cycleLength = 0;
-      int j = i;
-      while (!visited[j]) {
-        visited[j] = true;
-        j = positions[j].second;  // go to where this element should be at.
-        ++cycleLength;
-      }
-
-      // k-1 swaps for a cycle of length k.
-      swaps += (cycleLength - 1);
-    }
-
-    return swaps;
-  }
-
  public:
   int minimumOperations(TreeNode* root) {
     // In one operation: choose any two nodes at the same level and swap their
@@ -89,6 +56,41 @@ class Solution {
         frontier.push(std::move(nextFrontier));
       }
     }
+    return swaps;
+  }
+
+ private:
+  int minSwaps(std::vector<TreeNode*>& level) {
+    const int n = level.size();
+
+    // {value, originalIndex}
+    std::vector<std::pair<int, int>> positions(n);
+    for (int i = 0; i < n; ++i) {
+      positions[i] = {level[i]->val, i};
+    }
+    std::sort(positions.begin(), positions.end());
+
+    // cycle counting.
+    std::vector<bool> visited(n, false);
+    int swaps = 0;
+    for (int i = 0; i < n; ++i) {
+      if (visited[i] || positions[i].second == i) {
+        // already in correct positions/visited.
+        continue;
+      }
+
+      int cycleLength = 0;
+      int j = i;
+      while (!visited[j]) {
+        visited[j] = true;
+        j = positions[j].second;  // go to where this element should be at.
+        ++cycleLength;
+      }
+
+      // k-1 swaps for a cycle of length k.
+      swaps += (cycleLength - 1);
+    }
+
     return swaps;
   }
 };

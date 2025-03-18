@@ -1,28 +1,25 @@
-#include <algorithm>
+#include <array>
 #include <climits>
-#include <functional>
-#include <iostream>
 #include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-using namespace std;
-class Solution {
- private:
-  vector<pair<int, int>> directions = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+constexpr std::array<std::array<int, 2>, 4> directions{{
+    {0, 1},
+    {1, 0},
+    {0, -1},
+    {-1, 0},
+}};
 
+class Solution {
  public:
-  void islandsAndTreasure(vector<vector<int>>& grid) {
-    int const INF = INT_MAX;
+  void islandsAndTreasure(std::vector<std::vector<int>>& grid) {
+    const int INF = INT_MAX;
     int m = grid.size();
     int n = grid[0].size();
 
     // BFS from each Treasure cell. If not '-1' or '0', then update to min
     int landCells = 0;
-    queue<pair<int, int>> frontier;
+    std::queue<std::pair<int, int>> frontier;
     for (int i = 0; i < m; ++i) {
       for (int j = 0; j < n; ++j) {
         if (grid[i][j] == INF) {
@@ -44,7 +41,7 @@ class Solution {
         auto [r, c] = frontier.front();
         frontier.pop();
 
-        for (auto const& [dr, dc] : directions) {
+        for (const auto [dr, dc] : directions) {
           int nr = r + dr;
           int nc = c + dc;
 

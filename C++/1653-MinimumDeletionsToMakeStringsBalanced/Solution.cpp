@@ -1,22 +1,15 @@
 #include <algorithm>
-#include <climits>
-#include <iostream>
-#include <queue>
-#include <stack>
 #include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  int minimumDeletions(string s) {
+  int minimumDeletions(std::string s) {
     int n = s.length();
 
     // dp[i] represents the number of deletions required to balance
     // the substring s[0:i + 1]
-    vector<int> dp(n + 1, 0);
+    std::vector<int> dp(n + 1, 0);
     dp[0] = 0;
 
     // At each element, there are 2 choices, without loss of generality:
@@ -30,7 +23,7 @@ class Solution {
         continue;
       }
 
-      dp[i] = min(dp[i - 1] + 1, bees);
+      dp[i] = std::min(dp[i - 1] + 1, bees);
     }
     return dp[n];
   }

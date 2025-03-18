@@ -2,7 +2,6 @@
 #include <utility>
 #include <vector>
 
-using namespace std;
 /**
  * n x n 2D grid with distinct elements in the range [0..n^2 - 1]
  * Since we are indexing by the value, we need to map the value to their
@@ -13,6 +12,20 @@ using namespace std;
  * is minimal, and so is the tradeoffs in time.
  */
 class NeighborSum {
+ public:
+  NeighborSum(std::vector<std::vector<int>>& grid)
+      : grid(grid), indices(grid.size() * grid.size()) {
+    for (std::size_t i = 0; i < grid.size(); ++i) {
+      for (std::size_t j = 0; j < grid.size(); ++j) {
+        indices[grid[i][j]] = std::make_pair(i, j);
+      }
+    }
+  }
+
+  int adjacentSum(int value) { return neighbourSum(value, adjacent); }
+
+  int diagonalSum(int value) { return neighbourSum(value, diagonal); }
+
  private:
   static constexpr std::array<std::pair<int, int>, 4> adjacent = {
       {{0, 1}, {1, 0}, {0, -1}, {-1, 0}}};
@@ -20,7 +33,7 @@ class NeighborSum {
   static constexpr std::array<std::pair<int, int>, 4> diagonal = {
       {{1, 1}, {1, -1}, {-1, -1}, {-1, 1}}};
 
-  const std::vector<vector<int>> grid;
+  const std::vector<std::vector<int>> grid;
   std::vector<std::pair<int, int>> indices;
 
   int neighbourSum(int value,
@@ -39,20 +52,6 @@ class NeighborSum {
     }
     return sum;
   }
-
- public:
-  NeighborSum(vector<vector<int>>& grid)
-      : grid(grid), indices(grid.size() * grid.size()) {
-    for (size_t i = 0; i < grid.size(); ++i) {
-      for (size_t j = 0; j < grid.size(); ++j) {
-        indices[grid[i][j]] = std::make_pair(i, j);
-      }
-    }
-  }
-
-  int adjacentSum(int value) { return neighbourSum(value, adjacent); }
-
-  int diagonalSum(int value) { return neighbourSum(value, diagonal); }
 };
 
 /**

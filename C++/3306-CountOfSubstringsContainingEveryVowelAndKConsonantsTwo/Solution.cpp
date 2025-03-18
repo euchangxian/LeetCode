@@ -1,6 +1,5 @@
 #include <algorithm>
 #include <array>
-#include <iterator>
 #include <string_view>
 
 constexpr std::array<char, 5> vowels{{'a', 'e', 'i', 'o', 'u'}};

@@ -1,35 +1,23 @@
-#include <algorithm>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
+#include <utility>
 #include <vector>
 
-using namespace std;
 class UnionFind {
- private:
-  vector<int> parent;
-  vector<int> rank;
-  vector<int> size;
-
  public:
-  UnionFind(int n) : parent(n), rank(n), size(n, 1) {
+  UnionFind(int n) : components_(n), parent_(n), rank_(n, 0), size_(n, 1) {
     for (int i = 0; i < n; ++i) {
-      parent[i] = i;
+      parent_[i] = i;
     }
   }
 
   int find(int x) {
-    if (parent[x] != x) {
-      parent[x] = find(parent[x]);
+    if (parent_[x] != x) {
+      parent_[x] = find(parent_[x]);
     }
 
-    return parent[x];
+    return parent_[x];
   }
+
+  bool connected(int x, int y) { return find(x) == find(y); }
 
   void unite(int x, int y) {
     int rootX = find(x);
@@ -39,40 +27,50 @@ class UnionFind {
       return;
     }
 
-    if (rank[rootX] < rank[rootY]) {
-      parent[rootX] = parent[rootY];
-      size[rootY] += size[rootX];
+    --components_;
+    if (rank_[rootX] < rank_[rootY]) {
+      parent_[rootX] = rootY;
+      size_[rootY] += std::exchange(size_[rootX], 0);
       return;
     }
 
-    parent[rootY] = parent[rootX];
-    size[rootX] += size[rootY];
-    if (rank[rootX] == rank[rootY]) {
-      ++rank[rootX];
+    if (rank_[rootX] == rank_[rootY]) {
+      ++rank_[rootX];
     }
+    parent_[rootY] = rootX;
+    size_[rootX] += std::exchange(size_[rootY], 0);
   }
 
-  int getSize(int x) { return size[find(x)]; }
+  int components() const noexcept { return components_; }
+
+  int size(int x) { return size_[find(x)]; }
+
+ private:
+  int components_;
+
+  std::vector<int> parent_;
+  std::vector<int> rank_;
+  std::vector<int> size_;
 };
 
 class Solution {
  public:
-  int countCompleteComponents(int n, vector<vector<int>>& edges) {
+  int countCompleteComponents(int n, std::vector<std::vector<int>>& edges) {
     UnionFind uf(n);
 
-    vector<int> edgeCount(n, 0);
-    for (auto const& edge : edges) {
+    std::vector<int> edgeCount(n, 0);
+    for (const auto& edge : edges) {
       uf.unite(edge[0], edge[1]);
 
       ++edgeCount[edge[0]];
       ++edgeCount[edge[1]];
     }
 
-    vector<bool> isComplete(n, true);
+    std::vector<bool> isComplete(n, true);
     for (int i = 0; i < n; ++i) {
       int root = uf.find(i);
 
-      int componentSize = uf.getSize(root);
+      int componentSize = uf.size(root);
 
       // For a component to be complete, each node must have v-1 edges
       if (edgeCount[i] < componentSize - 1) {

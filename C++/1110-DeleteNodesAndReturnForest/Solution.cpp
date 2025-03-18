@@ -1,7 +1,7 @@
 #include <unordered_set>
 #include <vector>
 
-using namespace std;
+#ifdef LOCAL
 struct TreeNode {
   int val;
   TreeNode* left;
@@ -12,12 +12,31 @@ struct TreeNode {
   TreeNode(int x, TreeNode* left, TreeNode* right)
       : val(x), left(left), right(right) {}
 };
+#endif  // LOCAL
 
 class Solution {
+ public:
+  std::vector<TreeNode*> delNodes(TreeNode* root, std::vector<int>& to_delete) {
+    std::vector<TreeNode*> forest;
+    forest.reserve(1000);
+
+    std::unordered_set<int> toDelete =
+        std::unordered_set<int>(to_delete.begin(), to_delete.end());
+
+    root = deleteNodes(root, toDelete, forest);
+
+    // handle the case where the root is not deleted
+    if (root) {
+      forest.push_back(root);
+    }
+
+    return forest;
+  }
+
  private:
   TreeNode* deleteNodes(TreeNode* current,
-                        unordered_set<int> const& toDelete,
-                        vector<TreeNode*>& forest) {
+                        const std::unordered_set<int>& toDelete,
+                        std::vector<TreeNode*>& forest) {
     if (current == nullptr) {
       return nullptr;
     }
@@ -40,23 +59,5 @@ class Solution {
     }
 
     return current;
-  }
-
- public:
-  vector<TreeNode*> delNodes(TreeNode* root, vector<int>& to_delete) {
-    vector<TreeNode*> forest;
-    forest.reserve(1000);
-
-    unordered_set<int> toDelete =
-        unordered_set<int>(to_delete.begin(), to_delete.end());
-
-    root = deleteNodes(root, toDelete, forest);
-
-    // handle the case where the root is not deleted
-    if (root) {
-      forest.push_back(root);
-    }
-
-    return forest;
   }
 };

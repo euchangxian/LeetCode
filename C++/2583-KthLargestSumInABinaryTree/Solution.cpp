@@ -3,6 +3,7 @@
 #include <queue>
 #include <vector>
 
+#ifdef LOCAL
 struct TreeNode {
   int val;
   TreeNode* left;
@@ -13,10 +14,9 @@ struct TreeNode {
   TreeNode(int x, TreeNode* left, TreeNode* right)
       : val(x), left(left), right(right) {}
 };
+#endif  // LOCAL
 
-using namespace std;
 class Solution {
- private:
  public:
   long long kthLargestLevelSum(TreeNode* root, int k) {
     // Use a minHeap, since we want the kth smallest among the large sums.

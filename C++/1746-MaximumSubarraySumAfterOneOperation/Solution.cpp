@@ -1,6 +1,5 @@
 #include <algorithm>
 #include <array>
-#include <climits>
 #include <cstddef>
 #include <cstdlib>
 #include <vector>

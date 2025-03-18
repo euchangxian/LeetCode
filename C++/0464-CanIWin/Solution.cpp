@@ -1,58 +1,10 @@
-#include <algorithm>
-#include <array>
 #include <bitset>
-#include <climits>
 #include <cstdint>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
-#include <vector>
 
-using namespace std;
-constexpr size_t kMaxChoices{1 << 20};  // 20 bits state
-constexpr size_t kMaxTotal{300};
+constexpr std::size_t kMaxChoices{1 << 20};  // 20 bits state
+constexpr std::size_t kMaxTotal{300};
 
 class Solution {
- private:
-  // state is a bitset where each bit represents whether the integer from
-  // the pool has already been chosen
-  bool canWin(bitset<kMaxChoices>& memo,
-              const int target,
-              const int choices,
-              uint32_t state) {
-    if (memo.test(state)) {
-      return memo[state];
-    }
-
-    if (target <= 0) {
-      // Previous player already won.
-      return false;
-    }
-
-    for (size_t choice{1}; choice <= choices; ++choice) {
-      uint32_t choiceMask{1U << (choice - 1)};
-      if (state & choiceMask) {
-        continue;
-      }
-
-      // If the next player cannot win after making this choice, the current
-      // player wins
-      if (!canWin(memo, target - choice, choices, state | choiceMask)) {
-        memo[state] = true;
-        return true;
-      }
-    }
-
-    // Reaching here means that all the remaining choices does not lead to a
-    // win.
-    memo[state] = false;
-    return false;
-  }
-
  public:
   bool canIWin(int maxChoosableInteger, int desiredTotal) {
     // Naively, there are [1..maxChoosableInteger] choices at each step.
@@ -78,7 +30,43 @@ class Solution {
     }
 
     // memoized state, check whether the current state has been seen
-    bitset<kMaxChoices> memo;
+    std::bitset<kMaxChoices> memo;
     return canWin(memo, desiredTotal, maxChoosableInteger, 0U);
+  }
+
+ private:
+  // state is a bitset where each bit represents whether the integer from
+  // the pool has already been chosen
+  bool canWin(std::bitset<kMaxChoices>& memo,
+              const int target,
+              const int choices,
+              uint32_t state) {
+    if (memo.test(state)) {
+      return memo[state];
+    }
+
+    if (target <= 0) {
+      // Previous player already won.
+      return false;
+    }
+
+    for (std::size_t choice{1}; choice <= choices; ++choice) {
+      uint32_t choiceMask{1U << (choice - 1)};
+      if (state & choiceMask) {
+        continue;
+      }
+
+      // If the next player cannot win after making this choice, the current
+      // player wins
+      if (!canWin(memo, target - choice, choices, state | choiceMask)) {
+        memo[state] = true;
+        return true;
+      }
+    }
+
+    // Reaching here means that all the remaining choices does not lead to a
+    // win.
+    memo[state] = false;
+    return false;
   }
 };

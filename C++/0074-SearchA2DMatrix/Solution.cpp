@@ -1,18 +1,8 @@
-#include <algorithm>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  bool searchMatrix(vector<vector<int>>& matrix, int target) {
+  bool searchMatrix(std::vector<std::vector<int>>& matrix, int target) {
     // Utilise the sorted property of the matrix + modulo/division arithmetic
     // to "flatten" the 2D matrix into a 1D search space
     int m = matrix.size();

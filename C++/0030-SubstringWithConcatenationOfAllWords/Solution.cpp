@@ -1,18 +1,11 @@
-#include <algorithm>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
 #include <string>
 #include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  vector<int> findSubstring(string s, vector<string>& words) {
+  std::vector<int> findSubstring(std::string s,
+                                 std::vector<std::string>& words) {
     // All string of words are same length
     // A concatenated string is a string the exactly contains all the strings
     // of any permutation of words combined.
@@ -27,12 +20,12 @@ class Solution {
       return {};
     }
 
-    unordered_map<string, int> expectedFreq;
+    std::unordered_map<std::string, int> expectedFreq;
     for (auto const& word : words) {
       ++expectedFreq[word];
     }
 
-    vector<int> result;
+    std::vector<int> result;
     result.reserve(s.length());
 
     // E.g. if wordLength = 3, s = "abcdefghi",
@@ -40,14 +33,14 @@ class Solution {
     // offset = 1 => "bcd", "efg"
     // offset = 2 => "cde", "fgh"
     for (int offset = 0; offset < wordLength; ++offset) {
-      unordered_map<string, int> windowFreq;
+      std::unordered_map<std::string, int> windowFreq;
 
       // Counts the number of words in the window that fulfil expectedFreq
       int validWords = 0;
       int left = offset;
       for (int right = offset; right + wordLength - 1 < s.length();
            right += wordLength) {
-        string currentWord = s.substr(right, wordLength);
+        std::string currentWord = s.substr(right, wordLength);
 
         if (!expectedFreq.count(currentWord)) {
           windowFreq.clear();
@@ -63,7 +56,7 @@ class Solution {
         } else {
           // Adjust window left
           while (windowFreq[currentWord] > expectedFreq[currentWord]) {
-            string leftWord = s.substr(left, wordLength);
+            std::string leftWord = s.substr(left, wordLength);
             --windowFreq[leftWord];
 
             if (windowFreq[leftWord] < expectedFreq[leftWord]) {

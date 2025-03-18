@@ -5,7 +5,7 @@
 #include <string>
 #include <utility>
 
-using namespace std;
+#ifdef LOCAL
 struct TreeNode {
   int val;
   TreeNode* left;
@@ -16,6 +16,7 @@ struct TreeNode {
   TreeNode(int x, TreeNode* left, TreeNode* right)
       : val(x), left(left), right(right) {}
 };
+#endif  // LOCAL
 
 /**
  * Serializing and Deserializing in Level-Order seems the most straightforward,
@@ -34,6 +35,21 @@ struct TreeNode {
  * making serialization and deserialization simpler.
  */
 class Codec {
+ public:
+  // Encodes a tree to a single string.
+  std::string serialize(TreeNode* root) {
+    std::ostringstream encoded;
+    encodePreorder(root, encoded);
+    return encoded.str();
+  }
+
+  // Decodes your encoded data to tree.
+  TreeNode* deserialize(std::string data) {
+    std::istringstream dataStream(std::move(data));
+
+    return fromData(dataStream);
+  }
+
  private:
   // or any non-digits
   static constexpr char nullRepr = '#';
@@ -67,21 +83,6 @@ class Codec {
     root->right = fromData(data);
 
     return root;
-  }
-
- public:
-  // Encodes a tree to a single string.
-  string serialize(TreeNode* root) {
-    std::ostringstream encoded;
-    encodePreorder(root, encoded);
-    return encoded.str();
-  }
-
-  // Decodes your encoded data to tree.
-  TreeNode* deserialize(string data) {
-    std::istringstream dataStream(std::move(data));
-
-    return fromData(dataStream);
   }
 };
 

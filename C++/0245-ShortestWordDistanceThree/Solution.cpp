@@ -4,18 +4,17 @@
 #include <string>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  int shortestWordDistance(vector<string>& wordsDict,
-                           const string& word1,
-                           const string& word2) {
+  int shortestWordDistance(std::vector<std::string>& wordsDict,
+                           const std::string& word1,
+                           const std::string& word2) {
     // Same similar as shortestWordDistanceTwo.
     // Collect all indices of word1 and word2. Then linear search.
     // word1 may be equal to word2. But it is guaranteed that they are at least
     // two distinct words.
-    vector<int> indices1;
-    vector<int> indices2;
+    std::vector<int> indices1;
+    std::vector<int> indices2;
     for (size_t i = 0; i < wordsDict.size(); ++i) {
       if (wordsDict[i] == word1) {
         indices1.push_back(i);
@@ -31,7 +30,7 @@ class Solution {
     int range = INT_MAX;
     if (word1 == word2) {
       for (size_t i = 1; i < indices1.size(); ++i) {
-        range = min(range, indices1[i] - indices1[i - 1]);
+        range = std::min(range, indices1[i] - indices1[i - 1]);
       }
       return range;
     }
@@ -43,7 +42,7 @@ class Solution {
       const int idx1 = indices1[i];
       const int idx2 = indices2[j];
 
-      range = min(range, abs(idx2 - idx1));
+      range = std::min(range, std::abs(idx2 - idx1));
       if (idx1 < idx2) {
         ++i;
       } else {

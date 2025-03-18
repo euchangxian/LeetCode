@@ -2,11 +2,10 @@
 #include <map>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  vector<int> maxSlidingWindow(vector<int>& nums, int k) {
-    vector<int> result;
+  std::vector<int> maxSlidingWindow(std::vector<int>& nums, int k) {
+    std::vector<int> result;
     result.reserve(nums.size() - k + 1);
 
     // the max element must be kept at the front for amortized constant time
@@ -15,7 +14,7 @@ class Solution {
     // elements left in the deque, since they will never be considered the
     // window's maximum anymore. Since every element is added, and removed from
     // the deque exactly once, this solution runs in O(n) time.
-    deque<int> dq;
+    std::deque<int> dq;
 
     for (int i = 0; i < nums.size(); ++i) {
       if (!dq.empty() && dq.front() == i - k) {
@@ -38,13 +37,13 @@ class Solution {
     return result;
   }
 
-  vector<int> maxSlidingWindowNLogN(vector<int>& nums, int k) {
-    map<int, int> pq;
+  std::vector<int> maxSlidingWindowNLogN(std::vector<int>& nums, int k) {
+    std::map<int, int> pq;
     for (int i = 0; i < k; ++i) {
       ++pq[nums[i]];
     }
 
-    vector<int> maxSlidingWindow;
+    std::vector<int> maxSlidingWindow;
     maxSlidingWindow.reserve(nums.size() - k + 1);
 
     maxSlidingWindow.push_back(pq.rbegin()->first);  // largest element;

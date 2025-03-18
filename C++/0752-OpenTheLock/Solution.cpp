@@ -1,4 +1,3 @@
-#include <algorithm>
 #include <array>
 #include <bitset>
 #include <cstddef>
@@ -6,35 +5,9 @@
 #include <string>
 #include <vector>
 
-using namespace std;
 class Solution {
- private:
-  static constexpr int kMaxStates = 10000;
-
-  std::array<int, 8> adjacentStates(int current) {
-    std::array<int, 8> adjacent{};
-
-    int multiplier = 1;  // up to 1000
-    for (int i = 0; i < 4; ++i) {
-      int digit = (current / multiplier) % 10;  // extract the LSB
-
-      int up = (digit + 1) % 10;          // turn wheel up, i.e. + 1
-      int down = (digit + -1 + 10) % 10;  // turn wheel down, i.e. - 1
-
-      // Minus multiplier * digit to zero out the corresponding digit,
-      // effectively replacing it.
-      adjacent[i * 2] = current - (multiplier * digit) + (multiplier * up);
-      adjacent[i * 2 + 1] =
-          current - (multiplier * digit) + (multiplier * down);
-
-      multiplier *= 10;
-    }
-
-    return adjacent;
-  }
-
  public:
-  int openLock(vector<string>& deadends, string target) {
+  int openLock(std::vector<std::string>& deadends, std::string target) {
     // Lock with 4 wheels; wheels have 10 states from '0' to '9'.
     // Wheel can turn in two directions, making it circular. i.e., one step to
     // go from '9' to '0'.
@@ -86,5 +59,30 @@ class Solution {
     }
 
     return -1;
+  }
+
+ private:
+  static constexpr int kMaxStates = 10000;
+
+  std::array<int, 8> adjacentStates(int current) {
+    std::array<int, 8> adjacent{};
+
+    int multiplier = 1;  // up to 1000
+    for (int i = 0; i < 4; ++i) {
+      int digit = (current / multiplier) % 10;  // extract the LSB
+
+      int up = (digit + 1) % 10;          // turn wheel up, i.e. + 1
+      int down = (digit + -1 + 10) % 10;  // turn wheel down, i.e. - 1
+
+      // Minus multiplier * digit to zero out the corresponding digit,
+      // effectively replacing it.
+      adjacent[i * 2] = current - (multiplier * digit) + (multiplier * up);
+      adjacent[i * 2 + 1] =
+          current - (multiplier * digit) + (multiplier * down);
+
+      multiplier *= 10;
+    }
+
+    return adjacent;
   }
 };

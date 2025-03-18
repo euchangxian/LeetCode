@@ -1,30 +1,20 @@
-#include <algorithm>
-#include <array>
-#include <climits>
 #include <functional>
-#include <iostream>
 #include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
-
-using namespace std;
 
 class MedianFinder {
  private:
   // at most 5 * 10^4, divide by two and round up
 
   //  Max Heap that stores the lower half of the stream of numbers.
-  priority_queue<int, vector<int>, less<int>> lowerHalf;
+  std::priority_queue<int, std::vector<int>, std::less<int>> lowerHalf;
 
   // Min Heap that stores the upper half of the stream of numbers.
-  priority_queue<int, vector<int>, greater<int>> upperHalf;
+  std::priority_queue<int, std::vector<int>, std::greater<int>> upperHalf;
 
  public:
   // The key invariant to maintain is the difference in sizes of the two
-  // priority queue.
+  // std::priority queue.
   //
   // The difference in size should never exceed 1. i.e., if the number
   // of elements in the stream is even, then the difference should be zero.

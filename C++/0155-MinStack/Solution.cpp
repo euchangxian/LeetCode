@@ -1,3 +1,4 @@
+#include <climits>
 #include <cstddef>
 #include <stack>
 

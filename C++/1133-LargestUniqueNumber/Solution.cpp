@@ -2,10 +2,9 @@
 #include <cstddef>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  int largestUniqueNumber(vector<int>& nums) {
+  int largestUniqueNumber(std::vector<int>& nums) {
     // 1 <= nums.length <= 2000
     // 0 <= nums[i] <= 1000
     // With this constraint, we can simply use a std::array to maintain the

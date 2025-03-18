@@ -1,10 +1,9 @@
 #include <cstddef>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  vector<int> findErrorNums(vector<int>& nums) {
+  std::vector<int> findErrorNums(std::vector<int>& nums) {
     // Find the numbers that occur twice and the number that is missing.
     // XOR and sum (since 1 to n)
     // XOR with [1..n] and nums[i]. This ensures that every number that

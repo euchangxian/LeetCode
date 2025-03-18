@@ -1,17 +1,8 @@
-#include <algorithm>
-#include <climits>
-#include <iostream>
-#include <queue>
-#include <stack>
 #include <string>
-#include <unordered_map>
-#include <unordered_set>
-#include <vector>
 
-using namespace std;
 class Solution {
  private:
-  pair<int, int> expandCentre(const string& s, int left, int right) {
+  std::pair<int, int> expandCentre(const std::string& s, int left, int right) {
     while (left >= 0 && right < s.length() && s[left] == s[right]) {
       --left;
       ++right;
@@ -21,7 +12,7 @@ class Solution {
   }
 
  public:
-  string longestPalindrome(string s) {
+  std::string longestPalindrome(std::string s) {
     int n = s.length();
 
     int start = 0;

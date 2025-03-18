@@ -1,11 +1,7 @@
 #include <unordered_map>
 #include <vector>
 
-using namespace std;
 class UnionFind {
- private:
-  unordered_map<int, int> root;
-
  public:
   UnionFind() : root() {}
 
@@ -19,11 +15,14 @@ class UnionFind {
     root[x] = nextAvailable;  // Path compression
     return nextAvailable;
   }
+
+ private:
+  std::unordered_map<int, int> root;
 };
 
 class Solution {
  public:
-  int minIncrementForUnique(vector<int>& nums) {
+  int minIncrementForUnique(std::vector<int>& nums) {
     UnionFind root;
     int moves = 0;
     for (int num : nums) {

@@ -1,23 +1,12 @@
-#include <algorithm>
 #include <array>
-#include <bitset>
-#include <climits>
 #include <cstdint>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-constexpr size_t kBuckets{100000};  // 10^5
+constexpr std::size_t kBuckets{100000};  // 10^5
 
-using namespace std;
 class Solution {
  public:
-  bool canArrange(vector<int>& arr, int k) {
+  bool canArrange(std::vector<int>& arr, int k) {
     // Sort and two pointer? Can we do better than O(nlogn)?
     // Sorting does not work. CounterExample: {1, 4, 5, 10,} => {1, 10}, {4, 5}
     // But there exists a valid pairing {1, 4}, {5, 10}.
@@ -30,8 +19,8 @@ class Solution {
     // number of elements in the buckets are equal (or divisible by 2 for zero)
     std::array<int32_t, kBuckets> buckets{};
 
-    for (const int& num : arr) {
-      const size_t idx = ((num % k) + k) % k;  // Ensure positive index
+    for (const int num : arr) {
+      const std::size_t idx = ((num % k) + k) % k;  // Ensure positive index
       ++buckets[idx];
     }
 
@@ -40,8 +29,8 @@ class Solution {
       return false;
     }
 
-    size_t l{1};
-    size_t r{static_cast<size_t>(k) - 1};
+    std::size_t l{1};
+    std::size_t r{static_cast<std::size_t>(k) - 1};
     while (l < r) {
       if (buckets[l] != buckets[r]) {
         return false;

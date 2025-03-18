@@ -1,35 +1,11 @@
-#include <algorithm>
 #include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
 #include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-using namespace std;
 using ll = long long;
 class Solution {
- private:
-  ll mirrorLeftHalf(ll left, bool isOdd) {
-    ll result = left;
-
-    if (isOdd) {
-      // the middle, or right-most of the left half do not need to be mirrored
-      left /= 10;
-    }
-    while (left > 0) {
-      // extract the right-most digit of the left half
-      result = (result * 10) + (left % 10);
-      left /= 10;
-    }
-    return result;
-  }
-
  public:
-  string nearestPalindromic(string n) {
+  std::string nearestPalindromic(std::string n) {
     // 1 <= n.length <= 18: long long
     // Notice that by mirroring the first half of a number like 12322,
     // we can get the answer 12321
@@ -43,10 +19,10 @@ class Solution {
     // 10000, or small numbers like 11, 9.
 
     int halfIdx = (n.length() + 1) / 2;
-    ll leftHalf = stoll(n.substr(0, halfIdx));
+    ll leftHalf = std::stoll(n.substr(0, halfIdx));
     bool isOdd = n.length() % 2;
 
-    vector<ll> possibilities;
+    std::vector<ll> possibilities;
     possibilities.reserve(5);
 
     possibilities.push_back(mirrorLeftHalf(leftHalf, isOdd));
@@ -54,8 +30,8 @@ class Solution {
     possibilities.push_back(mirrorLeftHalf(leftHalf + 1, isOdd));
 
     // Handle edge cases like 999, 9999, 1001, 100001
-    ll nines = pow(10, n.length() - 1) - 1;
-    ll ones = pow(10, n.length()) + 1;
+    ll nines = std::pow(10, n.length() - 1) - 1;
+    ll ones = std::pow(10, n.length()) + 1;
     possibilities.push_back(nines);
     possibilities.push_back(ones);
 
@@ -67,12 +43,27 @@ class Solution {
         continue;
       }
 
-      ll currDiff = abs(num - candidate);
+      ll currDiff = std::abs(num - candidate);
       if (currDiff < minDiff || (currDiff == minDiff && candidate < result)) {
         minDiff = currDiff;
         result = candidate;
       }
     }
-    return to_string(result);
+    return std::to_string(result);
+  }
+
+ private:
+  ll mirrorLeftHalf(ll left, bool isOdd) {
+    ll result = left;
+    if (isOdd) {
+      // the middle, or right-most of the left half do not need to be mirrored
+      left /= 10;
+    }
+    while (left > 0) {
+      // extract the right-most digit of the left half
+      result = (result * 10) + (left % 10);
+      left /= 10;
+    }
+    return result;
   }
 };

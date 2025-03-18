@@ -1,21 +1,8 @@
-#include <algorithm>
-#include <array>
-#include <bitset>
-#include <climits>
-#include <cstdint>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
 #include <string>
-#include <unordered_map>
-#include <unordered_set>
-#include <vector>
 
-using namespace std;
 class Solution {
  public:
-  int minSwaps(string s) {
+  int minSwaps(std::string s) {
     // Stack? can keep track of unmatched pairs? Does not work with the case:
     // "]]][[[", where the stack would result in 3, but the answer is 2 swaps.
     // The optimal way is this sequence of swaps:

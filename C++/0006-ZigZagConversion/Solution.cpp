@@ -1,24 +1,15 @@
-#include <algorithm>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
 #include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  string convert(string s, int numRows) {
+  std::string convert(std::string s, int numRows) {
     if (numRows < 2) {
       return s;
     }
 
     // C++ strings are mutable. No need for StringBuilder equivalent
-    vector<string> rowStrings(numRows, "");
+    std::vector<std::string> rowStrings(numRows, "");
 
     int i = 0;
     while (i < s.length()) {
@@ -35,7 +26,7 @@ class Solution {
       }
     }
 
-    string result;
+    std::string result;
     for (const auto& str : rowStrings) {
       result += str;
     }

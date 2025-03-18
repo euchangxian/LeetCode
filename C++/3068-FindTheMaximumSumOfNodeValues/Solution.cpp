@@ -1,8 +1,6 @@
 #include <climits>
 #include <vector>
 
-using namespace std;
-
 // There exists an undirected tree with n nodes numbered 0 to n - 1. You are
 // given a 0-indexed 2D integer array edges of length n - 1, where edges[i] =
 // [ui, vi] indicates that there is an edge between nodes ui and vi in the tree.
@@ -20,12 +18,13 @@ using namespace std;
 // operation any number of times.
 class Solution {
  public:
-  long long maximumValueSum(vector<int>& nums,
+  long long maximumValueSum(std::vector<int>& nums,
                             int k,
-                            vector<vector<int>>& edges) {
+                            std::vector<std::vector<int>>& edges) {
     using ll = long long;
     int n = nums.size();
-    vector<vector<ll>> dp = vector<vector<ll>>(2, vector<ll>(n + 1, 0));
+    std::vector<std::vector<ll>> dp =
+        std::vector<std::vector<ll>>(2, std::vector<ll>(n + 1, 0));
 
     dp[0][0] = 0;
     dp[1][0] = LLONG_MIN;
@@ -33,8 +32,8 @@ class Solution {
     for (int i = 1; i < n + 1; ++i) {
       int x = nums[i - 1];
 
-      dp[0][i] = max(x + dp[0][i - 1], (x ^ k) + dp[1][i - 1]);
-      dp[1][i] = max(x + dp[1][i - 1], (x ^ k) + dp[0][i - 1]);
+      dp[0][i] = std::max(x + dp[0][i - 1], (x ^ k) + dp[1][i - 1]);
+      dp[1][i] = std::max(x + dp[1][i - 1], (x ^ k) + dp[0][i - 1]);
     }
     return dp[0][n];
   }

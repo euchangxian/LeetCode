@@ -1,7 +1,6 @@
 #include <cstddef>
 #include <vector>
 
-using namespace std;
 /**
  * Similar to 1D; prefix sums are necessary for O(1) sumRegion.
  * Easier with the diagram.
@@ -11,16 +10,17 @@ using namespace std;
  */
 class NumMatrix {
  private:
-  vector<vector<int>> prefix;
+  std::vector<std::vector<int>> prefix;
 
  public:
-  NumMatrix(vector<vector<int>>& matrix) {
-    const size_t rows = matrix.size();
-    const size_t cols = matrix[0].size();
+  NumMatrix(std::vector<std::vector<int>>& matrix) {
+    const std::size_t rows = matrix.size();
+    const std::size_t cols = matrix[0].size();
 
-    prefix = vector<vector<int>>(rows + 1, vector<int>(cols + 1, 0));
-    for (size_t i = 1; i < rows + 1; ++i) {
-      for (size_t j = 1; j < cols + 1; ++j) {
+    prefix =
+        std::vector<std::vector<int>>(rows + 1, std::vector<int>(cols + 1, 0));
+    for (std::size_t i = 1; i < rows + 1; ++i) {
+      for (std::size_t j = 1; j < cols + 1; ++j) {
         prefix[i][j] = prefix[i - 1][j] +      // rectangle above
                        prefix[i][j - 1] +      // rectangle to the left
                        matrix[i - 1][j - 1] -  // current cell

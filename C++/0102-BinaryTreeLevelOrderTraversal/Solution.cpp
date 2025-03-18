@@ -1,13 +1,7 @@
-#include <algorithm>
-#include <climits>
-#include <functional>
-#include <iostream>
 #include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
+
+#ifdef LOCAL
 struct TreeNode {
   int val;
   TreeNode* left;
@@ -18,24 +12,24 @@ struct TreeNode {
   TreeNode(int x, TreeNode* left, TreeNode* right)
       : val(x), left(left), right(right) {}
 };
+#endif  // LOCAL
 
-using namespace std;
 class Solution {
  public:
-  vector<vector<int>> levelOrder(TreeNode* root) {
+  std::vector<std::vector<int>> levelOrder(TreeNode* root) {
     if (!root) {
       return {};
     }
     // BFS
-    vector<vector<int>> result;
-    queue<vector<TreeNode*>> frontiers;
+    std::vector<std::vector<int>> result;
+    std::queue<std::vector<TreeNode*>> frontiers;
     frontiers.push({root});
     while (!frontiers.empty()) {
-      vector<TreeNode*> frontier = frontiers.front();
+      std::vector<TreeNode*> frontier = frontiers.front();
       frontiers.pop();
 
-      vector<int> level;
-      vector<TreeNode*> next;
+      std::vector<int> level;
+      std::vector<TreeNode*> next;
       for (TreeNode*& node : frontier) {
         level.push_back(node->val);
 

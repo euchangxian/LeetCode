@@ -1,59 +1,17 @@
-#include <algorithm>
-#include <climits>
 #include <functional>
-#include <iostream>
 #include <queue>
-#include <set>
-#include <stack>
-#include <string>
-#include <tuple>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-int const INF = 2e9;
-using namespace std;
+constexpr int INF = 2e9;
+
 class Solution {
- private:
-  int dijkstra(int n,
-               vector<vector<pair<int, int>>> const& adj,
-               int src,
-               int dest) {
-    // Distance estimates to each node from source
-    vector<int> distance(n, INF);
-    distance[src] = 0;
-
-    priority_queue<pair<int, int>, vector<pair<int, int>>,
-                   greater<pair<int, int>>>
-        frontier;
-
-    frontier.emplace(0, src);
-    while (!frontier.empty()) {
-      auto [currDist, currNode] = frontier.top();
-      frontier.pop();
-
-      if (currNode == dest) {
-        break;  // To reconstruct path
-      }
-
-      for (auto const& [weight, next] : adj[currNode]) {
-        if (currDist + weight < distance[next]) {
-          // Relax estimates
-          distance[next] = currDist + weight;
-          frontier.emplace(distance[next], next);
-        }
-      }
-    }
-
-    return distance[dest];
-  }
-
  public:
-  vector<vector<int>> modifiedGraphEdges(int n,
-                                         vector<vector<int>>& edges,
-                                         int source,
-                                         int destination,
-                                         int target) {
+  std::vector<std::vector<int>> modifiedGraphEdges(
+      int n,
+      std::vector<std::vector<int>>& edges,
+      int source,
+      int destination,
+      int target) {
     // N nodes from 0 to n-1.
     // edges[i] = [ai, bi, wi] => undirected edge between ai and bi with weight
     // wi
@@ -72,9 +30,9 @@ class Solution {
     // However, since target <= 10e9, as long as there is one such edge, then
     // the second condition always fulfilled.
 
-    vector<vector<pair<int, int>>> graph(n);
+    std::vector<std::vector<std::pair<int, int>>> graph(n);
 
-    for (auto const& edge : edges) {
+    for (const auto& edge : edges) {
       if (edge[2] == -1) {
         continue;  // skip modifiable edges
       }
@@ -131,5 +89,39 @@ class Solution {
       return {};
     }
     return edges;
+  }
+
+ private:
+  int dijkstra(int n,
+               const std::vector<std::vector<std::pair<int, int>>>& adj,
+               int src,
+               int dest) {
+    // Distance estimates to each node from source
+    std::vector<int> distance(n, INF);
+    distance[src] = 0;
+
+    std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>,
+                        std::greater<std::pair<int, int>>>
+        frontier;
+
+    frontier.emplace(0, src);
+    while (!frontier.empty()) {
+      auto [currDist, currNode] = frontier.top();
+      frontier.pop();
+
+      if (currNode == dest) {
+        break;  // To reconstruct path
+      }
+
+      for (const auto& [weight, next] : adj[currNode]) {
+        if (currDist + weight < distance[next]) {
+          // Relax estimates
+          distance[next] = currDist + weight;
+          frontier.emplace(distance[next], next);
+        }
+      }
+    }
+
+    return distance[dest];
   }
 };

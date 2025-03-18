@@ -2,10 +2,9 @@
 #include <cstddef>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  int maxWidthRamp(vector<int>& nums) {
+  int maxWidthRamp(std::vector<int>& nums) {
     // Naively, we would check every pair (i, j) and get the longest width that
     // fulfils the constraints. O(n^2)
     // How can we do better?
@@ -36,10 +35,10 @@ class Solution {
     const size_t n = nums.size();
 
     // suffixMax[i] is the maximum nums to the right of i, including nums[i]
-    vector<int> suffixMax(n);
+    std::vector<int> suffixMax(n);
     suffixMax[n - 1] = nums[n - 1];
     for (int i = n - 2; i >= 0; --i) {
-      suffixMax[i] = max(suffixMax[i + 1], nums[i]);
+      suffixMax[i] = std::max(suffixMax[i + 1], nums[i]);
     }
 
     int width = 0;
@@ -52,7 +51,7 @@ class Solution {
       while (l < r && nums[l] > suffixMax[r]) {
         ++l;
       }
-      width = max(width, r - l);
+      width = std::max(width, r - l);
     }
 
     return width;

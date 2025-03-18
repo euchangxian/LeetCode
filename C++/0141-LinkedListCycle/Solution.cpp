@@ -1,15 +1,4 @@
-#include <algorithm>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
-#include <vector>
-
-using namespace std;
+#ifdef LOCAL
 struct ListNode {
   int val;
   ListNode* next;
@@ -17,6 +6,7 @@ struct ListNode {
   ListNode(int x) : val(x), next(nullptr) {}
   ListNode(int x, ListNode* next) : val(x), next(next) {}
 };
+#endif  // LOCAL
 
 class Solution {
  public:

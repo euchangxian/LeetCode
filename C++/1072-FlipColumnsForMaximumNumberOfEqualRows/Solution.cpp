@@ -26,8 +26,8 @@ class Solution {
     // HashMap!! The first condition can be checked by negating the current row.
     // What to store as Key tho? Can't directly convert to integer
     // representation. String? L...
-    const size_t rows = matrix.size();
-    const size_t cols = matrix[0].size();
+    const std::size_t rows = matrix.size();
+    const std::size_t cols = matrix[0].size();
 
     std::unordered_map<std::string, int> patterns;
     for (auto& row : matrix) {

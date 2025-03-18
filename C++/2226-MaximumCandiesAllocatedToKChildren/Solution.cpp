@@ -6,18 +6,8 @@
 #include <utility>
 #include <vector>
 
+using i64 = long long;
 class Solution {
-  using i64 = long long;
-
- private:
-  bool feasible(std::span<const int> candies, i64 k, int maxCandy) {
-    i64 count = 0;
-    for (int pile : candies) {
-      count += pile / maxCandy;
-    }
-    return count >= k;
-  }
-
  public:
   int maximumCandies(std::vector<int>& candies, long long k) {
     // Notice that piles cannot be merged, and each children can only take at
@@ -59,5 +49,14 @@ class Solution {
     }
 
     return left;
+  }
+
+ private:
+  bool feasible(std::span<const int> candies, i64 k, int maxCandy) {
+    i64 count = 0;
+    for (int pile : candies) {
+      count += pile / maxCandy;
+    }
+    return count >= k;
   }
 };

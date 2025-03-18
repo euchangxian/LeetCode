@@ -2,8 +2,20 @@
 #include <cstddef>
 #include <vector>
 
-using namespace std;
 class Solution {
+ public:
+  int maximumScore(std::vector<int>& nums, std::vector<int>& multipliers) {
+    // Notice that we do not actually need 3 states i.e., O(m^3). We can deduce
+    // the number of right elements taken, i.e., the rightIdx from just the
+    // leftIdx.
+    // Thereby reducing to O(m^2) space.
+    const std::size_t n = nums.size();
+    const std::size_t m = multipliers.size();
+
+    std::vector<std::vector<int>> memo(m, std::vector<int>(m, 0));
+    return dfs(nums, multipliers, memo, 0, 0);
+  }
+
  private:
   int dfs(const std::vector<int>& nums,
           const std::vector<int>& multipliers,
@@ -29,18 +41,5 @@ class Solution {
 
     memo[leftTaken][multIdx] = std::max(takeLeft, takeRight);
     return memo[leftTaken][multIdx];
-  }
-
- public:
-  int maximumScore(std::vector<int>& nums, std::vector<int>& multipliers) {
-    // Notice that we do not actually need 3 states i.e., O(m^3). We can deduce
-    // the number of right elements taken, i.e., the rightIdx from just the
-    // leftIdx.
-    // Thereby reducing to O(m^2) space.
-    const size_t n = nums.size();
-    const size_t m = multipliers.size();
-
-    std::vector<std::vector<int>> memo(m, std::vector<int>(m, 0));
-    return dfs(nums, multipliers, memo, 0, 0);
   }
 };

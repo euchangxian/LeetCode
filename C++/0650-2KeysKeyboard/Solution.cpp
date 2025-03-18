@@ -1,15 +1,6 @@
 #include <algorithm>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
   const int LIMIT = 1001;
@@ -37,7 +28,7 @@ class Solution {
     // DP approach is more generalizable.
     // n <= 1000. The maximum steps to get 1000 length is by copy and pasting a
     // length of 1. Prevents overflow in later steps
-    vector<int> dp(n + 1, LIMIT);
+    std::vector<int> dp(n + 1, LIMIT);
     dp[0] = 0;  // 0 operations to get 0 characters
     dp[1] = 0;  // Start with one character on the screen
 
@@ -49,7 +40,7 @@ class Solution {
         }
         // steps to get j length, and additional
         // copy + paste steps = i/j
-        dp[i] = min(dp[i], dp[j] + i / j);
+        dp[i] = std::min(dp[i], dp[j] + i / j);
       }
     }
 

@@ -2,41 +2,8 @@
 #include <cstdlib>
 #include <vector>
 
+using i64 = long long;
 class Solution {
-  using i64 = long long;
-
- private:
-  i64 postorder(std::vector<std::vector<int>>& adjList,
-                std::vector<int>& values,
-                int k,
-                std::vector<bool>& visited,
-                int node,
-                int& result) {
-    visited[node] = true;
-    i64 componentSum = values[node];
-
-    // recurse on child nodes.
-    for (int neighbour : adjList[node]) {
-      // Given that we mark a node as visited first, we are traversing through
-      // parent-child edges.
-      // Thus, if a node is already visited, it must be a parent.
-      if (visited[neighbour]) {
-        continue;
-      }
-
-      // recurse on child subtrees. If its component sum is already a multiple,
-      // then exclude it from the current component sum.
-      i64 childSum = postorder(adjList, values, k, visited, neighbour, result);
-      if (childSum % k == 0) {
-        ++result;  // split
-      } else {
-        componentSum += childSum;
-      }
-    }
-
-    return componentSum;
-  }
-
  public:
   int maxKDivisibleComponents(int n,
                               std::vector<std::vector<int>>& edges,
@@ -88,5 +55,37 @@ class Solution {
     }
 
     return components;
+  }
+
+ private:
+  i64 postorder(std::vector<std::vector<int>>& adjList,
+                std::vector<int>& values,
+                int k,
+                std::vector<bool>& visited,
+                int node,
+                int& result) {
+    visited[node] = true;
+    i64 componentSum = values[node];
+
+    // recurse on child nodes.
+    for (int neighbour : adjList[node]) {
+      // Given that we mark a node as visited first, we are traversing through
+      // parent-child edges.
+      // Thus, if a node is already visited, it must be a parent.
+      if (visited[neighbour]) {
+        continue;
+      }
+
+      // recurse on child subtrees. If its component sum is already a multiple,
+      // then exclude it from the current component sum.
+      i64 childSum = postorder(adjList, values, k, visited, neighbour, result);
+      if (childSum % k == 0) {
+        ++result;  // split
+      } else {
+        componentSum += childSum;
+      }
+    }
+
+    return componentSum;
   }
 };

@@ -3,14 +3,9 @@
 #include <unordered_map>
 #include <vector>
 
-using namespace std;
 class FirstUnique {
- private:
-  std::queue<int> uniq;
-  std::unordered_map<int, int> seen;
-
  public:
-  FirstUnique(vector<int>& nums) {
+  FirstUnique(std::vector<int>& nums) {
     for (size_t i = 0; i < nums.size(); ++i) {
       ++seen[nums[i]];
       uniq.push(nums[i]);
@@ -33,6 +28,10 @@ class FirstUnique {
     ++seen[value];
     uniq.push(value);
   }
+
+ private:
+  std::queue<int> uniq;
+  std::unordered_map<int, int> seen;
 };
 
 /**

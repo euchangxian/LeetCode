@@ -3,13 +3,7 @@
 #include <cstdlib>
 #include <vector>
 
-using namespace std;
 class UnionFind {
- private:
-  std::vector<int> parent;
-  std::vector<int> rank;
-  int components;
-
  public:
   UnionFind(int n) : parent(n), rank(n, 0), components(n) {
     for (int i = 0; i < n; ++i) {
@@ -48,11 +42,16 @@ class UnionFind {
   }
 
   int size() { return components; }
+
+ private:
+  std::vector<int> parent;
+  std::vector<int> rank;
+  int components;
 };
 
 class Solution {
  public:
-  int earliestAcq(vector<vector<int>>& logs, int n) {
+  int earliestAcq(std::vector<std::vector<int>>& logs, int n) {
     // Definitely a graph question. Each person is a node. Start from the
     // earliest timestamp. BFS and record the maximum timestamp encountered.
     // At the end, check that the number of nodes encountered is equal to the
@@ -63,7 +62,7 @@ class Solution {
     std::sort(logs.begin(), logs.end());
     int earliestTime = 0;
     UnionFind uf(n);
-    for (auto& log : logs) {
+    for (const auto& log : logs) {
       earliestTime = log[0];
       int x = log[1];
       int y = log[2];

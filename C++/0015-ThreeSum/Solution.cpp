@@ -1,13 +1,12 @@
 #include <algorithm>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  vector<vector<int>> threeSum(vector<int>& nums) {
+  std::vector<std::vector<int>> threeSum(std::vector<int>& nums) {
     sort(nums.begin(), nums.end());
 
-    vector<vector<int>> result;
+    std::vector<std::vector<int>> result;
     for (int i = 0; i < nums.size() - 2; ++i) {
       if (nums[i] > 0) {
         // Considering the way we only look forward for matches,

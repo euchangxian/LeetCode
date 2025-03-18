@@ -2,7 +2,6 @@
 #include <string>
 #include <string_view>
 
-using namespace std;
 class Solution {
  public:
   std::string compressedString(std::string_view word) {

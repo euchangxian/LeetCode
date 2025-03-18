@@ -1,11 +1,11 @@
+#include <algorithm>
 #include <unordered_set>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  int longestConsecutive(vector<int>& nums) {
-    unordered_set<int> present;
+  int longestConsecutive(std::vector<int>& nums) {
+    std::unordered_set<int> present;
     for (int num : nums) {
       present.insert(num);
     }
@@ -28,7 +28,7 @@ class Solution {
         ++num;
         ++currentCount;
       }
-      result = max(result, currentCount);
+      result = std::max(result, currentCount);
     }
     return result;
   }

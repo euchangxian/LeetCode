@@ -9,23 +9,26 @@
 #include <unordered_set>
 #include <vector>
 
-using namespace std;
-using pii = pair<int, int>;
-using tii = tuple<int, int, int>;
-class Solution {
- private:
-  int const INF = 10e6;
-  vector<pii> directions = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+constexpr int INF = 10e6;
+constexpr std::array<std::array<int, 2>, 4> directions{{
+    {0, 1},
+    {1, 0},
+    {0, -1},
+    {-1, 0},
+}};
 
+class Solution {
  public:
-  int minimumEffortPath(vector<vector<int>>& heights) {
+  int minimumEffortPath(std::vector<std::vector<int>>& heights) {
     int rows = heights.size();
     int cols = heights[0].size();
 
-    vector<vector<int>> efforts(rows, vector<int>(cols, INF));
+    std::vector<std::vector<int>> efforts(rows, std::vector<int>(cols, INF));
 
     // {effort, row, col}
-    priority_queue<tii, vector<tii>, greater<>> minHeap;
+    std::priority_queue<std::tuple<int, int, int>,
+                        std::vector<std::tuple<int, int, int>>, std::greater<>>
+        minHeap;
 
     efforts[0][0] = 0;
     minHeap.emplace(0, 0, 0);
@@ -38,7 +41,7 @@ class Solution {
         break;
       }
 
-      for (auto const& [dr, dc] : directions) {
+      for (const auto [dr, dc] : directions) {
         int nr = r + dr;
         int nc = c + dc;
 
@@ -47,7 +50,8 @@ class Solution {
         }
 
         // Not the sum of efforts, but the max difference in the route
-        int nextEffort = max(effort, abs(heights[r][c] - heights[nr][nc]));
+        int nextEffort =
+            std::max(effort, std::abs(heights[r][c] - heights[nr][nc]));
         if (nextEffort >= efforts[nr][nc]) {
           continue;
         }

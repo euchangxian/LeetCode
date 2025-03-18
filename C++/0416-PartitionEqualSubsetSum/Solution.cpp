@@ -1,10 +1,10 @@
 #include <functional>
+#include <numeric>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  bool canPartition(vector<int>& nums) {
+  bool canPartition(std::vector<int>& nums) {
     // Looks like binary search. Threshold would be half of the total sum.
     // Possibly DP, since at each element, there are two choices:
     // 1. Take the element, add its sum into the current subset
@@ -27,12 +27,12 @@ class Solution {
 
     // Similar to coin change. BUT, iterate over the coins in the outer loop
     // to ensure each coin is taken at MOST once.
-    for (const int& num : nums) {
+    for (const int num : nums) {
       // IMPORTANT: we iterate backwards so that results from earlier iteration
       // will not affect the current iteration. Emulates a temporary array.
       // E.g., if num=1, and we iterate from the start, its akin to taking
       // multiple copies of 1.
-      for (size_t amt = k; amt >= num; --amt) {
+      for (std::size_t amt = k; amt >= num; --amt) {
         dp[amt] = dp[amt] || dp[amt - num];
       }
     }

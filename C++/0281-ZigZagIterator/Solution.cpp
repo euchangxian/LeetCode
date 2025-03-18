@@ -3,17 +3,17 @@
 #include <utility>
 #include <vector>
 
-using namespace std;
 /**
  * A queue can be used
  */
 class ZigzagIterator {
  private:
   // {iter, end}
-  queue<pair<vector<int>::iterator, vector<int>::iterator>> iters;
+  std::queue<std::pair<std::vector<int>::iterator, std::vector<int>::iterator>>
+      iters;
 
  public:
-  ZigzagIterator(vector<int>& v1, vector<int>& v2) {
+  ZigzagIterator(std::vector<int>& v1, std::vector<int>& v2) {
     // Only need one check. Since a call to next() will be valid.
     if (!v1.empty()) {
       iters.emplace(v1.begin(), v1.end());

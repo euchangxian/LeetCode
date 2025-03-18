@@ -1,10 +1,9 @@
 #include <algorithm>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  int minNumberOperations(vector<int>& target) {
+  int minNumberOperations(std::vector<int>& target) {
     // Notice the monotonic-increasing property
     // As target[i] increases, the number of operations increases
     // i.e., {1, 2, 3} => 3 operations required.

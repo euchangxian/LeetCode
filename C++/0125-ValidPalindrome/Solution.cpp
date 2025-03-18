@@ -1,15 +1,13 @@
 #include <cctype>
 #include <string>
 
-using namespace std;
-
 bool isalphanumeric(char c) {
   return isalpha(c) || isdigit(c);
 }
 
 class Solution {
  public:
-  bool isPalindrome(string s) {
+  bool isPalindrome(std::string s) {
     int i = 0;
     int j = s.size() - 1;
 

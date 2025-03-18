@@ -1,19 +1,7 @@
 #include <algorithm>
-#include <array>
-#include <bitset>
-#include <climits>
 #include <cstddef>
-#include <cstdint>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
 #include <string>
-#include <unordered_map>
-#include <unordered_set>
-#include <vector>
 
-using namespace std;
 class Solution {
  public:
   int maximumSwap(int num) {
@@ -45,8 +33,8 @@ class Solution {
     // Bigger => update largestIdx.
     //
     // At the end, swap the two idx.
-    string numStr = to_string(num);
-    const size_t n = numStr.length();
+    std::string numStr = std::to_string(num);
+    const std::size_t n = numStr.length();
 
     int largestIdx = n - 1;
     int swapIdxGreater = largestIdx;
@@ -72,6 +60,6 @@ class Solution {
       return num;  // no swaps.
     }
     std::swap(numStr[swapIdxGreater], numStr[swapIdxSmaller]);
-    return stoi(numStr);
+    return std::stoi(numStr);
   }
 };

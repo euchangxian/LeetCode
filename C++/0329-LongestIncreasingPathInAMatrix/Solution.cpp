@@ -13,14 +13,32 @@
 #include <unordered_set>
 #include <vector>
 
-using namespace std;
-constexpr array<pair<int32_t, int32_t>, 4> directions{
-    {{0, 1}, {1, 0}, {0, -1}, {-1, 0}}};
+constexpr std::array<std::array<int, 2>, 4> directions{{
+    {0, 1},
+    {1, 0},
+    {0, -1},
+    {-1, 0},
+}};
 
 class Solution {
+ public:
+  int longestIncreasingPath(std::vector<std::vector<int>>& matrix) {
+    // Longest increasing path is just itself at the start.
+    const std::size_t rows{matrix.size()};
+    const std::size_t cols{matrix[0].size()};
+    std::vector<std::vector<int>> memo(rows, std::vector<int>(cols, 1));
+    int32_t result{1};
+    for (std::size_t i{0}; i < rows; ++i) {
+      for (std::size_t j{0}; j < cols; ++j) {
+        result = std::max(result, dfs(matrix, memo, i, j));
+      }
+    }
+    return result;
+  }
+
  private:
-  int dfs(const vector<vector<int>>& matrix,
-          vector<vector<int>>& memo,
+  int dfs(const std::vector<std::vector<int>>& matrix,
+          std::vector<std::vector<int>>& memo,
           size_t r,
           size_t c) {
     if (memo[r][c] > 1) {
@@ -40,20 +58,5 @@ class Solution {
       }
     }
     return memo[r][c];
-  }
-
- public:
-  int longestIncreasingPath(vector<vector<int>>& matrix) {
-    // Longest increasing path is just itself at the start.
-    const size_t rows{matrix.size()};
-    const size_t cols{matrix[0].size()};
-    vector<vector<int>> memo(rows, vector<int>(cols, 1));
-    int32_t result{1};
-    for (size_t i{0}; i < rows; ++i) {
-      for (size_t j{0}; j < cols; ++j) {
-        result = std::max(result, dfs(matrix, memo, i, j));
-      }
-    }
-    return result;
   }
 };

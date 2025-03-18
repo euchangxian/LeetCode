@@ -1,9 +1,8 @@
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  int maxProfit(vector<int>& prices) {
+  int maxProfit(std::vector<int>& prices) {
     // Two Choices: Buy or Sell (if already bought a stock)
     // For this variant, only one single stock can be bought and sold.
     // Sliding window / monotonically non-decreasing stack.
@@ -18,7 +17,7 @@ class Solution {
         l = r;  // try buying at r
         continue;
       }
-      profit = max(profit, prices[r] - prices[l]);
+      profit = std::max(profit, prices[r] - prices[l]);
     }
 
     return profit;

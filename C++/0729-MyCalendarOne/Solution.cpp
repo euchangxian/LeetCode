@@ -1,17 +1,4 @@
-#include <algorithm>
-#include <array>
-#include <bitset>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <list>
-#include <queue>
 #include <set>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
-#include <vector>
 
 class MyCalendar {
  private:

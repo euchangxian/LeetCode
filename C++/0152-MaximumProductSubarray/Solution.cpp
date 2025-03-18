@@ -1,18 +1,9 @@
 #include <algorithm>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  int maxProduct(vector<int>& nums) {
+  int maxProduct(std::vector<int>& nums) {
     int n = nums.size();
 
     int maxProd = nums[0];
@@ -33,13 +24,13 @@ class Solution {
         // actually result in a negative number (if maxSoFar is positive).
         // Swapping allows us to cleanly retain the max and min semantics
         // below.
-        swap(minSoFar, maxSoFar);
+        std::swap(minSoFar, maxSoFar);
       }
 
-      minSoFar = min(nums[i], minSoFar * nums[i]);
-      maxSoFar = max(nums[i], maxSoFar * nums[i]);
+      minSoFar = std::min(nums[i], minSoFar * nums[i]);
+      maxSoFar = std::max(nums[i], maxSoFar * nums[i]);
 
-      maxProd = max(maxProd, maxSoFar);
+      maxProd = std::max(maxProd, maxSoFar);
     }
 
     return maxProd;

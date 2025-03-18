@@ -1,8 +1,9 @@
 #include <algorithm>
 #include <cstddef>
 #include <set>
-#include <unordered_map>
 #include <vector>
+
+#ifdef LOCAL
 struct TreeNode {
   int val;
   TreeNode* left;
@@ -13,30 +14,11 @@ struct TreeNode {
   TreeNode(int x, TreeNode* left, TreeNode* right)
       : val(x), left(left), right(right) {}
 };
+#endif  // LOCAL
 
-using namespace std;
 class Solution {
- private:
-  int getHeights(TreeNode* root,
-                 std::array<int, 100001>& depths,
-                 std::array<int, 100001>& heights,
-                 int depth,
-                 int& n) {
-    if (!root) {
-      return -1;  // for null nodes
-    }
-    n = std::max(n, root->val);
-    // To find siblings/cousins on the same depth
-    depths[root->val] = depth;
-    int height =
-        1 + std::max(getHeights(root->left, depths, heights, depth + 1, n),
-                     getHeights(root->right, depths, heights, depth + 1, n));
-    heights[root->val] = height;
-    return height;
-  }
-
  public:
-  vector<int> treeQueries(TreeNode* root, vector<int>& queries) {
+  std::vector<int> treeQueries(TreeNode* root, std::vector<int>& queries) {
     // Each node is numbered [1..n]
     // Each query[i] is to remove the subtree rooted at node i, and return the
     // height of the resultant tree.
@@ -106,5 +88,24 @@ class Solution {
       }
     }
     return result;
+  }
+
+ private:
+  int getHeights(TreeNode* root,
+                 std::array<int, 100001>& depths,
+                 std::array<int, 100001>& heights,
+                 int depth,
+                 int& n) {
+    if (!root) {
+      return -1;  // for null nodes
+    }
+    n = std::max(n, root->val);
+    // To find siblings/cousins on the same depth
+    depths[root->val] = depth;
+    int height =
+        1 + std::max(getHeights(root->left, depths, heights, depth + 1, n),
+                     getHeights(root->right, depths, heights, depth + 1, n));
+    heights[root->val] = height;
+    return height;
   }
 };

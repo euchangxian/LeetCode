@@ -2,20 +2,21 @@
 #include <cstddef>
 #include <queue>
 #include <tuple>
-#include <utility>
 #include <vector>
 
-using namespace std;
-class Solution {
- private:
-  // Need to consider all 4 directions instead of just right and bottom. This
-  // is to deal with the situation where the obstacle blocks right/bottom, and
-  // the only path is left/top
-  static constexpr std::array<std::pair<int, int>, 4> directions{
-      {{0, 1}, {1, 0}, {0, -1}, {-1, 0}}};
+// Need to consider all 4 directions instead of just right and bottom. This
+// is to deal with the situation where the obstacle blocks right/bottom, and
+// the only path is left/top
+constexpr std::array<std::array<int, 2>, 4> directions{{
+    {0, 1},
+    {1, 0},
+    {0, -1},
+    {-1, 0},
+}};
 
+class Solution {
  public:
-  int shortestPath(vector<vector<int>>& grid, int k) {
+  int shortestPath(std::vector<std::vector<int>>& grid, int k) {
     // grid[i][j] = 0 (empty) | 1 (obstacle)
     // Move in cardinal directions to an empty cell.
     // k is the number of obstacles that can be eliminated.
@@ -23,8 +24,8 @@ class Solution {
     // Start (0, 0), Goal (m-1, n-1)
     // Intuition is just BFS with an extra state to represent the number of
     // obstacles break remaining.
-    const size_t rows = grid.size();
-    const size_t cols = grid[0].size();
+    const std::size_t rows = grid.size();
+    const std::size_t cols = grid[0].size();
     if (k >= rows + cols - 2) {
       // manhattan dist between (0, 0) and (rows-1, cols-1)
       // This optimization is necessary to avoid unnecessary traversal if we

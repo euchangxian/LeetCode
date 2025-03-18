@@ -1,18 +1,4 @@
-#include <algorithm>
-#include <array>
-#include <bitset>
-#include <chrono>
-#include <climits>
-#include <functional>
-#include <iostream>
 #include <map>
-#include <queue>
-#include <set>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
-#include <vector>
 
 /**
  * Unlike CalendarOne, in CalendarTwo, we can add an event if it does not cause

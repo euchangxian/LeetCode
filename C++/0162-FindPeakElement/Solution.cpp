@@ -1,10 +1,9 @@
 #include <cstddef>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  int findPeakElement(vector<int>& nums) {
+  int findPeakElement(std::vector<int>& nums) {
     // Find Peaks!
     // A peak is an element that is greater than its neighbours. e.g., for
     // any index i in [0..n], nums[i] is a peak iff

@@ -3,10 +3,9 @@
 #include <cstdlib>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  bool canMakeArithmeticProgression(vector<int>& arr) {
+  bool canMakeArithmeticProgression(std::vector<int>& arr) {
     // an array is an AP if the difference between any two consecutive elements
     // are the same.
     // Most straightforward way: Sort in ascending, check difference. O(nlogn)

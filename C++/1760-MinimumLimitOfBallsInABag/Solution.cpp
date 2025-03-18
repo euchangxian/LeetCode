@@ -4,17 +4,6 @@
 #include <vector>
 
 class Solution {
- private:
-  bool feasible(std::vector<int>& nums, int maxOperations, int maxValue) {
-    // TODO:
-    int k = 0;
-
-    for (int num : nums) {
-      k += ((num + maxValue - 1) / maxValue) - 1;
-    }
-    return k <= maxOperations;
-  }
-
  public:
   int minimumSize(std::vector<int>& nums, int maxOperations) {
     // Splitting as evenly as possible, i.e, greedy approach does NOT work.
@@ -55,5 +44,15 @@ class Solution {
       }
     }
     return left;
+  }
+
+ private:
+  bool feasible(std::vector<int>& nums, int maxOperations, int maxValue) {
+    int k = 0;
+
+    for (int num : nums) {
+      k += ((num + maxValue - 1) / maxValue) - 1;
+    }
+    return k <= maxOperations;
   }
 };

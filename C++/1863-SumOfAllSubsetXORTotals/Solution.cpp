@@ -1,22 +1,12 @@
-#include <iostream>
 #include <vector>
-
-using namespace std;
 
 class Solution {
  public:
-  vector<vector<int>> generateAllSubsets(vector<int> const& nums) {
-    vector<vector<int>> subsets;
-    vector<int> currSet;
-    generateSubsets(nums, subsets, currSet, 0);
-    return subsets;
-  }
-
-  int subsetXORSum(vector<int>& nums) {
-    vector<vector<int>> subsets = generateAllSubsets(nums);
+  int subsetXORSum(std::vector<int>& nums) {
+    std::vector<std::vector<int>> subsets = generateAllSubsets(nums);
     int xorSum = 0;
 
-    for (auto subset : subsets) {
+    for (const auto& subset : subsets) {
       int subsetSum = 0;
       for (int i : subset) {
         subsetSum ^= i;
@@ -27,9 +17,17 @@ class Solution {
   }
 
  private:
-  void generateSubsets(vector<int> const& nums,
-                       vector<vector<int>>& subsets,
-                       vector<int>& currSet,
+  std::vector<std::vector<int>> generateAllSubsets(
+      const std::vector<int>& nums) {
+    std::vector<std::vector<int>> subsets;
+    std::vector<int> currSet;
+    generateSubsets(nums, subsets, currSet, 0);
+    return subsets;
+  }
+
+  void generateSubsets(const std::vector<int>& nums,
+                       std::vector<std::vector<int>>& subsets,
+                       std::vector<int>& currSet,
                        int idx) {
     if (idx >= nums.size()) {
       subsets.push_back(currSet);
@@ -42,15 +40,3 @@ class Solution {
     return;
   }
 };
-
-int main() {
-  Solution soln = Solution();
-  vector<vector<int>> subsets = soln.generateAllSubsets({1, 2, 3});
-  for (auto subset : subsets) {
-    cout << "{";
-    for (auto i : subset) {
-      cout << i << " ";
-    }
-    cout << "}" << endl;
-  }
-}

@@ -3,10 +3,9 @@
 #include <queue>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  int minGroups(vector<vector<int>>& intervals) {
+  int minGroups(std::vector<std::vector<int>>& intervals) {
     // Seems like finding the maximum number of intersections will suffice.
     // {5, 10}, {6, 8}, {1, 5}, {2, 3}, {1, 10}
     // {1, 5}, {1, 10}, {2, 3}, {5, 10}, {6, 8}
@@ -33,7 +32,7 @@ class Solution {
     sort(intervals.begin(), intervals.end(),
          [](const auto& a, const auto& b) { return a[0] < b[0]; });
 
-    priority_queue<int, vector<int>, greater<>> ending;
+    std::priority_queue<int, std::vector<int>, std::greater<>> ending;
     for (const auto& interval : intervals) {
       if (!ending.empty() && interval[0] > ending.top()) {
         ending.pop();  // no overlap

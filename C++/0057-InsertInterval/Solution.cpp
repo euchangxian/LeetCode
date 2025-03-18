@@ -1,22 +1,13 @@
 #include <algorithm>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  vector<vector<int>> insert(vector<vector<int>>& intervals,
-                             vector<int>& newInterval) {
+  std::vector<std::vector<int>> insert(std::vector<std::vector<int>>& intervals,
+                                       std::vector<int>& newInterval) {
     // intervals is already sorted in ascending order by start
     int n = intervals.size();
-    vector<vector<int>> result;
+    std::vector<std::vector<int>> result;
     result.reserve(intervals.size() + 1);
 
     int i = 0;
@@ -29,8 +20,8 @@ class Solution {
 
     // Merge overlapping intervals
     while (i < n && intervals[i][0] <= newInterval[1]) {
-      newInterval[0] = min(newInterval[0], intervals[i][0]);
-      newInterval[1] = max(newInterval[1], intervals[i][1]);
+      newInterval[0] = std::min(newInterval[0], intervals[i][0]);
+      newInterval[1] = std::max(newInterval[1], intervals[i][1]);
       ++i;
     }
     result.push_back(newInterval);

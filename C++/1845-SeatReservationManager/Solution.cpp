@@ -3,11 +3,7 @@
 #include <queue>
 #include <vector>
 
-using namespace std;
 class SeatManager {
- private:
-  priority_queue<int, vector<int>, greater<>> availableSeats;
-
  public:
   SeatManager(int n) {
     for (int i = 1; i <= n; ++i) {
@@ -24,6 +20,9 @@ class SeatManager {
 
   // unreserves the seat with the given seatNumber
   void unreserve(int seatNumber) { availableSeats.push(seatNumber); }
+
+ private:
+  std::priority_queue<int, std::vector<int>, std::greater<>> availableSeats;
 };
 
 /**

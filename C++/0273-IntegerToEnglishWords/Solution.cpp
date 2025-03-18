@@ -1,29 +1,28 @@
-#include <algorithm>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
 #include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-using namespace std;
 class Solution {
- private:
-  const vector<string> belowTen = {"",     "One", "Two",   "Three", "Four",
-                                   "Five", "Six", "Seven", "Eight", "Nine"};
+ public:
+  std::string numberToWords(int num) {
+    if (num == 0) {
+      return "Zero";
+    }
+    return toWords(num);
+  }
 
-  const vector<string> belowTwenty = {
+  const std::vector<std::string> belowTen = {"",      "One",  "Two", "Three",
+                                             "Four",  "Five", "Six", "Seven",
+                                             "Eight", "Nine"};
+
+  const std::vector<std::string> belowTwenty = {
       "Ten",     "Eleven",  "Twelve",    "Thirteen", "Fourteen",
       "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
 
-  const vector<string> belowHundred = {"",       "Ten",   "Twenty", "Thirty",
-                                       "Forty",  "Fifty", "Sixty",  "Seventy",
-                                       "Eighty", "Ninety"};
+  const std::vector<std::string> belowHundred = {
+      "",      "Ten",   "Twenty",  "Thirty", "Forty",
+      "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"};
 
-  string toWords(int num) {
+  std::string toWords(int num) {
     if (num < 10) {
       return belowTen[num];
     }
@@ -51,13 +50,5 @@ class Solution {
 
     return toWords(num / 1000000000) + " Billion" +
            (num % 1000000000 ? " " + toWords(num % 1000000000) : "");
-  }
-
- public:
-  string numberToWords(int num) {
-    if (num == 0) {
-      return "Zero";
-    }
-    return toWords(num);
   }
 };

@@ -1,18 +1,9 @@
 #include <algorithm>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  int lastStoneWeightII(vector<int>& stones) {
+  int lastStoneWeightII(std::vector<int>& stones) {
     int n = stones.size();
 
     // dp[i] represents the smallest possible weight given the first i stones
@@ -37,7 +28,7 @@ class Solution {
     int target = totalSum / 2;
 
     // dp[i] represents whether a subset with a sum of i can be formed
-    vector<bool> dp(target + 1, false);
+    std::vector<bool> dp(target + 1, false);
     dp[0] = true;  // A sum of 0 can be formed, by not selecting any stones
 
     // Maximum sum that is LTE to the Target
@@ -48,7 +39,7 @@ class Solution {
         dp[j] = dp[j] || dp[j - stone];
 
         if (dp[j]) {
-          maxSum = max(maxSum, j);
+          maxSum = std::max(maxSum, j);
         }
       }
     }

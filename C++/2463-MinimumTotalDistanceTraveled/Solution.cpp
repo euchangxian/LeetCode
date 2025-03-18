@@ -2,11 +2,10 @@
 #include <cstddef>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  long long minimumTotalDistance(vector<int>& robot,
-                                 vector<vector<int>>& factory) {
+  long long minimumTotalDistance(std::vector<int>& robot,
+                                 std::vector<std::vector<int>>& factory) {
     // robot[i] represent the position of the ith robot.
     // factory[j] = {position, limit}, representing the position of the jth
     // factory, and the number of robots that can be repaired.
@@ -81,7 +80,7 @@ class Solution {
     for (const std::vector<int>& vec : factory) {
       const int fPos = vec[0];
       const int fLimit = vec[1];
-      for (size_t i = 0; i < fLimit; ++i) {
+      for (std::size_t i = 0; i < fLimit; ++i) {
         flatFactories.push_back(fPos);
       }
     }
@@ -94,12 +93,12 @@ class Solution {
         std::vector<long long>(flatFactories.size() + 1, INF));
 
     // base case: 0 cost to assign 0 robots to any amount of factories.
-    for (size_t j = 0; j <= flatFactories.size(); ++j) {
+    for (std::size_t j = 0; j <= flatFactories.size(); ++j) {
       dp[0][j] = 0;
     }
 
-    for (size_t i = 1; i <= robot.size(); ++i) {
-      for (size_t j = i; j <= flatFactories.size(); ++j) {
+    for (std::size_t i = 1; i <= robot.size(); ++i) {
+      for (std::size_t j = i; j <= flatFactories.size(); ++j) {
         long long take =
             dp[i - 1][j - 1] + std::abs(flatFactories[j - 1] - robot[i - 1]);
 

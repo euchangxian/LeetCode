@@ -2,6 +2,7 @@
 #include <cstddef>
 #include <queue>
 
+#ifdef LOCAL
 struct TreeNode {
   int val;
   TreeNode* left;
@@ -12,8 +13,8 @@ struct TreeNode {
   TreeNode(int x, TreeNode* left, TreeNode* right)
       : val(x), left(left), right(right) {}
 };
+#endif  // LOCAL
 
-using namespace std;
 class Solution {
  public:
   int minimumLevel(TreeNode* root) {
@@ -25,7 +26,7 @@ class Solution {
     frontier.push(root);
     int level = 0;
     while (!frontier.empty()) {
-      size_t fSize = frontier.size();
+      std::size_t fSize = frontier.size();
       long long levelSum = 0;
       while (fSize--) {
         TreeNode* curr = frontier.front();

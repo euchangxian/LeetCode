@@ -6,15 +6,14 @@
 #include <queue>
 #include <vector>
 
-class Solution {
- private:
-  std::array<std::array<int, 2>, 4> directions{{
-      {0, 1},
-      {1, 0},
-      {0, -1},
-      {-1, 0},
-  }};
+constexpr std::array<std::array<int, 2>, 4> directions{{
+    {0, 1},
+    {1, 0},
+    {0, -1},
+    {-1, 0},
+}};
 
+class Solution {
  public:
   int maximumSafenessFactor(std::vector<std::vector<int>>& grid) {
     // Cell with a Thief '1', or empty '0'.
@@ -26,7 +25,7 @@ class Solution {
     //
     // Probably precompute the safety value of each cell using multi-source BFS.
     // Then, Dijkstra? Greedily pick the highest safety value neighbour.
-    const size_t n = grid.size();
+    const std::size_t n = grid.size();
 
     // small optimization to return early if a thief is on the source/dest
     if (grid[0][0] == 1 || grid[n - 1][n - 1] == 1) {

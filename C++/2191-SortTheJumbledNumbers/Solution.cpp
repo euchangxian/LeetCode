@@ -1,18 +1,12 @@
 #include <algorithm>
-#include <climits>
-#include <iostream>
-#include <queue>
-#include <stack>
-#include <string>
 #include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  vector<int> sortJumbled(vector<int>& mapping, vector<int>& nums) {
-    unordered_map<int, int> mappedNumbers;
+  std::vector<int> sortJumbled(std::vector<int>& mapping,
+                               std::vector<int>& nums) {
+    std::unordered_map<int, int> mappedNumbers;
     for (int i = 0; i < nums.size(); ++i) {
       int mapped = 0;
       int exp = 0;
@@ -32,9 +26,10 @@ class Solution {
       mappedNumbers[nums[i]] = mapped;
     }
 
-    stable_sort(nums.begin(), nums.end(), [&mappedNumbers](int num1, int num2) {
-      return mappedNumbers[num1] < mappedNumbers[num2];
-    });
+    std::stable_sort(nums.begin(), nums.end(),
+                     [&mappedNumbers](int num1, int num2) {
+                       return mappedNumbers[num1] < mappedNumbers[num2];
+                     });
     return nums;
   }
 };

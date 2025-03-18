@@ -1,30 +1,8 @@
-#include <algorithm>
-#include <array>
-#include <bitset>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-using namespace std;
 class Solution {
- private:
-  inline bool isNoZero(int n) {
-    bool noZero = true;
-    while (n > 0) {
-      noZero = noZero && (n % 10);
-      n /= 10;
-    }
-    return noZero;
-  }
-
  public:
-  vector<int> getNoZeroIntegers(int n) {
+  std::vector<int> getNoZeroIntegers(int n) {
     // Note some properties:
     // if the number is 10, then we want [1, 9]
     // if the number is 11, [1, 10] is not correct. we need [2, 9]
@@ -77,7 +55,7 @@ class Solution {
     return {a, b};
   }
 
-  vector<int> getNoZeroIntegersNaive(int n) {
+  std::vector<int> getNoZeroIntegersNaive(int n) {
     // No-Zero integers are integers without 0 in its decimal representation
     // Return [a, b] such that a and b are No-Zero and a + b = n
     // Guaranteed to have a valid answer.
@@ -94,5 +72,15 @@ class Solution {
     }
 
     return {};
+  }
+
+ private:
+  bool isNoZero(int n) {
+    bool noZero = true;
+    while (n > 0) {
+      noZero = noZero && (n % 10);
+      n /= 10;
+    }
+    return noZero;
   }
 };

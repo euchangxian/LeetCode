@@ -3,12 +3,19 @@
 #include <string>
 #include <string_view>
 
-using namespace std;
 class Solution {
+ public:
+  // Changing the signature to string_view is fine.
+  std::string decodeString(std::string_view s) {
+    // Seems similar to flattening a tree.
+    int i = 0;
+    return decode(s, i);
+  }
+
  private:
-  string decode(string_view s, int& i) {
+  std::string decode(std::string_view s, int& i) {
     // DFS
-    string result;
+    std::string result;
     while (i < s.length() && s[i] != ']') {
       if (isalpha(s[i])) {
         result += s[i++];
@@ -22,7 +29,7 @@ class Solution {
       }
 
       ++i;  // skip '[';
-      string flattened = decode(s, i);
+      std::string flattened = decode(s, i);
       ++i;  // skip ']'
 
       while (repeats--) {
@@ -30,13 +37,5 @@ class Solution {
       }
     }
     return result;
-  }
-
- public:
-  // Changing the signature to string_view is fine.
-  string decodeString(string_view s) {
-    // Seems similar to flattening a tree.
-    int i = 0;
-    return decode(s, i);
   }
 };

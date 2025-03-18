@@ -2,14 +2,13 @@
 #include <cstddef>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  int halveArray(vector<int>& nums) {
+  int halveArray(std::vector<int>& nums) {
     const size_t n = nums.size();
 
     double sum = 0;
-    vector<double> dblNums(n);
+    std::vector<double> dblNums(n);
     for (size_t i = 0; i < n; ++i) {
       dblNums[i] = static_cast<double>(nums[i]);
       sum += dblNums[i];

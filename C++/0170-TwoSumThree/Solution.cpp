@@ -1,7 +1,6 @@
 #include <cstddef>
 #include <unordered_map>
 
-using namespace std;
 /**
  * Naively, add() can just add the number to a hashmap in constant time.
  * find() can then implement the two-sum algorithm which runs in linear time.

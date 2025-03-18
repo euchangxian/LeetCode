@@ -7,7 +7,6 @@
 #include <utility>
 #include <vector>
 
-using namespace std;
 /**
  * Each video is a string of digits, where the ith digit of the string represent
  * the content of the video at minute i.
@@ -24,18 +23,6 @@ using namespace std;
  * determine if a videoId should be added back into the heap.
  */
 class VideoSharingPlatform {
- private:
-  // Keep track of the lowest available ID to be assigned.
-  std::set<int> availableIds;
-
-  std::array<std::string, 100001> videos{};
-
-  // Keep track of the {likes, dislikes} of each video
-  std::array<std::array<int, 2>, 100001> likesDislikes{};
-
-  // Keep track of the views of the video
-  std::array<int, 100001> views{};
-
  public:
   VideoSharingPlatform() : availableIds({0}) {}
 
@@ -94,7 +81,7 @@ class VideoSharingPlatform {
     ++likesDislikes[videoId][1];
   }
 
-  vector<int> getLikesAndDislikes(int videoId) {
+  std::vector<int> getLikesAndDislikes(int videoId) {
     if (videos[videoId].empty()) {
       return {-1};
     }
@@ -109,6 +96,18 @@ class VideoSharingPlatform {
 
     return views[videoId];
   }
+
+ private:
+  // Keep track of the lowest available ID to be assigned.
+  std::set<int> availableIds;
+
+  std::array<std::string, 100001> videos{};
+
+  // Keep track of the {likes, dislikes} of each video
+  std::array<std::array<int, 2>, 100001> likesDislikes{};
+
+  // Keep track of the views of the video
+  std::array<int, 100001> views{};
 };
 
 /**

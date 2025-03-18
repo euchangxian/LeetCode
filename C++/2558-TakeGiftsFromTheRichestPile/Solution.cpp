@@ -3,6 +3,7 @@
 #include <cstddef>
 #include <cstdlib>
 #include <functional>
+#include <numeric>
 #include <vector>
 
 class Solution {

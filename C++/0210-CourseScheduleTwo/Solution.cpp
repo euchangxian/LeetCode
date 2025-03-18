@@ -1,23 +1,22 @@
-#include <algorithm>
-#include <climits>
-#include <functional>
-#include <iostream>
 #include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-using namespace std;
 class Solution {
- private:
-  vector<int> topologicalSort(int const& numCourses,
-                              vector<vector<int>> const& prerequisites) {
-    vector<vector<int>> adj(numCourses);
-    vector<int> inDegrees(numCourses, 0);
+ public:
+  std::vector<int> findOrder(int numCourses,
+                             std::vector<std::vector<int>>& prerequisites) {
+    // Similar to CourseScheduleOne. Topological sort and return the order
+    return topologicalSort(numCourses, prerequisites);
+  }
 
-    for (auto const& prerequisite : prerequisites) {
+ private:
+  std::vector<int> topologicalSort(
+      int numCourses,
+      const std::vector<std::vector<int>>& prerequisites) {
+    std::vector<std::vector<int>> adj(numCourses);
+    std::vector<int> inDegrees(numCourses, 0);
+
+    for (const auto& prerequisite : prerequisites) {
       // (a, b) => directed edge from b to a
       int from = prerequisite[1];
       int to = prerequisite[0];
@@ -26,21 +25,21 @@ class Solution {
       ++inDegrees[to];
     }
 
-    queue<int> zeroes;
+    std::queue<int> zeroes;
     for (int i = 0; i < numCourses; ++i) {
       if (inDegrees[i] == 0) {
         zeroes.push(i);
       }
     }
 
-    vector<int> result;
+    std::vector<int> result;
     result.reserve(numCourses);
     while (!zeroes.empty()) {
       int curr = zeroes.front();
       zeroes.pop();
       result.push_back(curr);
 
-      for (auto const& neighbour : adj[curr]) {
+      for (int neighbour : adj[curr]) {
         if (--inDegrees[neighbour] == 0) {
           zeroes.push(neighbour);
         }
@@ -51,11 +50,5 @@ class Solution {
       return {};
     }
     return result;
-  }
-
- public:
-  vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
-    // Similar to CourseScheduleOne. Topological sort and return the order
-    return topologicalSort(numCourses, prerequisites);
   }
 };

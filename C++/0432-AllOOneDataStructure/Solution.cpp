@@ -1,23 +1,22 @@
 #include <cstdint>
 #include <list>
 #include <string>
-#include <string_view>
 #include <unordered_map>
 #include <unordered_set>
 
-using std::string, std::string_view, std::unordered_map, std::unordered_set,
-    std::list, std::pair;
 class AllOne {
  private:
-  unordered_map<string, list<pair<int32_t, unordered_set<string>>>::iterator>
+  std::unordered_map<
+      std::string,
+      std::list<std::pair<int32_t, std::unordered_set<std::string>>>::iterator>
       frequency;
 
-  list<pair<int32_t, unordered_set<string>>> minmax;
+  std::list<std::pair<int32_t, std::unordered_set<std::string>>> minmax;
 
  public:
   AllOne() {}
 
-  void inc(string key) {
+  void inc(std::string key) {
     auto mapIter = frequency.find(key);
     if (mapIter == frequency.end()) {
       // If the key does not already exist, create a new ListNode
@@ -27,7 +26,7 @@ class AllOne {
         // insert new node if there is not already a list header for frequency
         // of one.
         // This List header will be for keys with frequency of 1
-        minmax.emplace_front(1, unordered_set<string>{});
+        minmax.emplace_front(1, std::unordered_set<std::string>{});
       }
 
       // Add to the bucket
@@ -48,7 +47,8 @@ class AllOne {
     auto nextIter = std::next(listIter);
     if (nextIter == minmax.end() || nextIter->first > newFreq) {
       // Insert a new list at the next position
-      nextIter = minmax.insert(nextIter, {newFreq, unordered_set<string>{}});
+      nextIter =
+          minmax.insert(nextIter, {newFreq, std::unordered_set<std::string>{}});
     }
 
     // Remove the old key from the oldBucket.
@@ -66,7 +66,7 @@ class AllOne {
     mapIter->second = nextIter;
   }
 
-  void dec(string key) {
+  void dec(std::string key) {
     // Question guarantees dec will only be called when the key exists in the
     // data structure
     auto mapIter = frequency.find(key);
@@ -90,8 +90,8 @@ class AllOne {
       auto newBucketIter = listIter;
       if (listIter == minmax.begin() || std::prev(listIter)->first < newFreq) {
         // Insert a new list to the left of the listIter.
-        newBucketIter =
-            minmax.insert(listIter, {newFreq, unordered_set<string>{}});
+        newBucketIter = minmax.insert(
+            listIter, {newFreq, std::unordered_set<std::string>{}});
       } else {
         // set the newBucketIter to the existing left listNode.
         newBucketIter = std::prev(listIter);
@@ -110,7 +110,7 @@ class AllOne {
     }
   }
 
-  string getMaxKey() {
+  std::string getMaxKey() {
     if (frequency.empty()) {
       return "";
     }
@@ -118,7 +118,7 @@ class AllOne {
     return *minmax.back().second.begin();
   }
 
-  string getMinKey() {
+  std::string getMinKey() {
     if (frequency.empty()) {
       return "";
     }

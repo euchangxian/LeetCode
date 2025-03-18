@@ -1,10 +1,9 @@
 #include <cstddef>
 #include <string>
 
-using namespace std;
 class Solution {
  public:
-  long long minimumSteps(string& s) {
+  long long minimumSteps(std::string& s) {
     // 0-indexed string s of length n. 0 represents white balls, 1 represents
     // black balls.
     // In each step, two adjacent balls can be swapped.
@@ -27,7 +26,7 @@ class Solution {
     // 1100 -> 1010 -> 1001 -> 0101 -> 0011.
     // 10101 -> 10011 -> 01011 -> 00111
 
-    const size_t n = s.length();
+    const std::size_t n = s.length();
 
     long long minOps = 0LL;
     int numOnes = 0;

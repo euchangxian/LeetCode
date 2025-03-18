@@ -3,10 +3,9 @@
 #include <set>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  bool containsNearbyAlmostDuplicate(vector<int>& nums,
+  bool containsNearbyAlmostDuplicate(std::vector<int>& nums,
                                      int indexDiff,
                                      int valueDiff) {
     // Unlike Contains Duplicate Two, which only has the distance constraint,

@@ -6,33 +6,6 @@
 #include <vector>
 
 class Trie {
- private:
-  struct Node {
-    bool isWord{false};
-    std::array<Node*, 26> children{};
-  };
-
-  Node* root{};
-
-  void dfs(std::vector<std::string>& matches, std::string& word, Node* iter) {
-    if (matches.size() >= 3) {
-      // prune and return early
-      return;
-    }
-
-    if (iter->isWord) {
-      matches.push_back(word);
-    }
-
-    for (int i = 0; i < 26; ++i) {
-      if (iter->children[i]) {
-        word += (i + 'a');
-        dfs(matches, word, iter->children[i]);
-        word.pop_back();  // backtrack
-      }
-    }
-  }
-
  public:
   Trie() : root(new Node()) {}
 
@@ -67,6 +40,33 @@ class Trie {
     dfs(matches, baseWord, iter);
 
     return matches;
+  }
+
+ private:
+  struct Node {
+    bool isWord{false};
+    std::array<Node*, 26> children{};
+  };
+
+  Node* root{};
+
+  void dfs(std::vector<std::string>& matches, std::string& word, Node* iter) {
+    if (matches.size() >= 3) {
+      // prune and return early
+      return;
+    }
+
+    if (iter->isWord) {
+      matches.push_back(word);
+    }
+
+    for (int i = 0; i < 26; ++i) {
+      if (iter->children[i]) {
+        word += (i + 'a');
+        dfs(matches, word, iter->children[i]);
+        word.pop_back();  // backtrack
+      }
+    }
   }
 };
 

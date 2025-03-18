@@ -3,11 +3,6 @@
 #include <vector>
 
 class Solution {
- private:
-  static constexpr char STONE = '#';
-  static constexpr char OBSTACLE = '*';
-  static constexpr char EMPTY = '.';
-
  public:
   std::vector<std::vector<char>> rotateTheBox(
       std::vector<std::vector<char>>& box) {
@@ -28,8 +23,8 @@ class Solution {
     // Repeat for all columns in the new output.
     // Tricky(?) part is the rotation.
     // (r, c) --rotate 90degrees-> (c, m - 1 - r)
-    const size_t rows = box.size();
-    const size_t cols = box[0].size();
+    const std::size_t rows = box.size();
+    const std::size_t cols = box[0].size();
     std::vector<std::vector<char>> rotated(cols,
                                            std::vector<char>(rows, EMPTY));
 
@@ -58,4 +53,9 @@ class Solution {
 
     return rotated;
   }
+
+ private:
+  static constexpr char STONE = '#';
+  static constexpr char OBSTACLE = '*';
+  static constexpr char EMPTY = '.';
 };

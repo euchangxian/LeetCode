@@ -1,9 +1,8 @@
 #include <string>
 
-using namespace std;
 class Solution {
  public:
-  int maximumGain(string s, int x, int y) {
+  int maximumGain(std::string s, int x, int y) {
     char currentTarget = 'b';
     char topTarget = 'a';
     int points = x;
@@ -16,7 +15,7 @@ class Solution {
     }
 
     int result = 0;
-    string remaining;
+    std::string remaining;
     for (char c : s) {
       if (c == currentTarget && !remaining.empty() &&
           remaining.back() == topTarget) {

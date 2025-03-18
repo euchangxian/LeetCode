@@ -1,17 +1,28 @@
 #include <algorithm>
-#include <array>
-#include <bitset>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
 class Solution {
+ public:
+  int minOperations(std::vector<int>& nums, int x, int y) {
+    // Similar to the Flower Blooming/Bouquet question with a little twist
+    // where one number is decremented by y, others are decremented by x
+    int left = 1;
+    int right = *std::max_element(nums.begin(), nums.end());
+
+    while (left < right) {
+      int mid = left + (right - left) / 2;
+
+      if (!feasible(nums, x, y, mid)) {
+        // Ops need to be increased
+        left = mid + 1;
+      } else {
+        right = mid;
+      }
+    }
+
+    return left;
+  }
+
  private:
   bool feasible(const std::vector<int>& nums,
                 const int& x,
@@ -32,26 +43,5 @@ class Solution {
     }
 
     return xOpsRequired <= ops;
-  }
-
- public:
-  int minOperations(std::vector<int>& nums, int x, int y) {
-    // Similar to the Flower Blooming/Bouquet question with a little twist
-    // where one number is decremented by y, others are decremented by x
-    int left = 1;
-    int right = *std::max_element(nums.begin(), nums.end());
-
-    while (left < right) {
-      int mid = left + (right - left) / 2;
-
-      if (!feasible(nums, x, y, mid)) {
-        // Ops need to be increased
-        left = mid + 1;
-      } else {
-        right = mid;
-      }
-    }
-
-    return left;
   }
 };

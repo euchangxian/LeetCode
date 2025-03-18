@@ -7,19 +7,6 @@
 #include <vector>
 
 class Solution {
- private:
-  void hierholzer(std::unordered_map<int, std::deque<int>>& adjList,
-                  std::vector<std::vector<int>>& result,
-                  int node) {
-    auto& edges = adjList[node];
-    while (!edges.empty()) {
-      int next = edges.back();
-      edges.pop_back();
-      hierholzer(adjList, result, next);
-      result.push_back({node, next});
-    }
-  }
-
  public:
   std::vector<std::vector<int>> validArrangement(
       std::vector<std::vector<int>>& pairs) {
@@ -94,5 +81,18 @@ class Solution {
 
     std::reverse(result.begin(), result.end());
     return result;
+  }
+
+ private:
+  void hierholzer(std::unordered_map<int, std::deque<int>>& adjList,
+                  std::vector<std::vector<int>>& result,
+                  int node) {
+    auto& edges = adjList[node];
+    while (!edges.empty()) {
+      int next = edges.back();
+      edges.pop_back();
+      hierholzer(adjList, result, next);
+      result.push_back({node, next});
+    }
   }
 };

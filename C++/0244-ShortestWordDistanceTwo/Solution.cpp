@@ -5,7 +5,6 @@
 #include <unordered_map>
 #include <vector>
 
-using namespace std;
 /**
  * shortest distance between word1 and word2 in the array wordDict is defined
  * as the shortest difference between the indices of word1 and word2 in the
@@ -21,21 +20,21 @@ using namespace std;
  */
 class WordDistance {
  private:
-  unordered_map<string, vector<size_t>> indices;
+  std::unordered_map<std::string, std::vector<std::size_t>> indices;
 
  public:
-  WordDistance(vector<string>& wordsDict) {
-    for (size_t i = 0; i < wordsDict.size(); ++i) {
+  WordDistance(std::vector<std::string>& wordsDict) {
+    for (std::size_t i = 0; i < wordsDict.size(); ++i) {
       indices[wordsDict[i]].push_back(i);
     }
   }
 
-  int shortest(const string& word1, const string& word2) {
-    vector<size_t> indices1 = indices[word1];
-    vector<size_t> indices2 = indices[word2];
+  int shortest(const std::string& word1, const std::string& word2) {
+    std::vector<std::size_t> indices1 = indices[word1];
+    std::vector<std::size_t> indices2 = indices[word2];
 
-    size_t i = 0;
-    size_t j = 0;
+    std::size_t i = 0;
+    std::size_t j = 0;
 
     int minRange = INT_MAX;
     // advance the lower-valued ptr.
@@ -43,8 +42,8 @@ class WordDistance {
       const int idx1 = indices1[i];
       const int idx2 = indices2[j];
 
-      minRange =
-          min(minRange, abs(static_cast<int>(idx2) - static_cast<int>(idx1)));
+      minRange = std::min(
+          minRange, std::abs(static_cast<int>(idx2) - static_cast<int>(idx1)));
 
       if (idx1 < idx2) {
         ++i;

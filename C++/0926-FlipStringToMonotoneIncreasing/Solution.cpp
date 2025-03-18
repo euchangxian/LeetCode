@@ -1,11 +1,11 @@
 #include <algorithm>
 #include <cstddef>
+#include <string_view>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  int minFlipsMonoIncr(string_view s) {
+  int minFlipsMonoIncr(std::string_view s) {
     // count number of '1's after the last '0'?
     // count number of '0's after the first '1'?
     // Get the minimum i guess. Seems to be two-pass?
@@ -35,14 +35,14 @@ class Solution {
     //
     // Can technically be done with O(1) space. O(n) solution is for
     // illustration.
-    const size_t n = s.length();
+    const std::size_t n = s.length();
 
     // dp[i] represents the min number of flips to convert s[:i]
     std::vector<int> dp(n + 1);
     dp[0] = 0;  // a substring of length 0 is vacously monotonically increasing.
 
     int ones = 0;
-    for (size_t i = 1; i < n + 1; ++i) {
+    for (std::size_t i = 1; i < n + 1; ++i) {
       if (s[i - 1] == '1') {
         ++ones;
         dp[i] = dp[i - 1];

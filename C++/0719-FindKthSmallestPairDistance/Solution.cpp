@@ -1,36 +1,9 @@
 #include <algorithm>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-using namespace std;
 class Solution {
- private:
-  int countPairs(vector<int> const& nums, int const dist) {
-    int count = 0;
-
-    int left = 0;
-    for (int right = 0; right < nums.size(); ++right) {
-      // Array is sorted => subarray is sorted
-      while (nums[right] - nums[left] > dist) {
-        // Adjust left pointer to reduce the distance
-        ++left;
-      }
-      // Not (r - l + 1), to compensate for the extra ++left invocation
-      // before the while loop breaks.
-      count += (right - left);
-    }
-    return count;
-  }
-
  public:
-  int smallestDistancePair(vector<int>& nums, int k) {
+  int smallestDistancePair(std::vector<int>& nums, int k) {
     // Notice that we only need the kth smallest distance, not the actual
     // pairs that produce the distance. This allows us to perform lots of
     // optimizations.
@@ -61,7 +34,7 @@ class Solution {
     // subarray is LTE d, then the number of pairs that have distances <= d
     // can be counted by taking the number of elements in the subarray.
     int n = nums.size();
-    sort(nums.begin(), nums.end());
+    std::sort(nums.begin(), nums.end());
 
     int left = 0;                       // smallest possible distance
     int right = nums[n - 1] - nums[0];  // largest possible distance
@@ -82,13 +55,13 @@ class Solution {
     return left;
   }
 
-  int smallestDistancePairNaive(vector<int>& nums, int k) {
+  int smallestDistancePairNaive(std::vector<int>& nums, int k) {
     // Naively generate all pairs, sort them by their distances, and return
     // the kth (at index k - 1) distance
     // Time: O(n^2 logn)
     // Space: O(n^2)
     int n = nums.size();
-    vector<pair<int, int>> pairs;
+    std::vector<std::pair<int, int>> pairs;
     pairs.reserve(n * (n - 1) / 2);
 
     for (int i = 0; i < n; ++i) {
@@ -97,10 +70,30 @@ class Solution {
       }
     }
 
-    sort(pairs.begin(), pairs.end(), [](pair<int, int> p1, pair<int, int> p2) {
-      return abs(p1.first - p1.second) < abs(p2.first - p2.second);
-    });
+    std::sort(pairs.begin(), pairs.end(),
+              [](std::pair<int, int> p1, std::pair<int, int> p2) {
+                return std::abs(p1.first - p1.second) <
+                       std::abs(p2.first - p2.second);
+              });
 
-    return abs(pairs[k - 1].first - pairs[k - 1].second);
+    return std::abs(pairs[k - 1].first - pairs[k - 1].second);
+  }
+
+ private:
+  int countPairs(const std::vector<int>& nums, int dist) {
+    int count = 0;
+
+    int left = 0;
+    for (int right = 0; right < nums.size(); ++right) {
+      // Array is sorted => subarray is sorted
+      while (nums[right] - nums[left] > dist) {
+        // Adjust left pointer to reduce the distance
+        ++left;
+      }
+      // Not (r - l + 1), to compensate for the extra ++left invocation
+      // before the while loop breaks.
+      count += (right - left);
+    }
+    return count;
   }
 };

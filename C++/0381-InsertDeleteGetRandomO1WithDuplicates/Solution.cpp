@@ -5,7 +5,6 @@
 #include <unordered_set>
 #include <vector>
 
-using namespace std;
 
 /**
  * Since duplicates are allowed, the map of indices must be modified

@@ -1,16 +1,8 @@
 #include <algorithm>
 #include <array>
-#include <climits>
-#include <functional>
-#include <iostream>
 #include <queue>
-#include <stack>
 #include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
-
-using namespace std;
 
 constexpr size_t ALPHABETS = 26;
 
@@ -25,27 +17,27 @@ class Solution {
   // 4. Repeat 2 to 4 until the queue is empty.
   // 5. If the size of the sorted list is not equal to the number of nodes,
   //    then there is a circular dependency. Otherwise, return the list.
-  string foreignDictionary(vector<string>& words) {
+  std::string foreignDictionary(std::vector<std::string>& words) {
     // Given the sorted (with an unknown comparator) list of words, return a
     // order of the languages.
 
     // Used for cycle detection.
-    array<bool, ALPHABETS> seen{};
+    std::array<bool, ALPHABETS> seen{};
 
     // Create dependency graph and calculate in-degree
-    array<array<bool, ALPHABETS>, ALPHABETS> adjMatrix{{}};
-    array<int, ALPHABETS> indegree{};
+    std::array<std::array<bool, ALPHABETS>, ALPHABETS> adjMatrix{{}};
+    std::array<int, ALPHABETS> indegree{};
 
     for (int i = 0; i < words.size(); ++i) {
-      for (char const& c : words[i]) {
+      for (char c : words[i]) {
         seen[c - 'a'] = true;
       }
 
       if (i > 0) {
-        string const& prev = words[i - 1];
-        string const& curr = words[i];
+        const std::string& prev = words[i - 1];
+        const std::string& curr = words[i];
 
-        int minLen = min(prev.length(), curr.length());
+        int minLen = std::min(prev.length(), curr.length());
 
         // A little long, but basically, if the prev word is longer than the
         // current word, but the prefixes are the same, then an impossible
@@ -73,14 +65,14 @@ class Solution {
       }
     }
 
-    queue<int> zeroInc;
+    std::queue<int> zeroInc;
     for (int i = 0; i < ALPHABETS; ++i) {
       if (seen[i] && indegree[i] == 0) {
         zeroInc.push(i);
       }
     }
 
-    string sorted;
+    std::string sorted;
     sorted.reserve(ALPHABETS);
     while (!zeroInc.empty()) {
       int curr = zeroInc.front();
@@ -95,7 +87,7 @@ class Solution {
       }
     }
 
-    int uniqueChars = count(seen.begin(), seen.end(), true);
+    int uniqueChars = std::count(seen.begin(), seen.end(), true);
     if (sorted.length() != uniqueChars) {
       return "";
     }

@@ -2,16 +2,15 @@
 #include <string>
 #include <unordered_map>
 
-using namespace std;
 class Logger {
  private:
   // {string, nextTimestamp}
-  unordered_map<string, int> nextTime;
+  std::unordered_map<std::string, int> nextTime;
 
  public:
   Logger() {}
 
-  bool shouldPrintMessage(int timestamp, string message) {
+  bool shouldPrintMessage(int timestamp, std::string message) {
     auto iter = nextTime.find(message);
 
     // Check if not rate-limited: first occurence, or t + 10 has already passed.

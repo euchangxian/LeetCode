@@ -1,21 +1,11 @@
-#include <algorithm>
-#include <array>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
 #include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-using namespace std;
 class Solution {
   bool match(char c, char p) { return c == p || p == '.'; }
 
  public:
-  bool isMatch(string s, string p) {
+  bool isMatch(std::string s, std::string p) {
     // '.' matches any single character
     // '*' matches zero or more of the preceding element.
     // Return true if the pattern p matches the given string s
@@ -45,7 +35,7 @@ class Solution {
     //  2. if pre == s[i-1] or '.', then
     //     dp[i][j] = dp[i - 1][j] (take multiple times)
     //             && (s[i-1] == p[j-1] || p[j-1] == '.') (char must match)
-    vector<vector<bool>> dp(m + 1, vector<bool>(n + 1, false));
+    std::vector<std::vector<bool>> dp(m + 1, std::vector<bool>(n + 1, false));
     dp[0][0] = true;  // vacuously true
     for (int j = 1; j <= n; ++j) {
       if (p[j - 1] == '*') {

@@ -4,17 +4,6 @@
 #include <vector>
 
 class Solution {
- private:
-  bool feasible(std::vector<int>& nums, int threshold, int divisor) {
-    int sum = 0;
-    for (int num : nums) {
-      // ceiling division
-      sum += (num + divisor - 1) / divisor;
-    }
-
-    return sum <= threshold;
-  }
-
  public:
   int smallestDivisor(std::vector<int>& nums, int threshold) {
     // choose a positive integer divisor, divide all elements by it, and sum
@@ -48,5 +37,16 @@ class Solution {
       }
     }
     return left;
+  }
+
+ private:
+  bool feasible(std::vector<int>& nums, int threshold, int divisor) {
+    int sum = 0;
+    for (int num : nums) {
+      // ceiling division
+      sum += (num + divisor - 1) / divisor;
+    }
+
+    return sum <= threshold;
   }
 };

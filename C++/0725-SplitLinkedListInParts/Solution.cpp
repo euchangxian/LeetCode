@@ -1,14 +1,6 @@
-#include <algorithm>
-#include <array>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
+
+#ifdef LOCAL
 struct ListNode {
   int val;
   ListNode* next;
@@ -16,19 +8,11 @@ struct ListNode {
   ListNode(int x) : val(x), next(nullptr) {}
   ListNode(int x, ListNode* next) : val(x), next(next) {}
 };
+#endif  // LOCAL
 
-using namespace std;
 class Solution {
-  int listSize(ListNode* head, int len) {
-    if (!head) {
-      return len;
-    }
-
-    return listSize(head->next, 1 + len);
-  }
-
  public:
-  vector<ListNode*> splitListToParts(ListNode* head, int k) {
+  std::vector<ListNode*> splitListToParts(ListNode* head, int k) {
     int size = listSize(head, 0);
 
     int partSize = size / k;
@@ -36,7 +20,7 @@ class Solution {
     // First size % k segments have an extra node
     int extras = size % k;
 
-    vector<ListNode*> result(k, nullptr);
+    std::vector<ListNode*> result(k, nullptr);
 
     ListNode* prev = nullptr;
     for (int i = 0; head && i < k; ++i) {
@@ -54,5 +38,14 @@ class Solution {
       prev->next = nullptr;  // Disconnect this segment
     }
     return result;
+  }
+
+ private:
+  int listSize(ListNode* head, int len) {
+    if (!head) {
+      return len;
+    }
+
+    return listSize(head->next, 1 + len);
   }
 };

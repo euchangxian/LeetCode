@@ -3,10 +3,9 @@
 #include <utility>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  int minCostII(vector<vector<int>>& costs) {
+  int minCostII(std::vector<std::vector<int>>& costs) {
     // Row of n houses, each house can be painted with one of k colors.
     // Cost of painting each house with a certain color is different.
     //
@@ -65,13 +64,13 @@ class Solution {
     // 2. O(nk) => maintain the firstMin/secondMin of dp[i-1].
     // 3. O(1) space => Update the costs in-place.
 
-    const size_t n = costs.size();
-    const size_t k = costs[0].size();
+    const std::size_t n = costs.size();
+    const std::size_t k = costs[0].size();
 
     // {color, cost}
-    std::pair<size_t, int> firstMin = {-1, INT_MAX};
-    std::pair<size_t, int> secondMin = {-1, INT_MAX};
-    for (size_t j = 0; j < k; ++j) {
+    std::pair<std::size_t, int> firstMin = {-1, INT_MAX};
+    std::pair<std::size_t, int> secondMin = {-1, INT_MAX};
+    for (std::size_t j = 0; j < k; ++j) {
       if (costs[0][j] < firstMin.second) {
         secondMin = firstMin;
         firstMin = {j, costs[0][j]};
@@ -80,10 +79,10 @@ class Solution {
       }
     }
 
-    for (size_t i = 1; i < n; ++i) {
-      std::pair<size_t, int> currFirstMin = {-1, INT_MAX};
-      std::pair<size_t, int> currSecondMin = {-1, INT_MAX};
-      for (size_t j = 0; j < k; ++j) {
+    for (std::size_t i = 1; i < n; ++i) {
+      std::pair<std::size_t, int> currFirstMin = {-1, INT_MAX};
+      std::pair<std::size_t, int> currSecondMin = {-1, INT_MAX};
+      for (std::size_t j = 0; j < k; ++j) {
         // Choose either the first/second min of the previous (i-1)th houses.
         if (j != firstMin.first) {
           costs[i][j] += firstMin.second;

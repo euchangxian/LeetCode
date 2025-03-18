@@ -1,14 +1,6 @@
-#include <algorithm>
-#include <array>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
+
+#ifdef LOCAL
 struct ListNode {
   int val;
   ListNode* next;
@@ -16,12 +8,12 @@ struct ListNode {
   ListNode(int x) : val(x), next(nullptr) {}
   ListNode(int x, ListNode* next) : val(x), next(next) {}
 };
+#endif  // LOCAL
 
-using namespace std;
 class Solution {
  public:
-  vector<vector<int>> spiralMatrix(int m, int n, ListNode* head) {
-    vector<vector<int>> matrix(m, vector<int>(n, -1));
+  std::vector<std::vector<int>> spiralMatrix(int m, int n, ListNode* head) {
+    std::vector<std::vector<int>> matrix(m, std::vector<int>(n, -1));
 
     int rowStart = 0, colStart = 0, rowEnd = m - 1, colEnd = n - 1;
     while (rowStart <= rowEnd && colStart <= colEnd && head) {

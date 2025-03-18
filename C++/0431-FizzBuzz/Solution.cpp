@@ -1,11 +1,10 @@
 #include <string>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  vector<string> fizzBuzz(int n) {
-    std::vector<string> result;
+  std::vector<std::string> fizzBuzz(int n) {
+    std::vector<std::string> result;
     result.reserve(n);
     for (int i = 1; i <= n; ++i) {
       std::string output;

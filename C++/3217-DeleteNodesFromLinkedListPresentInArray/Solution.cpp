@@ -1,13 +1,7 @@
-#include <algorithm>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
 #include <unordered_set>
 #include <vector>
+
+#ifdef LOCAL
 struct ListNode {
   int val;
   ListNode* next;
@@ -15,11 +9,20 @@ struct ListNode {
   ListNode(int x) : val(x), next(nullptr) {}
   ListNode(int x, ListNode* next) : val(x), next(next) {}
 };
+#endif  // LOCAL
 
-using namespace std;
 class Solution {
+ public:
+  ListNode* modifiedList(std::vector<int>& nums, ListNode* head) {
+    // Remove lists matching nums
+    std::unordered_set<int> toRemove(nums.begin(), nums.end());
+
+    return removeNums(head, toRemove);
+  }
+
  private:
-  ListNode* removeNums(ListNode* curr, unordered_set<int> const& toRemove) {
+  ListNode* removeNums(ListNode* curr,
+                       const std::unordered_set<int>& toRemove) {
     if (!curr) {
       return nullptr;
     }
@@ -30,13 +33,5 @@ class Solution {
 
     curr->next = removeNums(curr->next, toRemove);
     return curr;
-  }
-
- public:
-  ListNode* modifiedList(vector<int>& nums, ListNode* head) {
-    // Remove lists matching nums
-    unordered_set<int> toRemove(nums.begin(), nums.end());
-
-    return removeNums(head, toRemove);
   }
 };

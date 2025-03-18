@@ -1,9 +1,8 @@
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  bool threeConsecutiveOdds(vector<int>& arr) {
+  bool threeConsecutiveOdds(std::vector<int>& arr) {
     int consecutiveOdds = 0;
     for (int num : arr) {
       if (num & 1) {

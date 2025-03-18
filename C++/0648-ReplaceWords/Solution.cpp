@@ -2,24 +2,19 @@
 #include <string>
 #include <vector>
 
-using namespace std;
-
 class TrieNode {
  public:
   bool isEnd;
-  vector<TrieNode*> children;
+  std::vector<TrieNode*> children;
 
   TrieNode() : children(26, nullptr) { isEnd = false; }
 };
 
 class Trie {
- private:
-  TrieNode* root;
-
  public:
   Trie() { root = new TrieNode(); }
 
-  void insert(string word) {
+  void insert(std::string_view word) {
     TrieNode* current = root;
     for (char c : word) {
       if (current->children[c - 'a'] == nullptr) {
@@ -30,8 +25,8 @@ class Trie {
     current->isEnd = true;
   }
 
-  string findShortestRoot(string word) {
-    stringstream shortestRoot;
+  std::string findShortestRoot(std::string word) {
+    std::stringstream shortestRoot;
     TrieNode* current = root;
     for (char c : word) {
       if (current->children[c - 'a'] == nullptr) {
@@ -47,26 +42,30 @@ class Trie {
     }
     return word;
   }
+
+ private:
+  TrieNode* root;
 };
 
 class Solution {
  public:
-  string replaceWords(vector<string>& dictionary, string sentence) {
+  std::string replaceWords(std::vector<std::string>& dictionary,
+                           std::string sentence) {
     // add each root in the dictionary into the Trie
     Trie dictTrie;
-    for (string word : dictionary) {
+    for (std::string word : dictionary) {
       dictTrie.insert(word);
     }
 
-    stringstream resultStream;
-    istringstream sentenceStream(sentence);
+    std::stringstream resultStream;
+    std::istringstream sentenceStream(sentence);
 
-    string currWord;
+    std::string currWord;
     while (sentenceStream >> currWord) {
-      string root = dictTrie.findShortestRoot(currWord);
+      std::string root = dictTrie.findShortestRoot(currWord);
       resultStream << root << " ";
     }
-    string result = resultStream.str();
+    std::string result = resultStream.str();
     result.pop_back();  // remove extra space
     return result;
   }

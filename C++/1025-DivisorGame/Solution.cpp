@@ -1,6 +1,3 @@
-#include <cstddef>
-#include <cstdlib>
-
 class Solution {
  public:
   bool divisorGame(int n) {

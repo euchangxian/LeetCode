@@ -1,33 +1,26 @@
-#include <algorithm>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
 #include <string>
 #include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-using namespace std;
 class TimeMap {
  private:
-  unordered_map<string, vector<pair<int, string>>> store;
+  std::unordered_map<std::string, std::vector<std::pair<int, std::string>>>
+      store;
 
  public:
   TimeMap() {}
 
-  void set(string key, string value, int timestamp) {
+  void set(std::string key, std::string value, int timestamp) {
     store[key].push_back({timestamp, value});
     return;
   }
 
-  string get(string key, int timestamp) {
+  std::string get(std::string key, int timestamp) {
     if (!store.count(key)) {
       return "";
     }
 
-    vector<pair<int, string>> const& values = store[key];
+    const std::vector<std::pair<int, std::string>>& values = store[key];
 
     int left = 0;
     int right = values.size() - 1;
@@ -39,7 +32,7 @@ class TimeMap {
       // and also avoid infinite loops in the update of left = mid.
       int mid = left + (right - left + 1) / 2;
 
-      auto const& [ts, val] = values[mid];
+      const auto& [ts, val] = values[mid];
       if (ts <= timestamp) {
         left = mid;
       } else {

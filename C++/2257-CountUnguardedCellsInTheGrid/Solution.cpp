@@ -4,37 +4,14 @@
 #include <cstdlib>
 #include <vector>
 
+constexpr std::array<std::array<int, 2>, 4> directions{{
+    {0, 1},
+    {1, 0},
+    {0, -1},
+    {-1, 0},
+}};
+
 class Solution {
- private:
-  enum State {
-    UNGUARDED = 0,
-    GUARDED = 1,
-    GUARD = 2,
-    WALL = 3,
-  };
-
-  const std::array<std::array<int, 2>, 4> directions{{
-      {0, 1},
-      {1, 0},
-      {0, -1},
-      {-1, 0},
-  }};
-
-  void guardCardinal(std::vector<std::vector<int>>& grid, int r, int c) {
-    // DFS from [r, c]
-    for (auto [dr, dc] : directions) {
-      int nr = r + dr;
-      int nc = c + dc;
-
-      while (nr >= 0 && nc >= 0 && nr < grid.size() && nc < grid[0].size() &&
-             grid[nr][nc] != State::GUARD && grid[nr][nc] != State::WALL) {
-        grid[nr][nc] = State::GUARDED;
-        nr += dr;
-        nc += dc;
-      }
-    }
-  }
-
  public:
   int countUnguarded(int m,
                      int n,
@@ -92,5 +69,28 @@ class Solution {
     }
 
     return unguarded;
+  }
+
+ private:
+  enum State {
+    UNGUARDED = 0,
+    GUARDED = 1,
+    GUARD = 2,
+    WALL = 3,
+  };
+
+  void guardCardinal(std::vector<std::vector<int>>& grid, int r, int c) {
+    // DFS from [r, c]
+    for (auto [dr, dc] : directions) {
+      int nr = r + dr;
+      int nc = c + dc;
+
+      while (nr >= 0 && nc >= 0 && nr < grid.size() && nc < grid[0].size() &&
+             grid[nr][nc] != State::GUARD && grid[nr][nc] != State::WALL) {
+        grid[nr][nc] = State::GUARDED;
+        nr += dr;
+        nc += dc;
+      }
+    }
   }
 };

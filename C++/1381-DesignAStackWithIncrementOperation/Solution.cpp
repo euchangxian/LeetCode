@@ -1,21 +1,7 @@
 #include <cstddef>
 #include <vector>
 
-using std::vector;
 class CustomStack {
- private:
-  // Stack
-  vector<int> stack;
-
-  // Lazily propagated increments
-  vector<int> incr;
-
-  // Stack pointer
-  size_t sp;
-
-  // Capacity of the stack
-  const size_t maxSize;
-
  public:
   CustomStack(int maxSize)
       : stack(maxSize), incr(maxSize, 0), sp(0), maxSize(maxSize) {}
@@ -52,12 +38,25 @@ class CustomStack {
     if (isEmpty() || k == 0) {
       return;
     }
-    incr[std::min(static_cast<size_t>(k), sp) - 1] += val;
+    incr[std::min(static_cast<std::size_t>(k), sp) - 1] += val;
   }
 
-  inline bool isFull() const noexcept { return sp >= maxSize; }
+  bool isFull() const noexcept { return sp >= maxSize; }
 
-  inline bool isEmpty() const noexcept { return sp == 0; }
+  bool isEmpty() const noexcept { return sp == 0; }
+
+ private:
+  // Stack
+  std::vector<int> stack;
+
+  // Lazily propagated increments
+  std::vector<int> incr;
+
+  // Stack pointer
+  std::size_t sp;
+
+  // Capacity of the stack
+  std::size_t maxSize;
 };
 
 /**

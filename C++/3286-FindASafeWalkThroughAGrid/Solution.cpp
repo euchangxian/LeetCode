@@ -4,18 +4,17 @@
 #include <tuple>
 #include <vector>
 
-using namespace std;
 class Solution {
  private:
   static constexpr std::array<std::pair<int, int>, 4> directions{
       {{0, 1}, {1, 0}, {0, -1}, {-1, 0}}};
 
  public:
-  bool findSafeWalk(vector<vector<int>>& grid, int health) {
+  bool findSafeWalk(std::vector<std::vector<int>>& grid, int health) {
     // Straightforward BFS. No need to count steps. Just return true/false
     // if can reach.
-    const size_t rows = grid.size();
-    const size_t cols = grid[0].size();
+    const std::size_t rows = grid.size();
+    const std::size_t cols = grid[0].size();
 
     // small optimization to check if health is greater than the manhattan dist.
     if (health - grid[0][0] > static_cast<int>((rows - 1) + (cols - 1))) {

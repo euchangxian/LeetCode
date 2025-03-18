@@ -1,13 +1,14 @@
+#include <algorithm>
+#include <string>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  int minOperations(vector<string>& logs) {
+  int minOperations(std::vector<std::string>& logs) {
     int operations = 0;
-    for (string log : logs) {
+    for (std::string log : logs) {
       if (log.substr(0, 3) == "../") {
-        operations = max(0, operations - 1);
+        operations = std::max(0, operations - 1);
         continue;
       }
       if (log.substr(0, 2) == "./") {

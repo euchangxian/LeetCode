@@ -1,28 +1,8 @@
 #include <algorithm>
-#include <array>
-#include <bitset>
-#include <climits>
-#include <cmath>
 #include <cstddef>
-#include <cstdint>
 #include <cstdlib>
-#include <deque>
-#include <functional>
-#include <iostream>
-#include <istream>
-#include <iterator>
 #include <map>
-#include <numeric>
-#include <queue>
-#include <set>
-#include <stack>
-#include <string>
-#include <string_view>
-#include <tuple>
-#include <unordered_map>
-#include <unordered_set>
 #include <utility>
-#include <vector>
 
 // seems like a simple Segment Tree with Lazy Propagation should work.
 // Nope. Not very simple. <= 10^9 will definitely cause MLE.

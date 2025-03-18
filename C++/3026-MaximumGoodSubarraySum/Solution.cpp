@@ -6,6 +6,7 @@
 #include <utility>
 #include <vector>
 
+using i64 = long long;
 class Solution {
  public:
   long long maximumSubarraySum(std::vector<int>& nums, int k) {
@@ -17,7 +18,6 @@ class Solution {
     // Lol. Store the elements as the key, and the prefix sums excluding
     // the element as the value.
     // Allows quick lookup for x +- k.
-    using i64 = long long;
     std::unordered_map<int, i64> prefixes;
 
     i64 prefix = 0;

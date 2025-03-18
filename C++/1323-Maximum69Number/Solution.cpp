@@ -1,17 +1,5 @@
-#include <algorithm>
-#include <array>
-#include <bitset>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
-#include <vector>
+#include <cmath>
 
-using namespace std;
 class Solution {
  public:
   int maximum69Number(int num) {
@@ -42,6 +30,6 @@ class Solution {
     // to the original number is equivalent to changing the '6' to '9'
     // E.g. original = 9669. Then i = 2. pow(10, 2) = 100
     // 9669 + (3 * 100) = 9969
-    return original + (3 * static_cast<int>(pow(10, leftMostSix)));
+    return original + (3 * static_cast<int>(std::pow(10, leftMostSix)));
   }
 };

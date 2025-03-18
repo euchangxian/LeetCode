@@ -1,7 +1,6 @@
 #include <cstddef>
 #include <deque>
 
-using namespace std;
 /**
  * Count the number of recent requests within a time frame.
  */

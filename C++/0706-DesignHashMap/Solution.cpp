@@ -1,7 +1,6 @@
 #include <array>
 #include <cstddef>
 
-using namespace std;
 /**
  * Problem constraints means provisioning buckets for each possible keys will
  * still be manageable space.

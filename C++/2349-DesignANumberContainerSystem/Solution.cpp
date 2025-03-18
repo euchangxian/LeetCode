@@ -2,7 +2,6 @@
 #include <set>
 #include <unordered_map>
 
-using namespace std;
 /**
  * Seems to be a many-to-one relationship between Buckets/Containers and
  * Numbers.
@@ -19,10 +18,6 @@ using namespace std;
  * For the number -> buckets, use an ordered Set.
  */
 class NumberContainers {
- private:
-  std::unordered_map<int, int> containers;
-  std::unordered_map<int, std::set<int>> numbers;
-
  public:
   NumberContainers() {}
 
@@ -48,6 +43,10 @@ class NumberContainers {
 
     return *(iter->second).begin();
   }
+
+ private:
+  std::unordered_map<int, int> containers;
+  std::unordered_map<int, std::set<int>> numbers;
 };
 
 /**

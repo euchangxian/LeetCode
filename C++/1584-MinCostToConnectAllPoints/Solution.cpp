@@ -1,37 +1,20 @@
 #include <algorithm>
-#include <array>
 #include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-using namespace std;
 class Solution {
- private:
-  inline int manhanttanDist(int const& x1,
-                            int const& y1,
-                            int const& x2,
-                            int const& y2) {
-    return abs(x1 - x2) + abs(y1 - y2);
-  }
-
  public:
-  int minCostConnectPoints(vector<vector<int>> const& points) {
+  int minCostConnectPoints(const std::vector<std::vector<int>>& points) {
     // Each point has an edge to every other point, making it a clique
     // Prim's seem more suitable for Complete Graphs.
     // Prim's: Add nodes to a minHeap, ordered by the weight of the edges
     // Pop the least cost one.
-    size_t const n = points.size();
+    const std::size_t n = points.size();
 
     // There is technically an optimization, to set the distance of nodes
     // already in the MST to INT_MAX.
-    vector<bool> seen(n, false);
-    vector<int> distance(n, INT_MAX);
+    std::vector<bool> seen(n, false);
+    std::vector<int> distance(n, INT_MAX);
     distance[0] = 0;
 
     int minCost = 0;
@@ -55,11 +38,16 @@ class Solution {
           continue;
         }
 
-        distance[i] = min(distance[i],
-                          manhanttanDist(points[minIdx][0], points[minIdx][1],
-                                         points[i][0], points[i][1]));
+        distance[i] = std::min(
+            distance[i], manhanttanDist(points[minIdx][0], points[minIdx][1],
+                                        points[i][0], points[i][1]));
       }
     }
     return minCost;
+  }
+
+ private:
+  int manhanttanDist(int x1, int y1, int x2, int y2) {
+    return abs(x1 - x2) + abs(y1 - y2);
   }
 };

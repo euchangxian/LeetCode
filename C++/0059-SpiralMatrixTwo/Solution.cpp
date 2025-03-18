@@ -1,19 +1,9 @@
-#include <algorithm>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  vector<vector<int>> generateMatrix(int n) {
-    vector<vector<int>> matrix(n, vector<int>(n));
+  std::vector<std::vector<int>> generateMatrix(int n) {
+    std::vector<std::vector<int>> matrix(n, std::vector<int>(n));
 
     int k = 1;
     int rowStart = 0, colStart = 0, rowEnd = n - 1, colEnd = n - 1;

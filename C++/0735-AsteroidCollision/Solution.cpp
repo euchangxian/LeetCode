@@ -1,10 +1,9 @@
 #include <cstddef>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  vector<int> asteroidCollision(vector<int>& asteroids) {
+  std::vector<int> asteroidCollision(std::vector<int>& asteroids) {
     // Positive indicate going right, negative indicate left.
     // Smaller explodes
     // same size => both explode

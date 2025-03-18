@@ -3,7 +3,6 @@
 #include <cstdint>
 #include <string>
 
-using namespace std;
 /**
  * 1 <= size <= 10^5
  * Use an array of 32/64 bit integers?
@@ -43,27 +42,6 @@ using namespace std;
  * A count of '1's and '0's can be maintained
  */
 class Bitset {
- private:
-  static constexpr size_t MAX_BITS = 100000;
-  static constexpr size_t BITS_PER_BLOCK = sizeof(uint64_t) * 8;
-
-  // ceiling division. Determines the number of uint64_t integer required to
-  // represent 10^5 bits
-  static constexpr size_t MAX_BLOCKS =
-      (MAX_BITS + BITS_PER_BLOCK - 1) / BITS_PER_BLOCK;
-
-  const size_t size;
-  const size_t blockCount;
-
-  // Since the number of bits is not guaranteed to be a multiple of 64, the last
-  // block may have unrelated bits. Precalculate the mask for the last block.
-  uint64_t lastBlockMask;
-
-  // Keep track of the counts of '1's and '0's bits.
-  size_t zeros;
-  size_t ones;
-  std::array<uint64_t, MAX_BLOCKS> bitset;
-
  public:
   Bitset(int size)
       : size(size),
@@ -71,7 +49,7 @@ class Bitset {
         zeros(size),
         ones(0),
         bitset{{}} {
-    const size_t lastBlockBits = size & (BITS_PER_BLOCK - 1);
+    const std::size_t lastBlockBits = size & (BITS_PER_BLOCK - 1);
 
     // Handle the case where the size is a multiple of 64, i.e., the mask should
     // be all '1's
@@ -81,7 +59,7 @@ class Bitset {
 
   void fix(int idx) {
     // Determine the 'block' that this bit belongs to
-    const size_t blockIdx = idx / BITS_PER_BLOCK;
+    const std::size_t blockIdx = idx / BITS_PER_BLOCK;
 
     // Determine which bit in that block.
     const int bitPos = idx & (BITS_PER_BLOCK - 1);
@@ -100,7 +78,7 @@ class Bitset {
 
   void unfix(int idx) {
     // Determine the 'block' that this bit belongs to
-    const size_t blockIdx = idx / BITS_PER_BLOCK;
+    const std::size_t blockIdx = idx / BITS_PER_BLOCK;
 
     // Determine which bit in that block.
     const int bitPos = idx & (BITS_PER_BLOCK - 1);
@@ -120,10 +98,10 @@ class Bitset {
   void flip() {
     // For flip, there is no need to finely handle the extra bits in the last
     // block if any. Bookkeeping is done in the necessary read methods.
-    for (size_t i = 0; i < blockCount; ++i) {
+    for (std::size_t i = 0; i < blockCount; ++i) {
       bitset[i] = ~bitset[i];
     }
-    swap(zeros, ones);
+    std::swap(zeros, ones);
   }
 
   bool all() {
@@ -141,12 +119,12 @@ class Bitset {
     return ones;
   }
 
-  string toString() {
+  std::string toString() {
     std::string repr;
     repr.reserve(size);
 
-    for (size_t i = 0; i < size; ++i) {
-      const size_t blockIdx = i / BITS_PER_BLOCK;
+    for (std::size_t i = 0; i < size; ++i) {
+      const std::size_t blockIdx = i / BITS_PER_BLOCK;
       const int bitPos = i & (BITS_PER_BLOCK - 1);
 
       const uint64_t mask = 1ULL << bitPos;
@@ -162,6 +140,27 @@ class Bitset {
 
     return repr;
   }
+
+ private:
+  static constexpr std::size_t MAX_BITS = 100000;
+  static constexpr std::size_t BITS_PER_BLOCK = sizeof(uint64_t) * 8;
+
+  // ceiling division. Determines the number of uint64_t integer required to
+  // represent 10^5 bits
+  static constexpr std::size_t MAX_BLOCKS =
+      (MAX_BITS + BITS_PER_BLOCK - 1) / BITS_PER_BLOCK;
+
+  const std::size_t size;
+  const std::size_t blockCount;
+
+  // Since the number of bits is not guaranteed to be a multiple of 64, the last
+  // block may have unrelated bits. Precalculate the mask for the last block.
+  uint64_t lastBlockMask;
+
+  // Keep track of the counts of '1's and '0's bits.
+  std::size_t zeros;
+  std::size_t ones;
+  std::array<uint64_t, MAX_BLOCKS> bitset;
 };
 
 /**

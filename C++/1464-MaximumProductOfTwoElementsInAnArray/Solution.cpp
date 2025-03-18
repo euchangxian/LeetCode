@@ -3,10 +3,9 @@
 #include <cstddef>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  int maxProduct(vector<int>& nums) {
+  int maxProduct(std::vector<int>& nums) {
     // Lol. Get max, get second max. Single pass
     int largest = INT_MIN;
     int secondLargest = INT_MIN;

@@ -2,18 +2,17 @@
 #include <cstddef>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  long long dividePlayers(vector<int>& skill) {
+  long long dividePlayers(std::vector<int>& skill) {
     // First glance looked like partition equal subset sums which is a DP
     // problem. Second glance looked like CS3230's CD problem, which is a
     // Greedy problem.
 
-    const size_t n = skill.size();
-    sort(skill.begin(), skill.end());
-    size_t l = 0;
-    size_t r = n - 1;
+    const std::size_t n = skill.size();
+    std::sort(skill.begin(), skill.end());
+    std::size_t l = 0;
+    std::size_t r = n - 1;
 
     // All sums must be equal to this. Return early if not.
     const int targetSum = skill[l] + skill[r];

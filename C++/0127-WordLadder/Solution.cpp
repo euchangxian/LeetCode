@@ -1,34 +1,29 @@
-#include <algorithm>
-#include <climits>
-#include <functional>
-#include <iostream>
 #include <queue>
-#include <stack>
 #include <string>
-#include <unordered_map>
 #include <unordered_set>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
-    unordered_set<string> words(wordList.begin(), wordList.end());
+  int ladderLength(std::string beginWord,
+                   std::string endWord,
+                   std::vector<std::string>& wordList) {
+    std::unordered_set<std::string> words(wordList.begin(), wordList.end());
     if (!words.count(endWord)) {
       return 0;
     }
 
-    queue<vector<string>> frontiers;
+    std::queue<std::vector<std::string>> frontiers;
     frontiers.push({beginWord});
 
     int result = 0;
     while (!frontiers.empty()) {
-      vector<string> frontier = frontiers.front();
+      std::vector<std::string> frontier = frontiers.front();
       frontiers.pop();
       ++result;
 
-      vector<string> nextFrontier;
-      for (string curr : frontier) {
+      std::vector<std::string> nextFrontier;
+      for (std::string curr : frontier) {
         if (curr == endWord) {
           return result;
         }

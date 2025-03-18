@@ -3,10 +3,9 @@
 #include <string_view>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  long long minimumCost(string_view s) {
+  long long minimumCost(std::string_view s) {
     // First glance seems like DP, since decisions at each s[:i] is necessary.
     // How to assign values to the decisions? What are the subproblems?
     // Lets start from base case:
@@ -64,11 +63,11 @@ class Solution {
     //          inversion at position i could lead to a better overall solution
     //  5. Thus, the greedy choice of picking min(i, n-i) at each position where
     //     s[i] ≠ s[i-1] must be optimal.
-    const size_t n = s.length();
+    const std::size_t n = s.length();
 
     // Again, can be done with constant space.
     std::vector<long long> dp(n, 0);
-    for (size_t i = 1; i < n; ++i) {
+    for (std::size_t i = 1; i < n; ++i) {
       dp[i] = dp[i - 1];
 
       if (s[i] != s[i - 1]) {

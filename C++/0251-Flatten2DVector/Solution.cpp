@@ -3,17 +3,17 @@
 #include <stdexcept>
 #include <vector>
 
-using namespace std;
 class Vector2D {
  private:
-  const vector<vector<int>>::iterator rowEnd;
+  const std::vector<std::vector<int>>::iterator rowEnd;
 
-  vector<vector<int>>::iterator rowIter;
-  vector<int>::iterator colIter;
+  std::vector<std::vector<int>>::iterator rowIter;
+  std::vector<int>::iterator colIter;
 
  public:
   // Initialize a copy. Not sure if std::move makes sense semantically here.
-  Vector2D(vector<vector<int>>& vec) : rowIter(vec.begin()), rowEnd(vec.end()) {
+  Vector2D(std::vector<std::vector<int>>& vec)
+      : rowIter(vec.begin()), rowEnd(vec.end()) {
     if (rowIter != rowEnd) {
       colIter = rowIter->begin();
     }
@@ -21,7 +21,7 @@ class Vector2D {
 
   int next() {
     if (!hasNext()) {
-      throw out_of_range("wont reach here");
+      throw std::out_of_range("wont reach here");
     }
 
     // Call to next() is valid.

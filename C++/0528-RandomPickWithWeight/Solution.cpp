@@ -4,7 +4,6 @@
 #include <random>
 #include <vector>
 
-using namespace std;
 /**
  * w[i] describes the weight of the ith index.
  *
@@ -26,8 +25,8 @@ class Solution {
   std::uniform_int_distribution<int> distr;
 
  public:
-  Solution(vector<int>& w)
-      : sumW(std::reduce(w.begin(), w.end(), 0, plus<>{})),
+  Solution(std::vector<int>& w)
+      : sumW(std::reduce(w.begin(), w.end(), 0, std::plus<>{})),
         prefixW(w),
         rng(std::random_device{}()),
         distr(1, sumW) {

@@ -1,6 +1,5 @@
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
   // Find the two numbers that appear exactly once in the array. Would be
@@ -12,7 +11,7 @@ class Solution {
   //
   // The difficulty lies in extracting both b and c. If we know one, we can
   // extract the other, since (b XOR c) XOR b = c
-  vector<int> singleNumber(vector<int>& nums) {
+  std::vector<int> singleNumber(std::vector<int>& nums) {
     int totalXOR = 0;
     for (int num : nums) {
       totalXOR ^= num;
@@ -31,7 +30,7 @@ class Solution {
     // out, we can extract the single numbers.
     unsigned int leastSignificantSetBit = totalXOR & -(unsigned int)totalXOR;
 
-    vector<int> singleNumbers = vector<int>(2, 0);
+    std::vector<int> singleNumbers = std::vector<int>(2, 0);
     for (int num : nums) {
       // find out which group the current number belong to
       int group = num & leastSignificantSetBit;

@@ -5,7 +5,6 @@
 #include <string>
 #include <utility>
 
-using namespace std;
 /**
  * Able to move backwards/forward number of steps. I.e., history or a Stack.
  * visit clears the forward history.
@@ -17,11 +16,6 @@ using namespace std;
  * want to avoid reallocation by simply updating the "size" of the vector.
  */
 class BrowserHistory {
- private:
-  int stkPtr{};                             // points to the current URL
-  int size{};                               // number of elements in the stack
-  std::array<std::string, 5000> history{};  // at most 5000 calls
-
  public:
   // initialize with the homepage as the root
   BrowserHistory(std::string homepage)
@@ -45,6 +39,11 @@ class BrowserHistory {
     stkPtr = std::min(stkPtr + steps, size - 1);
     return history[stkPtr];
   }
+
+ private:
+  int stkPtr{};                             // points to the current URL
+  int size{};                               // number of elements in the stack
+  std::array<std::string, 5000> history{};  // at most 5000 calls
 };
 
 /**

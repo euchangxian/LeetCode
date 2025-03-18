@@ -1,9 +1,8 @@
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  int countTriplets(vector<int>& arr) {
+  int countTriplets(std::vector<int>& arr) {
     // xor(arr[i..k]) == 0
     int count = 0;
     for (int i = 0; i < arr.size(); ++i) {

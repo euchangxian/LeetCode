@@ -1,21 +1,12 @@
 #include <algorithm>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-using namespace std;
 class Solution {
  private:
-  void dfs(vector<int> const& candidates,
-           int const& target,
-           vector<vector<int>>& combinations,
-           vector<int>& current,
+  void dfs(const std::vector<int>& candidates,
+           const int target,
+           std::vector<std::vector<int>>& combinations,
+           std::vector<int>& current,
            int idx) {
     if (target == 0) {
       // Since there are no '0's, just prune the tree
@@ -49,13 +40,14 @@ class Solution {
   }
 
  public:
-  vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+  std::vector<std::vector<int>> combinationSum2(std::vector<int>& candidates,
+                                                int target) {
     // To ensure that there are no duplicate combinations, we need to be able to
     // skip numbers that are already in the current combination
-    sort(candidates.begin(), candidates.end());
+    std::sort(candidates.begin(), candidates.end());
 
-    vector<vector<int>> combinations;
-    vector<int> current;
+    std::vector<std::vector<int>> combinations;
+    std::vector<int> current;
     dfs(candidates, target, combinations, current, 0);
 
     return combinations;

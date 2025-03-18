@@ -29,6 +29,7 @@ class FenwickTree {
   int N;
   std::vector<int> tree;
 };
+
 class Solution {
  public:
   std::vector<int> countRectangles(std::vector<std::vector<int>>& rectangles,

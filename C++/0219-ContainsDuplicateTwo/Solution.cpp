@@ -4,10 +4,9 @@
 #include <utility>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  bool containsNearbyDuplicate(vector<int>& nums, int k) {
+  bool containsNearbyDuplicate(std::vector<int>& nums, int k) {
     // No constance space constraint.
     // -10^9 <= nums[i] <= 10^9 => Prolly use an unordered_map instead of an
     // array.

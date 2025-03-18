@@ -1,16 +1,12 @@
 #include <algorithm>
-#include <array>
 #include <climits>
 #include <cstddef>
 #include <cstdlib>
-#include <unordered_map>
-#include <utility>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  int findMaxLength(vector<int>& nums) {
+  int findMaxLength(std::vector<int>& nums) {
     // Want: Maximum length of a contiguous subarray with an equal number of
     // 0 and 1.
     // Not sliding window. We cannot determine when a number at the left of

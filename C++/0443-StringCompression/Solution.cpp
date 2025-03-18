@@ -2,7 +2,6 @@
 #include <string>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
   int compress(std::vector<char>& chars) {

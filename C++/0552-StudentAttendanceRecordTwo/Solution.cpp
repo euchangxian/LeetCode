@@ -1,7 +1,4 @@
-#include <iostream>
 #include <vector>
-
-using namespace std;
 
 class Solution {
  public:
@@ -11,8 +8,9 @@ class Solution {
     // 0, or 1 Absent. 2 => no award.
     // 3 consecutive lates => no award
     // dp[numberOfDays][numberOfAbsents][numberOfConsecutiveLates]
-    vector<vector<vector<int>>> dp = vector<vector<vector<int>>>(
-        n + 1, vector<vector<int>>(2, vector<int>(3, 0)));
+    std::vector<std::vector<std::vector<int>>> dp =
+        std::vector<std::vector<std::vector<int>>>(
+            n + 1, std::vector<std::vector<int>>(2, std::vector<int>(3, 0)));
 
     // Base case when days = 0 => number of possible ways = 1
     dp[0][0][0] = 1;
@@ -54,8 +52,3 @@ class Solution {
     return result;
   }
 };
-
-int main(int argc, char* arv[]) {
-  cout << Solution().checkRecord(2) << endl;
-  return 0;
-}

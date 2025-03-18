@@ -3,7 +3,6 @@
 #include <cstdlib>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
   bool canSortArray(std::vector<int>& nums) {
@@ -25,7 +24,7 @@ class Solution {
     // Then, for adjacent subarrays, if the maximum of the left subarray is
     // smaller than the minimum of the right subarray, then we know that the
     // combined subarray can be sorted.
-    const size_t n = nums.size();
+    const std::size_t n = nums.size();
 
     // maintain min/max of current segment
     int currMin = nums[0];

@@ -1,27 +1,10 @@
-#include <algorithm>
-#include <array>
-#include <bitset>
-#include <climits>
 #include <cstddef>
-#include <cstdint>
-#include <functional>
-#include <iostream>
-#include <map>
-#include <queue>
-#include <set>
-#include <stack>
 #include <string>
-#include <string_view>
-#include <tuple>
-#include <unordered_map>
-#include <unordered_set>
-#include <utility>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  vector<string> buildArray(vector<int>& target, int n) {
+  std::vector<std::string> buildArray(std::vector<int>& target, int n) {
     // two Operations: "Push", "Pop"
     // incoming data stream from [1..n]
     // Return operations to build the target.

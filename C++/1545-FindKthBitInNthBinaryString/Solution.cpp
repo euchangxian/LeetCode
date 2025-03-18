@@ -2,24 +2,23 @@
 #include <cstddef>
 #include <string>
 
-using namespace std;
 class Solution {
  private:
-  string invert(string str) {
-    for (size_t i = 0; i < str.length(); ++i) {
+  std::string invert(std::string str) {
+    for (std::size_t i = 0; i < str.length(); ++i) {
       str[i] = (1 - (str[i] - '0')) + '0';
     }
     return str;
   }
 
-  string findNthString(int n) {
+  std::string findNthString(int n) {
     if (n <= 1) {
       return "0";
     }
 
-    string prevString = findNthString(n - 1);
+    std::string prevString = findNthString(n - 1);
 
-    string inverted = invert(prevString);
+    std::string inverted = invert(prevString);
     reverse(inverted.begin(), inverted.end());
 
     return prevString + '1' + inverted;
@@ -61,7 +60,7 @@ class Solution {
 
   // Simulation
   char findKthBitNaive(int n, int k) {
-    string nthString = findNthString(n);
+    std::string nthString = findNthString(n);
     return nthString[k - 1];
   }
 };

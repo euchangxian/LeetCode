@@ -1,15 +1,7 @@
 #include <array>
 #include <cstddef>
 
-using namespace std;
 class ParkingSystem {
- private:
-  const int big = 1;
-  const int medium = 2;
-  const int small = 3;
-
-  std::array<int, 4> parkingLots;
-
  public:
   ParkingSystem(int big, int medium, int small) : parkingLots{{}} {
     parkingLots[this->big] = big;
@@ -24,6 +16,13 @@ class ParkingSystem {
     --parkingLots[carType];
     return true;
   }
+
+ private:
+  const int big = 1;
+  const int medium = 2;
+  const int small = 3;
+
+  std::array<int, 4> parkingLots;
 };
 
 /**

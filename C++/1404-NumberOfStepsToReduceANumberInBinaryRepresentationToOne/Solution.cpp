@@ -1,7 +1,5 @@
-#include <iostream>
 #include <string>
 
-using namespace std;
 class Solution {
  public:
   // even => divide by 2 / right shift
@@ -12,7 +10,7 @@ class Solution {
   // be a right shift until the leading 1 is reached.
   // The key insight is that the 'carry' will always be present after a '1' is
   // encountered.
-  int numSteps(string s) {
+  int numSteps(std::string s) {
     int count = 0;
     int carry = 0;
     for (int i = s.length() - 1; i > 0; --i) {
@@ -27,9 +25,3 @@ class Solution {
     return count + carry;
   }
 };
-
-int main() {
-  cout << Solution().numSteps("1101") << endl;
-  cout << Solution().numSteps("10") << endl;
-  cout << Solution().numSteps("1") << endl;
-}

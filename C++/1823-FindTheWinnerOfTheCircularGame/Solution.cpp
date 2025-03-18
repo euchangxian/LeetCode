@@ -1,5 +1,7 @@
 class Solution {
- private:
+ public:
+  int findTheWinner(int n, int k) { return solve(n, k) + 1; }
+
  private:
   int solve(int n, int k) {
     if (n == 1) {
@@ -7,7 +9,4 @@ class Solution {
     }
     return (solve(n - 1, k) + k) % n;
   }
-
- public:
-  int findTheWinner(int n, int k) { return solve(n, k) + 1; }
 };

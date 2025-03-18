@@ -1,7 +1,6 @@
 #include <cstddef>
 #include <set>
 
-using namespace std;
 /**
  * Input constraints make this problem trivial. 1 <= num <= 1000.
  * Simply generate an array of size 1000. Then utilize std::make_heap,
@@ -48,9 +47,6 @@ using namespace std;
  *
  */
 class SmallestInfiniteSet {
- private:
-  std::set<int> minHeap;
-
  public:
   SmallestInfiniteSet() { minHeap.insert(1); }
 
@@ -71,6 +67,9 @@ class SmallestInfiniteSet {
 
     minHeap.insert(num);
   }
+
+ private:
+  std::set<int> minHeap;
 };
 
 /**

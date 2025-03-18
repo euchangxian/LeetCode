@@ -1,7 +1,6 @@
 #include <cstddef>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
   std::vector<int> decrypt(std::vector<int>& code, int k) {
@@ -17,7 +16,7 @@ class Solution {
       return std::vector<int>(code.size(), 0);
     }
 
-    const size_t n = code.size();
+    const std::size_t n = code.size();
 
     // initialize the starting indices of the window
     int start = k > 0 ? 1 : n + k;  // wont overflow. -k <= n-1

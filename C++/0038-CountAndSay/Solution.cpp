@@ -2,7 +2,6 @@
 #include <string>
 #include <string_view>
 
-using namespace std;
 class Solution {
  private:
   std::string runLengthEncode(std::string_view s) {
@@ -28,7 +27,7 @@ class Solution {
   }
 
  public:
-  string countAndSay(int n) {
+  std::string countAndSay(int n) {
     // Given the recursive relation:
     // countAndSay(1) = "1"
     // countAndSay(n) = RLE(countAndSay(n-1))

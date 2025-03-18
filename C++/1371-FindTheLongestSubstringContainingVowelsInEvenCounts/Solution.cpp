@@ -1,24 +1,13 @@
 #include <algorithm>
 #include <array>
-#include <bitset>
-#include <climits>
 #include <cstdint>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
 #include <string>
-#include <unordered_map>
-#include <unordered_set>
-#include <vector>
 
-using namespace std;
-
-constexpr size_t NUM_ALPHA = 26;
+constexpr std::size_t NUM_ALPHA = 26;
 
 class Solution {
  public:
-  int findTheLongestSubstring(string s) {
+  int findTheLongestSubstring(std::string s) {
     // The intuition to this problem is the parity of the vowels.
     // Consider two indices i and j, i < j, s[i] == s[j].
     // i.e., WLOG, the vowel 'a' is at index i and index j.
@@ -28,7 +17,7 @@ class Solution {
     // even - even = even.
     // Otherwise, we can record the parity of the mask and the corresponding
     // index, in case there are future parities which match.
-    array<size_t, NUM_ALPHA> shiftIdx{};
+    std::array<std::size_t, NUM_ALPHA> shiftIdx{};
     shiftIdx['a' - 'a'] = 1;
     shiftIdx['e' - 'a'] = 2;
     shiftIdx['i' - 'a'] = 3;
@@ -38,7 +27,7 @@ class Solution {
     // 2^(NUM_VOWELS). All possible parities. Avoid using hashmaps/sets
     // stores the index of the first seen parity.
     // Store 1-indexed positions
-    array<int, 64> parity{};
+    std::array<int, 64> parity{};
     parity.fill(-1);  // -1 indicate not seen. Could use a map/seen array
 
     // Reads from reverse, where the MSB is at the end, i.e. uoiea
@@ -59,7 +48,7 @@ class Solution {
         parity[curr] = i + 1;  // store 1-indexed
       }
 
-      longest = max(longest, i + 1 - parity[curr]);
+      longest = std::max(longest, i + 1 - parity[curr]);
     }
 
     return longest;

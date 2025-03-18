@@ -1,10 +1,9 @@
 #include <cstddef>
 #include <string>
 
-using namespace std;
 class Solution {
  public:
-  int minAddToMakeValid(string s) {
+  int minAddToMakeValid(std::string s) {
     // Unlike swapping, each add can only match 1 unmmatched bracket.
     int openBrackets = 0;
     int unmatched = 0;

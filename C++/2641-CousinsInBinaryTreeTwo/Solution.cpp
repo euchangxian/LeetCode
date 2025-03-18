@@ -1,6 +1,8 @@
 #include <cstddef>
 #include <queue>
 #include <vector>
+
+#ifdef LOCAL
 struct TreeNode {
   int val;
   TreeNode* left;
@@ -11,8 +13,8 @@ struct TreeNode {
   TreeNode(int x, TreeNode* left, TreeNode* right)
       : val(x), left(left), right(right) {}
 };
+#endif  // LOCAL
 
-using namespace std;
 class Solution {
  public:
   // First glance seems pretty difficult. Naive Level Order traversal would not
@@ -46,7 +48,7 @@ class Solution {
       int n = frontier.size();
 
       // To collect nodes on THIS level.
-      vector<TreeNode*> parents;
+      std::vector<TreeNode*> parents;
       parents.reserve(n);
 
       // NOTE: Get the level sum of the NEXT level.

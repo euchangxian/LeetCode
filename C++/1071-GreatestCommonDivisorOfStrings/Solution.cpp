@@ -2,19 +2,9 @@
 #include <string>
 #include <string_view>
 
-using namespace std;
 class Solution {
- private:
-  int euclidsGCD(int a, int b) {
-    if (b == 0) {
-      return a;
-    }
-
-    return euclidsGCD(b, a % b);
-  }
-
  public:
-  string gcdOfStrings(string_view str1, string_view str2) {
+  std::string gcdOfStrings(std::string_view str1, std::string_view str2) {
     // This whole part is just to avoid allocation.
     const size_t total = str1.size() + str2.size();
     std::string concat1;
@@ -32,8 +22,17 @@ class Solution {
     }
 
     int gcd = euclidsGCD(str1.length(), str2.length());
-    string_view gcdStr = str1.substr(0, gcd);
+    std::string_view gcdStr = str1.substr(0, gcd);
 
     return std::string(gcdStr.begin(), gcdStr.end());
+  }
+
+ private:
+  int euclidsGCD(int a, int b) {
+    if (b == 0) {
+      return a;
+    }
+
+    return euclidsGCD(b, a % b);
   }
 };

@@ -3,7 +3,6 @@
 #include <cstdlib>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
   int maximumBeauty(std::vector<int>& nums, int k) {

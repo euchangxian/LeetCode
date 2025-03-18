@@ -1,20 +1,20 @@
+#include <algorithm>
+#include <string>
 #include <vector>
-
-using namespace std;
 
 class Solution {
  public:
-  int maxScoreWords(vector<string>& words,
-                    vector<char>& letters,
-                    vector<int>& score) {
+  int maxScoreWords(std::vector<std::string>& words,
+                    std::vector<char>& letters,
+                    std::vector<int>& score) {
     // pre-compute scores and character count
-    vector<int> wordScore = vector<int>(words.size(), 0);
+    std::vector<int> wordScore = std::vector<int>(words.size(), 0);
     for (int i = 0; i < words.size(); ++i) {
       for (char c : words[i]) {
         wordScore[i] += score[c - 'a'];
       }
     }
-    vector<int> count = vector<int>(26, 0);
+    std::vector<int> count = std::vector<int>(26, 0);
     for (char c : letters) {
       ++count[c - 'a'];
     }
@@ -22,9 +22,9 @@ class Solution {
   }
 
  private:
-  int knapsack(vector<string> const& words,
-               vector<int> const& scores,
-               vector<int>& count,
+  int knapsack(const std::vector<std::string>& words,
+               const std::vector<int>& scores,
+               std::vector<int>& count,
                int idx) {
     if (idx >= words.size()) {
       return 0;
@@ -45,6 +45,6 @@ class Solution {
     for (char c : words[idx]) {
       ++count[c - 'a'];
     }
-    return max(skip, pickScore);
+    return std::max(skip, pickScore);
   };
 };

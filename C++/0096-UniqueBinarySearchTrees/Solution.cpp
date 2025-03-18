@@ -1,7 +1,6 @@
 #include <cstddef>
 #include <vector>
 
-using namespace std;
 class Solution {
  private:
   int solve(std::vector<int>& memo, int n) {

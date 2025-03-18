@@ -5,6 +5,7 @@
 
 using i64 = long long;
 constexpr int MOD{1'000'000'007};
+
 class Solution {
  public:
   int sumSubarrayMins(std::vector<int>& arr) {

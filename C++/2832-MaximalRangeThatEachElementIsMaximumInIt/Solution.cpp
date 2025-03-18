@@ -9,7 +9,7 @@ class Solution {
     // seems like monotonic-decreasing stack to me.
     // When popping from the stack, i.e., a larger element at index j is seen,
     // the length of the range can be calculated.
-    const size_t n = nums.size();
+    const std::size_t n = nums.size();
     std::vector<int> lengths(n, 0);
     std::stack<int> maxWindow;
     for (int i = 0; i < n; ++i) {

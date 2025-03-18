@@ -3,12 +3,6 @@
 #include <vector>
 
 class UnionFind {
- private:
-  int components;
-
-  std::vector<int> parent;
-  std::vector<int> rank;
-
  public:
   UnionFind(int n) : parent(n), rank(n, 0), components(n) {
     for (int i = 0; i < n; ++i) {
@@ -47,6 +41,12 @@ class UnionFind {
   }
 
   int size() const { return components; }
+
+ private:
+  int components;
+
+  std::vector<int> parent;
+  std::vector<int> rank;
 };
 
 using i64 = long long;

@@ -4,10 +4,9 @@
 #include <utility>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  long long maxSpending(vector<vector<int>>& values) {
+  long long maxSpending(std::vector<std::vector<int>>& values) {
     // m x n integer matrix values, each representing the value of an item.
     // m shops, n items each.
     // Items in the ith shop are sorted in non-increasing order of value, i.e.,
@@ -30,8 +29,8 @@ class Solution {
     // At any point in time, there would be m items in the heap, resulting in
     // logm pop/push per heap operation. There will be m * n items / heap ops,
     // resulting in a total TC of O(mnlogm)
-    const size_t m = values.size();
-    const size_t n = values[0].size();
+    const std::size_t m = values.size();
+    const std::size_t n = values[0].size();
 
     // stores {value, i = storeIndex}
     std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>,

@@ -1,10 +1,9 @@
 #include <cstddef>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  vector<int> searchRange(vector<int>& nums, int target) {
+  std::vector<int> searchRange(std::vector<int>& nums, int target) {
     // Seems to be two binary searches. One for the lower bound, the other
     // for the upper bound.
     // In problem, we probably do not want to search for the instance where
@@ -21,7 +20,7 @@ class Solution {
 
     const size_t n = nums.size();
 
-    vector<int> range(2, -1);
+    std::vector<int> range(2, -1);
 
     int start = 0;
     int end = n - 1;

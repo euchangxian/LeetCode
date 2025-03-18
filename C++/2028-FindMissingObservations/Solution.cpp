@@ -1,21 +1,12 @@
 #include <algorithm>
-#include <climits>
-#include <functional>
-#include <iostream>
-#include <queue>
-#include <stack>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  vector<int> missingRolls(vector<int>& rolls, int mean, int n) {
+  std::vector<int> missingRolls(std::vector<int>& rolls, int mean, int n) {
     int m = rolls.size();
     int expectedSum = (n + m) * mean;
-    for (auto const& num : rolls) {
+    for (int num : rolls) {
       expectedSum -= num;
     }
 
@@ -23,7 +14,7 @@ class Solution {
       return {};
     }
 
-    vector<int> result(n, 0);
+    std::vector<int> result(n, 0);
 
     // Pigeonhole principle
     // Place at least this many pigeons into each hole first
@@ -34,7 +25,7 @@ class Solution {
     for (int i = 0; i < n; ++i) {
       int additionalPigeons = 0;
       if (expectedSum) {
-        additionalPigeons = min(6 - pigeonRoll, expectedSum);
+        additionalPigeons = std::min(6 - pigeonRoll, expectedSum);
         expectedSum -= additionalPigeons;
       }
       result[i] = pigeonRoll + additionalPigeons;

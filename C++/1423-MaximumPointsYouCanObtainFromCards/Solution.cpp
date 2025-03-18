@@ -2,7 +2,6 @@
 #include <cstddef>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
   int maxScore(std::vector<int>& cardPoints, int k) {
@@ -28,7 +27,7 @@ class Solution {
 
     // For conventions, where the window slides rightwards, start by taking all
     // cards from the right side.
-    const size_t n = cardPoints.size();
+    const std::size_t n = cardPoints.size();
     int start = n - k;
     int end = n - 1;
 

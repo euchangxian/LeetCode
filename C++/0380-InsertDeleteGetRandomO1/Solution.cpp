@@ -4,7 +4,6 @@
 #include <unordered_map>
 #include <vector>
 
-using namespace std;
 /**
  * Insert is almost always trivial to get constant time.
  * A set data structure can be used to determine set inclusion.
@@ -12,7 +11,6 @@ using namespace std;
  * GetRandom is difficult. To getRandom in O(1), an underlying array data
  * structure should be used, so that rand(0, arr.size()-1) can be used to get
  * a random IDx and return the value at that index.
- *
  * As such, remove is made complicated, since random removal from an array is
  * not so straightforward.
  *
@@ -26,12 +24,6 @@ using namespace std;
  *
  */
 class RandomizedSet {
- private:
-  vector<int> nums;
-  unordered_map<int, int> indices;
-
-  std::mt19937 gen;
-
  public:
   RandomizedSet() : gen(std::random_device{}()) {}
 
@@ -55,7 +47,7 @@ class RandomizedSet {
     // update the to-be-swapped element's index
     indices[nums.back()] = indices[val];
 
-    swap(nums[idx], nums.back());
+    std::swap(nums[idx], nums.back());
     nums.pop_back();
     indices.erase(val);
 
@@ -66,6 +58,12 @@ class RandomizedSet {
     std::uniform_int_distribution<> distr(0, nums.size() - 1);
     return nums[distr(gen)];
   }
+
+ private:
+  std::vector<int> nums;
+  std::unordered_map<int, int> indices;
+
+  std::mt19937 gen;
 };
 
 /**

@@ -1,46 +1,35 @@
-#include <algorithm>
-#include <array>
-#include <climits>
 #include <cstdint>
-#include <functional>
-#include <iostream>
 #include <list>
-#include <queue>
-#include <stack>
 #include <stdexcept>
-#include <string>
 #include <unordered_map>
-#include <unordered_set>
-#include <vector>
 
-using namespace std;
 template <typename Key, typename Value>
 class LRUCache {
   // Can be thought of as the ListNode
   // typename is used to specify that the identifier that follows is a type
-  using ListIterator = typename list<pair<Key, Value>>::iterator;
-  using MapIterator = typename unordered_map<Key, ListIterator>::iterator;
+  using ListIterator = typename std::list<std::pair<Key, Value>>::iterator;
+  using MapIterator = typename std::unordered_map<Key, ListIterator>::iterator;
 
  private:
   // Capacity of the LRU Cache. Items are evicted using the Least-Recently-Used
   // strategy if the number of items exceed the capacity
-  size_t const capacity;
+  const std::size_t capacity;
 
   // Map Keys to their Values. A std::list::iterator is used to encapsulate
   // information such as the Key for the LRU strategy.
-  unordered_map<Key, ListIterator> cache;
+  std::unordered_map<Key, ListIterator> cache;
 
   // List to maintain information on insertion order. The front item is the
   // Least-Recently-Used, while the back is the Most-Recently-Used
-  list<pair<Key, Value>> lru;
+  std::list<std::pair<Key, Value>> lru;
 
  public:
-  LRUCache<Key, Value>(size_t capacity) : capacity(capacity) {}
+  LRUCache<Key, Value>(std::size_t capacity) : capacity(capacity) {}
 
-  optional<Value> get(Key const& key) {
+  std::optional<Value> get(const Key& key) {
     MapIterator found = cache.find(key);
     if (found == cache.end()) {
-      return nullopt;
+      return std::nullopt;
     }
 
     // Move the Item to the back of the list
@@ -51,7 +40,7 @@ class LRUCache {
     return (found->second)->second;
   }
 
-  void put(Key const& key, Value const& value) {
+  void put(const Key& key, const Value& value) {
     MapIterator found = cache.find(key);
 
     if (found != cache.end()) {
@@ -74,10 +63,10 @@ class LRUCache {
     return;
   }
 
-  void erase(Key const& key) {
+  void erase(const Key& key) {
     MapIterator found = cache.find(key);
     if (found == cache.end()) {
-      throw runtime_error("key does not exist");
+      throw std::runtime_error("key does not exist");
     }
 
     ListIterator node = found->second;
@@ -85,7 +74,7 @@ class LRUCache {
     cache.erase(key);
   }
 
-  pair<int, int> front() { return lru.front(); }
+  std::pair<int, int> front() { return lru.front(); }
 
   void pop_front() {
     cache.erase(lru.front().first);
@@ -97,15 +86,15 @@ class LRUCache {
 
 class LFUCache {
  private:
-  size_t capacity;
+  std::size_t capacity;
 
   // key: {value, frequency}
-  unordered_map<int, pair<int, uint32_t>> cache;
+  std::unordered_map<int, std::pair<int, uint32_t>> cache;
 
   // frequency: {key1, key2}
   // Used for quick lookups for the Key that has the least frequency
   // Can be visualized as a sorted, multi-level set of lists
-  unordered_map<int, LRUCache<int, int>*> frequency;
+  std::unordered_map<int, LRUCache<int, int>*> frequency;
 
   // Stores the minimum frequency in the cache.
   uint32_t minFreq;
@@ -123,7 +112,7 @@ class LFUCache {
   LFUCache(int capacity) : capacity(capacity), minFreq(0) {}
 
   int get(int key) {
-    auto const foundIter = cache.find(key);
+    const auto foundIter = cache.find(key);
     if (foundIter == cache.end()) {
       // If the key is not in the cache
       return -1;
@@ -152,7 +141,7 @@ class LFUCache {
   }
 
   void put(int key, int value) {
-    auto const foundIter = cache.find(key);
+    const auto foundIter = cache.find(key);
     if (foundIter != cache.end()) {
       // If already in the cache, update the value and the frequency
       (foundIter->second).first = value;

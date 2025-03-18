@@ -1,10 +1,9 @@
 #include <cstddef>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
-  void moveZeroes(vector<int>& nums) {
+  void moveZeroes(std::vector<int>& nums) {
     // Seems like two pointer where the first k elements are non-zeros
     // Similar to Remove Duplicates from Sorted array, where the relative order
     // of the elements must be maintained.

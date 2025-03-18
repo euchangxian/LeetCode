@@ -1,7 +1,6 @@
 #include <bitset>
 #include <cstddef>
 
-using namespace std;
 /**
  * Lol. Given the constraints of this problem, where 0 <= key <= 10^6, there is
  * more than enough space to accomodate all possible keys without having to

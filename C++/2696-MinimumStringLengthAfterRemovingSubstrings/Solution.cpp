@@ -1,11 +1,10 @@
 #include <stack>
 #include <string>
 
-using namespace std;
 class Solution {
  public:
-  int minLength(string s) {
-    stack<char> stk;
+  int minLength(std::string s) {
+    std::stack<char> stk;
     for (char c : s) {
       const bool isPrevA = !stk.empty() && stk.top() == 'A';
       const bool isPrevC = !stk.empty() && stk.top() == 'C';

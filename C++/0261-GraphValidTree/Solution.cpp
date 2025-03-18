@@ -59,7 +59,7 @@ class Solution {
   bool validTree(int n, std::vector<std::vector<int>>& edges) {
     UnionFind uf(n);
 
-    for (auto const& edge : edges) {
+    for (const auto& edge : edges) {
       int first = edge[0];
       int second = edge[1];
 

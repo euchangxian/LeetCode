@@ -5,44 +5,6 @@
 #include <vector>
 
 class Solution {
- private:
-  std::pair<int, int> getDiameter(std::vector<std::vector<int>>& adj,
-                                  int i,
-                                  int parent) {
-    // For a Binary Tree, maintain both current diameter, and the global
-    // maximum.
-    // For trees with arbitrary number of children, similar.
-    // Need multiple information:
-    // - Length of path from leaves, ENDING at THIS node.
-    // - Length of path from leave to another leave, PASSING through THIS node.
-    //
-    // For the first, the longest child path can be used.
-    // For the second, two of the longest child paths need to be used.
-    int maxDepth = 0;
-    int secondMaxDepth = 0;
-    int maxChildDiameter = 0;
-    for (int child : adj[i]) {
-      if (child == parent) {
-        continue;
-      }
-
-      auto [depth, childDiameter] = getDiameter(adj, child, i);
-      maxChildDiameter = std::max(maxChildDiameter, childDiameter);
-
-      depth += 1;  // include current node
-
-      if (depth > maxDepth) {
-        secondMaxDepth = maxDepth;
-        maxDepth = depth;
-      } else if (depth > secondMaxDepth) {
-        secondMaxDepth = depth;
-      }
-    }
-
-    int diameterThroughNode = maxDepth + secondMaxDepth;
-    return {maxDepth, std::max(diameterThroughNode, maxChildDiameter)};
-  }
-
  public:
   int minimumDiameterAfterMerge(std::vector<std::vector<int>>& edges1,
                                 std::vector<std::vector<int>>& edges2) {
@@ -94,5 +56,43 @@ class Solution {
     int combined = ((diameter1 + 1) / 2) + ((diameter2 + 1) / 2) + 1;
 
     return std::max(combined, std::max(diameter1, diameter2));
+  }
+
+ private:
+  std::pair<int, int> getDiameter(std::vector<std::vector<int>>& adj,
+                                  int i,
+                                  int parent) {
+    // For a Binary Tree, maintain both current diameter, and the global
+    // maximum.
+    // For trees with arbitrary number of children, similar.
+    // Need multiple information:
+    // - Length of path from leaves, ENDING at THIS node.
+    // - Length of path from leave to another leave, PASSING through THIS node.
+    //
+    // For the first, the longest child path can be used.
+    // For the second, two of the longest child paths need to be used.
+    int maxDepth = 0;
+    int secondMaxDepth = 0;
+    int maxChildDiameter = 0;
+    for (int child : adj[i]) {
+      if (child == parent) {
+        continue;
+      }
+
+      auto [depth, childDiameter] = getDiameter(adj, child, i);
+      maxChildDiameter = std::max(maxChildDiameter, childDiameter);
+
+      depth += 1;  // include current node
+
+      if (depth > maxDepth) {
+        secondMaxDepth = maxDepth;
+        maxDepth = depth;
+      } else if (depth > secondMaxDepth) {
+        secondMaxDepth = depth;
+      }
+    }
+
+    int diameterThroughNode = maxDepth + secondMaxDepth;
+    return {maxDepth, std::max(diameterThroughNode, maxChildDiameter)};
   }
 };

@@ -3,7 +3,6 @@
 #include <cstdlib>
 #include <vector>
 
-using namespace std;
 class Solution {
  public:
   std::vector<int> sortByBits(std::vector<int>& arr) {

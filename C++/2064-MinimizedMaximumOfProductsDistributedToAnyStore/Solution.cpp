@@ -4,17 +4,6 @@
 #include <vector>
 
 class Solution {
- private:
-  bool feasible(int n, std::vector<int>& quantities, int maxAmount) {
-    int storesUsed = 0;
-    for (int i = 0; i < quantities.size(); ++i) {
-      // ceiling division. each store can only receive one product.
-      storesUsed += (quantities[i] + maxAmount - 1) / maxAmount;
-    }
-
-    return storesUsed <= n;  // represents all distributed.
-  }
-
  public:
   int minimizedMaximum(int n, std::vector<int>& quantities) {
     // n Stores. m products where quantities[i] represent the number of ith
@@ -42,5 +31,16 @@ class Solution {
       }
     }
     return left;
+  }
+
+ private:
+  bool feasible(int n, std::vector<int>& quantities, int maxAmount) {
+    int storesUsed = 0;
+    for (int i = 0; i < quantities.size(); ++i) {
+      // ceiling division. each store can only receive one product.
+      storesUsed += (quantities[i] + maxAmount - 1) / maxAmount;
+    }
+
+    return storesUsed <= n;  // represents all distributed.
   }
 };

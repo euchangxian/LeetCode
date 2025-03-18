@@ -44,6 +44,7 @@ class FenwickTree {
   int N;
   PURQ purq;
 };
+
 class Solution {
  public:
   std::vector<int> fullBloomFlowers(std::vector<std::vector<int>>& flowers,

@@ -1,8 +1,8 @@
+#include <algorithm>
 #include <climits>
 #include <vector>
 
-using namespace std;
-
+#ifdef LOCAL
 struct ListNode {
   int val;
   ListNode* next;
@@ -11,16 +11,17 @@ struct ListNode {
   ListNode(int x) : val(x), next(nullptr) {}
   ListNode(int x, ListNode* next) : val(x), next(next) {}
 };
+#endif  // LOCAL
 
 class Solution {
  public:
-  vector<int> nodesBetweenCriticalPoints(ListNode* head) {
+  std::vector<int> nodesBetweenCriticalPoints(ListNode* head) {
     // minDistance, maxDistance
     // minDistance will be the minimum of the distances between adjacent
     // critical points
     // maxDistance will be the distance between the left-most and the right-most
     // critical points
-    vector<int> result = {INT_MAX, -1};
+    std::vector<int> result = {INT_MAX, -1};
 
     int firstCriticalIndex = -1;
     int prevCriticalIndex = -1;
@@ -39,7 +40,7 @@ class Solution {
 
         // if there was a prevCriticalNode, then check minDistance
         if (prevCriticalIndex != -1) {
-          result[0] = min(result[0], i - prevCriticalIndex);
+          result[0] = std::min(result[0], i - prevCriticalIndex);
         }
         prevCriticalIndex = i;
       }

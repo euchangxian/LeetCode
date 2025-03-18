@@ -1,7 +1,6 @@
 #include <cstddef>
 #include <string>
 
-using namespace std;
 class StringIterator {
   char c;
   int repeats;
@@ -11,7 +10,7 @@ class StringIterator {
 
  public:
   // No need to check
-  StringIterator(string compressedString)
+  StringIterator(std::string compressedString)
       : c(' '),
         repeats(0),
         compressedString(std::move(compressedString)),

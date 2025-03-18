@@ -1,34 +1,9 @@
 #include <algorithm>
-#include <array>
-#include <bitset>
-#include <climits>
 #include <cstddef>
-#include <cstdint>
-#include <functional>
-#include <iostream>
-#include <map>
-#include <queue>
-#include <set>
-#include <stack>
-#include <string>
-#include <string_view>
 #include <tuple>
-#include <unordered_map>
-#include <unordered_set>
-#include <utility>
 #include <vector>
 
-using namespace std;
 class Solution {
- private:
-  int to1D(int n, int r, int c) { return r * n + c; }
-
-  std::pair<int, int> to2D(int n, int coords) {
-    int r = coords / n;
-    int c = coords % n;
-    return {r, c};
-  }
-
  public:
   std::vector<std::vector<int>> minScore(std::vector<std::vector<int>>& grid) {
     // To replace integers in the grid such that the relative order across rows
@@ -64,8 +39,8 @@ class Solution {
     // I.e., collect all m * n indices, sort based on their values.
     // Hm. How to efficiently determine the value that a cell can be reduced to?
     // What about maintaining the max-so-far of each row/column!!
-    const size_t m = grid.size();
-    const size_t n = grid[0].size();
+    const std::size_t m = grid.size();
+    const std::size_t n = grid[0].size();
 
     // {value, row, col}
     std::vector<std::tuple<int, int, int>> cells;
