@@ -100,6 +100,6 @@ echo "$CHANGED_SOLUTIONS" | while read -r file; do
     EXTENSION=${BASH_REMATCH[4]}
     LANGUAGE_ICON=$(get_language_icon_with_link "$EXTENSION" "$file")
     update_table "$NUMBER" "$PROBLEM_NAME" "$LANGUAGE_ICON"
-    npx prettier --write README.md # Run prettier to format README
   fi
 done
+npx prettier --write README.md # Run prettier to format README
