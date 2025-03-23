@@ -17,7 +17,7 @@ class Solution {
   // 4. Repeat 2 to 4 until the queue is empty.
   // 5. If the size of the sorted list is not equal to the number of nodes,
   //    then there is a circular dependency. Otherwise, return the list.
-  std::string foreignDictionary(std::vector<std::string>& words) {
+  std::string alienOrder(std::vector<std::string>& words) {
     // Given the sorted (with an unknown comparator) list of words, return a
     // order of the languages.
 
@@ -25,7 +25,7 @@ class Solution {
     std::array<bool, ALPHABETS> seen{};
 
     // Create dependency graph and calculate in-degree
-    std::array<std::array<bool, ALPHABETS>, ALPHABETS> adjMatrix{{}};
+    std::array<std::array<bool, ALPHABETS>, ALPHABETS> adj{{}};
     std::array<int, ALPHABETS> indegree{};
 
     for (int i = 0; i < words.size(); ++i) {
@@ -34,8 +34,8 @@ class Solution {
       }
 
       if (i > 0) {
-        const std::string& prev = words[i - 1];
-        const std::string& curr = words[i];
+        std::string_view prev = words[i - 1];
+        std::string_view curr = words[i];
 
         int minLen = std::min(prev.length(), curr.length());
 
@@ -54,8 +54,8 @@ class Solution {
             int from = prev[j] - 'a';
             int to = curr[j] - 'a';
 
-            if (!adjMatrix[from][to]) {
-              adjMatrix[from][to] = true;
+            if (!adj[from][to]) {
+              adj[from][to] = true;
               ++indegree[to];
             }
             // No need to look further
@@ -65,30 +65,30 @@ class Solution {
       }
     }
 
-    std::queue<int> zeroInc;
+    std::queue<int> frontier;
     for (int i = 0; i < ALPHABETS; ++i) {
       if (seen[i] && indegree[i] == 0) {
-        zeroInc.push(i);
+        frontier.push(i);
       }
     }
 
     std::string sorted;
     sorted.reserve(ALPHABETS);
-    while (!zeroInc.empty()) {
-      int curr = zeroInc.front();
-      zeroInc.pop();
+    while (!frontier.empty()) {
+      int curr = frontier.front();
+      frontier.pop();
 
       sorted += static_cast<char>('a' + curr);
 
       for (int neighbour = 0; neighbour < ALPHABETS; ++neighbour) {
-        if (adjMatrix[curr][neighbour] && --indegree[neighbour] == 0) {
-          zeroInc.push(neighbour);
+        if (adj[curr][neighbour] && --indegree[neighbour] == 0) {
+          frontier.push(neighbour);
         }
       }
     }
 
-    int uniqueChars = std::count(seen.begin(), seen.end(), true);
-    if (sorted.length() != uniqueChars) {
+    int unique = std::count(seen.begin(), seen.end(), true);
+    if (sorted.length() != unique) {
       return "";
     }
     return sorted;
