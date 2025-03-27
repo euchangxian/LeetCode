@@ -1,14 +1,58 @@
 #include <algorithm>
-#include <cstddef>
-#include <cstdlib>
 #include <string>
 #include <string_view>
 #include <utility>
 #include <vector>
 
+constexpr int MAX_N = 1000;
 class Solution {
  public:
-  int longestPalindromeSubseq(std::string s) {
+  int longestPalindromeSubseq(std::string_view s) {
+    const int n = s.size();
+
+    std::array<int, MAX_N> prev{};
+    std::array<int, MAX_N> dp{};
+
+    for (int i = n - 1; i >= 0; --i) {
+      dp[i] = 1;
+      for (int j = i + 1; j < n; ++j) {
+        if (s[i] == s[j]) {
+          dp[j] = 2 + prev[j - 1];
+        } else {
+          dp[j] = std::max(dp[j - 1], prev[j]);
+        }
+      }
+      prev = std::move(dp);
+    }
+    return dp[n - 1];
+  }
+
+  int longestPalindromeSubseq2D(std::string_view s) {
+    const int n = s.size();
+
+    // Consider (i, j), starting from the beginning and the end.
+    // dp[i][j] = dp[i+1][j-1] + 2            if s[i] == s[j]
+    // dp[i][j] = max(dp[i+1][j], dp[i][j-1]) otherwise.
+    std::vector<std::vector<int>> dp(n, std::vector<int>(n, 0));
+
+    // consider substrings, s[i:j]
+    // The order of iteration is weird. But consider the recursive top-down
+    // approach, where dp[i+1] need to be computed before dp[i], and
+    // dp[i][j-1] need to be computed before dp[i][j].
+    for (int i = n - 1; i >= 0; --i) {
+      dp[i][i] = 1;
+      for (int j = i + 1; j < n; ++j) {
+        if (s[i] == s[j]) {
+          dp[i][j] = 2 + dp[i + 1][j - 1];
+        } else {
+          dp[i][j] = std::max(dp[i + 1][j], dp[i][j - 1]);
+        }
+      }
+    }
+    return dp[0][n - 1];
+  }
+
+  int longestPalindromeSubseqLCS(std::string s) {
     // Longest Palindrome Subsequence of a string is just the Longest Common
     // Subsequence of the string and its reverse.
     std::string t{s.rbegin(), s.rend()};
