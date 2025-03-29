@@ -96,11 +96,12 @@ class Solution {
     // the trivial case
     // nums = {1e9+7, 10, 12}.
     // Both 10 and 12 have a higher prime score of 2, as compared to our
-    // Mersenne Prime.
+    // prime 1e9 + 7, which has a prime score of 1.
     // But clearly, multiplying by 1e9+7 will give us a larger score, even if
     // done only once.
     // Just that the upper_bound on the number of times 1e9+7 can be chosen
-    // is 1 (l, r) = (0, 0). Expanding leftwards will chose 12 instead.
+    // is 1 (l, r) = (0, 0). Expanding rightwards will chose 10 with a prime
+    // score of 2 instead.
     //
     // Thus, we want to sort by nums[i] in descending order. Greedily pick the
     // upper_bound.
