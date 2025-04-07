@@ -1,6 +1,9 @@
 #include <algorithm>
-#include <climits>
+#include <array>
 #include <vector>
+
+constexpr int MAX_N = 100;
+constexpr int INF = 0x3F3F3F3F;
 
 class Solution {
  public:
@@ -22,43 +25,37 @@ class Solution {
                   std::vector<std::vector<int>>& edges,
                   int distanceThreshold) {
     // dp[i][j] represents the shortest distance from i to j
-    std::vector<std::vector<int>> dp(n, std::vector<int>(n, INT_MAX));
-
-    for (int i = 0; i < n; ++i) {
-      dp[i][i] = 0;  // distance to self is zero
-    }
+    std::array<std::array<int, MAX_N + 1>, MAX_N + 1> dp;
+    std::memset(dp.data(), INF, sizeof(dp));
 
     for (const auto& edge : edges) {
       int from = edge[0];
       int to = edge[1];
       int dist = edge[2];
-      dp[from][to] = dist;
-      dp[to][from] = dist;
+      dp[from][to] = dp[to][from] = dist;
     }
 
     for (int k = 0; k < n; ++k) {
       for (int i = 0; i < n; ++i) {
         for (int j = 0; j < n; ++j) {
-          if (dp[i][k] == INT_MAX || dp[k][j] == INT_MAX) {
-            continue;
-          }
           dp[i][j] = std::min(dp[i][j], dp[i][k] + dp[k][j]);
         }
       }
     }
 
     int city = 0;
-    int minReachable = INT_MAX;
+    int minReachable = INF;
     for (int i = 0; i < n; ++i) {
-      int currentCount = 0;
+      int count = 0;
       for (int j = 0; j < n; ++j) {
-        if (dp[i][j] <= distanceThreshold) {
-          ++currentCount;
+        if (i != j && dp[i][j] <= distanceThreshold) {
+          ++count;
         }
       }
-      if (currentCount <= minReachable) {
+
+      if (count <= minReachable) {
+        minReachable = count;
         city = i;
-        minReachable = currentCount;
       }
     }
 
