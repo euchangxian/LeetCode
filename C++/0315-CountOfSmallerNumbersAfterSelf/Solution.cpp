@@ -1,7 +1,3 @@
-#include <algorithm>
-#include <cstddef>
-#include <cstdlib>
-#include <unordered_map>
 #include <vector>
 
 class FenwickTree {
@@ -23,31 +19,22 @@ class FenwickTree {
   }
 
  private:
-  const int N;
+  int N;
   std::vector<int> tree;
 };
+
+constexpr int OFFSET = 1e4;
 class Solution {
  public:
   std::vector<int> countSmaller(std::vector<int>& nums) {
-    // Simple! Discretization + Fenwick Trees + iterate right to left.
-    std::vector<int> sorted = nums;
-    std::sort(sorted.begin(), sorted.end());
+    // Fenwick Trees keyed by values + iterate right to left.
+    const int n = nums.size();
 
-    int k = 1;
-    std::unordered_map<int, int> indices;
-    indices.reserve(nums.size());
-    indices[sorted[0]] = k;
-    for (int i = 1; i < sorted.size(); ++i) {
-      if (sorted[i] != sorted[i - 1]) {
-        indices[sorted[i]] = ++k;
-      }
-    }
-
-    FenwickTree ft(indices.size());
-    std::vector<int> answer(nums.size());
-    for (int i = nums.size() - 1; i >= 0; --i) {
-      answer[i] = ft.prefix(indices[nums[i]] - 1);
-      ft.update(indices[nums[i]], 1);
+    FenwickTree ft(2 * OFFSET + 1);
+    std::vector<int> answer(n);
+    for (int i = n - 1; i >= 0; --i) {
+      answer[i] = ft.prefix(OFFSET + nums[i]);  // nums[i] is '0-indexed'
+      ft.update(OFFSET + nums[i] + 1, 1);
     }
     return answer;
   }
