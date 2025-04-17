@@ -58,6 +58,10 @@ fn main() -> Result<(), String> {
         }
     }
 
+    if !found {
+        readme::write_line(&mut writer, &solution.to_table_row())?;
+    }
+
     readme::finalize_readme_update(README, writer)?;
 
     let out = git::format_readme()?;
