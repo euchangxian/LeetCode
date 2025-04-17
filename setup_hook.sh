@@ -2,8 +2,13 @@
 
 set -euo pipefail
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-HOOKS_DIR="$SCRIPT_DIR/.git/hooks"
+REPO_ROOT=$(git rev-parse --show-toplevel)
+HOOKS_DIR="$REPO_ROOT/.git/hooks"
+
+CARGO_PROJECT_NAME="precommit_script"
+CARGO_PROJECT_DIR="$REPO_ROOT/$CARGO_PROJECT_NAME"
+BUILD_PATH="$CARGO_PROJECT_DIR/target/release/$CARGO_PROJECT_NAME"
+EXECUTABLE="update_readme"
 
 # Ensure the hooks directory exists
 mkdir -p "$HOOKS_DIR"
@@ -12,8 +17,8 @@ mkdir -p "$HOOKS_DIR"
 cat >"$HOOKS_DIR/pre-commit" <<EOL
 #!/bin/bash
 
-# Run the update_readme.sh script
-"$SCRIPT_DIR/update_readme.sh"
+# Run the Executable
+"$REPO_ROOT/$EXECUTABLE"
 
 # Check if README.md was modified
 if git diff --exit-code README.md; then
@@ -31,8 +36,12 @@ EOL
 # Make the pre-commit hook executable
 chmod +x "$HOOKS_DIR/pre-commit"
 
+echo "Building Cargo project (release build)..."
+cargo build --release --manifest-path "$CARGO_PROJECT_DIR/Cargo.toml"
+cp "$BUILD_PATH" "$EXECUTABLE"
+
 # Make update_readme.sh executable
-chmod +x "$SCRIPT_DIR/update_readme.sh"
+chmod +x "$EXECUTABLE"
 
 echo "Git hooks have been set up successfully."
-echo "The pre-commit hook will now run update_readme.sh before each commit."
+echo "The pre-commit hook will now run update_readme before each commit."
