@@ -46,15 +46,15 @@ pub fn validate_staged_files(staged_files: &[String]) -> Result<Option<&String>,
 }
 
 pub fn format_readme() -> Result<String, String> {
-    let output = Command::new("npx")
-        .args(["prettier", "--write", "README.md"])
+    let output = Command::new("dprint")
+        .args(["fmt"])
         .output()
-        .map_err(|e| format!("Failed to execute prettier: {}", e))?;
+        .map_err(|e| format!("Failed to execute dprint fmt: {}", e))?;
 
     let stdout = String::from_utf8_lossy(&output.stdout);
     // Check process exit code
     if !output.status.success() {
-        return Err(format!("Prettier failed: {}", stdout));
+        return Err(format!("dprint failed: {}", stdout));
     }
     Ok(stdout.to_string())
 }

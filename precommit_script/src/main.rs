@@ -104,7 +104,7 @@ fn main() -> Result<(), String> {
         || readme::finalize_readme_update(README, writer),
     )?;
 
-    let out = time_operation("run prettier", git::format_readme)?;
+    let out = time_operation("run formatter", git::format_readme)?;
     println!("{out}");
     Ok(())
 }

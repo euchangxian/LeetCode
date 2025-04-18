@@ -49,8 +49,7 @@ Now solving in C++. Like it.
 1. Rust solutions are not run-able. Rust requires a different sort of directory
    that is not really compatible with the way this Repository is structured.
 
-2. Code Coverage Badge showing `unknown`. This is a known issue with [GitLab
-   Child Pipelines](https://gitlab.com/gitlab-org/gitlab/-/issues/280818).
+2. Code Coverage Badge showing `unknown`. This is a known issue with [GitLab Child Pipelines](https://gitlab.com/gitlab-org/gitlab/-/issues/280818).
    I could technically not use child pipelines, but for clean-code/configuration
    purposes, I would rather separate the concerns of each pipeline. Not knowing
    the test coverage is fine. This repository is not a Library.
