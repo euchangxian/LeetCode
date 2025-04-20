@@ -63,7 +63,7 @@ impl Solution {
         let name = parts[1].to_string();
         let lang_part = parts[2];
         let languages: Vec<Language> = Language::iter()
-            .filter(|lang| lang_part.contains(lang.as_str()))
+            .filter(|lang| lang_part.contains(&format!("[![{}]", lang.as_str())))
             .cloned()
             .collect();
 
