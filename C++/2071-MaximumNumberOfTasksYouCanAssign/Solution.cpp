@@ -32,8 +32,12 @@ class Solution {
     // largest K workers.
     const int n = tasks.size();
     const int m = workers.size();
-    std::sort(tasks.begin(), tasks.end());
-    std::sort(workers.begin(), workers.end(), std::greater<>{});
+    const int k = std::min(n, m);
+    std::partial_sort(tasks.begin(), tasks.begin() + k, tasks.end());
+    std::partial_sort(workers.begin(), workers.begin() + k, workers.end(),
+                      std::greater<>{});
+    // std::sort(tasks.begin(), tasks.end());
+    // std::sort(workers.begin(), workers.end(), std::greater<>{});
 
     auto feasibleNaive = [pills, strength](std::span<int> tasks,
                                            std::span<int> w) -> bool {
@@ -62,6 +66,7 @@ class Solution {
       }
       return true;
     };
+
     auto feasible = [pills, strength](std::span<int> tasks,
                                       std::span<int> workers) -> bool {
       // note that tasks are sorted in ascending, workers in descending order.
