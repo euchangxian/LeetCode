@@ -1,40 +1,41 @@
-#include <climits>
+#include <array>
+#include <limits>
 #include <vector>
 
-// There exists an undirected tree with n nodes numbered 0 to n - 1. You are
-// given a 0-indexed 2D integer array edges of length n - 1, where edges[i] =
-// [ui, vi] indicates that there is an edge between nodes ui and vi in the tree.
-// You are also given a positive integer k, and a 0-indexed array of
-// non-negative integers nums of length n, where nums[i] represents the value of
-// the node numbered i.
-//
-// Alice wants the sum of values of tree nodes to be maximum, for which Alice
-// can perform the following operation any number of times (including zero) on
-// the tree:
-//
-// Choose any edge [u, v] connecting the nodes u and v, and update their values
-// as follows: nums[u] = nums[u] XOR k nums[v] = nums[v] XOR k Return the
-// maximum possible sum of the values Alice can achieve by performing the
-// operation any number of times.
+constexpr int MAX_N = 2E4;
+using i64 = long long;
 class Solution {
  public:
-  long long maximumValueSum(std::vector<int>& nums,
-                            int k,
-                            std::vector<std::vector<int>>& edges) {
-    using ll = long long;
-    int n = nums.size();
-    std::vector<std::vector<ll>> dp =
-        std::vector<std::vector<ll>>(2, std::vector<ll>(n + 1, 0));
-
+  i64 maximumValueSum(std::vector<int>& nums,
+                      int k,
+                      std::vector<std::vector<int>>& edges) {
+    // Given a tree, and n nodes numbered 0 to n-1,
+    // edges[i] = [u, v] indicate a bidirectional edge between nodes u and v.
+    // Choose any edge (u, v) and update the values:
+    // - nums[u] = nums[u] XOR k
+    // - nums[v] = nums[v] XOR k
+    // Return maximum sum, performing the operations any number of times.
+    //
+    // Note that if we have node u connected to two children, performing the
+    // operations on u twice will result in net 0 change to the value of u.
+    // With this, a node can be in one of two states:
+    // - nums[u] = nums[u]
+    // - nums[u] = nums[u] ^ k
+    //
+    // Hm. Naively, 2^(n-1), each edge has two choices: pick/skip.
+    //
+    // Hm. We do not consider edges. Because we can "toggle" the state of each
+    // node using any number of operations.
+    const int n = nums.size();
+    std::array<std::array<i64, 2>, MAX_N + 1> dp{};
     dp[0][0] = 0;
-    dp[1][0] = LLONG_MIN;
+    dp[0][1] = std::numeric_limits<i64>::min();
 
-    for (int i = 1; i < n + 1; ++i) {
+    for (int i = 1; i <= n; ++i) {
       int x = nums[i - 1];
-
-      dp[0][i] = std::max(x + dp[0][i - 1], (x ^ k) + dp[1][i - 1]);
-      dp[1][i] = std::max(x + dp[1][i - 1], (x ^ k) + dp[0][i - 1]);
+      dp[i][0] = std::max(x + dp[i - 1][0], (x ^ k) + dp[i - 1][1]);
+      dp[i][1] = std::max(x + dp[i - 1][1], (x ^ k) + dp[i - 1][0]);
     }
-    return dp[0][n];
+    return dp[n][0];
   }
 };
