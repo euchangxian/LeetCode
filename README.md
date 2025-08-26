@@ -35,14 +35,16 @@ structures and/or algorithms.
 
 Also, solving string/char questions in Go was painful due to runes and such.
 
-Though, Go is still my favorite language by far for Software Engineering due
-to its ease of use and comprehensive standard library.
+~Though, Go is still my favorite language by far for Software Engineering due
+to its ease of use and comprehensive standard library.~
 
-Tried Rust for the fun of it. Enjoyed it. Too time-consuming to deal with the
+~Tried Rust for the fun of it. Enjoyed it. Too time-consuming to deal with the
 borrow-checker when solving Graph questions. Though I would want to engineer
-some software with it some time in the future.
+some software with it some time in the future.~
 
-Now solving in C++. Like it.
+~Now solving in C++. Like it.~
+
+**C\+\+ ONLY.**
 
 ## Known Issues
 
