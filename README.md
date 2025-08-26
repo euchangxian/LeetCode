@@ -35,14 +35,14 @@ structures and/or algorithms.
 
 Also, solving string/char questions in Go was painful due to runes and such.
 
-~Though, Go is still my favorite language by far for Software Engineering due
-to its ease of use and comprehensive standard library.~
+~~Though, Go is still my favorite language by far for Software Engineering due
+to its ease of use and comprehensive standard library.~~
 
-~Tried Rust for the fun of it. Enjoyed it. Too time-consuming to deal with the
+~~Tried Rust for the fun of it. Enjoyed it. Too time-consuming to deal with the
 borrow-checker when solving Graph questions. Though I would want to engineer
-some software with it some time in the future.~
+some software with it some time in the future.~~
 
-~Now solving in C++. Like it.~
+~~Now solving in C++. Like it.~~
 
 **C\+\+ ONLY.**
 
@@ -467,6 +467,7 @@ some software with it some time in the future.~
 | 1168 | OptimizeWaterDistributionInAVillage                              |                                          [![C++](assets/c++.svg)](C++/1168-OptimizeWaterDistributionInAVillage/Solution.cpp)                                          |
 | 1172 | DinnerPlateStacks                                                |                                                   [![C++](assets/c++.svg)](C++/1172-DinnerPlateStacks/Solution.cpp)                                                   |
 | 1180 | CountSubstringsWithOnlyOneDistinctLetter                         |                                       [![C++](assets/c++.svg)](C++/1180-CountSubstringsWithOnlyOneDistinctLetter/Solution.cpp)                                        |
+| 1181 | BeforeAndAfterPuzzle                                             |                                                 [![C++](assets/c++.svg)](C++/1181-BeforeAndAfterPuzzle/Solution.cpp)                                                  |
 | 1190 | ReverseSubstringsBetweenEachPairOfParentheses                    |                                     [![C++](assets/c++.svg)](C++/1190-ReverseSubstringsBetweenEachPairOfParentheses/Solution.cpp)                                     |
 | 1192 | CriticalConnectionsInANetwork                                    |                                             [![C++](assets/c++.svg)](C++/1192-CriticalConnectionsInANetwork/Solution.cpp)                                             |
 | 1208 | GetEqualSubstringsWithinBudget                                   |                                            [![C++](assets/c++.svg)](C++/1208-GetEqualSubstringsWithinBudget/Solution.cpp)                                             |
