@@ -1,9 +1,10 @@
+#include <bitset>
 #include <vector>
 
 class Solution {
  private:
-  bool isRowValid(std::vector<std::vector<char>> const& board, int row) {
-    std::vector<bool> present = std::vector<bool>(9, false);
+  bool isRowValid(const std::vector<std::vector<char>>& board, int row) {
+    std::bitset<9> present{};
     for (char num : board[row]) {
       if (num == '.') {
         continue;
@@ -16,9 +17,9 @@ class Solution {
     return true;
   }
 
-  bool isColValid(std::vector<std::vector<char>> const& board, int col) {
-    std::vector<bool> present = std::vector<bool>(9, false);
-    for (auto row : board) {
+  bool isColValid(const std::vector<std::vector<char>>& board, int col) {
+    std::bitset<9> present{};
+    for (const auto& row : board) {
       if (row[col] == '.') {
         continue;
       }
@@ -30,11 +31,11 @@ class Solution {
     return true;
   }
 
-  bool isBoxValid(std::vector<std::vector<char>> const& board,
+  bool isBoxValid(const std::vector<std::vector<char>>& board,
                   int row,
                   int col) {
     // no bounds check. assume inputs are correct.
-    std::vector<bool> present = std::vector<bool>(9, false);
+    std::bitset<9> present{};
     for (int i = row; i < row + 3; ++i) {
       for (int j = col; j < col + 3; ++j) {
         if (board[i][j] == '.') {
