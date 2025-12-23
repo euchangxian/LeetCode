@@ -1,6 +1,4 @@
 #include <algorithm>
-#include <cstddef>
-#include <cstdlib>
 #include <vector>
 
 class Solution {
@@ -30,21 +28,21 @@ class Solution {
     // endEvent, isStart will be used as the tiebreaker. This is because we
     // want to prioritise handling events that ended, so that we can get the
     // possibly new `prevMax` value.
-    std::vector<std::array<int, 3>> line;
+    std::vector<std::tuple<int, int, int>> line;
     line.reserve(events.size() * 2);
     for (const auto& event : events) {
       int start = event[0];
       int end = event[1];
       int value = event[2];
 
-      line.push_back({start, true, value});
-      line.push_back({end + 1, false, value});
+      line.emplace_back(start, true, value);
+      line.emplace_back(end + 1, false, value);
     }
     std::sort(line.begin(), line.end());
 
     int maxSum = 0;
     int prevMax = 0;
-    for (const auto [time, isStart, value] : line) {
+    for (const auto& [time, isStart, value] : line) {
       if (isStart) {
         maxSum = std::max(maxSum, prevMax + value);
       } else {
