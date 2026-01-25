@@ -1,9 +1,19 @@
 # LeetCode Solutions
 
+<!--toc:start-->
+
+- [LeetCode Solutions](#leetcode-solutions)
+  - [Initial Setup](#initial-setup)
+    - [Prerequisites](#prerequisites)
+    - [Steps](#steps)
+  - [Description](#description)
+  - [Known Issues](#known-issues)
+  - [Solutions](#solutions)
+
+<!--toc:end-->
+
 [![pipeline status](https://gitlab.com/euchangxian/leetcode/badges/main/pipeline.svg)](https://gitlab.com/euchangxian/leetcode/-/commits/main)
 [![coverage report](https://gitlab.com/euchangxian/leetcode/badges/main/coverage.svg)](https://gitlab.com/euchangxian/leetcode/-/commits/main)
-
-[[_TOC_]]
 
 ---
 
@@ -11,7 +21,7 @@
 
 ### Prerequisites
 
-- `prettier` (used to format the README in the pre-commit hook)
+- `dprint` (used to format the README in the pre-commit hook)
 
 ### Steps
 
@@ -26,25 +36,7 @@ bash setup_hook.sh
 
 ## Description
 
-Contains LeetCode Solutions written in different languages for ME to reference
-and track my progress.
-
-Started with Go, but Go as an interview language to solve LeetCode questions is
-a poor choice, since Go's standard library is sorely lacking common data
-structures and/or algorithms.
-
-Also, solving string/char questions in Go was painful due to runes and such.
-
-~~Though, Go is still my favorite language by far for Software Engineering due
-to its ease of use and comprehensive standard library.~~
-
-~~Tried Rust for the fun of it. Enjoyed it. Too time-consuming to deal with the
-borrow-checker when solving Graph questions. Though I would want to engineer
-some software with it some time in the future.~~
-
-~~Now solving in C++. Like it.~~
-
-**C\+\+ ONLY.**
+**C\+\+**
 
 ## Known Issues
 
