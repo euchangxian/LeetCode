@@ -1,14 +1,14 @@
 #include <algorithm>
 #include <stack>
-#include <string>
+#include <string_view>
 #include <vector>
 
 class Solution {
  public:
   std::vector<int> survivedRobotsHealths(std::vector<int>& positions,
                                          std::vector<int>& healths,
-                                         std::string directions) {
-    int n = positions.size();
+                                         std::string_view directions) {
+    const auto n = static_cast<int>(positions.size());
     std::vector<int> robots = std::vector<int>(n);
     for (int i = 0; i < n; ++i) {
       robots[i] = i;
@@ -22,14 +22,14 @@ class Solution {
     std::vector<int> result;
     // Stores robots going to the right only (monotonic).
     std::stack<int> goingRight;
-    for (int curr : robots) {
+    for (auto curr : robots) {
       if (directions[curr] == 'R') {
         goingRight.push(curr);
         continue;
       }
 
       while (!goingRight.empty()) {
-        int top = goingRight.top();
+        auto top = goingRight.top();
         if (healths[top] == healths[curr]) {
           healths[top] = 0;
           healths[curr] = 0;
@@ -47,7 +47,7 @@ class Solution {
       }
     }
 
-    for (int health : healths) {
+    for (auto health : healths) {
       if (health > 0) {
         result.push_back(health);
       }
